@@ -1,8 +1,6 @@
-import { IsBase64, IsString, IsNumber } from "class-validator";
+import { IsBase64, IsString, IsNumber, IsArray } from "class-validator";
 
 export class CreateBillingDto {
-  @IsString()
-  readonly accountId: string;
   @IsString()
   readonly qbInvoiceId: string;
   @IsNumber()
@@ -13,4 +11,14 @@ export class CreateBillingDto {
   readonly amountPayed: number;
   @IsString()
   readonly dueDate: string;
+  @IsNumber()
+  readonly accountId: number;
+  @IsNumber()
+  readonly netAccountId: number;
+  @IsNumber()
+  readonly status: number;
+  @IsArray()
+  readonly items: Array<number>;
+  @IsArray()
+  readonly payments: Array<number>;
 }

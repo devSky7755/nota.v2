@@ -1,21 +1,40 @@
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
-import { UserEntity } from "src/user/entity/user.entity";
 import { Repository } from "typeorm";
 import { CreateBillingDto } from "./dto/billing.create-dto";
+
+import { AccountEntity } from "src/account/entity/account.entity";
 import { BillingEntity } from "./entity/billing.entity";
+import { BillingItemEntity } from "./entity/billing.item.entity";
+import { BillingPaymentEntity } from "./entity/billing.payment.entity";
+import { plainToClass } from "class-transformer";
 
 @Injectable()
 export class BillingService {
   constructor(
     @InjectRepository(BillingEntity)
-    private billingRepository: Repository<BillingEntity>
-  ) {}
+    private billingRepository: Repository<BillingEntity>,
+    @InjectRepository(AccountEntity)
+    private accountRepository: Repository<AccountEntity>,
+    @InjectRepository(BillingItemEntity)
+    private billingItemRepository: Repository<BillingItemEntity>,
+    @InjectRepository(AccountEntity)
+    private billingPaymentRepository: Repository<BillingPaymentEntity>,
+  ) { }
 
   async createBilling(billing: CreateBillingDto): Promise<BillingEntity> {
-    return await this.billingRepository.save({
-      ...billing,
+    const { accountId, items, payments, ...dto } = billing;
+    const account = await this.accountRepository.findOne({
+      id: accountId,
     });
+    const itemEnts: BillingItemEntity[] = await this.billingItemRepository.findByIds(items);
+    const paymentEnts: BillingPaymentEntity[] = await this.billingPaymentRepository.findByIds(payments);
+    return await this.billingRepository.save(plainToClass(BillingEntity, {
+      account,
+      items: itemEnts,
+      payments: paymentEnts,
+      ...dto
+    }));
   }
 
   async findAllBilling(): Promise<BillingEntity[]> {

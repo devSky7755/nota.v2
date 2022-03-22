@@ -1,7 +1,10 @@
-import { IsString, IsBoolean } from "class-validator";
+import { IsString, IsBoolean, IsArray, IsOptional } from "class-validator";
+import { UniqueOnDatabase } from "src/providers/unique-validation";
+import { UserEntity } from "../entity/user.entity";
 
 export class CreateUserDto {
   @IsString()
+  @UniqueOnDatabase(UserEntity)
   readonly email: string;
   @IsString()
   readonly firstName: string;
@@ -17,4 +20,7 @@ export class CreateUserDto {
   readonly isNotary: boolean;
   @IsString()
   readonly signature: string;
+  @IsOptional()
+  @IsArray()
+  readonly accIds: Array<number>;
 }

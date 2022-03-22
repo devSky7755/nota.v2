@@ -1,19 +1,22 @@
-import { UserEntity } from "src/user/entity/user.entity";
 import {
   Entity,
   Column,
   PrimaryGeneratedColumn,
   ManyToOne,
+  CreateDateColumn,
+  UpdateDateColumn,
+  OneToMany,
   JoinColumn,
 } from "typeorm";
+
+import { AccountEntity } from "src/account/entity/account.entity";
+import { BillingItemEntity } from "./billing.item.entity";
+import { BillingPaymentEntity } from "./billing.payment.entity";
 
 @Entity({ name: "billings" })
 export class BillingEntity {
   @PrimaryGeneratedColumn()
   id: number;
-
-  @Column({ name: "acc_id" })
-  accountId: string;
 
   @Column({ name: "qb_inv_id" })
   qbInvoiceId: string;
@@ -25,8 +28,24 @@ export class BillingEntity {
   balance: number;
 
   @Column({ name: "amount_payed" })
-  amountPayd: number;
+  amountPayed: number;
 
   @Column({ name: "due_date" })
   dueDate: string;
+
+  @CreateDateColumn({ type: "timestamp", default: () => "CURRENT_TIMESTAMP(6)" })
+  public created_at: Date;
+
+  @UpdateDateColumn({ type: "timestamp", default: () => "CURRENT_TIMESTAMP(6)", onUpdate: "CURRENT_TIMESTAMP(6)" })
+  public updated_at: Date;
+
+  @ManyToOne(() => AccountEntity, (account) => account.billings)
+  @JoinColumn({name: 'account_id'})
+  account: AccountEntity
+
+  @OneToMany(() => BillingItemEntity, (item) => item.billing)
+  items: BillingItemEntity
+
+  @OneToMany(() => BillingPaymentEntity, (payment) => payment.billing)
+  payments: BillingPaymentEntity
 }

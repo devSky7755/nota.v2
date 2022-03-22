@@ -1,4 +1,7 @@
-import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn } from "typeorm";
+import { BillingEntity } from "src/billing/entity/billing.entity";
+import { StateEntity } from "src/state/entity/state.entity";
+import { UserEntity } from "src/user/entity/user.entity";
+import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, ManyToOne, ManyToMany, JoinTable, OneToMany, JoinColumn } from "typeorm";
 
 @Entity({ name: "accounts" })
 export class AccountEntity {
@@ -34,9 +37,6 @@ export class AccountEntity {
 
   @Column({ name: "billing_city" })
   billingCity: string;
-
-  @Column({ name: "billing_state" })
-  billingState: string;
 
   @Column({ name: "billing_zip_code" })
   billingZipCode: string;
@@ -79,4 +79,18 @@ export class AccountEntity {
 
   @UpdateDateColumn({ type: "timestamp", default: () => "CURRENT_TIMESTAMP(6)", onUpdate: "CURRENT_TIMESTAMP(6)" })
   public updated_at: Date;
+
+  @ManyToOne(() => StateEntity, (state) => state.s_accounts)
+  state: StateEntity
+
+  @ManyToMany(() => StateEntity)
+  @JoinTable()
+  billingStates: StateEntity[];
+
+  @ManyToMany(() => UserEntity)
+  @JoinTable({ name: 'acc_user_join' })
+  users: UserEntity[];
+
+  @OneToMany(() => BillingEntity, (bill) => bill.account)
+  billings: BillingEntity[]
 }

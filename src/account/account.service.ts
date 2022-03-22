@@ -5,19 +5,37 @@ import {
 } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { AuthService } from "src/auth/auth.service";
-import { Connection, Repository, UpdateResult } from "typeorm";
+import { StateEntity } from "src/state/entity/state.entity";
+import { Connection, DeleteResult, Repository, UpdateResult } from "typeorm";
 import { CreateAccountDto } from "./dto/account.create-dto";
 import { UpdateAccountDto } from "./dto/account.update-dto";
 import { AccountEntity } from "./entity/account.entity";
+import { plainToClass } from 'class-transformer';
 
 @Injectable()
 export class AccountService {
   constructor(
     @InjectRepository(AccountEntity)
     private AccountRepository: Repository<AccountEntity>,
+    @InjectRepository(StateEntity)
+    private StateRepository: Repository<StateEntity>,
     private authService: AuthService,
     private connection: Connection
-  ) {}
+  ) { }
+
+  async findAll(): Promise<AccountEntity[]> {
+    return await this.AccountRepository.find({ relations: ["state", "billingStates"] });
+  }
+
+  async findAccountById(id: number): Promise<AccountEntity> {
+    const selectedAccount: AccountEntity = await this.AccountRepository.findOne(
+      { id },
+      { relations: ["state", "billingStates"] }
+    );
+    if (!selectedAccount)
+      throw new NotFoundException(`there is no Account with ID ${id}`);
+    return selectedAccount;
+  }
 
   async createAccount(Account: CreateAccountDto): Promise<AccountEntity> {
     const {
@@ -32,7 +50,7 @@ export class AccountService {
       billingAddressOne,
       billingAddressTwo,
       billingCity,
-      billingState,
+      billingStates,
       billingZipCode,
       email,
       billingEmail,
@@ -46,26 +64,21 @@ export class AccountService {
       status,
       closedDate,
     } = Account;
-    const findAccount: AccountEntity = await this.AccountRepository.findOne({
-      email,
-    });
-    if (findAccount)
-      throw new ConflictException(
-        `${email} is already created Account. Create another Account.`
-      );
-    return this.AccountRepository.save({
+
+    return await this.AccountRepository.save({
       companyName,
       firstName,
       lastName,
       addressOne,
       addressTwo,
       city,
-      state,
+      state: await this.StateRepository.findOne({
+        id: state,
+      }),
       zipCode,
       billingAddressOne,
       billingAddressTwo,
       billingCity,
-      billingState,
       billingZipCode,
       email,
       billingEmail,
@@ -78,21 +91,8 @@ export class AccountService {
       whiteLabel,
       status,
       closedDate,
+      billingStates: await this.StateRepository.findByIds(billingStates)
     });
-  }
-
-  async findAll(): Promise<AccountEntity[]> {
-    return await this.AccountRepository.find({ relations: ["address"] });
-  }
-
-  async findAccountById(id: number): Promise<AccountEntity> {
-    const selectedAccount: AccountEntity = await this.AccountRepository.findOne(
-      { id },
-      { relations: ["address"] }
-    );
-    if (!selectedAccount)
-      throw new NotFoundException(`there is no Account with ID ${id}`);
-    return selectedAccount;
   }
 
   async findAccountByEmail(email: string): Promise<AccountEntity> {
@@ -108,12 +108,30 @@ export class AccountService {
   async updateAccountById(
     AccountId: number,
     updateAccountDto: UpdateAccountDto
-  ): Promise<UpdateResult> {
-    return await this.AccountRepository.update(AccountId, updateAccountDto);
+  ): Promise<any> {
+    const { state, billingStates, ...dto } = updateAccountDto;
+    if (dto?.email) {
+      const findAccount: AccountEntity = await this.AccountRepository.findOne({
+        email: dto.email,
+      });
+      if (findAccount && findAccount?.id !== AccountId)
+        throw new ConflictException(
+          `${dto.email} already exists. Use another email.`
+        );
+    }
+
+    if (state) {
+      dto['state'] = await this.StateRepository.findOne({ id: state })
+    }
+
+    if (billingStates && billingStates.length > 0) {
+      dto['billingStates'] = await this.StateRepository.findByIds(billingStates)
+    }
+    const account = await this.AccountRepository.findOne(AccountId);
+    return await this.AccountRepository.save(plainToClass(AccountEntity, { ...account, ...dto }));
   }
 
-  async removeAccountById(AccountId: number): Promise<void> {
-    const Account: AccountEntity = await this.findAccountById(AccountId);
-    await this.AccountRepository.delete(AccountId);
+  async removeAccountById(AccountId: number): Promise<DeleteResult> {
+    return await this.AccountRepository.delete(AccountId);
   }
 }

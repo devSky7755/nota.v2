@@ -1,3 +1,4 @@
+import { AccountEntity } from "src/account/entity/account.entity";
 import { PostEntity } from "src/post/entity/post.entity";
 import { RecordEntity } from "src/record/entity/record.entity";
 import {
@@ -10,6 +11,8 @@ import {
   OneToOne,
   CreateDateColumn,
   UpdateDateColumn,
+  ManyToMany,
+  JoinTable,
 } from "typeorm";
 
 @Entity({ name: "users" })
@@ -46,4 +49,8 @@ export class UserEntity {
 
   @OneToMany(() => RecordEntity, (record) => record.user)
   records: RecordEntity[]
+
+  @ManyToMany(() => AccountEntity)
+  @JoinTable({name: 'acc_user_join'})
+  accounts: AccountEntity[];
 }

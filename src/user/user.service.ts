@@ -4,6 +4,7 @@ import {
   Injectable,
 } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
+import { AccountEntity } from "src/account/entity/account.entity";
 import { AuthService } from "src/auth/auth.service";
 import { Connection, Repository, UpdateResult } from "typeorm";
 import { CreateUserDto } from "./dto/user.create-dto";
@@ -16,9 +17,11 @@ export class UserService {
   constructor(
     @InjectRepository(UserEntity)
     private userRepository: Repository<UserEntity>,
+    @InjectRepository(AccountEntity)
+    private AccountRepository: Repository<AccountEntity>,
     private authService: AuthService,
     private connection: Connection
-  ) {}
+  ) { }
 
   async createUser(user: CreateUserDto): Promise<UserEntity> {
     const {
@@ -29,12 +32,8 @@ export class UserService {
       phone,
       isNotary,
       signature,
+      accIds,
     } = user;
-    const findUser: UserEntity = await this.userRepository.findOne({ email });
-    if (findUser)
-      throw new ConflictException(
-        `${email} is already created user. Create another user.`
-      );
     const hashPassword: string = await this.authService.hashPassword(password);
     return this.userRepository.save({
       email,
@@ -44,6 +43,7 @@ export class UserService {
       password: hashPassword,
       isNotary,
       signature,
+      accounts: await this.AccountRepository.findByIds(accIds || [])
     });
   }
 
