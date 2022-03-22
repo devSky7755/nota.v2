@@ -6,35 +6,47 @@ import {
   Request,
   Get,
   Param,
+  Put,
+  Delete,
 } from "@nestjs/common";
 import { AuthGuard } from "@nestjs/passport";
 import { CreateRecordDto } from "./dto/record.create-dto";
 import { RecordService } from "./record.service";
 import { RecordEntity } from "./entity/record.entity";
+import { UpdateRecordDto } from "./dto/record.update-dto";
+import { DeleteResult, UpdateResult } from "typeorm";
 
 @Controller("records")
 export class RecordController {
-  constructor(private readonly recordService: RecordService) {}
+  constructor(private readonly recordService: RecordService) { }
+
+  @Get("/")
+  @UseGuards(AuthGuard("jwt"))
+  findRecordByUser(@Request() req): Promise<RecordEntity[]> {
+    return this.recordService.findRecordByUser(req.user);
+  }
 
   @Post()
   @UseGuards(AuthGuard("jwt"))
-  createRecord(@Body() record: CreateRecordDto): Promise<RecordEntity> {
-    return this.recordService.createRecord(record);
+  createRecord(@Request() req, @Body() record: CreateRecordDto): Promise<RecordEntity> {
+    return this.recordService.createRecord(record, req.user);
   }
 
-  @Get("/")
-  findAllRecord(): Promise<RecordEntity[]> {
-    return this.recordService.findAllRecord();
-  }
-
-  @Get("/loginList")
+  @Get("/:id")
   @UseGuards(AuthGuard("jwt"))
-  findLoginedAllRecord(@Request() req): Promise<RecordEntity[]> {
-    return this.recordService.findLoginedAllRecord(req.user);
+  findRecord(@Param("id") id: number): Promise<RecordEntity> {
+    return this.recordService.findRecordById(id);
   }
 
-  @Get("/:postId")
-  findRecord(@Param("postId") postId: number): Promise<RecordEntity> {
-    return this.recordService.findRecord(postId);
+  @Put("/:id")
+  @UseGuards(AuthGuard("jwt"))
+  updateRecord(@Param("id") id: number, @Body() record: UpdateRecordDto): Promise<UpdateResult> {
+    return this.recordService.updateRecordById(id, record);
+  }
+
+  @Delete("/:id")
+  @UseGuards(AuthGuard("jwt"))
+  deleteRecord(@Param("id") id: number): Promise<DeleteResult> {
+    return this.recordService.removeRecordById(id);
   }
 }

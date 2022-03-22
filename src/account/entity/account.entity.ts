@@ -1,11 +1,11 @@
-import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
+import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn } from "typeorm";
 
 @Entity({ name: "accounts" })
 export class AccountEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ unique: true })
+  @Column({ unique: true, name: "company_name" })
   companyName: string;
 
   @Column({ name: "first_name" })
@@ -72,11 +72,11 @@ export class AccountEntity {
   status: number;
 
   @Column({ name: "closed_date" })
-  closedDate: string;
+  closedDate: Date;
 
-  @Column({ default: new Date(), name: "created_at" })
-  createdAt: Date;
+  @CreateDateColumn({ type: "timestamp", default: () => "CURRENT_TIMESTAMP(6)" })
+  public created_at: Date;
 
-  @Column({ default: new Date(), name: "updated_at" })
-  updatedAt: Date;
+  @UpdateDateColumn({ type: "timestamp", default: () => "CURRENT_TIMESTAMP(6)", onUpdate: "CURRENT_TIMESTAMP(6)" })
+  public updated_at: Date;
 }

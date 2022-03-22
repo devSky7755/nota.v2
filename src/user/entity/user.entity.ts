@@ -1,4 +1,5 @@
 import { PostEntity } from "src/post/entity/post.entity";
+import { RecordEntity } from "src/record/entity/record.entity";
 import {
   Entity,
   Column,
@@ -7,6 +8,8 @@ import {
   OneToMany,
   JoinColumn,
   OneToOne,
+  CreateDateColumn,
+  UpdateDateColumn,
 } from "typeorm";
 
 @Entity({ name: "users" })
@@ -35,9 +38,12 @@ export class UserEntity {
   @Column()
   signature: string;
 
-  @Column({ default: new Date() })
-  createdAt: Date;
+  @CreateDateColumn({ type: "timestamp", default: () => "CURRENT_TIMESTAMP(6)" })
+  public created_at: Date;
 
-  @Column({ default: new Date() })
-  updatedAt: Date;
+  @UpdateDateColumn({ type: "timestamp", default: () => "CURRENT_TIMESTAMP(6)", onUpdate: "CURRENT_TIMESTAMP(6)" })
+  public updated_at: Date;
+
+  @OneToMany(() => RecordEntity, (record) => record.user)
+  records: RecordEntity[]
 }

@@ -5,6 +5,8 @@ import {
   PrimaryGeneratedColumn,
   ManyToOne,
   JoinColumn,
+  CreateDateColumn,
+  UpdateDateColumn,
 } from "typeorm";
 
 @Entity({ name: "records" })
@@ -22,44 +24,50 @@ export class RecordEntity {
   notary_county: string;
 
   @Column()
-  docDate: Date;
+  doc_date: Date;
 
   @Column()
-  docTitle: string;
+  doc_title: string;
 
   @Column()
-  principleName: string;
+  principle_name: string;
 
   @Column()
-  principleAddress: string;
+  principle_address: string;
 
   @Column()
-  principlePhone: string;
+  principle_phone: string;
 
   @Column()
-  principleSig: string;
+  principle_sig: string;
 
   @Column()
-  witnessName: string;
+  witness_name: string;
 
   @Column()
-  witnessAddress: string;
+  witness_address: string;
 
   @Column()
-  dlNum: string;
+  dl_num: string;
 
   @Column()
-  dlExp: string;
+  dl_exp: string;
+
+  @Column()
+  dl_img: string;
 
   @Column()
   fee: number;
 
   @Column()
-  isOnline: boolean;
+  is_online: boolean;
 
-  @Column({ default: new Date() })
-  updatedAt: Date;
+  @CreateDateColumn({ type: "timestamp", default: () => "CURRENT_TIMESTAMP(6)" })
+  public created_at: Date;
 
-  @JoinColumn({ name: "userId" })
-  user: UserEntity;
+  @UpdateDateColumn({ type: "timestamp", default: () => "CURRENT_TIMESTAMP(6)", onUpdate: "CURRENT_TIMESTAMP(6)" })
+  public updated_at: Date;
+
+  @ManyToOne(() => UserEntity, (user) => user.records)
+  user: UserEntity
 }

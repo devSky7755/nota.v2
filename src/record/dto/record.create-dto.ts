@@ -1,36 +1,36 @@
-import { IsBase64, IsString } from "class-validator";
+import { IsBase64, IsString, IsBoolean, IsNumber } from "class-validator";
 
 export class CreateRecordDto {
   @IsString()
   readonly uuid: string;
   @IsString()
-  readonly notaryDate: string;
+  readonly notary_date: string;
   @IsString()
-  readonly notaryCountry: string;
+  readonly notary_county: string;
   @IsString()
-  readonly docDate: string;
+  readonly doc_date: string;
   @IsString()
-  readonly docTitle: string;
+  readonly doc_title: string;
   @IsString()
-  readonly principleName: string;
+  readonly principle_name: string;
   @IsString()
-  readonly principleAddress: string;
+  readonly principle_address: string;
   @IsString()
-  readonly principlePhone: string;
+  readonly principle_phone: string;
   @IsBase64()
-  readonly principleSig: string;
+  readonly principle_sig: string;
   @IsString()
-  readonly witnessName: string;
+  readonly witness_name: string;
   @IsString()
-  readonly witnessAddress: string;
+  readonly witness_address: string;
   @IsString()
-  readonly dlNum: string;
+  readonly dl_num: string;
   @IsString()
-  readonly dlExp: string;
+  readonly dl_exp: string;
   @IsBase64()
-  readonly dlImg: string;
-  @IsString()
-  readonly dlFee: number;
-  @IsString()
-  readonly isOnline: boolean;
+  readonly dl_img: string;
+  @IsNumber()
+  readonly fee: number;
+  @IsBoolean()
+  readonly is_online: boolean;
 }
