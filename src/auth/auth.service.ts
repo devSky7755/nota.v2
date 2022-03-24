@@ -11,10 +11,14 @@ export class AuthService {
     @Inject(forwardRef(() => UserService))
     private readonly userService: UserService,
     private readonly jwtService: JwtService
-  ) {}
+  ) { }
 
   generateJWT(user: UserEntity): Promise<string> {
     return this.jwtService.signAsync({ user });
+  }
+
+  decodeJWT(jwt: string): string | Object {
+    return this.jwtService.decode(jwt, { json: true })
   }
 
   hashPassword(password: string): Promise<string> {

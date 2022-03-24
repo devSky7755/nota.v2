@@ -10,6 +10,7 @@ import { Connection, Repository, UpdateResult } from "typeorm";
 import { CreateUserDto } from "./dto/user.create-dto";
 import { LoginUserDto } from "./dto/user.login-dto";
 import { UpdateUserDto } from "./dto/user.update-dto";
+import { BlockJwtEntity } from "./entity/block.jwt.entity";
 import { UserEntity } from "./entity/user.entity";
 
 @Injectable()
@@ -19,8 +20,10 @@ export class UserService {
     private userRepository: Repository<UserEntity>,
     @InjectRepository(AccountEntity)
     private AccountRepository: Repository<AccountEntity>,
+    @InjectRepository(BlockJwtEntity)
+    private bJwtRepository: Repository<BlockJwtEntity>,
     private authService: AuthService,
-    private connection: Connection
+    private connection: Connection,
   ) { }
 
   async createUser(user: CreateUserDto): Promise<UserEntity> {
@@ -50,6 +53,20 @@ export class UserService {
   async login(loginUser: UserEntity): Promise<LoginUserDto> {
     const accessToken: string = await this.authService.generateJWT(loginUser);
     return { accessToken };
+  }
+
+  async logout(auth: string): Promise<any> {
+    const jwt = auth.replace('bearer ', '');
+    const decodedJwt: any = this.authService.decodeJWT(jwt);
+
+    if (!decodedJwt?.user?.id) return;
+    await this.bJwtRepository.save({
+      token: jwt,
+      user: decodedJwt?.user
+    })
+    return {
+      status: 'success'
+    }
   }
 
   async createManyUser(users: CreateUserDto[]): Promise<void> {

@@ -24,13 +24,13 @@ export class AccountService {
   ) { }
 
   async findAll(): Promise<AccountEntity[]> {
-    return await this.AccountRepository.find({ relations: ["state", "billingStates"] });
+    return await this.AccountRepository.find({ relations: ["state", "billingState"] });
   }
 
   async findAccountById(id: number): Promise<AccountEntity> {
     const selectedAccount: AccountEntity = await this.AccountRepository.findOne(
       { id },
-      { relations: ["state", "billingStates"] }
+      { relations: ["state", "billingState"] }
     );
     if (!selectedAccount)
       throw new NotFoundException(`there is no Account with ID ${id}`);
@@ -50,7 +50,7 @@ export class AccountService {
       billingAddressOne,
       billingAddressTwo,
       billingCity,
-      billingStates,
+      billingState,
       billingZipCode,
       email,
       billingEmail,
@@ -91,14 +91,16 @@ export class AccountService {
       whiteLabel,
       status,
       closedDate,
-      billingStates: await this.StateRepository.findByIds(billingStates)
+      billingState: await this.StateRepository.findOne({
+        id: billingState,
+      })
     });
   }
 
   async findAccountByEmail(email: string): Promise<AccountEntity> {
     const selectedAccount: AccountEntity = await this.AccountRepository.findOne(
       { email },
-      { relations: ["address"] }
+      { relations: ["state", "billingState"] }
     );
     if (!selectedAccount)
       throw new NotFoundException(`there is no Account with email->(${email})`);
@@ -108,8 +110,8 @@ export class AccountService {
   async updateAccountById(
     AccountId: number,
     updateAccountDto: UpdateAccountDto
-  ): Promise<any> {
-    const { state, billingStates, ...dto } = updateAccountDto;
+  ): Promise<AccountEntity> {
+    const { state, billingState, ...dto } = updateAccountDto;
     if (dto?.email) {
       const findAccount: AccountEntity = await this.AccountRepository.findOne({
         email: dto.email,
@@ -124,10 +126,12 @@ export class AccountService {
       dto['state'] = await this.StateRepository.findOne({ id: state })
     }
 
-    if (billingStates && billingStates.length > 0) {
-      dto['billingStates'] = await this.StateRepository.findByIds(billingStates)
+    if (billingState) {
+      dto['billingState'] = await this.StateRepository.findOne({ id: billingState })
     }
     const account = await this.AccountRepository.findOne(AccountId);
+    if (!account)
+      throw new NotFoundException(`there is no Account with ID ${AccountId}`);
     return await this.AccountRepository.save(plainToClass(AccountEntity, { ...account, ...dto }));
   }
 

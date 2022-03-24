@@ -19,7 +19,7 @@ export class BillingPaymentEntity {
   amount: number;
 
   @Column({ name: "qb_payment_id" })
-  qbPaymentIId: string;
+  qbPaymentId: string;
 
   @Column({ name: "payment_date" })
   paymentDate: string;
@@ -30,7 +30,7 @@ export class BillingPaymentEntity {
   @UpdateDateColumn({ type: "timestamp", default: () => "CURRENT_TIMESTAMP(6)", onUpdate: "CURRENT_TIMESTAMP(6)" })
   public updated_at: Date;
 
-  @ManyToOne(() => BillingEntity, (billing) => billing.payments)
+  @ManyToOne(() => BillingEntity, (billing) => billing.payments, { orphanedRowAction: 'delete', onDelete: 'CASCADE' })
   billing: BillingEntity
 
   @ManyToOne(() => BillingPaymentStatusEntity, (status) => status.billing_payments)

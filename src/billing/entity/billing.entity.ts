@@ -40,12 +40,12 @@ export class BillingEntity {
   public updated_at: Date;
 
   @ManyToOne(() => AccountEntity, (account) => account.billings)
-  @JoinColumn({name: 'account_id'})
+  @JoinColumn({ name: 'account_id' })
   account: AccountEntity
 
-  @OneToMany(() => BillingItemEntity, (item) => item.billing)
+  @OneToMany(() => BillingItemEntity, (item) => item.billing, { cascade: true })
   items: BillingItemEntity
 
-  @OneToMany(() => BillingPaymentEntity, (payment) => payment.billing)
+  @OneToMany(() => BillingPaymentEntity, (payment) => payment.billing, { cascade: true })
   payments: BillingPaymentEntity
 }

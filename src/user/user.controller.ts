@@ -9,6 +9,7 @@ import {
   Query,
   UseGuards,
   Request,
+  Headers,
 } from "@nestjs/common";
 import { AuthGuard } from "@nestjs/passport";
 import { UpdateResult } from "typeorm";
@@ -20,7 +21,7 @@ import { UserService } from "./user.service";
 
 @Controller("users")
 export class UserController {
-  constructor(private readonly userService: UserService) {}
+  constructor(private readonly userService: UserService) { }
 
   @Post()
   createUser(@Body() user: CreateUserDto): Promise<UserEntity> {
@@ -31,6 +32,12 @@ export class UserController {
   @UseGuards(AuthGuard("local"))
   async login(@Request() req): Promise<LoginUserDto> {
     return this.userService.login(req.user);
+  }
+
+  @Get("/logout")
+  @UseGuards(AuthGuard("jwt"))
+  async logout(@Headers('Authorization') auth: string): Promise<any> {
+    return this.userService.logout(auth);
   }
 
   @Get("/")

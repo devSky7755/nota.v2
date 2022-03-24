@@ -33,22 +33,22 @@ export class AccountController {
   }
 
   @Get("/:id")
-  findUserById(@Param("id") accountId: number): Promise<AccountEntity> {
+  findAccountById(@Param("id") accountId: number): Promise<AccountEntity> {
     return this.accountService.findAccountById(accountId);
   }
 
   @Put("/:id")
   @UseGuards(AuthGuard("jwt"))
-  updateUserById(
+  updateAccountById(
     @Param("id") accountId: number,
     @Body() updateAccountDto: UpdateAccountDto
-  ): Promise<UpdateResult> {
+  ): Promise<AccountEntity> {
     return this.accountService.updateAccountById(accountId, updateAccountDto);
   }
 
   @Delete("/:id")
   @UseGuards(AuthGuard("jwt"))
-  deleteUser(@Param("id") accountId: number): Promise<DeleteResult> {
+  deleteAccount(@Param("id") accountId: number): Promise<DeleteResult> {
     return this.accountService.removeAccountById(accountId);
   }
 }

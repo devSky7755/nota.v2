@@ -25,10 +25,10 @@ export class BillingItemEntity {
     @Column({ name: "amount" })
     amount: number;
 
-    @Column({ name: "discount" })
+    @Column({ nullable: true, name: "discount" })
     discount: number;
 
-    @Column({ name: "taxable" })
+    @Column({ default: true, name: "taxable" })
     taxable: boolean;
 
     @CreateDateColumn({ type: "timestamp", default: () => "CURRENT_TIMESTAMP(6)" })
@@ -37,6 +37,6 @@ export class BillingItemEntity {
     @UpdateDateColumn({ type: "timestamp", default: () => "CURRENT_TIMESTAMP(6)", onUpdate: "CURRENT_TIMESTAMP(6)" })
     public updated_at: Date;
 
-    @ManyToOne(() => BillingEntity, (billing) => billing.items)
+    @ManyToOne(() => BillingEntity, (billing) => billing.items, { orphanedRowAction: 'delete', onDelete: 'CASCADE' })
     billing: BillingEntity
 }

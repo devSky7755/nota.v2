@@ -1,4 +1,30 @@
-import { IsBase64, IsString, IsNumber, IsArray } from "class-validator";
+import { IsString, IsNumber, IsArray, IsBoolean, IsDate, IsDateString } from "class-validator";
+
+export class CreateBillingItemDto {
+  @IsString()
+  readonly name: string;
+  @IsString()
+  description: string;
+  @IsNumber()
+  qty: number;
+  @IsNumber()
+  amount: number;
+  @IsNumber()
+  discount: number;
+  @IsBoolean()
+  taxable: boolean;
+}
+
+export class CreateBillingPaymentDto {
+  @IsNumber()
+  amount: number;
+  @IsString()
+  qbPaymentId: string;
+  @IsString()
+  paymentDate: string;
+  @IsNumber()
+  statusId: number;
+}
 
 export class CreateBillingDto {
   @IsString()
@@ -18,7 +44,7 @@ export class CreateBillingDto {
   @IsNumber()
   readonly status: number;
   @IsArray()
-  readonly items: Array<number>;
+  readonly items: Array<CreateBillingItemDto>;
   @IsArray()
-  readonly payments: Array<number>;
+  readonly payments: Array<CreateBillingPaymentDto>;
 }

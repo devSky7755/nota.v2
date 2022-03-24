@@ -3,6 +3,7 @@ import { ConfigModule } from "@nestjs/config";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { UserModule } from "./user/user.module";
 import { AccountModule } from "./account/account.module";
+import { RoleModule } from "./role/role.module";
 import { AuthModule } from "./auth/auth.module";
 import { PostModule } from "./post/post.module";
 import { RecordModule } from "./record/record.module";
@@ -36,6 +37,7 @@ import { join } from "path";
     }),
     UserModule,
     AccountModule,
+    RoleModule,
     AuthModule,
     PostModule,
     RecordModule,

@@ -1,4 +1,4 @@
-import { AccountEntity } from "src/account/entity/account.entity";
+import { AccUserJoinEntity } from "src/user/entity/user.entity";
 import {
   Entity,
   Column,
@@ -8,16 +8,13 @@ import {
   OneToMany,
 } from "typeorm";
 
-@Entity({ name: "states" })
-export class StateEntity {
+@Entity({ name: "roles" })
+export class RoleEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ name: "state", unique: true })
-  state: string;
-
-  @Column({ name: "abbr", unique: true })
-  abbr: string;
+  @Column({ name: "name", unique: true })
+  name: string;
 
   @Column({ name: "status" })
   status: boolean;
@@ -28,9 +25,7 @@ export class StateEntity {
   @UpdateDateColumn({ type: "timestamp", default: () => "CURRENT_TIMESTAMP(6)", onUpdate: "CURRENT_TIMESTAMP(6)" })
   public updated_at: Date;
 
-  @OneToMany(() => AccountEntity, (account) => account.state)
-  s_accounts: AccountEntity[]
 
-  @OneToMany(() => AccountEntity, (account) => account.state)
-  billing_s_accounts: AccountEntity[]
+  @OneToMany(() => AccUserJoinEntity, auj => auj.role)
+  roleAccUserJoins: AccUserJoinEntity[];
 }

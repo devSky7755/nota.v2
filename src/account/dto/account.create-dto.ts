@@ -1,4 +1,4 @@
-import { IsString, IsBoolean, IsNumber, IsBase64, IsArray, IsEmail } from "class-validator";
+import { IsString, IsBoolean, IsNumber, IsBase64, IsEmail } from "class-validator";
 import { UniqueOnDatabase } from "src/providers/unique-validation";
 import { AccountEntity } from "../entity/account.entity";
 
@@ -25,15 +25,15 @@ export class CreateAccountDto {
   readonly billingAddressTwo: string;
   @IsString()
   readonly billingCity: string;
-  @IsArray()
-  readonly billingStates: Array<number>;
+  @IsNumber()
+  readonly billingState: number;
   @IsString()
   readonly billingZipCode: string;
   @IsString()
   @IsEmail()
-  @UniqueOnDatabase(AccountEntity)
   readonly email: string;
   @IsString()
+  @IsEmail()
   readonly billingEmail: string;
   @IsString()
   readonly phone: string;
