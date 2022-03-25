@@ -1,7 +1,10 @@
+import { IsNotEmpty } from "class-validator";
 import { AccountEntity } from "src/account/entity/account.entity";
 import { PostEntity } from "src/post/entity/post.entity";
 import { RecordEntity } from "src/record/entity/record.entity";
 import { RoleEntity } from "src/role/entity/role.entity";
+import { SessionAssociateJoinEntity } from "src/session/entity/session.assoc.join.entity";
+import { SessionEntity } from "src/session/entity/session.entity";
 import {
   Entity,
   Column,
@@ -15,6 +18,7 @@ import {
   ManyToMany,
   JoinTable,
   ManyToOne,
+  PrimaryColumn,
 } from "typeorm";
 import { BlockJwtEntity } from "./block.jwt.entity";
 
@@ -53,18 +57,15 @@ export class UserEntity {
   @OneToMany(() => RecordEntity, (record) => record.user)
   records: RecordEntity[]
 
-  @OneToMany(() => AccUserJoinEntity, auj => auj.user)
-  userAccJoins: AccUserJoinEntity[];
-
-  @ManyToMany(() => AccountEntity)
+  @ManyToMany(() => AccountEntity, (account) => account.users)
   @JoinTable({
     name: 'acc_user_join',
     joinColumn: {
-      name: 'user_id',
+      name: 'userId',
       referencedColumnName: 'id',
     },
     inverseJoinColumn: {
-      name: 'account_id',
+      name: 'accountId',
       referencedColumnName: 'id',
     },
   })
@@ -72,6 +73,15 @@ export class UserEntity {
 
   @OneToMany(() => BlockJwtEntity, (bjwt) => bjwt.user, { cascade: true })
   bjwts: BlockJwtEntity[]
+
+  @OneToMany(() => SessionEntity, (session) => session.user, { cascade: true })
+  sessions: SessionEntity[]
+
+  @OneToMany(() => SessionAssociateJoinEntity, (saj) => saj.user, { cascade: true })
+  userAssocSessionJoins: SessionAssociateJoinEntity[]
+
+  // @ManyToMany(() => SessionEntity)
+  // sessionses: SessionEntity[];
 }
 
 
@@ -80,15 +90,17 @@ export class AccUserJoinEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @ManyToOne(() => UserEntity, user => user.userAccJoins, { primary: true })
-  @JoinColumn({ name: "user_id" })
-  user: UserEntity
+  @Column({ name: 'user_id' })
+  @IsNotEmpty()
+  @PrimaryColumn()
+  userId: number
 
-  @ManyToOne(() => AccountEntity, account => account.accUserJoins, { primary: true })
-  @JoinColumn({ name: "account_id" })
-  account: AccountEntity
+  @Column({ name: 'account_id' })
+  @IsNotEmpty()
+  @PrimaryColumn()
+  accountId: number
 
-  @ManyToOne(() => RoleEntity, role => role.roleAccUserJoins, { primary: true })
+  @ManyToOne(() => RoleEntity, role => role.roleAccUserJoins, { nullable: true })
   @JoinColumn({ name: "role_id" })
   role: RoleEntity
 

@@ -1,4 +1,6 @@
 import { AccountEntity } from "src/account/entity/account.entity";
+import { AssociateEntity } from "src/associate/entity/associate.entity";
+
 import {
   Entity,
   Column,
@@ -31,6 +33,9 @@ export class StateEntity {
   @OneToMany(() => AccountEntity, (account) => account.state)
   s_accounts: AccountEntity[]
 
-  @OneToMany(() => AccountEntity, (account) => account.state)
+  @OneToMany(() => AccountEntity, (account) => account.billingState)
   billing_s_accounts: AccountEntity[]
+
+  @OneToMany(() => AssociateEntity, (associate) => associate.state)
+  s_associates: AssociateEntity[]
 }

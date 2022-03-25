@@ -8,10 +8,13 @@ import { AuthModule } from "./auth/auth.module";
 import { PostModule } from "./post/post.module";
 import { RecordModule } from "./record/record.module";
 import { BillingModule } from "./billing/billing.module";
+import { SessionModule } from "./session/session.module";
 import { ClientModule } from "./client/client.module";
 import { WitnessModule } from "./witness/witness.module";
+import { AssociateModule } from "./associate/associate.module";
 import { AuditModule } from "./audit/audit.module";
 import { StateModule } from "./state/state.module";
+import { DocModule } from "./doc/doc.module";
 import { ServeStaticModule } from "@nestjs/serve-static";
 import { join } from "path";
 
@@ -42,10 +45,13 @@ import { join } from "path";
     PostModule,
     RecordModule,
     BillingModule,
+    SessionModule,
     WitnessModule,
     ClientModule,
+    AssociateModule,
     AuditModule,
     StateModule,
+    DocModule,
   ],
 })
 export class AppModule { }

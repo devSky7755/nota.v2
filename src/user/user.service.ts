@@ -38,6 +38,7 @@ export class UserService {
       accIds,
     } = user;
     const hashPassword: string = await this.authService.hashPassword(password);
+    console.log(await this.AccountRepository.findByIds(accIds || []))
     return this.userRepository.save({
       email,
       firstName,

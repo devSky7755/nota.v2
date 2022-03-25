@@ -1,4 +1,6 @@
-import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
+import { SessionEntity } from "src/session/entity/session.entity";
+import { SessionClientJoinEntity } from "src/session/entity/session.client.join.entity";
+import { Entity, Column, PrimaryGeneratedColumn, ManyToMany, OneToMany } from "typeorm";
 
 @Entity({ name: "clients" })
 export class ClientEntity {
@@ -79,4 +81,11 @@ export class ClientEntity {
 
   @Column()
   signature: string;
+
+
+  @OneToMany(() => SessionClientJoinEntity, scj => scj.client)
+  clientSessionJoins: SessionClientJoinEntity[];
+
+  @ManyToMany(() => SessionEntity, (session) => session.clients)
+  sessions: SessionEntity[];
 }

@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
+import { SessionEntity } from "src/session/entity/session.entity";
+import { Entity, Column, PrimaryGeneratedColumn, ManyToMany } from "typeorm";
 
 @Entity({ name: "witnesses" })
 export class WitnessEntity {
@@ -40,4 +41,7 @@ export class WitnessEntity {
 
   @Column({ default: new Date() })
   updatedAt: Date;
+
+  @ManyToMany(() => SessionEntity, (session) => session.witnesses)
+  sessions: SessionEntity[];
 }

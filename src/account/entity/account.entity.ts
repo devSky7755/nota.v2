@@ -1,4 +1,5 @@
 import { BillingEntity } from "src/billing/entity/billing.entity";
+import { SessionEntity } from "src/session/entity/session.entity";
 import { StateEntity } from "src/state/entity/state.entity";
 import { AccUserJoinEntity, UserEntity } from "src/user/entity/user.entity";
 import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, ManyToOne, ManyToMany, JoinTable, OneToMany, JoinColumn } from "typeorm";
@@ -86,12 +87,12 @@ export class AccountEntity {
   @ManyToOne(() => StateEntity, (state) => state.billing_s_accounts)
   billingState: StateEntity;
 
-  @OneToMany(() => AccUserJoinEntity, auj => auj.account)
-  accUserJoins: AccUserJoinEntity[];
-
   @ManyToMany(() => UserEntity, (user) => user.accounts)
   users: UserEntity[];
 
   @OneToMany(() => BillingEntity, (bill) => bill.account)
   billings: BillingEntity[]
+
+  @OneToMany(() => SessionEntity, (session) => session.account)
+  sessions: SessionEntity[]
 }
