@@ -21,8 +21,4 @@ export class CreateWitnessDto {
   readonly email: string;
   @IsString()
   readonly dob: string;
-  @IsString()
-  readonly createdAt: string;
-  @IsString()
-  readonly updatedAt: string;
 }

@@ -3,32 +3,50 @@ import {
   Controller,
   Post,
   UseGuards,
-  Request,
   Get,
   Param,
+  Put,
+  Delete,
 } from "@nestjs/common";
 import { AuthGuard } from "@nestjs/passport";
 import { CreateWitnessDto } from "./dto/witness.create-dto";
 import { WitnessService } from "./witness.service";
 import { WitnessEntity } from "./entity/witness.entity";
+import { UpdateWitnessDto } from "./dto/witness.update-dto";
+import { DeleteResult } from "typeorm";
 
 @Controller("clients")
 export class WitnessController {
-  constructor(private readonly clientService: WitnessService) {}
+  constructor(private readonly witnessService: WitnessService) { }
 
   @Post()
   @UseGuards(AuthGuard("jwt"))
   createWitness(@Body() client: CreateWitnessDto): Promise<WitnessEntity> {
-    return this.clientService.createWitness(client);
+    return this.witnessService.createWitness(client);
   }
 
   @Get("/")
-  findAllWitness(): Promise<WitnessEntity[]> {
-    return this.clientService.findAllWitness();
+  findAllWitnesses(): Promise<WitnessEntity[]> {
+    return this.witnessService.findAllWitness();
   }
 
-  @Get("/:clientId")
-  findWitness(@Param("clientId") clientId: number): Promise<WitnessEntity> {
-    return this.clientService.findWitness(clientId);
+  @Get("/:id")
+  findWitness(@Param("id") id: number): Promise<WitnessEntity> {
+    return this.witnessService.findWitness(id);
+  }
+
+  @Put("/:id")
+  @UseGuards(AuthGuard("jwt"))
+  updateWitnessById(
+    @Param("id") id: number,
+    @Body() updateWitnessDto: UpdateWitnessDto
+  ): Promise<WitnessEntity> {
+    return this.witnessService.updateWitnessById(id, updateWitnessDto);
+  }
+
+  @Delete("/:id")
+  @UseGuards(AuthGuard("jwt"))
+  deleteWitness(@Param("id") id: number): Promise<DeleteResult> {
+    return this.witnessService.removeWitnessById(id);
   }
 }

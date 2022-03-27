@@ -66,18 +66,15 @@ export class SessionEntity {
   @Column({ name: "video_url" })
   videoUrl: string;
 
-  @OneToMany(() => SessionClientJoinEntity, scj => scj.session)
-  sessionClientJoins: SessionClientJoinEntity[];
-
   @ManyToMany(() => ClientEntity, (client) => client.sessions)
   @JoinTable({
     name: 'session_client_join',
     joinColumn: {
-      name: 'session_id',
+      name: 'sessionId',
       referencedColumnName: 'id',
     },
     inverseJoinColumn: {
-      name: 'client_id',
+      name: 'clientId',
       referencedColumnName: 'id',
     },
   })

@@ -1,5 +1,7 @@
 import { AccountEntity } from "src/account/entity/account.entity";
 import { AssociateEntity } from "src/associate/entity/associate.entity";
+import { ClientEntity } from "src/client/entity/client.entity";
+import { WitnessEntity } from "src/witness/entity/witness.entity";
 
 import {
   Entity,
@@ -38,4 +40,16 @@ export class StateEntity {
 
   @OneToMany(() => AssociateEntity, (associate) => associate.state)
   s_associates: AssociateEntity[]
+
+  @OneToMany(() => ClientEntity, (client) => client.state)
+  s_clients: AccountEntity[]
+
+  @OneToMany(() => ClientEntity, (client) => client.billingState)
+  billing_s_clients: AccountEntity[]
+
+  @OneToMany(() => ClientEntity, (client) => client.dlState)
+  dl_s_clients: AccountEntity[]
+
+  @OneToMany(() => WitnessEntity, (witness) => witness.state)
+  s_witnesses: WitnessEntity[]
 }

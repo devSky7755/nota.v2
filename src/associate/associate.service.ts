@@ -1,8 +1,10 @@
-import { Injectable } from "@nestjs/common";
+import { Injectable, NotFoundException } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
+import { plainToClass } from "class-transformer";
 import { StateEntity } from "src/state/entity/state.entity";
-import { Repository } from "typeorm";
+import { DeleteResult, Repository } from "typeorm";
 import { CreateAssociateDto } from "./dto/associate.create-dto";
+import { UpdateAssociateDto } from "./dto/associate.update-dto";
 import { AssociateEntity } from "./entity/associate.entity";
 
 @Injectable()
@@ -49,5 +51,27 @@ export class AssociateService {
 
   async findAssociate(associateId: number): Promise<AssociateEntity> {
     return await this.associateRepository.findOne({ id: associateId });
+  }
+
+  async updateAssociateById(
+    associateId: number,
+    updateAssociateDto: UpdateAssociateDto
+  ): Promise<AssociateEntity> {
+    const associate = await this.associateRepository.findOne(associateId);
+    if (!associate)
+      throw new NotFoundException(`there is no associate with ID ${associateId}`);
+    const {
+      state,
+      ...dto
+    } = updateAssociateDto;
+
+    if (state) {
+      dto['state'] = await this.StateRepository.findOne({ id: state })
+    }
+    return await this.associateRepository.save(plainToClass(AssociateEntity, { ...associate, ...dto }));
+  }
+
+  async removeAssociateById(id: number): Promise<DeleteResult> {
+    return await this.associateRepository.delete(id);
   }
 }

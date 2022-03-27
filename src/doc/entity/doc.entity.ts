@@ -1,4 +1,3 @@
-import { SessionEntity } from "src/session/entity/session.entity";
 import {
   Entity,
   Column,
@@ -7,7 +6,12 @@ import {
   UpdateDateColumn,
   OneToMany,
   ManyToMany,
+  ManyToOne,
+  JoinColumn,
 } from "typeorm";
+import { DocActionEntity } from "./doc.action.entity";
+import { DocStatusEntity } from "./doc.status.entity";
+import { SessionEntity } from "src/session/entity/session.entity";
 
 @Entity({ name: "docs" })
 export class DocEntity {
@@ -19,6 +23,14 @@ export class DocEntity {
 
   @Column({ name: "doc_date" })
   docDate: string;
+
+  @ManyToOne(() => DocActionEntity, (da) => da.docs)
+  @JoinColumn({ name: 'doc_action_id' })
+  action: DocActionEntity;
+
+  @ManyToOne(() => DocStatusEntity, (da) => da.docs)
+  @JoinColumn({ name: 'doc_action_id' })
+  status: DocStatusEntity;
 
   @Column({ name: "doc_type" })
   docType: string;

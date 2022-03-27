@@ -4,12 +4,10 @@ import {
     PrimaryGeneratedColumn,
     CreateDateColumn,
     UpdateDateColumn,
-    ManyToOne,
-    JoinColumn,
+    PrimaryColumn,
 } from "typeorm";
 
-import { ClientEntity } from "src/client/entity/client.entity";
-import { SessionEntity } from "./session.entity";
+import { IsNotEmpty } from "class-validator";
 
 @Entity({ name: "session_client_join" })
 export class SessionClientJoinEntity {
@@ -19,13 +17,15 @@ export class SessionClientJoinEntity {
     @Column({ name: "kba_tries" })
     kbaTries: string;
 
-    @ManyToOne(() => SessionEntity, session => session.sessionClientJoins, { primary: true })
-    @JoinColumn({ name: "session_id" })
-    session: SessionEntity
+    @Column()
+    @IsNotEmpty()
+    @PrimaryColumn()
+    sessionId: number
 
-    @ManyToOne(() => ClientEntity, session => session.clientSessionJoins, { primary: true })
-    @JoinColumn({ name: "client_id" })
-    client: ClientEntity
+    @Column()
+    @IsNotEmpty()
+    @PrimaryColumn()
+    clientId: number
 
     @CreateDateColumn({ type: "timestamp", default: () => "CURRENT_TIMESTAMP(6)" })
     public created_at: Date;

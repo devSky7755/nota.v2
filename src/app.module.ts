@@ -15,6 +15,7 @@ import { AssociateModule } from "./associate/associate.module";
 import { AuditModule } from "./audit/audit.module";
 import { StateModule } from "./state/state.module";
 import { DocModule } from "./doc/doc.module";
+import { KbaModule } from "./kba/kba.module";
 import { ServeStaticModule } from "@nestjs/serve-static";
 import { join } from "path";
 
@@ -52,6 +53,7 @@ import { join } from "path";
     AuditModule,
     StateModule,
     DocModule,
+    KbaModule,
   ],
 })
 export class AppModule { }

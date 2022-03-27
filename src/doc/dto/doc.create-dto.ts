@@ -1,4 +1,4 @@
-import { IsString } from "class-validator";
+import { IsNumber, IsString } from "class-validator";
 
 export class CreateDocDto {
   @IsString()
@@ -15,4 +15,10 @@ export class CreateDocDto {
 
   @IsString()
   readonly destroyDate: string;
+
+  @IsNumber()
+  readonly action: number;
+
+  @IsNumber()
+  readonly status: number;
 }

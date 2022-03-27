@@ -84,18 +84,17 @@ export class UserEntity {
   // sessionses: SessionEntity[];
 }
 
-
 @Entity({ name: "acc_user_join" })
 export class AccUserJoinEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ name: 'user_id' })
+  @Column()
   @IsNotEmpty()
   @PrimaryColumn()
   userId: number
 
-  @Column({ name: 'account_id' })
+  @Column()
   @IsNotEmpty()
   @PrimaryColumn()
   accountId: number

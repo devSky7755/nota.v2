@@ -1,5 +1,6 @@
 import { SessionEntity } from "src/session/entity/session.entity";
-import { Entity, Column, PrimaryGeneratedColumn, ManyToMany } from "typeorm";
+import { StateEntity } from "src/state/entity/state.entity";
+import { Entity, Column, PrimaryGeneratedColumn, ManyToMany, ManyToOne, JoinColumn } from "typeorm";
 
 @Entity({ name: "witnesses" })
 export class WitnessEntity {
@@ -21,8 +22,9 @@ export class WitnessEntity {
   @Column()
   city: string;
 
-  @Column()
-  state: number;
+  @ManyToOne(() => StateEntity, (state) => state.s_witnesses)
+  @JoinColumn({ name: 'state_id' })
+  state: StateEntity
 
   @Column({ name: "zip_code" })
   zipCode: string;
