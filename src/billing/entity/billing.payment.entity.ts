@@ -5,6 +5,7 @@ import {
   ManyToOne,
   CreateDateColumn,
   UpdateDateColumn,
+  JoinColumn,
 } from "typeorm";
 
 import { BillingEntity } from "./billing.entity";
@@ -31,8 +32,10 @@ export class BillingPaymentEntity {
   public updated_at: Date;
 
   @ManyToOne(() => BillingEntity, (billing) => billing.payments, { orphanedRowAction: 'delete', onDelete: 'CASCADE' })
+  @JoinColumn({ name: "billing_id" })
   billing: BillingEntity
 
   @ManyToOne(() => BillingPaymentStatusEntity, (status) => status.billing_payments)
+  @JoinColumn({ name: "billing_payment_status_id" })
   status: BillingPaymentStatusEntity
 }

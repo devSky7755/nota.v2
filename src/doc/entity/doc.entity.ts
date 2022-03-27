@@ -28,8 +28,8 @@ export class DocEntity {
   @JoinColumn({ name: 'doc_action_id' })
   action: DocActionEntity;
 
-  @ManyToOne(() => DocStatusEntity, (da) => da.docs)
-  @JoinColumn({ name: 'doc_action_id' })
+  @ManyToOne(() => DocStatusEntity, (ds) => ds.docs)
+  @JoinColumn({ name: 'doc_state_id' })
   status: DocStatusEntity;
 
   @Column({ name: "doc_type" })

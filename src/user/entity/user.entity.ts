@@ -1,10 +1,12 @@
 import { IsNotEmpty } from "class-validator";
 import { AccountEntity } from "src/account/entity/account.entity";
+import { NotaryDetailEntity } from "src/notary_detail/entity/notary_detail.entity";
 import { PostEntity } from "src/post/entity/post.entity";
 import { RecordEntity } from "src/record/entity/record.entity";
 import { RoleEntity } from "src/role/entity/role.entity";
 import { SessionAssociateJoinEntity } from "src/session/entity/session.assoc.join.entity";
 import { SessionEntity } from "src/session/entity/session.entity";
+import { StateEntity } from "src/state/entity/state.entity";
 import {
   Entity,
   Column,
@@ -42,8 +44,17 @@ export class UserEntity {
   @Column()
   password: string;
 
+  @Column({ default: false })
+  status: boolean;
+
+  @OneToMany(() => UserDetailEntity, (detail) => detail.user, { cascade: true })
+  userDetails: UserDetailEntity[];
+
   @Column({ name: "is_notary", default: true })
   isNotary: boolean;
+
+  @OneToMany(() => NotaryDetailEntity, (notary) => notary.user, { cascade: true })
+  notary_details: NotaryDetailEntity[]
 
   @Column()
   signature: string;
@@ -54,7 +65,7 @@ export class UserEntity {
   @UpdateDateColumn({ type: "timestamp", default: () => "CURRENT_TIMESTAMP(6)", onUpdate: "CURRENT_TIMESTAMP(6)" })
   public updated_at: Date;
 
-  @OneToMany(() => RecordEntity, (record) => record.user)
+  @OneToMany(() => RecordEntity, (record) => record.user, { cascade: true })
   records: RecordEntity[]
 
   @ManyToMany(() => AccountEntity, (account) => account.users)
@@ -84,6 +95,37 @@ export class UserEntity {
   // sessionses: SessionEntity[];
 }
 
+@Entity({ name: "user_details" })
+export class UserDetailEntity {
+  @PrimaryGeneratedColumn()
+  id: number;
+
+  @ManyToOne(() => UserEntity, (user) => user.userDetails, { orphanedRowAction: 'delete', onDelete: 'CASCADE' })
+  user: UserEntity;
+
+  @Column({ name: "address_one" })
+  addressOne: string;
+
+  @Column({ name: "address_two" })
+  addressTwo: string;
+
+  @Column()
+  city: string;
+
+  @ManyToOne(() => StateEntity, (state) => state.s_user_details)
+  @JoinColumn({ name: "state_id" })
+  state: StateEntity
+
+  @Column({ name: "zip_code" })
+  zipCode: string;
+
+  @CreateDateColumn({ type: "timestamp", default: () => "CURRENT_TIMESTAMP(6)" })
+  public created_at: Date;
+
+  @UpdateDateColumn({ type: "timestamp", default: () => "CURRENT_TIMESTAMP(6)", onUpdate: "CURRENT_TIMESTAMP(6)" })
+  public updated_at: Date;
+}
+
 @Entity({ name: "acc_user_join" })
 export class AccUserJoinEntity {
   @PrimaryGeneratedColumn()
@@ -99,7 +141,7 @@ export class AccUserJoinEntity {
   @PrimaryColumn()
   accountId: number
 
-  @ManyToOne(() => RoleEntity, role => role.roleAccUserJoins, { nullable: true })
+  @ManyToOne(() => RoleEntity, role => role.roleAccUserJoins, { nullable: true, orphanedRowAction: 'delete', onDelete: 'CASCADE' })
   @JoinColumn({ name: "role_id" })
   role: RoleEntity
 

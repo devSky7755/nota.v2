@@ -16,6 +16,9 @@ import { AuditModule } from "./audit/audit.module";
 import { StateModule } from "./state/state.module";
 import { DocModule } from "./doc/doc.module";
 import { KbaModule } from "./kba/kba.module";
+import { TypeModule } from "./type/type.module";
+import { NotaryDetailModule } from "./notary_detail/notary_detail.module";
+import { MethodModule } from "./method/method.module";
 import { ServeStaticModule } from "@nestjs/serve-static";
 import { join } from "path";
 
@@ -54,6 +57,9 @@ import { join } from "path";
     StateModule,
     DocModule,
     KbaModule,
+    TypeModule,
+    NotaryDetailModule,
+    MethodModule,
   ],
 })
 export class AppModule { }

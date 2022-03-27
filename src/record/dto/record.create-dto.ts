@@ -4,33 +4,39 @@ export class CreateRecordDto {
   @IsString()
   readonly uuid: string;
   @IsString()
-  readonly notary_date: string;
+  readonly notaryDate: string;
   @IsString()
-  readonly notary_county: string;
+  readonly notaryCounty: string;
   @IsString()
-  readonly doc_date: string;
+  readonly docDate: string;
   @IsString()
-  readonly doc_title: string;
+  readonly docTitle: string;
   @IsString()
-  readonly principle_name: string;
+  readonly principleName: string;
   @IsString()
-  readonly principle_address: string;
+  readonly principleAddress: string;
   @IsString()
-  readonly principle_phone: string;
+  readonly principlePhone: string;
   @IsBase64()
-  readonly principle_sig: string;
+  readonly principleSig: string;
   @IsString()
-  readonly witness_name: string;
+  readonly witnessName: string;
   @IsString()
-  readonly witness_address: string;
+  readonly witnessAddress: string;
+  @IsNumber()
+  readonly typeOfNotarization: number;
+  @IsNumber()
+  readonly methodOfId: number;
   @IsString()
-  readonly dl_num: string;
+  readonly dlNum: string;
   @IsString()
-  readonly dl_exp: string;
+  readonly dlExp: string;
+  @IsNumber()
+  readonly dlState: number;
   @IsBase64()
-  readonly dl_img: string;
+  readonly dlImg: string;
   @IsNumber()
   readonly fee: number;
   @IsBoolean()
-  readonly is_online: boolean;
+  readonly isOnline: boolean;
 }

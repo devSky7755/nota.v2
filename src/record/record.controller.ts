@@ -14,7 +14,7 @@ import { CreateRecordDto } from "./dto/record.create-dto";
 import { RecordService } from "./record.service";
 import { RecordEntity } from "./entity/record.entity";
 import { UpdateRecordDto } from "./dto/record.update-dto";
-import { DeleteResult, UpdateResult } from "typeorm";
+import { DeleteResult } from "typeorm";
 
 @Controller("records")
 export class RecordController {
@@ -40,7 +40,7 @@ export class RecordController {
 
   @Put("/:id")
   @UseGuards(AuthGuard("jwt"))
-  updateRecord(@Param("id") id: number, @Body() record: UpdateRecordDto): Promise<UpdateResult> {
+  updateRecord(@Param("id") id: number, @Body() record: UpdateRecordDto): Promise<RecordEntity> {
     return this.recordService.updateRecordById(id, record);
   }
 

@@ -83,9 +83,11 @@ export class AccountEntity {
   public updated_at: Date;
 
   @ManyToOne(() => StateEntity, (state) => state.s_accounts)
+  @JoinColumn({ name: "state_id" })
   state: StateEntity
 
   @ManyToOne(() => StateEntity, (state) => state.billing_s_accounts)
+  @JoinColumn({ name: "billing_state_id" })
   billingState: StateEntity;
 
   @ManyToMany(() => UserEntity, (user) => user.accounts)

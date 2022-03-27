@@ -60,7 +60,7 @@ export class UserController {
   updateUserById(
     @Request() req,
     @Body() updateUserDto: UpdateUserDto
-  ): Promise<UpdateResult> {
+  ): Promise<UserEntity> {
     return this.userService.updateUserById(req.user.id, updateUserDto);
   }
 

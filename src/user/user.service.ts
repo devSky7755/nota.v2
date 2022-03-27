@@ -4,20 +4,26 @@ import {
   Injectable,
 } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
+import { plainToClass } from "class-transformer";
 import { AccountEntity } from "src/account/entity/account.entity";
 import { AuthService } from "src/auth/auth.service";
+import { StateEntity } from "src/state/entity/state.entity";
 import { Connection, Repository, UpdateResult } from "typeorm";
 import { CreateUserDto } from "./dto/user.create-dto";
 import { LoginUserDto } from "./dto/user.login-dto";
 import { UpdateUserDto } from "./dto/user.update-dto";
 import { BlockJwtEntity } from "./entity/block.jwt.entity";
-import { UserEntity } from "./entity/user.entity";
+import { UserDetailEntity, UserEntity } from "./entity/user.entity";
 
 @Injectable()
 export class UserService {
   constructor(
     @InjectRepository(UserEntity)
     private userRepository: Repository<UserEntity>,
+    @InjectRepository(UserDetailEntity)
+    private userDetailRepository: Repository<UserDetailEntity>,
+    @InjectRepository(StateEntity)
+    private stateRepository: Repository<StateEntity>,
     @InjectRepository(AccountEntity)
     private AccountRepository: Repository<AccountEntity>,
     @InjectRepository(BlockJwtEntity)
@@ -36,10 +42,21 @@ export class UserService {
       isNotary,
       signature,
       accIds,
+      userDetails,
     } = user;
     const hashPassword: string = await this.authService.hashPassword(password);
-    console.log(await this.AccountRepository.findByIds(accIds || []))
-    return this.userRepository.save({
+
+    const convUserDetails = [];
+    for (let index = 0; index < userDetails.length; index++) {
+      const { state, ...udDto } = userDetails[index];
+      convUserDetails.push({
+        state: await this.stateRepository.findOne({ id: state }),
+        ...udDto
+      })
+    }
+
+    const userDetailEnts = await this.userDetailRepository.save(convUserDetails);
+    return this.userRepository.save(plainToClass(UserEntity, {
       email,
       firstName,
       lastName,
@@ -47,8 +64,9 @@ export class UserService {
       password: hashPassword,
       isNotary,
       signature,
-      accounts: await this.AccountRepository.findByIds(accIds || [])
-    });
+      accounts: await this.AccountRepository.findByIds(accIds || []),
+      userDetails: userDetailEnts
+    }));
   }
 
   async login(loginUser: UserEntity): Promise<LoginUserDto> {
@@ -109,8 +127,42 @@ export class UserService {
   async updateUserById(
     userId: number,
     updateUserDto: UpdateUserDto
-  ): Promise<UpdateResult> {
-    return await this.userRepository.update(userId, updateUserDto);
+  ): Promise<UserEntity> {
+    const user = await this.userRepository.findOne(userId);
+    if (!user)
+      throw new NotFoundException(`there is no User with ID ${user}`);
+
+    const {
+      password,
+      accIds,
+      userDetails,
+      ...dto
+    } = updateUserDto;
+
+    if (password) {
+      dto['password'] = await this.authService.hashPassword(password);
+    }
+
+    if (accIds) {
+      dto['accounts'] = await this.AccountRepository.findByIds(accIds || [])
+    }
+
+    if (userDetails) {
+      const convUserDetails = [];
+      for (let index = 0; index < userDetails.length; index++) {
+        const { state, ...udDto } = userDetails[index];
+        convUserDetails.push({
+          state: await this.stateRepository.findOne({ id: state }),
+          ...udDto
+        })
+      }
+      dto['userDetails'] = await this.userDetailRepository.save(convUserDetails);
+    }
+
+    return this.userRepository.save(plainToClass(UserEntity, {
+      ...user,
+      ...dto,
+    }));
   }
 
   async removeUserById(userId: number): Promise<void> {

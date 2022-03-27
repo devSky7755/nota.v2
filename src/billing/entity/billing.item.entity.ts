@@ -6,6 +6,7 @@ import {
     ManyToOne,
     CreateDateColumn,
     UpdateDateColumn,
+    JoinColumn,
 } from "typeorm";
 
 @Entity({ name: "billing_items" })
@@ -38,5 +39,6 @@ export class BillingItemEntity {
     public updated_at: Date;
 
     @ManyToOne(() => BillingEntity, (billing) => billing.items, { orphanedRowAction: 'delete', onDelete: 'CASCADE' })
+    @JoinColumn({ name: "billing_id" })
     billing: BillingEntity
 }

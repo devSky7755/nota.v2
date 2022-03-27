@@ -1,3 +1,6 @@
+import { MethodEntity } from "src/method/entity/method.entity";
+import { StateEntity } from "src/state/entity/state.entity";
+import { TypeEntity } from "src/type/entity/type.entity";
 import { UserEntity } from "src/user/entity/user.entity";
 import {
   Entity,
@@ -17,50 +20,62 @@ export class RecordEntity {
   @Column()
   uuid: string;
 
-  @Column()
-  notary_date: string;
+  @Column({ name: 'notary_date' })
+  notaryDate: string;
 
-  @Column()
-  notary_county: string;
+  @Column({ name: 'notary_county' })
+  notaryCounty: string;
 
-  @Column()
-  doc_date: Date;
+  @Column({ name: 'doc_date' })
+  docDate: Date;
 
-  @Column()
-  doc_title: string;
+  @Column({ name: 'doc_title' })
+  docTitle: string;
 
-  @Column()
-  principle_name: string;
+  @Column({ name: 'principle_name' })
+  principleName: string;
 
-  @Column()
-  principle_address: string;
+  @Column({ name: 'principle_address' })
+  principleAddress: string;
 
-  @Column()
-  principle_phone: string;
+  @Column({ name: 'principle_phone' })
+  principlePhone: string;
 
-  @Column()
-  principle_sig: string;
+  @Column({ name: 'principle_sig' })
+  principleSig: string;
 
-  @Column()
-  witness_name: string;
+  @Column({ name: 'witness_name' })
+  witnessName: string;
 
-  @Column()
-  witness_address: string;
+  @Column({ name: 'witness_address' })
+  witnessAddress: string;
 
-  @Column()
-  dl_num: string;
+  @ManyToOne(() => TypeEntity, (type) => type.records)
+  @JoinColumn({ name: 'type_of_notarizations_id' })
+  typeOfNotarization: TypeEntity;
 
-  @Column()
-  dl_exp: string;
+  @ManyToOne(() => MethodEntity, (method) => method.records)
+  @JoinColumn({ name: 'method_of_id' })
+  methodOfId: MethodEntity;
 
-  @Column()
-  dl_img: string;
+  @Column({ name: 'dl_num' })
+  dlNum: string;
+
+  @Column({ name: 'dl_exp' })
+  dlExp: string;
+
+  @ManyToOne(() => StateEntity, (state) => state.dl_s_records)
+  @JoinColumn({ name: 'dl_state_id' })
+  dlState: StateEntity;
+
+  @Column({ name: 'dl_img' })
+  dlImg: string;
 
   @Column()
   fee: number;
 
-  @Column()
-  is_online: boolean;
+  @Column({ name: 'is_online' })
+  isOnline: boolean;
 
   @CreateDateColumn({ type: "timestamp", default: () => "CURRENT_TIMESTAMP(6)" })
   public created_at: Date;
@@ -69,5 +84,6 @@ export class RecordEntity {
   public updated_at: Date;
 
   @ManyToOne(() => UserEntity, (user) => user.records)
+  @JoinColumn({ name: 'user_id' })
   user: UserEntity
 }

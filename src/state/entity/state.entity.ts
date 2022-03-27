@@ -1,6 +1,9 @@
 import { AccountEntity } from "src/account/entity/account.entity";
 import { AssociateEntity } from "src/associate/entity/associate.entity";
 import { ClientEntity } from "src/client/entity/client.entity";
+import { NotaryDetailEntity } from "src/notary_detail/entity/notary_detail.entity";
+import { RecordEntity } from "src/record/entity/record.entity";
+import { UserDetailEntity } from "src/user/entity/user.entity";
 import { WitnessEntity } from "src/witness/entity/witness.entity";
 
 import {
@@ -32,6 +35,12 @@ export class StateEntity {
   @UpdateDateColumn({ type: "timestamp", default: () => "CURRENT_TIMESTAMP(6)", onUpdate: "CURRENT_TIMESTAMP(6)" })
   public updated_at: Date;
 
+  @OneToMany(() => UserDetailEntity, (userDetail) => userDetail.state)
+  s_user_details: UserDetailEntity[]
+
+  @OneToMany(() => NotaryDetailEntity, (nd) => nd.comState)
+  com_s_notary_details: NotaryDetailEntity[]
+
   @OneToMany(() => AccountEntity, (account) => account.state)
   s_accounts: AccountEntity[]
 
@@ -42,14 +51,17 @@ export class StateEntity {
   s_associates: AssociateEntity[]
 
   @OneToMany(() => ClientEntity, (client) => client.state)
-  s_clients: AccountEntity[]
+  s_clients: ClientEntity[]
 
   @OneToMany(() => ClientEntity, (client) => client.billingState)
-  billing_s_clients: AccountEntity[]
+  billing_s_clients: ClientEntity[]
 
   @OneToMany(() => ClientEntity, (client) => client.dlState)
-  dl_s_clients: AccountEntity[]
+  dl_s_clients: ClientEntity[]
 
   @OneToMany(() => WitnessEntity, (witness) => witness.state)
   s_witnesses: WitnessEntity[]
+
+  @OneToMany(() => RecordEntity, (record) => record.dlState)
+  dl_s_records: RecordEntity[]
 }
