@@ -3,12 +3,14 @@ import { ConfigModule } from "@nestjs/config";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { UserModule } from "./user/user.module";
 import { AccountModule } from "./account/account.module";
+import { AccTypeModule } from "./acc_type/acc_type.module";
 import { RoleModule } from "./role/role.module";
 import { AuthModule } from "./auth/auth.module";
 import { PostModule } from "./post/post.module";
 import { RecordModule } from "./record/record.module";
 import { BillingModule } from "./billing/billing.module";
 import { SessionModule } from "./session/session.module";
+import { DurationModule } from "./duration/duration.module";
 import { ClientModule } from "./client/client.module";
 import { WitnessModule } from "./witness/witness.module";
 import { AssociateModule } from "./associate/associate.module";
@@ -44,12 +46,14 @@ import { join } from "path";
     }),
     UserModule,
     AccountModule,
+    AccTypeModule,
     RoleModule,
     AuthModule,
     PostModule,
     RecordModule,
     BillingModule,
     SessionModule,
+    DurationModule,
     WitnessModule,
     ClientModule,
     AssociateModule,

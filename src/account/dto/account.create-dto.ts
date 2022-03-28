@@ -40,7 +40,7 @@ export class CreateAccountDto {
   @IsString()
   readonly billingPhone: string;
   @IsNumber()
-  readonly accountType: number;
+  readonly accType: number;
   @IsString()
   readonly qbAccountNumber: string;
   @IsString()

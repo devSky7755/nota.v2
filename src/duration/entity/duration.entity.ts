@@ -1,4 +1,5 @@
-import { RecordEntity } from "src/record/entity/record.entity";
+import { AccountEntity } from "src/account/entity/account.entity";
+import { SessionEntity } from "src/session/entity/session.entity";
 import {
   Entity,
   Column,
@@ -8,8 +9,8 @@ import {
   OneToMany,
 } from "typeorm";
 
-@Entity({ name: "methods_of_ids" })
-export class MethodEntity {
+@Entity({ name: "acc_types" })
+export class DurationEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -25,6 +26,6 @@ export class MethodEntity {
   @UpdateDateColumn({ type: "timestamp", default: () => "CURRENT_TIMESTAMP(6)", onUpdate: "CURRENT_TIMESTAMP(6)" })
   public updated_at: Date;
 
-  @OneToMany(() => RecordEntity, (record) => record.methodOfId)
-  records: RecordEntity[]
+  @OneToMany(() => SessionEntity, (record) => record.duration)
+  sessions: SessionEntity[]
 }

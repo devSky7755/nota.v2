@@ -12,6 +12,8 @@ import {
 import { AccountEntity } from "src/account/entity/account.entity";
 import { BillingItemEntity } from "./billing.item.entity";
 import { BillingPaymentEntity } from "./billing.payment.entity";
+import { BillingNetAccountEntity } from "./billing.net_account.entity";
+import { BillingStatusEntity } from "./billing.status.entity";
 
 @Entity({ name: "billings" })
 export class BillingEntity {
@@ -32,6 +34,14 @@ export class BillingEntity {
 
   @Column({ name: "due_date" })
   dueDate: string;
+
+  @ManyToOne(() => BillingNetAccountEntity, (account) => account.billings)
+  @JoinColumn({ name: 'net_account_id' })
+  netAccount: BillingNetAccountEntity
+
+  @ManyToOne(() => BillingStatusEntity, (record) => record.billings)
+  @JoinColumn({ name: 'status_id' })
+  status: BillingStatusEntity;
 
   @CreateDateColumn({ type: "timestamp", default: () => "CURRENT_TIMESTAMP(6)" })
   public created_at: Date;

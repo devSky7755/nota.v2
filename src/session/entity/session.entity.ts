@@ -16,12 +16,11 @@ import { UserEntity } from "src/user/entity/user.entity";
 import { ClientEntity } from "src/client/entity/client.entity";
 import { WitnessEntity } from "src/witness/entity/witness.entity";
 import { DocEntity } from "src/doc/entity/doc.entity";
-import { AssociateEntity } from "src/associate/entity/associate.entity";
 import { SessionTypeEntity } from "./session.types.entity";
 import { SessionStatusEntity } from "./session.status.entity";
 import { NotarySessionTypeEntity } from "./notary.session.type.entity";
 import { SessionAssociateJoinEntity } from "./session.assoc.join.entity";
-import { SessionClientJoinEntity } from "./session.client.join.entity";
+import { DurationEntity } from "src/duration/entity/duration.entity";
 
 @Entity({ name: "sessions" })
 export class SessionEntity {
@@ -42,8 +41,9 @@ export class SessionEntity {
   @Column({ name: "date_time" })
   dateTime: string;
 
-  @Column({ name: "duration" })
-  duration: number;
+  @ManyToOne(() => DurationEntity, (dura) => dura.sessions)
+  @JoinColumn({ name: 'duration_id' })
+  duration: DurationEntity;
 
   @Column({ name: "docs_num" })
   docsNum: number;

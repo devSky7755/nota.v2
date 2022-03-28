@@ -16,6 +16,7 @@ import { SessionEntity } from "./entity/session.entity";
 import { SessionStatusEntity } from "./entity/session.status.entity";
 import { SessionTypeEntity } from "./entity/session.types.entity";
 import { v4 as uuid } from "uuid";
+import { DurationEntity } from "src/duration/entity/duration.entity";
 
 @Injectable()
 export class SessionService {
@@ -26,6 +27,8 @@ export class SessionService {
     private accountRepository: Repository<AccountEntity>,
     @InjectRepository(UserEntity)
     private userRepository: Repository<UserEntity>,
+    @InjectRepository(DurationEntity)
+    private durationRepository: Repository<DurationEntity>,
     @InjectRepository(SessionTypeEntity)
     private sTypeRepository: Repository<SessionTypeEntity>,
     @InjectRepository(SessionStatusEntity)
@@ -79,7 +82,9 @@ export class SessionService {
         id: user,
       }),
       dateTime,
-      duration,
+      duration: await this.durationRepository.findOne({
+        id: duration,
+      }),
       docsNum,
       sessionType: await this.sTypeRepository.findOne({
         id: sessionType,
@@ -110,6 +115,7 @@ export class SessionService {
     const {
       account,
       user,
+      duration,
       sessionType,
       sessionStatus,
       notarySessionType,
@@ -130,6 +136,12 @@ export class SessionService {
     if (user) {
       dto['user'] = await this.userRepository.findOne({
         id: user,
+      });
+    }
+
+    if (duration) {
+      dto['duration'] = await this.durationRepository.findOne({
+        id: duration,
       });
     }
 

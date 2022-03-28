@@ -13,7 +13,24 @@ import { AuthGuard } from "@nestjs/passport";
 import { CreateBillingDto } from "./dto/billing.create-dto";
 import { BillingService } from "./billing.service";
 import { BillingEntity } from "./entity/billing.entity";
+import { BillingNetAccountEntity } from "./entity/billing.net_account.entity";
 import { UpdateBillingDto } from "./dto/billing.update-dto";
+
+@Controller("net_accounts")
+export class BillingNetAccountController {
+  constructor(private readonly billingService: BillingService) { }
+
+  @Get("/")
+  findAllBillings(): Promise<BillingNetAccountEntity[]> {
+    return this.billingService.findAllBillingNAs();
+  }
+
+  @Get("/:id")
+  @UseGuards(AuthGuard("jwt"))
+  findBilling(@Param("id") id: number): Promise<BillingNetAccountEntity> {
+    return this.billingService.findBillingNAById(id);
+  }
+}
 
 @Controller("billings")
 export class BillingController {

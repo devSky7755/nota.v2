@@ -11,6 +11,8 @@ import { CreateAccountDto } from "./dto/account.create-dto";
 import { UpdateAccountDto } from "./dto/account.update-dto";
 import { AccountEntity } from "./entity/account.entity";
 import { plainToClass } from 'class-transformer';
+import { AccTypeEntity } from "src/acc_type/entity/acc_type.entity";
+import { AccountStatusEntity } from "./entity/account.status.entity";
 
 @Injectable()
 export class AccountService {
@@ -19,6 +21,10 @@ export class AccountService {
     private AccountRepository: Repository<AccountEntity>,
     @InjectRepository(StateEntity)
     private StateRepository: Repository<StateEntity>,
+    @InjectRepository(AccTypeEntity)
+    private AccTypeRepository: Repository<AccTypeEntity>,
+    @InjectRepository(AccountStatusEntity)
+    private AccStatusRepository: Repository<AccountStatusEntity>,
     private authService: AuthService,
     private connection: Connection
   ) { }
@@ -56,7 +62,7 @@ export class AccountService {
       billingEmail,
       phone,
       billingPhone,
-      accountType,
+      accType,
       qbAccountNumber,
       brandColor,
       logo,
@@ -84,12 +90,16 @@ export class AccountService {
       billingEmail,
       phone,
       billingPhone,
-      accountType,
+      accType: await this.AccTypeRepository.findOne({
+        id: accType,
+      }),
       qbAccountNumber,
       brandColor,
       logo,
       whiteLabel,
-      status,
+      status: await this.AccStatusRepository.findOne({
+        id: status,
+      }),
       closedDate,
       billingState: await this.StateRepository.findOne({
         id: billingState,
@@ -100,7 +110,7 @@ export class AccountService {
   async findAccountByEmail(email: string): Promise<AccountEntity> {
     const selectedAccount: AccountEntity = await this.AccountRepository.findOne(
       { email },
-      { relations: ["state", "billingState"] }
+      { relations: ["state", "billingState", "accType"] }
     );
     if (!selectedAccount)
       throw new NotFoundException(`there is no Account with email->(${email})`);
@@ -115,7 +125,7 @@ export class AccountService {
     if (!account)
       throw new NotFoundException(`there is no Account with ID ${AccountId}`);
 
-    const { state, billingState, ...dto } = updateAccountDto;
+    const { state, status, billingState, accType, ...dto } = updateAccountDto;
     if (dto?.email) {
       const findAccount: AccountEntity = await this.AccountRepository.findOne({
         email: dto.email,
@@ -133,6 +143,15 @@ export class AccountService {
     if (billingState) {
       dto['billingState'] = await this.StateRepository.findOne({ id: billingState })
     }
+
+    if (accType) {
+      dto['accType'] = await this.AccTypeRepository.findOne({ id: accType })
+    }
+
+    if (status) {
+      dto['status'] = await this.AccStatusRepository.findOne({ id: status })
+    }
+
     return await this.AccountRepository.save(plainToClass(AccountEntity, { ...account, ...dto }));
   }
 

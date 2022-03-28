@@ -26,5 +26,5 @@ export class TypeEntity {
   public updated_at: Date;
 
   @OneToMany(() => RecordEntity, (record) => record.typeOfNotarization)
-  records: RecordEntity
+  records: RecordEntity[]
 }

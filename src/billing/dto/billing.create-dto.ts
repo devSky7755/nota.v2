@@ -40,7 +40,7 @@ export class CreateBillingDto {
   @IsNumber()
   readonly accountId: number;
   @IsNumber()
-  readonly netAccountId: number;
+  readonly netAccount: number;
   @IsNumber()
   readonly status: number;
   @IsArray()

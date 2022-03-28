@@ -1,9 +1,12 @@
+import { AccTypeEntity } from "src/acc_type/entity/acc_type.entity";
+import { AuditEntity } from "src/audit/entity/audit.entity";
 import { BillingEntity } from "src/billing/entity/billing.entity";
 import { ClientEntity } from "src/client/entity/client.entity";
 import { SessionEntity } from "src/session/entity/session.entity";
 import { StateEntity } from "src/state/entity/state.entity";
 import { UserEntity } from "src/user/entity/user.entity";
 import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, ManyToOne, ManyToMany, JoinTable, OneToMany, JoinColumn } from "typeorm";
+import { AccountStatusEntity } from "./account.status.entity";
 
 @Entity({ name: "accounts" })
 export class AccountEntity {
@@ -55,6 +58,10 @@ export class AccountEntity {
   @Column({ name: "billing_phone" })
   billingPhone: string;
 
+  @ManyToOne(() => AccTypeEntity, (at) => at.accounts)
+  @JoinColumn({ name: 'acc_type_id' })
+  accType: AccTypeEntity;
+
   @Column({ name: "account_type_id" })
   accountType: number;
 
@@ -70,8 +77,9 @@ export class AccountEntity {
   @Column({ name: "white_label" })
   whiteLabel: boolean;
 
-  @Column()
-  status: number;
+  @ManyToOne(() => AccountStatusEntity, (record) => record.accounts)
+  @JoinColumn({ name: "status_id" })
+  status: AccountStatusEntity
 
   @Column({ name: "closed_date" })
   closedDate: Date;
@@ -101,4 +109,7 @@ export class AccountEntity {
 
   @OneToMany(() => SessionEntity, (session) => session.account)
   sessions: SessionEntity[]
+
+  @OneToMany(() => AuditEntity, (audit) => audit.account)
+  audits: AuditEntity[]
 }
