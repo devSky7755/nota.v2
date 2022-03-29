@@ -1,6 +1,7 @@
 import { Module } from "@nestjs/common";
 import { ConfigModule } from "@nestjs/config";
 import { TypeOrmModule } from "@nestjs/typeorm";
+import { QBModule } from "./quickbooks/quickbooks.module";
 import { UserModule } from "./user/user.module";
 import { AccountModule } from "./account/account.module";
 import { AccTypeModule } from "./acc_type/acc_type.module";
@@ -44,6 +45,7 @@ import { join } from "path";
       rootPath: join(__dirname, "..", "uploads"),
       serveRoot: "/static",
     }),
+    QBModule,
     UserModule,
     AccountModule,
     AccTypeModule,

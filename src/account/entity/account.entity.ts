@@ -62,9 +62,6 @@ export class AccountEntity {
   @JoinColumn({ name: 'acc_type_id' })
   accType: AccTypeEntity;
 
-  @Column({ name: "account_type_id" })
-  accountType: number;
-
   @Column({ name: "qb_account_number" })
   qbAccountNumber: string;
 

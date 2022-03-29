@@ -2,6 +2,7 @@ import {
   ConflictException,
   NotFoundException,
   Injectable,
+  BadRequestException,
 } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { AuthService } from "src/auth/auth.service";
@@ -12,6 +13,7 @@ import { UpdateAccountDto } from "./dto/account.update-dto";
 import { AccountEntity } from "./entity/account.entity";
 import { plainToClass } from 'class-transformer';
 import { AccTypeEntity } from "src/acc_type/entity/acc_type.entity";
+import { QBService } from "src/quickbooks/quickbooks.service";
 import { AccountStatusEntity } from "./entity/account.status.entity";
 
 @Injectable()
@@ -26,85 +28,51 @@ export class AccountService {
     @InjectRepository(AccountStatusEntity)
     private AccStatusRepository: Repository<AccountStatusEntity>,
     private authService: AuthService,
-    private connection: Connection
+    private connection: Connection,
+    private qbService: QBService,
   ) { }
 
   async findAll(): Promise<AccountEntity[]> {
-    return await this.AccountRepository.find({ relations: ["state", "billingState"] });
+    return await this.AccountRepository.find({ relations: ["state", "billingState", "accType", "status"] });
   }
 
   async findAccountById(id: number): Promise<AccountEntity> {
     const selectedAccount: AccountEntity = await this.AccountRepository.findOne(
       { id },
-      { relations: ["state", "billingState"] }
+      { relations: ["state", "billingState", "accType", "status"] }
     );
     if (!selectedAccount)
       throw new NotFoundException(`there is no Account with ID ${id}`);
     return selectedAccount;
   }
 
-  async createAccount(Account: CreateAccountDto): Promise<AccountEntity> {
+  async createAccount(Account: CreateAccountDto): Promise<AccountEntity | boolean> {
     const {
-      companyName,
-      firstName,
-      lastName,
-      addressOne,
-      addressTwo,
-      city,
       state,
-      zipCode,
-      billingAddressOne,
-      billingAddressTwo,
-      billingCity,
       billingState,
-      billingZipCode,
-      email,
-      billingEmail,
-      phone,
-      billingPhone,
       accType,
-      qbAccountNumber,
-      brandColor,
-      logo,
-      whiteLabel,
       status,
-      closedDate,
+      ...dto
     } = Account;
-
-    return await this.AccountRepository.save({
-      companyName,
-      firstName,
-      lastName,
-      addressOne,
-      addressTwo,
-      city,
-      state: await this.StateRepository.findOne({
-        id: state,
-      }),
-      zipCode,
-      billingAddressOne,
-      billingAddressTwo,
-      billingCity,
-      billingZipCode,
-      email,
-      billingEmail,
-      phone,
-      billingPhone,
-      accType: await this.AccTypeRepository.findOne({
-        id: accType,
-      }),
-      qbAccountNumber,
-      brandColor,
-      logo,
-      whiteLabel,
-      status: await this.AccStatusRepository.findOne({
-        id: status,
-      }),
-      closedDate,
-      billingState: await this.StateRepository.findOne({
-        id: billingState,
-      })
-    });
+    try {
+      return await this.AccountRepository.save(plainToClass(AccountEntity, {
+        state: await this.StateRepository.findOne({
+          id: state,
+        }),
+        accType: await this.AccTypeRepository.findOne({
+          id: accType,
+        }),
+        status: await this.AccStatusRepository.findOne({
+          id: status,
+        }),
+        billingState: await this.StateRepository.findOne({
+          id: billingState,
+        }),
+        ...dto
+      }));
+    } catch (error) {
+      return false;
+    }
   }
 
   async findAccountByEmail(email: string): Promise<AccountEntity> {
