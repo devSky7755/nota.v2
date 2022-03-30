@@ -1,7 +1,6 @@
 import { Injectable, NotFoundException, UnauthorizedException } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import OAuthClient = require("intuit-oauth")
-import { async } from "rxjs";
 import { AccountEntity } from "src/account/entity/account.entity";
 import { Repository } from "typeorm";
 
@@ -18,8 +17,8 @@ export class QBService {
     this.oauthClient = new OAuthClient({
       clientId: process.env.QB_CLIENT_ID,
       clientSecret: process.env.QB_CLIENT_SECRET,
-      environment: 'sandbox',
-      redirectUri: 'http://localhost:3000/callback',
+      environment: process.env.QB_ENVIRONMENT,
+      redirectUri: process.env.QB_REDIRECT_URL,
       logging: true
     });
   }
@@ -63,15 +62,19 @@ export class QBService {
       throw new NotFoundException(`there is no Account with ID ${accId}`);
 
     try {
+      const dispalyName = `${acc.companyName} - ${acc.city}, ${acc.state?.abbr || ''}`;
+
       const body = {
-        "FullyQualifiedName": `${acc.firstName} - ${acc.companyName}`,
+        "FullyQualifiedName": dispalyName,
         "PrimaryEmailAddr": {
           "Address": acc.email
         },
-        "DisplayName": `${acc.firstName} - ${acc.companyName}`,
-        "Suffix": "Jr",
-        "Title": acc.firstName,
+        "DisplayName": dispalyName,
+        "Suffix": "",
+        "Title": "",
         "MiddleName": "",
+        "Taxable": true,
+        "Active": acc.status?.status || false,
         "FamilyName": acc.lastName,
         "GivenName": acc.firstName,
         "PrimaryPhone": {
@@ -83,7 +86,16 @@ export class QBService {
           "City": acc.billingCity,
           "PostalCode": acc.billingZipCode,
           "Line1": acc.billingAddressOne,
-          "Country": acc.billingAddressTwo
+          "Line2": acc.billingAddressTwo,
+          "Country": "USA"
+        },
+        "ShipAddr": {
+          "City": acc.city,
+          "Line1": acc.addressOne,
+          "Line2": acc.addressTwo,
+          "PostalCode": acc.zipCode,
+          "CountrySubDivisionCode": acc.state?.abbr,
+          "Country": "USA"
         },
       };
       await this.oauthClient
@@ -112,7 +124,7 @@ export class QBService {
     if (!acc)
       throw new NotFoundException(`there is no Account with ID ${accId}`);
 
-    const dispalyName = `${acc.firstName} - ${acc.companyName}`;
+    const dispalyName = `${acc.companyName} - ${acc.city}, ${acc.state?.abbr || ''}`;
     const qbCustomerRes: any = await this.getCustomerByDisplayName(dispalyName, realmId, accessToken);
     const parsedResBody = JSON.parse(qbCustomerRes.response.body);
     const customers = parsedResBody?.QueryResponse?.Customer;
@@ -125,9 +137,11 @@ export class QBService {
             "Address": acc.email
           },
           "DisplayName": dispalyName,
-          "Suffix": "Jr",
-          "Title": acc.firstName,
+          "Suffix": "",
+          "Title": "",
           "MiddleName": "",
+          "Taxable": true,
+          "Active": acc.status?.status || false,
           "FamilyName": acc.lastName,
           "GivenName": acc.firstName,
           "PrimaryPhone": {
@@ -139,7 +153,16 @@ export class QBService {
             "City": acc.billingCity,
             "PostalCode": acc.billingZipCode,
             "Line1": acc.billingAddressOne,
-            "Country": acc.billingAddressTwo
+            "Line2": acc.billingAddressTwo,
+            "Country": "USA"
+          },
+          "ShipAddr": {
+            "City": acc.city,
+            "Line1": acc.addressOne,
+            "Line2": acc.addressTwo,
+            "PostalCode": acc.zipCode,
+            "CountrySubDivisionCode": acc.state?.abbr,
+            "Country": "USA"
           },
           "Id": customer.Id,
           "sparse": true
