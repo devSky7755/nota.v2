@@ -31,12 +31,16 @@ export class DurationService {
   async updateDurationById(id: number, updateDurationDto: UpdateDurationDto): Promise<DurationEntity> {
     const duration = await this.durationRepository.findOne(id);
     if (!duration)
-      throw new NotFoundException(`there is no account type with ID ${id}`);
+      throw new NotFoundException(`there is no duration with ID ${id}`);
 
     return await this.durationRepository.save(plainToClass(DurationEntity, { ...duration, ...updateDurationDto }));
   }
 
-  async removeDurationById(id: number): Promise<DeleteResult> {
-    return await this.durationRepository.delete({ id });
+  async removeDurationById(id: number): Promise<DurationEntity> {
+    const duration = await this.durationRepository.findOne(id);
+    if (!duration)
+      throw new NotFoundException(`there is no duration with ID ${id}`);
+
+    return await this.durationRepository.remove(duration);
   }
 }

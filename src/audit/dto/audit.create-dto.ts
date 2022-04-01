@@ -1,4 +1,4 @@
-import { IsNumber, IsString } from "class-validator";
+import { IsNumber, IsOptional, IsString } from "class-validator";
 
 export class CreateAuditDto {
   @IsString()
@@ -6,7 +6,7 @@ export class CreateAuditDto {
   @IsString()
   readonly path: string;
   @IsNumber()
-  readonly pathId: number;
+  readonly pathId!: number | null;
   @IsString()
   readonly action: string;
 }

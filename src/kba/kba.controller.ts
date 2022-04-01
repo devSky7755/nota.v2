@@ -45,7 +45,7 @@ export class KbaController {
 
   @Delete("/:id")
   @UseGuards(AuthGuard("jwt"))
-  deleteKba(@Param("id") id: number): Promise<DeleteResult> {
+  deleteKba(@Param("id") id: number): Promise<KbaEntity> {
     return this.kbaService.removeKbaById(id);
   }
 }

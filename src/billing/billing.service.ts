@@ -96,8 +96,11 @@ export class BillingService {
     }));
   }
 
-  async removeBillingById(billingId: number): Promise<DeleteResult> {
-    return await this.billingRepository.delete(billingId);
+  async removeBillingById(billingId: number): Promise<BillingEntity> {
+    const billing = await this.billingRepository.findOne(billingId);
+    if (!billing)
+      throw new NotFoundException(`there is no Billing with ID ${billingId}`);
+    return await this.billingRepository.remove(billing);
   }
 
   async findAllBillingNAs(): Promise<BillingNetAccountEntity[]> {

@@ -1,4 +1,4 @@
-import { IsBase64, IsString } from "class-validator";
+import { IsEmail, IsNumber, IsString } from "class-validator";
 
 export class CreateAssociateDto {
   @IsString()
@@ -11,13 +11,13 @@ export class CreateAssociateDto {
   readonly addressTwo: string;
   @IsString()
   readonly city: string;
-  @IsString()
+  @IsNumber()
   readonly state: number;
   @IsString()
   readonly zipCode: string;
   @IsString()
   readonly phone: string;
-  @IsBase64()
+  @IsEmail()
   readonly email: string;
   @IsString()
   readonly dob: string;

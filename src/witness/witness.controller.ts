@@ -15,7 +15,7 @@ import { WitnessEntity } from "./entity/witness.entity";
 import { UpdateWitnessDto } from "./dto/witness.update-dto";
 import { DeleteResult } from "typeorm";
 
-@Controller("clients")
+@Controller("witnesses")
 export class WitnessController {
   constructor(private readonly witnessService: WitnessService) { }
 

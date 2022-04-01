@@ -2,7 +2,7 @@ import { Injectable, NotFoundException } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { plainToClass } from "class-transformer";
 import { StateEntity } from "src/state/entity/state.entity";
-import { DeleteResult, Repository } from "typeorm";
+import { Repository, UpdateResult } from "typeorm";
 import { CreateAssociateDto } from "./dto/associate.create-dto";
 import { UpdateAssociateDto } from "./dto/associate.update-dto";
 import { AssociateEntity } from "./entity/associate.entity";
@@ -56,7 +56,7 @@ export class AssociateService {
   async updateAssociateById(
     associateId: number,
     updateAssociateDto: UpdateAssociateDto
-  ): Promise<AssociateEntity> {
+  ): Promise<UpdateResult> {
     const associate = await this.associateRepository.findOne(associateId);
     if (!associate)
       throw new NotFoundException(`there is no associate with ID ${associateId}`);
@@ -68,10 +68,13 @@ export class AssociateService {
     if (state) {
       dto['state'] = await this.StateRepository.findOne({ id: state })
     }
-    return await this.associateRepository.save(plainToClass(AssociateEntity, { ...associate, ...dto }));
+    return await this.associateRepository.update(associateId, { ...associate, ...dto });
   }
 
-  async removeAssociateById(id: number): Promise<DeleteResult> {
-    return await this.associateRepository.delete(id);
+  async removeAssociateById(id: number): Promise<AssociateEntity> {
+    const associate = await this.associateRepository.findOne(id);
+    if (!associate)
+      throw new NotFoundException(`there is no associate with ID ${id}`);
+    return await this.associateRepository.remove(associate);
   }
 }

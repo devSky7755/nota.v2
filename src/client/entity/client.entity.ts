@@ -53,7 +53,7 @@ export class ClientEntity {
   billingState: StateEntity
 
   @Column({ name: "billing_zip_code" })
-  billingZipcode: string;
+  billingZipCode: string;
 
   @Column()
   phone: string;

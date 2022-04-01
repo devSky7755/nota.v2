@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
-import { DeleteResult, Repository } from "typeorm";
+import { Repository } from "typeorm";
 import { plainToClass } from "class-transformer";
 
 import { CreateAccTypeDto } from "./dto/acc_type.create-dto";
@@ -36,7 +36,10 @@ export class AccTypeService {
     return await this.accTypeRepository.save(plainToClass(AccTypeEntity, { ...accType, ...updateAccTypeDto }));
   }
 
-  async removeAccTypeById(id: number): Promise<DeleteResult> {
-    return await this.accTypeRepository.delete({ id });
+  async removeAccTypeById(id: number): Promise<AccTypeEntity> {
+    const accType = await this.accTypeRepository.findOne(id);
+    if (!accType)
+      throw new NotFoundException(`there is no account type with ID ${id}`);
+    return await this.accTypeRepository.remove(accType);
   }
 }

@@ -12,7 +12,6 @@ import {
   Headers,
 } from "@nestjs/common";
 import { AuthGuard } from "@nestjs/passport";
-import { UpdateResult } from "typeorm";
 import { CreateUserDto } from "./dto/user.create-dto";
 import { LoginUserDto } from "./dto/user.login-dto";
 import { UpdateUserDto } from "./dto/user.update-dto";
@@ -66,7 +65,7 @@ export class UserController {
 
   @Delete()
   @UseGuards(AuthGuard("jwt"))
-  deleteUser(@Request() req): Promise<void> {
+  deleteUser(@Request() req): Promise<UserEntity> {
     return this.userService.removeUserById(req.user.id);
   }
 }

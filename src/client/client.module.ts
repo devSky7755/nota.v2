@@ -6,10 +6,11 @@ import { AccountEntity } from "src/account/entity/account.entity";
 import { ClientController } from "./client.controller";
 import { ClientService } from "./client.service";
 import { KbaEntity } from "src/kba/entity/kba.entity";
+import { ClientSubscriber } from "./client.subscriber";
 
 @Module({
   imports: [TypeOrmModule.forFeature([ClientEntity, StateEntity, AccountEntity, KbaEntity])],
   controllers: [ClientController],
-  providers: [ClientService],
+  providers: [ClientService, ClientSubscriber],
 })
 export class ClientModule { }

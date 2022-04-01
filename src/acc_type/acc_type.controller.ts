@@ -13,7 +13,6 @@ import { CreateAccTypeDto } from "./dto/acc_type.create-dto";
 import { AccTypeService } from "./acc_type.service";
 import { AccTypeEntity } from "./entity/acc_type.entity";
 import { UpdateAccTypeDto } from "./dto/acc_type.update-dto";
-import { DeleteResult } from "typeorm";
 
 @Controller("acc_types")
 export class AccTypeController {
@@ -45,7 +44,7 @@ export class AccTypeController {
 
   @Delete("/:id")
   @UseGuards(AuthGuard("jwt"))
-  deleteAccType(@Param("id") id: number): Promise<DeleteResult> {
+  deleteAccType(@Param("id") id: number): Promise<AccTypeEntity> {
     return this.accTypeService.removeAccTypeById(id);
   }
 }

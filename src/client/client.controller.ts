@@ -47,7 +47,7 @@ export class ClientController {
 
   @Delete("/:id")
   @UseGuards(AuthGuard("jwt"))
-  deleteClient(@Param("id") clientId: number): Promise<DeleteResult> {
+  deleteClient(@Param("id") clientId: number): Promise<ClientEntity> {
     return this.clientService.removeClientById(clientId);
   }
 }

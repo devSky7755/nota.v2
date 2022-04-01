@@ -1,4 +1,4 @@
-import { IsArray, IsBase64, IsBoolean, IsOptional, IsString } from "class-validator";
+import { IsArray, IsBase64, IsBoolean, IsNumber, IsOptional, IsString } from "class-validator";
 
 export class CreateClientDto {
   @IsString()
@@ -15,9 +15,9 @@ export class CreateClientDto {
   readonly addressTwo: string;
   @IsString()
   readonly city: string;
-  @IsString()
+  @IsNumber()
   readonly state: number;
-  @IsBase64()
+  @IsString()
   readonly zipCode: string;
   @IsString()
   readonly billingAddressOne: string;
@@ -25,17 +25,17 @@ export class CreateClientDto {
   readonly billingAddressTwo: string;
   @IsString()
   readonly billingCity: string;
-  @IsString()
+  @IsNumber()
   readonly billingState: number;
-  @IsBase64()
-  readonly billingZipcode: string;
+  @IsString()
+  readonly billingZipCode: string;
   @IsString()
   readonly phone: string;
   @IsString()
   readonly email: string;
   @IsBoolean()
   readonly sendSms: boolean;
-  @IsString()
+  @IsBoolean()
   readonly sendEmail: boolean;
   @IsString()
   readonly dob: string;
@@ -43,18 +43,16 @@ export class CreateClientDto {
   readonly ssn: string;
   @IsString()
   readonly dlNum: string;
-  @IsString()
+  @IsNumber()
   readonly dlState: number;
   @IsString()
   readonly dlExp: string;
-  @IsString()
+  @IsBase64()
   readonly dlImage: string;
-  @IsString()
+  @IsBase64()
   readonly signature: string;
-  @IsOptional()
   @IsArray()
   readonly accIds: Array<number>;
-  @IsOptional()
   @IsArray()
   readonly kbas: Array<any>;
 }

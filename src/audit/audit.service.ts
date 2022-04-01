@@ -18,10 +18,9 @@ export class AuditService {
     const { accountId, ...dto } = auditDto;
 
     return await this.auditRepository.save({
-      account: await this.AccountRepository.findOne({
-        id: accountId,
-      }),
-
+      // account: await this.AccountRepository.findOne({
+      //   id: accountId,
+      // }),
       ...dto,
     });
   }

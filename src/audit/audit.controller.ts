@@ -12,7 +12,7 @@ import { CreateAuditDto } from "./dto/audit.create-dto";
 import { AuditService } from "./audit.service";
 import { AuditEntity } from "./entity/audit.entity";
 
-@Controller("clients")
+@Controller("audits")
 export class AuditController {
   constructor(private readonly clientService: AuditService) {}
 

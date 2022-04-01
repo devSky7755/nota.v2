@@ -13,7 +13,7 @@ export class AuditEntity {
   @Column({ name: "path" })
   path: string;
 
-  @Column({ name: "path_id" })
+  @Column({ name: "path_id", nullable: true })
   pathId: number;
 
   @Column()

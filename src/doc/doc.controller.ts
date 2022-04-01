@@ -115,7 +115,7 @@ export class DocController {
 
   @Delete("/:id")
   @UseGuards(AuthGuard("jwt"))
-  deleteDoc(@Param("id") id: number): Promise<DeleteResult> {
+  deleteDoc(@Param("id") id: number): Promise<DocEntity> {
     return this.docService.removeDocById(id);
   }
 }

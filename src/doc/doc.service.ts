@@ -129,7 +129,10 @@ export class DocService {
     return await this.docRepository.save(plainToClass(DocEntity, { ...doc, ...dto }));
   }
 
-  async removeDocById(id: number): Promise<DeleteResult> {
-    return await this.docRepository.delete({ id });
+  async removeDocById(id: number): Promise<DocEntity> {
+    const doc = await this.docRepository.findOne(id);
+    if (!doc)
+      throw new NotFoundException(`there is no doc with ID ${id}`);
+    return await this.docRepository.remove(doc);
   }
 }

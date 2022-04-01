@@ -123,7 +123,10 @@ export class AccountService {
     return await this.AccountRepository.save(plainToClass(AccountEntity, { ...account, ...dto }));
   }
 
-  async removeAccountById(AccountId: number): Promise<DeleteResult> {
-    return await this.AccountRepository.delete(AccountId);
+  async removeAccountById(AccountId: number): Promise<AccountEntity> {
+    const account = await this.AccountRepository.findOne(AccountId);
+    if (!account)
+      throw new NotFoundException(`there is no Account with ID ${AccountId}`);
+    return await this.AccountRepository.remove(account);
   }
 }

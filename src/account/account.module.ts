@@ -7,13 +7,14 @@ import { AccTypeEntity } from "src/acc_type/entity/acc_type.entity";
 import { AccountService } from "./account.service";
 import { AuthModule } from "src/auth/auth.module";
 import { AccountStatusEntity } from "./entity/account.status.entity";
+import { AccountSubscriber } from "./account.subscriber";
 
 @Module({
   imports: [
     TypeOrmModule.forFeature([AccountEntity, StateEntity, AccTypeEntity, AccountStatusEntity]),
     forwardRef(() => AuthModule),
   ],
-  providers: [AccountService],
+  providers: [AccountService, AccountSubscriber],
   controllers: [AccountController],
   exports: [AccountService],
 })

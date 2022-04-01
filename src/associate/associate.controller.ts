@@ -13,9 +13,9 @@ import { CreateAssociateDto } from "./dto/associate.create-dto";
 import { UpdateAssociateDto } from "./dto/associate.update-dto";
 import { AssociateService } from "./associate.service";
 import { AssociateEntity } from "./entity/associate.entity";
-import { DeleteResult } from "typeorm";
+import { UpdateResult } from "typeorm";
 
-@Controller("clients")
+@Controller("associates")
 export class AssociateController {
   constructor(private readonly associateService: AssociateService) { }
 
@@ -40,13 +40,13 @@ export class AssociateController {
   updateAssociateById(
     @Param("id") id: number,
     @Body() updateAssociateDto: UpdateAssociateDto
-  ): Promise<AssociateEntity> {
+  ): Promise<UpdateResult> {
     return this.associateService.updateAssociateById(id, updateAssociateDto);
   }
 
   @Delete("/:id")
   @UseGuards(AuthGuard("jwt"))
-  deleteAssociate(@Param("id") id: number): Promise<DeleteResult> {
+  deleteAssociate(@Param("id") id: number): Promise<AssociateEntity> {
     return this.associateService.removeAssociateById(id);
   }
 }

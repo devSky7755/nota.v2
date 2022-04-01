@@ -64,7 +64,7 @@ export class BillingController {
 
   @Delete("/:id")
   @UseGuards(AuthGuard("jwt"))
-  deleteBilling(@Param("id") billingId: number): Promise<DeleteResult> {
+  deleteBilling(@Param("id") billingId: number): Promise<BillingEntity> {
     return this.billingService.removeBillingById(billingId);
   }
 }

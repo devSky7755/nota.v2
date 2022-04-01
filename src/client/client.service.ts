@@ -101,13 +101,16 @@ export class ClientService {
     }
 
     if (kbas) {
-      dto['kbas'] = await this.kbaRepository.save(kbas);
+      dto['kbas'] = await this.kbaRepository.save(kbas || []);
     }
 
     return await this.clientRepository.save(plainToClass(ClientEntity, { ...client, ...dto }));
   }
 
-  async removeClientById(id: number): Promise<DeleteResult> {
-    return await this.clientRepository.delete(id);
+  async removeClientById(id: number): Promise<ClientEntity> {
+    const client = await this.clientRepository.findOne(id);
+    if (!client)
+      throw new NotFoundException(`there is no client with ID ${id}`);
+    return await this.clientRepository.remove(client);
   }
 }

@@ -8,22 +8,22 @@ import {
   RemoveEvent,
   UpdateEvent,
 } from "typeorm";
-import { UserEntity } from "./entity/user.entity";
+import { KbaEntity } from "./entity/kba.entity";
 
 @EventSubscriber()
-export class UserSubscriber implements EntitySubscriberInterface<UserEntity> {
+export class KbaSubscriber implements EntitySubscriberInterface<KbaEntity> {
   constructor(connection: Connection, private readonly auditService: AuditService) {
     connection.subscribers.push(this);
   }
 
   listenTo() {
-    return UserEntity;
+    return KbaEntity;
   }
 
-  beforeInsert(event: InsertEvent<UserEntity>) {
+  beforeInsert(event: InsertEvent<KbaEntity>) {
     console.log("BEFORE ENTITY INSERTED: ", event.entity);
     const dto: CreateAuditDto = {
-      path: 'users',
+      path: 'kbas',
       action: 'create',
       accountId: 0,
       pathId: null
@@ -31,10 +31,10 @@ export class UserSubscriber implements EntitySubscriberInterface<UserEntity> {
     this.auditService.createAudit(dto);
   }
 
-  beforeUpdate(event: UpdateEvent<UserEntity>) {
+  beforeUpdate(event: UpdateEvent<KbaEntity>) {
     console.log("BEFORE ENTITY UPDATED: ", event.entity);
     const dto: CreateAuditDto = {
-      path: 'users',
+      path: 'kbas',
       action: 'update',
       accountId: 0,
       pathId: event.entity.id
@@ -42,16 +42,16 @@ export class UserSubscriber implements EntitySubscriberInterface<UserEntity> {
     this.auditService.createAudit(dto);
   }
 
-  beforeRemove(event: RemoveEvent<UserEntity>) {
+  beforeRemove(event: RemoveEvent<KbaEntity>) {
     console.log(
       `BEFORE ENTITY WITH ID ${event.entityId} REMOVED: `,
       event.entity
     );
     const dto: CreateAuditDto = {
-      path: 'users',
+      path: 'kbas',
       action: 'remove',
       accountId: 0,
-      pathId: event.entity.id
+      pathId: event.entity?.id || null
     }
     this.auditService.createAudit(dto);
   }

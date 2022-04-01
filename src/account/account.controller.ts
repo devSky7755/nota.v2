@@ -7,13 +7,11 @@ import {
   Post,
   UseGuards,
   Put,
-  Redirect,
   Res,
   BadRequestException,
 } from "@nestjs/common";
 
 import { AuthGuard } from "@nestjs/passport";
-import { DeleteResult } from "typeorm";
 import { CreateAccountDto } from "./dto/account.create-dto";
 import { UpdateAccountDto } from "./dto/account.update-dto";
 import { AccountEntity } from "./entity/account.entity";
@@ -52,11 +50,15 @@ export class AccountController {
 
   @Put("/:id")
   @UseGuards(AuthGuard("jwt"))
-  updateAccountById(
+  async updateAccountById(
     @Param("id") accountId: number,
     @Body() updateAccountDto: UpdateAccountDto, @Res() res
-  ): Promise<AccountEntity> {
-    this.accountService.updateAccountById(accountId, updateAccountDto);
+  ): Promise<void> {
+    try {
+      await this.accountService.updateAccountById(accountId, updateAccountDto);
+    } catch (e) {
+      throw e;
+    }
     this.qbService.setOAuthUri(JSON.stringify({
       action: 'update_customer',
       id: accountId
@@ -67,7 +69,7 @@ export class AccountController {
 
   @Delete("/:id")
   @UseGuards(AuthGuard("jwt"))
-  deleteAccount(@Param("id") accountId: number): Promise<DeleteResult> {
+  deleteAccount(@Param("id") accountId: number): Promise<AccountEntity> {
     return this.accountService.removeAccountById(accountId);
   }
 }

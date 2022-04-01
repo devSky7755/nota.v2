@@ -55,7 +55,11 @@ export class KbaService {
     return await this.kbaRepository.save(plainToClass(KbaEntity, { ...kba, ...dto }));
   }
 
-  async removeKbaById(id: number): Promise<DeleteResult> {
-    return await this.kbaRepository.delete({ id });
+  async removeKbaById(id: number): Promise<KbaEntity> {
+    const kba = await this.kbaRepository.findOne(id);
+    if (!kba)
+      throw new NotFoundException(`there is no kba with ID ${id}`);
+
+    return await this.kbaRepository.remove(kba);
   }
 }

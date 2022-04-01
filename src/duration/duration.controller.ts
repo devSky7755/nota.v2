@@ -45,7 +45,7 @@ export class DurationController {
 
   @Delete("/:id")
   @UseGuards(AuthGuard("jwt"))
-  deleteDuration(@Param("id") id: number): Promise<DeleteResult> {
+  deleteDuration(@Param("id") id: number): Promise<DurationEntity> {
     return this.durationService.removeDurationById(id);
   }
 }
