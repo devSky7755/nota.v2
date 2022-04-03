@@ -1,6 +1,7 @@
 import { Module } from "@nestjs/common";
 import { ConfigModule } from "@nestjs/config";
 import { TypeOrmModule } from "@nestjs/typeorm";
+import { TwilioModule } from 'nestjs-twilio';
 import { QBModule } from "./quickbooks/quickbooks.module";
 import { UserModule } from "./user/user.module";
 import { AccountModule } from "./account/account.module";
@@ -24,6 +25,7 @@ import { NotaryDetailModule } from "./notary_detail/notary_detail.module";
 import { MethodModule } from "./method/method.module";
 import { ServeStaticModule } from "@nestjs/serve-static";
 import { join } from "path";
+import { SmsModule } from "./sms/sms.module";
 
 @Module({
   imports: [
@@ -44,6 +46,10 @@ import { join } from "path";
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, "..", "uploads"),
       serveRoot: "/static",
+    }),
+    TwilioModule.forRoot({
+      accountSid: process.env.TWILIO_ACCOUNT_SID,
+      authToken: process.env.TWILIO_AUTH_TOKEN,
     }),
     QBModule,
     UserModule,
@@ -66,6 +72,7 @@ import { join } from "path";
     TypeModule,
     NotaryDetailModule,
     MethodModule,
+    SmsModule,
   ],
 })
 export class AppModule { }
