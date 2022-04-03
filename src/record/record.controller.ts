@@ -14,7 +14,6 @@ import { CreateRecordDto } from "./dto/record.create-dto";
 import { RecordService } from "./record.service";
 import { RecordEntity } from "./entity/record.entity";
 import { UpdateRecordDto } from "./dto/record.update-dto";
-import { DeleteResult } from "typeorm";
 
 @Controller("records")
 export class RecordController {
@@ -46,7 +45,7 @@ export class RecordController {
 
   @Delete("/:id")
   @UseGuards(AuthGuard("jwt"))
-  deleteRecord(@Param("id") id: number): Promise<DeleteResult> {
+  deleteRecord(@Param("id") id: number): Promise<RecordEntity> {
     return this.recordService.removeRecordById(id);
   }
 }

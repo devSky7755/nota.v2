@@ -45,7 +45,7 @@ export class TypeController {
 
   @Delete("/:id")
   @UseGuards(AuthGuard("jwt"))
-  deleteType(@Param("id") id: number): Promise<DeleteResult> {
+  deleteType(@Param("id") id: number): Promise<TypeEntity> {
     return this.typeService.removeTypeById(id);
   }
 }

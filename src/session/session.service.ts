@@ -186,8 +186,12 @@ export class SessionService {
     return await this.sessionRepository.save(plainToClass(SessionEntity, { ...session, ...dto }));
   }
 
-  async removeSessionById(id: number): Promise<DeleteResult> {
-    return await this.sessionRepository.delete({ id });
+  async removeSessionById(id: number): Promise<SessionEntity> {
+    const session = await this.sessionRepository.findOne(id);
+    if (!session)
+      throw new NotFoundException(`there is no Session with ID ${id}`);
+
+    return await this.sessionRepository.remove(session);
   }
 
   async patchAssocitateRelations(session: SessionEntity, isUser: boolean, ids: Array<number>) {

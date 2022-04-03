@@ -5,7 +5,7 @@ import { MethodEntity } from "src/method/entity/method.entity";
 import { StateEntity } from "src/state/entity/state.entity";
 import { TypeEntity } from "src/type/entity/type.entity";
 import { UserEntity } from "src/user/entity/user.entity";
-import { DeleteResult, Repository, UpdateResult } from "typeorm";
+import { Repository } from "typeorm";
 import { CreateRecordDto } from "./dto/record.create-dto";
 import { UpdateRecordDto } from "./dto/record.update-dto";
 import { RecordEntity } from "./entity/record.entity";
@@ -94,9 +94,11 @@ export class RecordService {
     return await this.recordRepository.save(plainToClass(RecordEntity, { ...recordEntity, ...dto }));
   }
 
-  async removeRecordById(recordId: number): Promise<DeleteResult> {
-    return await this.recordRepository.delete({
-      id: recordId
-    });
+  async removeRecordById(recordId: number): Promise<RecordEntity> {
+    const recordEntity = await this.recordRepository.findOne(recordId);
+    if (!recordEntity)
+      throw new NotFoundException(`there is no record with ID ${recordId}`);
+
+    return await this.recordRepository.remove(recordEntity);
   }
 }

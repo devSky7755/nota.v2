@@ -13,7 +13,7 @@ import { CreateStateDto } from "./dto/state.create-dto";
 import { StateService } from "./state.service";
 import { StateEntity } from "./entity/state.entity";
 import { UpdateStateDto } from "./dto/state.update-dto";
-import { DeleteResult, UpdateResult } from "typeorm";
+import { UpdateResult } from "typeorm";
 
 @Controller("states")
 export class StateController {
@@ -43,7 +43,7 @@ export class StateController {
 
   @Delete("/:id")
   @UseGuards(AuthGuard("jwt"))
-  deleteState(@Param("id") id: number): Promise<DeleteResult> {
+  deleteState(@Param("id") id: number): Promise<StateEntity> {
     return this.stateService.removeStateById(id);
   }
 }

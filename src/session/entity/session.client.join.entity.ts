@@ -14,8 +14,8 @@ export class SessionClientJoinEntity {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column({ name: "kba_tries" })
-    kbaTries: string;
+    @Column({ name: "kba_tries", default: 0 })
+    kbaTries: number;
 
     @Column()
     @IsNotEmpty()

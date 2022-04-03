@@ -13,7 +13,6 @@ import { CreateWitnessDto } from "./dto/witness.create-dto";
 import { WitnessService } from "./witness.service";
 import { WitnessEntity } from "./entity/witness.entity";
 import { UpdateWitnessDto } from "./dto/witness.update-dto";
-import { DeleteResult } from "typeorm";
 
 @Controller("witnesses")
 export class WitnessController {
@@ -46,7 +45,7 @@ export class WitnessController {
 
   @Delete("/:id")
   @UseGuards(AuthGuard("jwt"))
-  deleteWitness(@Param("id") id: number): Promise<DeleteResult> {
+  deleteWitness(@Param("id") id: number): Promise<WitnessEntity> {
     return this.witnessService.removeWitnessById(id);
   }
 }

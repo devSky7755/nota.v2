@@ -43,7 +43,7 @@ export class SessionController {
 
   @Delete("/:id")
   @UseGuards(AuthGuard("jwt"))
-  deleteSession(@Param("id") id: number): Promise<DeleteResult> {
+  deleteSession(@Param("id") id: number): Promise<SessionEntity> {
     return this.sessionService.removeSessionById(id);
   }
 }

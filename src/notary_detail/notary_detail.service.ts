@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
-import { DeleteResult, Repository } from "typeorm";
+import { Repository } from "typeorm";
 import { plainToClass } from "class-transformer";
 
 import { CreateNotaryDetailDto } from "./dto/notary_detail.create-dto";
@@ -57,7 +57,11 @@ export class NotaryDetailService {
     return await this.notary_detailRepository.save(plainToClass(NotaryDetailEntity, { user, ...notary_detail, ...dto }));
   }
 
-  async removeNotaryDetailById(id: number): Promise<DeleteResult> {
-    return await this.notary_detailRepository.delete({ id });
+  async removeNotaryDetailById(id: number): Promise<NotaryDetailEntity> {
+    const notary_detail = await this.notary_detailRepository.findOne(id);
+    if (!notary_detail)
+      throw new NotFoundException(`there is no notary_detail with ID ${id}`);
+
+    return await this.notary_detailRepository.remove(notary_detail);
   }
 }

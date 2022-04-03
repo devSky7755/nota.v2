@@ -13,7 +13,7 @@ import { CreateRoleDto } from "./dto/role.create-dto";
 import { RoleService } from "./role.service";
 import { RoleEntity } from "./entity/role.entity";
 import { UpdateRoleDto } from "./dto/role.update-dto";
-import { DeleteResult, UpdateResult } from "typeorm";
+import { UpdateResult } from "typeorm";
 
 @Controller("roles")
 export class RoleController {
@@ -43,7 +43,7 @@ export class RoleController {
 
   @Delete("/:id")
   @UseGuards(AuthGuard("jwt"))
-  deleteRole(@Param("id") id: number): Promise<DeleteResult> {
+  deleteRole(@Param("id") id: number): Promise<RoleEntity> {
     return this.roleService.removeRoleById(id);
   }
 }

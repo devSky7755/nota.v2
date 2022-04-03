@@ -20,15 +20,15 @@ export class SessionAssociateJoinEntity {
     @Column({ name: "is_user", default: false })
     isUser: boolean;
 
-    @ManyToOne(() => SessionEntity, session => session.sessionAssociateJoins, { primary: true })
+    @ManyToOne(() => SessionEntity, session => session.sessionAssociateJoins, { primary: true, onDelete: 'CASCADE' })
     @JoinColumn({ name: "session_id" })
     session: SessionEntity
 
-    @ManyToOne(() => AssociateEntity, session => session.associateSessionJoins, { nullable: true })
+    @ManyToOne(() => AssociateEntity, session => session.associateSessionJoins, { nullable: true, onDelete: 'CASCADE' })
     @JoinColumn({ name: "associate_id" })
     associate: AssociateEntity
 
-    @ManyToOne(() => UserEntity, user => user.userAssocSessionJoins, { nullable: true })
+    @ManyToOne(() => UserEntity, user => user.userAssocSessionJoins, { nullable: true, onDelete: 'CASCADE' })
     @JoinColumn({ name: "user_id" })
     user: UserEntity
 

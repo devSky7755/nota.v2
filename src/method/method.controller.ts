@@ -13,9 +13,8 @@ import { CreateMethodDto } from "./dto/method.create-dto";
 import { UpdateMethodDto } from "./dto/method.update-dto";
 import { MethodService } from "./method.service";
 import { MethodEntity } from "./entity/method.entity";
-import { DeleteResult } from "typeorm";
 
-@Controller("method_of_ids")
+@Controller("methods_of_id")
 export class MethodController {
   constructor(private readonly methodService: MethodService) { }
 
@@ -45,7 +44,7 @@ export class MethodController {
 
   @Delete("/:id")
   @UseGuards(AuthGuard("jwt"))
-  deleteMethod(@Param("id") id: number): Promise<DeleteResult> {
+  deleteMethod(@Param("id") id: number): Promise<MethodEntity> {
     return this.methodService.removeMethodById(id);
   }
 }

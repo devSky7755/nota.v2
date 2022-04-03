@@ -36,7 +36,12 @@ export class MethodService {
     return await this.methodRepository.save(plainToClass(MethodEntity, { ...method, ...updateMethodDto }));
   }
 
-  async removeMethodById(id: number): Promise<DeleteResult> {
-    return await this.methodRepository.delete({ id });
+  async removeMethodById(id: number): Promise<MethodEntity> {
+    const method = await this.methodRepository.findOne(id);
+    if (!method)
+      throw new NotFoundException(`there is no method_of_id with ID ${id}`);
+
+
+    return await this.methodRepository.remove(method);
   }
 }

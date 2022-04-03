@@ -1,6 +1,6 @@
-import { Injectable } from "@nestjs/common";
+import { Injectable, NotFoundException } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
-import { DeleteResult, Repository, UpdateResult } from "typeorm";
+import { Repository, UpdateResult } from "typeorm";
 import { CreateStateDto } from "./dto/state.create-dto";
 import { UpdateStateDto } from "./dto/state.update-dto";
 import { StateEntity } from "./entity/state.entity";
@@ -26,11 +26,19 @@ export class StateService {
     });
   }
 
-  async updateStateById(id: number, state: UpdateStateDto): Promise<UpdateResult> {
-    return await this.stateRepository.update({ id }, state);
+  async updateStateById(id: number, stateDto: UpdateStateDto): Promise<UpdateResult> {
+    const state = await this.stateRepository.findOne(id);
+    if (!state)
+      throw new NotFoundException(`there is no state with ID ${id}`);
+
+    return await this.stateRepository.update({ id }, stateDto);
   }
 
-  async removeStateById(id: number): Promise<DeleteResult> {
-    return await this.stateRepository.delete({ id });
+  async removeStateById(id: number): Promise<StateEntity> {
+    const state = await this.stateRepository.findOne(id);
+    if (!state)
+      throw new NotFoundException(`there is no state with ID ${id}`);
+
+    return await this.stateRepository.remove(state);
   }
 }

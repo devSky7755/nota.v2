@@ -14,7 +14,6 @@ import { CreateNotaryDetailDto } from "./dto/notary_detail.create-dto";
 import { NotaryDetailService } from "./notary_detail.service";
 import { NotaryDetailEntity } from "./entity/notary_detail.entity";
 import { UpdateNotaryDetailDto } from "./dto/notary_detail.update-dto";
-import { DeleteResult } from "typeorm";
 
 @Controller("notary_details")
 export class NotaryDetailController {
@@ -46,7 +45,7 @@ export class NotaryDetailController {
 
   @Delete("/:id")
   @UseGuards(AuthGuard("jwt"))
-  deleteNotaryDetail(@Param("id") id: number): Promise<DeleteResult> {
+  deleteNotaryDetail(@Param("id") id: number): Promise<NotaryDetailEntity> {
     return this.notaryDetailService.removeNotaryDetailById(id);
   }
 }

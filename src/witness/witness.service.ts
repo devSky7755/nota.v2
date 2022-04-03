@@ -45,6 +45,7 @@ export class WitnessService {
     const witness = await this.witnessRepository.findOne(witnessId);
     if (!witness)
       throw new NotFoundException(`there is no witness with ID ${witnessId}`);
+
     const {
       state,
       ...dto
@@ -56,7 +57,11 @@ export class WitnessService {
     return await this.witnessRepository.save(plainToClass(WitnessEntity, { ...witness, ...dto }));
   }
 
-  async removeWitnessById(id: number): Promise<DeleteResult> {
-    return await this.witnessRepository.delete(id);
+  async removeWitnessById(id: number): Promise<WitnessEntity> {
+    const witness = await this.witnessRepository.findOne(id);
+    if (!witness)
+      throw new NotFoundException(`there is no witness with ID ${id}`);
+
+    return await this.witnessRepository.remove(witness);
   }
 }

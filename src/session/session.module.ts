@@ -15,11 +15,12 @@ import { SessionStatusEntity } from "./entity/session.status.entity";
 import { SessionTypeEntity } from "./entity/session.types.entity";
 import { SessionController } from "./session.controller";
 import { SessionService } from "./session.service";
+import { SessionSubscriber } from "./session.subscriber";
 
 @Module({
   imports: [TypeOrmModule.forFeature([SessionEntity, AccountEntity, UserEntity, DurationEntity, SessionTypeEntity, SessionStatusEntity, NotarySessionTypeEntity, ClientEntity, WitnessEntity, AssociateEntity, DocEntity, SessionClientJoinEntity, SessionAssociateJoinEntity])],
   controllers: [SessionController],
-  providers: [SessionService],
+  providers: [SessionService, SessionSubscriber],
   exports: [SessionService],
 })
 export class SessionModule { }

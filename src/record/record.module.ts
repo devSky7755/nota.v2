@@ -6,10 +6,11 @@ import { TypeEntity } from "src/type/entity/type.entity";
 import { RecordEntity } from "./entity/record.entity";
 import { RecordController } from "./record.controller";
 import { RecordService } from "./record.service";
+import { RecordSubscriber } from "./record.subscriber";
 
 @Module({
   imports: [TypeOrmModule.forFeature([RecordEntity, StateEntity, TypeEntity, MethodEntity])],
   controllers: [RecordController],
-  providers: [RecordService],
+  providers: [RecordService, RecordSubscriber],
 })
 export class RecordModule { }
