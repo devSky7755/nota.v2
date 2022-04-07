@@ -17,7 +17,7 @@ import { SmsService } from './sms.service';
 export class SmsController {
     constructor(private readonly smsService: SmsService) { }
 
-    @Post("/")
+    @Post("/send")
     @UseGuards(AuthGuard("jwt"))
     sendSms(@Body() sendDto: SmsSendDto): Promise<any> {
         return this.smsService.sendSMS(sendDto);

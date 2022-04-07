@@ -26,6 +26,7 @@ import { MethodModule } from "./method/method.module";
 import { ServeStaticModule } from "@nestjs/serve-static";
 import { join } from "path";
 import { SmsModule } from "./sms/sms.module";
+import { SGEmailModule } from "./sendgrid/sendgrid.module";
 
 @Module({
   imports: [
@@ -73,6 +74,7 @@ import { SmsModule } from "./sms/sms.module";
     NotaryDetailModule,
     MethodModule,
     SmsModule,
+    SGEmailModule,
   ],
 })
 export class AppModule { }
