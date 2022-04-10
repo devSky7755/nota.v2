@@ -15,6 +15,7 @@ import { BillingService } from "./billing.service";
 import { BillingEntity } from "./entity/billing.entity";
 import { BillingNetAccountEntity } from "./entity/billing.net_account.entity";
 import { UpdateBillingDto } from "./dto/billing.update-dto";
+import { QBService } from "src/quickbooks/quickbooks.service";
 
 @Controller("net_accounts")
 export class BillingNetAccountController {
@@ -34,7 +35,8 @@ export class BillingNetAccountController {
 
 @Controller("billings")
 export class BillingController {
-  constructor(private readonly billingService: BillingService) { }
+  constructor(private readonly billingService: BillingService,
+    private qbService: QBService,) { }
 
   @Get("/")
   findAllBillings(): Promise<BillingEntity[]> {
@@ -43,7 +45,8 @@ export class BillingController {
 
   @Post()
   @UseGuards(AuthGuard("jwt"))
-  createBilling(@Body() billing: CreateBillingDto): Promise<BillingEntity> {
+  async createBilling(@Body() billing: CreateBillingDto): Promise<BillingEntity> {
+    await this.qbService.getOAuthClient()
     return this.billingService.createBilling(billing);
   }
 

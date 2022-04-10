@@ -19,9 +19,11 @@ export class QBCallBackController {
     const token: any = await this.qbService.getOAuthClient().createToken(req.url)
     switch (parsedState.action) {
       case 'create_customer':
-        return await this.qbService.createCustomer(token?.token?.realmId, parsedState.id, token?.token?.access_token)
+        const newCustomer = await this.qbService.createCustomer(token?.token?.realmId, token?.token?.access_token, parsedState.id)
+        return newCustomer;
       case 'update_customer':
-        return await this.qbService.updateCustomer(token?.token?.realmId, parsedState.id, token?.token?.access_token)
+        return await this.qbService.updateCustomer(token?.token?.realmId, token?.token?.access_token, parsedState.id)
+        return ""
       default:
         break;
     }

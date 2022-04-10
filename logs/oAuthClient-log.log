@@ -1941,3 +1941,1731 @@
   "error_description": "Bad Request",
   "intuit_tid": "1-62439025-1078ed1a6cb27ea565aa09de"
 }
+2022-04-10T07:19:47.301Z info: The Authorize Uri is :https://appcenter.intuit.com/connect/oauth2?client_id=ABqDWvwmacSPpOhqicB3Rad6LmgH7IB8mZGnenGltkStSMGKaK&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fcallback&response_type=code&scope=com.intuit.quickbooks.accounting%20openid&state=%7B%22action%22%3A%22create_customer%22%2C%22id%22%3A4%7D
+2022-04-10T07:20:42.689Z info: Create Token response is : {
+  "token": {
+    "realmId": "4620816365201067600",
+    "token_type": "bearer",
+    "access_token": "eyJlbmMiOiJBMTI4Q0JDLUhTMjU2IiwiYWxnIjoiZGlyIn0..qrp49cvL30HkOYPXLSZi3g.30dnRoxKD8FUPYxSIic9hWjeScFJU8v40TR9SSA9euATSr_Zg5BE2ZJC1iFS_-egLNwDr-KaLbKeY6q4zURqItACJXjVsjorihHIpmr1taDTLJNlty9XddWcXgOFeQKwdFSN4yLS4dM7XyVI3zg26akxwvvn3n5Hb8C9yY2f8uWbtJpbmJt3otKnpws4qwaLxAwJvQtJcMw3X8IjcIOjEVUmm1G0NfvkLhmbdunnoVVr1H0eD4U5PuNoZEsg5WjlQhAS-GDvpS55v5Z7QFMxX8IkJTSFawG5loZ0SJI2njxc6SpLtlmDSKXrYRo5jGeNYVb9QCEIdY6GpWYMfmoWfqxy5EKI_m-y600r3PtZVCr5TZ0cXiufJEIsc6gcNQLe4-bWhlIANqIRWjJy4vQm66ohidnaNEkx61iRf_g9DZvMMAv3SznZzLJlpjq_IZohRKLCtFNFsmIVc9zRJXTEFhq_L6SIbwvdxKuH1UPxFtlbnyQo7RCh79oDL3ec-BOsAH5qUKG_b--yYqfo4bZhNPYViWo5K2eBf7t0GS6mulCKPYV2MWgI7OifJTopy2PNiCrQc7ARuBn0lNpDR5i8CgFs43anPkGjXUXDX6rAlnuaIrlnvEh-8jiq_F27Z8fKNPiMItbNunqQYWTG0XVTUVMFuzvO78h6gGX_9HcZIBD68O2BIdNb58RinYnHLgDmu_y8X_BuLvzDkuJMBhpKWncBFX14YBoA2LE_V_9AOKsv801TFLTyxDFfue8rzpnbf4Jgm8yu8egxpFhP-ZX51G_-3zvIGUfCidYcDz2_F8qVhoV-lki9uX2aMjsJWni_tLzU7pnclXpjKIbwfWyo8g.JDef2n-QIT-hObV3TsrAIQ",
+    "refresh_token": "AB116583016424Ir9Ly2yKJFlYFb0Kx0LQgJymuXrasS8bpfDJ",
+    "expires_in": 3600,
+    "x_refresh_token_expires_in": 8726400,
+    "id_token": "eyJraWQiOiJPUElDUFJEMDkxODIwMTQiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJmNzhlYzJiMC1jZGFiLTQzMTktYTAzNi1jZTJkYTFkMmU5NjQiLCJhdWQiOlsiQUJxRFd2d21hY1NQcE9ocWljQjNSYWQ2TG1nSDdJQjhtWkduZW5HbHRrU3RTTUdLYUsiXSwicmVhbG1pZCI6IjQ2MjA4MTYzNjUyMDEwNjc2MDAiLCJhdXRoX3RpbWUiOjE2NDk1NzUyMjQsImlzcyI6Imh0dHBzOlwvXC9vYXV0aC5wbGF0Zm9ybS5pbnR1aXQuY29tXC9vcFwvdjEiLCJleHAiOjE2NDk1Nzg4NDIsImlhdCI6MTY0OTU3NTI0Mn0.j0zO7ydhP11b3fpYo7VxaJ6Q0cqIkj8m6g1FaiQv3evYL9xxJTtVxC86Y3ojXafYzZbYqWUQOBjlZVLHeQL9GahJm1QByz2njzQiQ-kHAls5B0ptDsX_zInuaLQIKoACjA-_rLFTJXUxWtk8YZLtTfjItVpcPOGdvqGWK536Mw8",
+    "latency": 60000,
+    "createdAt": 1649575242689,
+    "state": "{\"action\":\"create_customer\",\"id\":4}"
+  },
+  "response": {
+    "url": "https://oauth.platform.intuit.com/oauth2/v1/tokens/bearer",
+    "headers": {
+      "date": "Sun, 10 Apr 2022 07:20:42 GMT",
+      "content-type": "application/json;charset=utf-8",
+      "content-length": "1684",
+      "connection": "close",
+      "intuit_tid": "1-6252854a-20df587100ee5032466d9be1",
+      "x-spanid": "52587c17-2d87-4d67-9a7b-0579ab2e953b",
+      "x-amzn-trace-id": "Root=1-6252854a-20df587100ee5032466d9be1",
+      "x-content-type-options": "nosniff",
+      "server": "envoy",
+      "cache-control": "no-cache, no-store",
+      "pragma": "no-cache",
+      "x-frame-options": "SAMEORIGIN",
+      "x-xss-protection": "1; mode=block",
+      "x-envoy-upstream-service-time": "79",
+      "strict-transport-security": "max-age=31536000"
+    },
+    "body": "{\"x_refresh_token_expires_in\":8726400,\"refresh_token\":\"AB116583016424Ir9Ly2yKJFlYFb0Kx0LQgJymuXrasS8bpfDJ\",\"id_token\":\"eyJraWQiOiJPUElDUFJEMDkxODIwMTQiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJmNzhlYzJiMC1jZGFiLTQzMTktYTAzNi1jZTJkYTFkMmU5NjQiLCJhdWQiOlsiQUJxRFd2d21hY1NQcE9ocWljQjNSYWQ2TG1nSDdJQjhtWkduZW5HbHRrU3RTTUdLYUsiXSwicmVhbG1pZCI6IjQ2MjA4MTYzNjUyMDEwNjc2MDAiLCJhdXRoX3RpbWUiOjE2NDk1NzUyMjQsImlzcyI6Imh0dHBzOlwvXC9vYXV0aC5wbGF0Zm9ybS5pbnR1aXQuY29tXC9vcFwvdjEiLCJleHAiOjE2NDk1Nzg4NDIsImlhdCI6MTY0OTU3NTI0Mn0.j0zO7ydhP11b3fpYo7VxaJ6Q0cqIkj8m6g1FaiQv3evYL9xxJTtVxC86Y3ojXafYzZbYqWUQOBjlZVLHeQL9GahJm1QByz2njzQiQ-kHAls5B0ptDsX_zInuaLQIKoACjA-_rLFTJXUxWtk8YZLtTfjItVpcPOGdvqGWK536Mw8\",\"access_token\":\"eyJlbmMiOiJBMTI4Q0JDLUhTMjU2IiwiYWxnIjoiZGlyIn0..qrp49cvL30HkOYPXLSZi3g.30dnRoxKD8FUPYxSIic9hWjeScFJU8v40TR9SSA9euATSr_Zg5BE2ZJC1iFS_-egLNwDr-KaLbKeY6q4zURqItACJXjVsjorihHIpmr1taDTLJNlty9XddWcXgOFeQKwdFSN4yLS4dM7XyVI3zg26akxwvvn3n5Hb8C9yY2f8uWbtJpbmJt3otKnpws4qwaLxAwJvQtJcMw3X8IjcIOjEVUmm1G0NfvkLhmbdunnoVVr1H0eD4U5PuNoZEsg5WjlQhAS-GDvpS55v5Z7QFMxX8IkJTSFawG5loZ0SJI2njxc6SpLtlmDSKXrYRo5jGeNYVb9QCEIdY6GpWYMfmoWfqxy5EKI_m-y600r3PtZVCr5TZ0cXiufJEIsc6gcNQLe4-bWhlIANqIRWjJy4vQm66ohidnaNEkx61iRf_g9DZvMMAv3SznZzLJlpjq_IZohRKLCtFNFsmIVc9zRJXTEFhq_L6SIbwvdxKuH1UPxFtlbnyQo7RCh79oDL3ec-BOsAH5qUKG_b--yYqfo4bZhNPYViWo5K2eBf7t0GS6mulCKPYV2MWgI7OifJTopy2PNiCrQc7ARuBn0lNpDR5i8CgFs43anPkGjXUXDX6rAlnuaIrlnvEh-8jiq_F27Z8fKNPiMItbNunqQYWTG0XVTUVMFuzvO78h6gGX_9HcZIBD68O2BIdNb58RinYnHLgDmu_y8X_BuLvzDkuJMBhpKWncBFX14YBoA2LE_V_9AOKsv801TFLTyxDFfue8rzpnbf4Jgm8yu8egxpFhP-ZX51G_-3zvIGUfCidYcDz2_F8qVhoV-lki9uX2aMjsJWni_tLzU7pnclXpjKIbwfWyo8g.JDef2n-QIT-hObV3TsrAIQ\",\"token_type\":\"bearer\",\"expires_in\":3600}",
+    "status": 200,
+    "statusText": "OK"
+  },
+  "body": "{\"x_refresh_token_expires_in\":8726400,\"refresh_token\":\"AB116583016424Ir9Ly2yKJFlYFb0Kx0LQgJymuXrasS8bpfDJ\",\"id_token\":\"eyJraWQiOiJPUElDUFJEMDkxODIwMTQiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJmNzhlYzJiMC1jZGFiLTQzMTktYTAzNi1jZTJkYTFkMmU5NjQiLCJhdWQiOlsiQUJxRFd2d21hY1NQcE9ocWljQjNSYWQ2TG1nSDdJQjhtWkduZW5HbHRrU3RTTUdLYUsiXSwicmVhbG1pZCI6IjQ2MjA4MTYzNjUyMDEwNjc2MDAiLCJhdXRoX3RpbWUiOjE2NDk1NzUyMjQsImlzcyI6Imh0dHBzOlwvXC9vYXV0aC5wbGF0Zm9ybS5pbnR1aXQuY29tXC9vcFwvdjEiLCJleHAiOjE2NDk1Nzg4NDIsImlhdCI6MTY0OTU3NTI0Mn0.j0zO7ydhP11b3fpYo7VxaJ6Q0cqIkj8m6g1FaiQv3evYL9xxJTtVxC86Y3ojXafYzZbYqWUQOBjlZVLHeQL9GahJm1QByz2njzQiQ-kHAls5B0ptDsX_zInuaLQIKoACjA-_rLFTJXUxWtk8YZLtTfjItVpcPOGdvqGWK536Mw8\",\"access_token\":\"eyJlbmMiOiJBMTI4Q0JDLUhTMjU2IiwiYWxnIjoiZGlyIn0..qrp49cvL30HkOYPXLSZi3g.30dnRoxKD8FUPYxSIic9hWjeScFJU8v40TR9SSA9euATSr_Zg5BE2ZJC1iFS_-egLNwDr-KaLbKeY6q4zURqItACJXjVsjorihHIpmr1taDTLJNlty9XddWcXgOFeQKwdFSN4yLS4dM7XyVI3zg26akxwvvn3n5Hb8C9yY2f8uWbtJpbmJt3otKnpws4qwaLxAwJvQtJcMw3X8IjcIOjEVUmm1G0NfvkLhmbdunnoVVr1H0eD4U5PuNoZEsg5WjlQhAS-GDvpS55v5Z7QFMxX8IkJTSFawG5loZ0SJI2njxc6SpLtlmDSKXrYRo5jGeNYVb9QCEIdY6GpWYMfmoWfqxy5EKI_m-y600r3PtZVCr5TZ0cXiufJEIsc6gcNQLe4-bWhlIANqIRWjJy4vQm66ohidnaNEkx61iRf_g9DZvMMAv3SznZzLJlpjq_IZohRKLCtFNFsmIVc9zRJXTEFhq_L6SIbwvdxKuH1UPxFtlbnyQo7RCh79oDL3ec-BOsAH5qUKG_b--yYqfo4bZhNPYViWo5K2eBf7t0GS6mulCKPYV2MWgI7OifJTopy2PNiCrQc7ARuBn0lNpDR5i8CgFs43anPkGjXUXDX6rAlnuaIrlnvEh-8jiq_F27Z8fKNPiMItbNunqQYWTG0XVTUVMFuzvO78h6gGX_9HcZIBD68O2BIdNb58RinYnHLgDmu_y8X_BuLvzDkuJMBhpKWncBFX14YBoA2LE_V_9AOKsv801TFLTyxDFfue8rzpnbf4Jgm8yu8egxpFhP-ZX51G_-3zvIGUfCidYcDz2_F8qVhoV-lki9uX2aMjsJWni_tLzU7pnclXpjKIbwfWyo8g.JDef2n-QIT-hObV3TsrAIQ\",\"token_type\":\"bearer\",\"expires_in\":3600}",
+  "json": {
+    "x_refresh_token_expires_in": 8726400,
+    "refresh_token": "AB116583016424Ir9Ly2yKJFlYFb0Kx0LQgJymuXrasS8bpfDJ",
+    "id_token": "eyJraWQiOiJPUElDUFJEMDkxODIwMTQiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJmNzhlYzJiMC1jZGFiLTQzMTktYTAzNi1jZTJkYTFkMmU5NjQiLCJhdWQiOlsiQUJxRFd2d21hY1NQcE9ocWljQjNSYWQ2TG1nSDdJQjhtWkduZW5HbHRrU3RTTUdLYUsiXSwicmVhbG1pZCI6IjQ2MjA4MTYzNjUyMDEwNjc2MDAiLCJhdXRoX3RpbWUiOjE2NDk1NzUyMjQsImlzcyI6Imh0dHBzOlwvXC9vYXV0aC5wbGF0Zm9ybS5pbnR1aXQuY29tXC9vcFwvdjEiLCJleHAiOjE2NDk1Nzg4NDIsImlhdCI6MTY0OTU3NTI0Mn0.j0zO7ydhP11b3fpYo7VxaJ6Q0cqIkj8m6g1FaiQv3evYL9xxJTtVxC86Y3ojXafYzZbYqWUQOBjlZVLHeQL9GahJm1QByz2njzQiQ-kHAls5B0ptDsX_zInuaLQIKoACjA-_rLFTJXUxWtk8YZLtTfjItVpcPOGdvqGWK536Mw8",
+    "access_token": "eyJlbmMiOiJBMTI4Q0JDLUhTMjU2IiwiYWxnIjoiZGlyIn0..qrp49cvL30HkOYPXLSZi3g.30dnRoxKD8FUPYxSIic9hWjeScFJU8v40TR9SSA9euATSr_Zg5BE2ZJC1iFS_-egLNwDr-KaLbKeY6q4zURqItACJXjVsjorihHIpmr1taDTLJNlty9XddWcXgOFeQKwdFSN4yLS4dM7XyVI3zg26akxwvvn3n5Hb8C9yY2f8uWbtJpbmJt3otKnpws4qwaLxAwJvQtJcMw3X8IjcIOjEVUmm1G0NfvkLhmbdunnoVVr1H0eD4U5PuNoZEsg5WjlQhAS-GDvpS55v5Z7QFMxX8IkJTSFawG5loZ0SJI2njxc6SpLtlmDSKXrYRo5jGeNYVb9QCEIdY6GpWYMfmoWfqxy5EKI_m-y600r3PtZVCr5TZ0cXiufJEIsc6gcNQLe4-bWhlIANqIRWjJy4vQm66ohidnaNEkx61iRf_g9DZvMMAv3SznZzLJlpjq_IZohRKLCtFNFsmIVc9zRJXTEFhq_L6SIbwvdxKuH1UPxFtlbnyQo7RCh79oDL3ec-BOsAH5qUKG_b--yYqfo4bZhNPYViWo5K2eBf7t0GS6mulCKPYV2MWgI7OifJTopy2PNiCrQc7ARuBn0lNpDR5i8CgFs43anPkGjXUXDX6rAlnuaIrlnvEh-8jiq_F27Z8fKNPiMItbNunqQYWTG0XVTUVMFuzvO78h6gGX_9HcZIBD68O2BIdNb58RinYnHLgDmu_y8X_BuLvzDkuJMBhpKWncBFX14YBoA2LE_V_9AOKsv801TFLTyxDFfue8rzpnbf4Jgm8yu8egxpFhP-ZX51G_-3zvIGUfCidYcDz2_F8qVhoV-lki9uX2aMjsJWni_tLzU7pnclXpjKIbwfWyo8g.JDef2n-QIT-hObV3TsrAIQ",
+    "token_type": "bearer",
+    "expires_in": 3600
+  },
+  "intuit_tid": "1-6252854a-20df587100ee5032466d9be1"
+}
+2022-04-10T07:20:44.661Z error: Get makeAPICall ()  threw an exception : {
+  "authResponse": {
+    "token": {
+      "realmId": "4620816365201067600",
+      "token_type": "bearer",
+      "access_token": "eyJlbmMiOiJBMTI4Q0JDLUhTMjU2IiwiYWxnIjoiZGlyIn0..qrp49cvL30HkOYPXLSZi3g.30dnRoxKD8FUPYxSIic9hWjeScFJU8v40TR9SSA9euATSr_Zg5BE2ZJC1iFS_-egLNwDr-KaLbKeY6q4zURqItACJXjVsjorihHIpmr1taDTLJNlty9XddWcXgOFeQKwdFSN4yLS4dM7XyVI3zg26akxwvvn3n5Hb8C9yY2f8uWbtJpbmJt3otKnpws4qwaLxAwJvQtJcMw3X8IjcIOjEVUmm1G0NfvkLhmbdunnoVVr1H0eD4U5PuNoZEsg5WjlQhAS-GDvpS55v5Z7QFMxX8IkJTSFawG5loZ0SJI2njxc6SpLtlmDSKXrYRo5jGeNYVb9QCEIdY6GpWYMfmoWfqxy5EKI_m-y600r3PtZVCr5TZ0cXiufJEIsc6gcNQLe4-bWhlIANqIRWjJy4vQm66ohidnaNEkx61iRf_g9DZvMMAv3SznZzLJlpjq_IZohRKLCtFNFsmIVc9zRJXTEFhq_L6SIbwvdxKuH1UPxFtlbnyQo7RCh79oDL3ec-BOsAH5qUKG_b--yYqfo4bZhNPYViWo5K2eBf7t0GS6mulCKPYV2MWgI7OifJTopy2PNiCrQc7ARuBn0lNpDR5i8CgFs43anPkGjXUXDX6rAlnuaIrlnvEh-8jiq_F27Z8fKNPiMItbNunqQYWTG0XVTUVMFuzvO78h6gGX_9HcZIBD68O2BIdNb58RinYnHLgDmu_y8X_BuLvzDkuJMBhpKWncBFX14YBoA2LE_V_9AOKsv801TFLTyxDFfue8rzpnbf4Jgm8yu8egxpFhP-ZX51G_-3zvIGUfCidYcDz2_F8qVhoV-lki9uX2aMjsJWni_tLzU7pnclXpjKIbwfWyo8g.JDef2n-QIT-hObV3TsrAIQ",
+      "refresh_token": "AB116583016424Ir9Ly2yKJFlYFb0Kx0LQgJymuXrasS8bpfDJ",
+      "expires_in": 3600,
+      "x_refresh_token_expires_in": 8726400,
+      "id_token": "eyJraWQiOiJPUElDUFJEMDkxODIwMTQiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJmNzhlYzJiMC1jZGFiLTQzMTktYTAzNi1jZTJkYTFkMmU5NjQiLCJhdWQiOlsiQUJxRFd2d21hY1NQcE9ocWljQjNSYWQ2TG1nSDdJQjhtWkduZW5HbHRrU3RTTUdLYUsiXSwicmVhbG1pZCI6IjQ2MjA4MTYzNjUyMDEwNjc2MDAiLCJhdXRoX3RpbWUiOjE2NDk1NzUyMjQsImlzcyI6Imh0dHBzOlwvXC9vYXV0aC5wbGF0Zm9ybS5pbnR1aXQuY29tXC9vcFwvdjEiLCJleHAiOjE2NDk1Nzg4NDIsImlhdCI6MTY0OTU3NTI0Mn0.j0zO7ydhP11b3fpYo7VxaJ6Q0cqIkj8m6g1FaiQv3evYL9xxJTtVxC86Y3ojXafYzZbYqWUQOBjlZVLHeQL9GahJm1QByz2njzQiQ-kHAls5B0ptDsX_zInuaLQIKoACjA-_rLFTJXUxWtk8YZLtTfjItVpcPOGdvqGWK536Mw8",
+      "latency": 60000,
+      "createdAt": 1649575242689,
+      "state": "{\"action\":\"create_customer\",\"id\":4}"
+    },
+    "response": {
+      "url": "https://sandbox-quickbooks.api.intuit.com/v3/company/4620816365201067600/customer?minorversion=63",
+      "headers": {
+        "date": "Sun, 10 Apr 2022 07:20:44 GMT",
+        "content-type": "application/json",
+        "content-length": "193",
+        "connection": "close",
+        "intuit_tid": "1-6252854c-1bb11e680eb02cfb69a9b6b1",
+        "x-spanid": "54691fd9-5377-4df6-95c3-ecd0abc9212e",
+        "x-amzn-trace-id": "Root=1-6252854c-1bb11e680eb02cfb69a9b6b1",
+        "x-content-type-options": "nosniff",
+        "x-envoy-upstream-service-time": "225",
+        "strict-transport-security": "max-age=31536000",
+        "server": "envoy"
+      },
+      "body": "{\"Fault\":{\"Error\":[{\"Message\":\"Duplicate Name Exists Error\",\"Detail\":\"The name supplied already exists. : null\",\"code\":\"6240\"}],\"type\":\"ValidationFault\"},\"time\":\"2022-04-10T00:20:44.513-07:00\"}",
+      "status": 400,
+      "statusText": "Bad Request"
+    },
+    "body": "{\"Fault\":{\"Error\":[{\"Message\":\"Duplicate Name Exists Error\",\"Detail\":\"The name supplied already exists. : null\",\"code\":\"6240\"}],\"type\":\"ValidationFault\"},\"time\":\"2022-04-10T00:20:44.513-07:00\"}",
+    "json": {
+      "Fault": {
+        "Error": [
+          {
+            "Message": "Duplicate Name Exists Error",
+            "Detail": "The name supplied already exists. : null",
+            "code": "6240"
+          }
+        ],
+        "type": "ValidationFault"
+      },
+      "time": "2022-04-10T00:20:44.513-07:00"
+    },
+    "intuit_tid": "1-6252854c-1bb11e680eb02cfb69a9b6b1"
+  },
+  "originalMessage": "Response has an Error",
+  "error": "Bad Request",
+  "error_description": "Bad Request",
+  "intuit_tid": "1-6252854c-1bb11e680eb02cfb69a9b6b1"
+}
+2022-04-10T07:22:25.552Z error: Create Token () threw an exception : {
+  "authResponse": {
+    "token": {
+      "realmId": "4620816365201067600",
+      "token_type": "bearer",
+      "access_token": "eyJlbmMiOiJBMTI4Q0JDLUhTMjU2IiwiYWxnIjoiZGlyIn0..qrp49cvL30HkOYPXLSZi3g.30dnRoxKD8FUPYxSIic9hWjeScFJU8v40TR9SSA9euATSr_Zg5BE2ZJC1iFS_-egLNwDr-KaLbKeY6q4zURqItACJXjVsjorihHIpmr1taDTLJNlty9XddWcXgOFeQKwdFSN4yLS4dM7XyVI3zg26akxwvvn3n5Hb8C9yY2f8uWbtJpbmJt3otKnpws4qwaLxAwJvQtJcMw3X8IjcIOjEVUmm1G0NfvkLhmbdunnoVVr1H0eD4U5PuNoZEsg5WjlQhAS-GDvpS55v5Z7QFMxX8IkJTSFawG5loZ0SJI2njxc6SpLtlmDSKXrYRo5jGeNYVb9QCEIdY6GpWYMfmoWfqxy5EKI_m-y600r3PtZVCr5TZ0cXiufJEIsc6gcNQLe4-bWhlIANqIRWjJy4vQm66ohidnaNEkx61iRf_g9DZvMMAv3SznZzLJlpjq_IZohRKLCtFNFsmIVc9zRJXTEFhq_L6SIbwvdxKuH1UPxFtlbnyQo7RCh79oDL3ec-BOsAH5qUKG_b--yYqfo4bZhNPYViWo5K2eBf7t0GS6mulCKPYV2MWgI7OifJTopy2PNiCrQc7ARuBn0lNpDR5i8CgFs43anPkGjXUXDX6rAlnuaIrlnvEh-8jiq_F27Z8fKNPiMItbNunqQYWTG0XVTUVMFuzvO78h6gGX_9HcZIBD68O2BIdNb58RinYnHLgDmu_y8X_BuLvzDkuJMBhpKWncBFX14YBoA2LE_V_9AOKsv801TFLTyxDFfue8rzpnbf4Jgm8yu8egxpFhP-ZX51G_-3zvIGUfCidYcDz2_F8qVhoV-lki9uX2aMjsJWni_tLzU7pnclXpjKIbwfWyo8g.JDef2n-QIT-hObV3TsrAIQ",
+      "refresh_token": "AB116583016424Ir9Ly2yKJFlYFb0Kx0LQgJymuXrasS8bpfDJ",
+      "expires_in": 3600,
+      "x_refresh_token_expires_in": 8726400,
+      "id_token": "eyJraWQiOiJPUElDUFJEMDkxODIwMTQiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJmNzhlYzJiMC1jZGFiLTQzMTktYTAzNi1jZTJkYTFkMmU5NjQiLCJhdWQiOlsiQUJxRFd2d21hY1NQcE9ocWljQjNSYWQ2TG1nSDdJQjhtWkduZW5HbHRrU3RTTUdLYUsiXSwicmVhbG1pZCI6IjQ2MjA4MTYzNjUyMDEwNjc2MDAiLCJhdXRoX3RpbWUiOjE2NDk1NzUyMjQsImlzcyI6Imh0dHBzOlwvXC9vYXV0aC5wbGF0Zm9ybS5pbnR1aXQuY29tXC9vcFwvdjEiLCJleHAiOjE2NDk1Nzg4NDIsImlhdCI6MTY0OTU3NTI0Mn0.j0zO7ydhP11b3fpYo7VxaJ6Q0cqIkj8m6g1FaiQv3evYL9xxJTtVxC86Y3ojXafYzZbYqWUQOBjlZVLHeQL9GahJm1QByz2njzQiQ-kHAls5B0ptDsX_zInuaLQIKoACjA-_rLFTJXUxWtk8YZLtTfjItVpcPOGdvqGWK536Mw8",
+      "latency": 60000,
+      "createdAt": 1649575242689,
+      "state": "{\"action\":\"create_customer\",\"id\":4}"
+    },
+    "response": {
+      "url": "https://oauth.platform.intuit.com/oauth2/v1/tokens/bearer",
+      "headers": {
+        "date": "Sun, 10 Apr 2022 07:22:25 GMT",
+        "content-type": "application/json;charset=utf-8",
+        "content-length": "76",
+        "connection": "close",
+        "intuit_tid": "1-625285b1-365b210b47015690471cb227",
+        "x-spanid": "f2bf63af-049b-4575-a448-9d49a5586b00",
+        "x-amzn-trace-id": "Root=1-625285b1-365b210b47015690471cb227",
+        "x-content-type-options": "nosniff",
+        "server": "envoy",
+        "cache-control": "no-cache, no-store",
+        "pragma": "no-cache",
+        "x-envoy-upstream-service-time": "13",
+        "strict-transport-security": "max-age=31536000"
+      },
+      "body": "{\"error_description\":\"Authorization code incorrect\",\"error\":\"invalid_grant\"}",
+      "status": 400,
+      "statusText": "Bad Request"
+    },
+    "body": "{\"error_description\":\"Authorization code incorrect\",\"error\":\"invalid_grant\"}",
+    "json": {
+      "error_description": "Authorization code incorrect",
+      "error": "invalid_grant"
+    },
+    "intuit_tid": "1-625285b1-365b210b47015690471cb227"
+  },
+  "originalMessage": "Response has an Error",
+  "error": "invalid_grant",
+  "error_description": "Authorization code incorrect",
+  "intuit_tid": "1-625285b1-365b210b47015690471cb227"
+}
+2022-04-10T07:24:10.189Z error: Create Token () threw an exception : {
+  "authResponse": {
+    "token": {
+      "realmId": "4620816365201067600",
+      "token_type": "bearer",
+      "access_token": "eyJlbmMiOiJBMTI4Q0JDLUhTMjU2IiwiYWxnIjoiZGlyIn0..qrp49cvL30HkOYPXLSZi3g.30dnRoxKD8FUPYxSIic9hWjeScFJU8v40TR9SSA9euATSr_Zg5BE2ZJC1iFS_-egLNwDr-KaLbKeY6q4zURqItACJXjVsjorihHIpmr1taDTLJNlty9XddWcXgOFeQKwdFSN4yLS4dM7XyVI3zg26akxwvvn3n5Hb8C9yY2f8uWbtJpbmJt3otKnpws4qwaLxAwJvQtJcMw3X8IjcIOjEVUmm1G0NfvkLhmbdunnoVVr1H0eD4U5PuNoZEsg5WjlQhAS-GDvpS55v5Z7QFMxX8IkJTSFawG5loZ0SJI2njxc6SpLtlmDSKXrYRo5jGeNYVb9QCEIdY6GpWYMfmoWfqxy5EKI_m-y600r3PtZVCr5TZ0cXiufJEIsc6gcNQLe4-bWhlIANqIRWjJy4vQm66ohidnaNEkx61iRf_g9DZvMMAv3SznZzLJlpjq_IZohRKLCtFNFsmIVc9zRJXTEFhq_L6SIbwvdxKuH1UPxFtlbnyQo7RCh79oDL3ec-BOsAH5qUKG_b--yYqfo4bZhNPYViWo5K2eBf7t0GS6mulCKPYV2MWgI7OifJTopy2PNiCrQc7ARuBn0lNpDR5i8CgFs43anPkGjXUXDX6rAlnuaIrlnvEh-8jiq_F27Z8fKNPiMItbNunqQYWTG0XVTUVMFuzvO78h6gGX_9HcZIBD68O2BIdNb58RinYnHLgDmu_y8X_BuLvzDkuJMBhpKWncBFX14YBoA2LE_V_9AOKsv801TFLTyxDFfue8rzpnbf4Jgm8yu8egxpFhP-ZX51G_-3zvIGUfCidYcDz2_F8qVhoV-lki9uX2aMjsJWni_tLzU7pnclXpjKIbwfWyo8g.JDef2n-QIT-hObV3TsrAIQ",
+      "refresh_token": "AB116583016424Ir9Ly2yKJFlYFb0Kx0LQgJymuXrasS8bpfDJ",
+      "expires_in": 3600,
+      "x_refresh_token_expires_in": 8726400,
+      "id_token": "eyJraWQiOiJPUElDUFJEMDkxODIwMTQiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJmNzhlYzJiMC1jZGFiLTQzMTktYTAzNi1jZTJkYTFkMmU5NjQiLCJhdWQiOlsiQUJxRFd2d21hY1NQcE9ocWljQjNSYWQ2TG1nSDdJQjhtWkduZW5HbHRrU3RTTUdLYUsiXSwicmVhbG1pZCI6IjQ2MjA4MTYzNjUyMDEwNjc2MDAiLCJhdXRoX3RpbWUiOjE2NDk1NzUyMjQsImlzcyI6Imh0dHBzOlwvXC9vYXV0aC5wbGF0Zm9ybS5pbnR1aXQuY29tXC9vcFwvdjEiLCJleHAiOjE2NDk1Nzg4NDIsImlhdCI6MTY0OTU3NTI0Mn0.j0zO7ydhP11b3fpYo7VxaJ6Q0cqIkj8m6g1FaiQv3evYL9xxJTtVxC86Y3ojXafYzZbYqWUQOBjlZVLHeQL9GahJm1QByz2njzQiQ-kHAls5B0ptDsX_zInuaLQIKoACjA-_rLFTJXUxWtk8YZLtTfjItVpcPOGdvqGWK536Mw8",
+      "latency": 60000,
+      "createdAt": 1649575242689,
+      "state": "{\"action\":\"create_customer\",\"id\":4}"
+    },
+    "response": {
+      "url": "https://oauth.platform.intuit.com/oauth2/v1/tokens/bearer",
+      "headers": {
+        "date": "Sun, 10 Apr 2022 07:24:10 GMT",
+        "content-type": "application/json;charset=utf-8",
+        "content-length": "25",
+        "connection": "close",
+        "intuit_tid": "1-6252861a-455d9fd260d4be717e912837",
+        "x-spanid": "7967d2e5-c73b-43b2-b547-a14636bd727e",
+        "x-amzn-trace-id": "Root=1-6252861a-455d9fd260d4be717e912837",
+        "x-content-type-options": "nosniff",
+        "server": "envoy",
+        "cache-control": "no-cache, no-store",
+        "pragma": "no-cache",
+        "x-envoy-upstream-service-time": "29",
+        "strict-transport-security": "max-age=31536000"
+      },
+      "body": "{\"error\":\"invalid_grant\"}",
+      "status": 400,
+      "statusText": "Bad Request"
+    },
+    "body": "{\"error\":\"invalid_grant\"}",
+    "json": {
+      "error": "invalid_grant"
+    },
+    "intuit_tid": "1-6252861a-455d9fd260d4be717e912837"
+  },
+  "originalMessage": "Response has an Error",
+  "error": "invalid_grant",
+  "error_description": "Bad Request",
+  "intuit_tid": "1-6252861a-455d9fd260d4be717e912837"
+}
+2022-04-10T07:43:14.091Z info: The Authorize Uri is :https://appcenter.intuit.com/connect/oauth2?client_id=ABqDWvwmacSPpOhqicB3Rad6LmgH7IB8mZGnenGltkStSMGKaK&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fcallback&response_type=code&scope=com.intuit.quickbooks.accounting%20openid&state=%7B%22action%22%3A%22create_customer%22%2C%22id%22%3A6%7D
+2022-04-10T07:43:43.950Z info: Create Token response is : {
+  "token": {
+    "realmId": "4620816365201067600",
+    "token_type": "bearer",
+    "access_token": "eyJlbmMiOiJBMTI4Q0JDLUhTMjU2IiwiYWxnIjoiZGlyIn0..ot6MpsepOCu0aWD0urzjoQ.peup8SNjwGSpXU-fgLbwpiLcXeNHc65XllJ66fdxOD-oJ6TRCdYnH2l52EpRWOYGjX0pBFNg-xliGHVU9rBH8yxj9Q3pBjmRnA_JSrBpsOHFIK14s3ybpO7vX3mIimaGMApBaQEnF1cjtWm3uF2x6VBwraeZJ5GAL7YCUaEnXrAAbtWwbDsEhWOJG4qMccJJi34ZGVaVYABysz2Q_TiHpWtvM5Ea-C22mJNbXfXIVP3AavKf1J0M-qteNU2Randt58Exl1IsK9lqaWXPxSPZRdTp-ZGKn486CVuhJKNcF94WxurdQlXRR2zzmXS2m67D_p1RbDHvq724WkJ5Tfkohqd8J-sPjZVx2vEpRb73-K0XMv9EjKluyknR7lra2dFhKb8CY92r5iQIZadcrVEOsNePDq-zHFwiBGM95mXCTLPVheK93jVI8wvZs1ANnB2o51ZCqn0_fbRev_J4R7OEhtNUiXcAQ2_tJvKJUTswHfLyRA9KF22uJATA47FeMuBH52m4vqgp5m9g5_lDcLLBQRNZQHjz7V9I995oOLYYayjnn7ACTS6Grr_crPQR1eNUtFzftoQeomOAAOqT8zTuR6HK7eFsFJCZYgoaA53HC7_DcrRzTPYTA3k-s7pdN2mELm0vTbgzPuD_ZXRiV3c5mbYP5m0Gd6EzMZX6dPskc7bbN0G1HS8UNjj08yYi5Rhg-5ifkeTF1EkT0xJs0O76mH9fOgHmZ_L02UBKX1EiVTpkJtfFOSAXxI0DRyrm5y_oL7DPCbE-oNAAIm_pv-kgXX7TpebUthARSgq5563TQcBwRW6wIkQzJR1jMlPK2RoTSzSIBcuVoQpPTtkEPazkJA.J0pc8YY2mRC_t62wVFYmIw",
+    "refresh_token": "AB11658303023yEzcnTPRscRvQDrbB05UcEBJ2kF5prGsrNoj2",
+    "expires_in": 3600,
+    "x_refresh_token_expires_in": 8726400,
+    "id_token": "eyJraWQiOiJPUElDUFJEMDkxODIwMTQiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJmNzhlYzJiMC1jZGFiLTQzMTktYTAzNi1jZTJkYTFkMmU5NjQiLCJhdWQiOlsiQUJxRFd2d21hY1NQcE9ocWljQjNSYWQ2TG1nSDdJQjhtWkduZW5HbHRrU3RTTUdLYUsiXSwicmVhbG1pZCI6IjQ2MjA4MTYzNjUyMDEwNjc2MDAiLCJhdXRoX3RpbWUiOjE2NDk1NzUyMjQsImlzcyI6Imh0dHBzOlwvXC9vYXV0aC5wbGF0Zm9ybS5pbnR1aXQuY29tXC9vcFwvdjEiLCJleHAiOjE2NDk1ODAyMjMsImlhdCI6MTY0OTU3NjYyM30.O1ptdwFYJFQ1KDiMzoK-zmSggfFHWyAly0X5dWZxXT_yTx_GR6EiDZVW9dZVpwsM3TbR88OqIulO_IQS6da1XJO3cPUanrb3oeWExq6eztfPzHfSstQpMqnwuz4bRbOMAGhBcRrpur07o4Ym3c6WGUfL2zL6QudgTyQQRDeyD6g",
+    "latency": 60000,
+    "createdAt": 1649576623950,
+    "state": "{\"action\":\"create_customer\",\"id\":6}"
+  },
+  "response": {
+    "url": "https://oauth.platform.intuit.com/oauth2/v1/tokens/bearer",
+    "headers": {
+      "date": "Sun, 10 Apr 2022 07:43:43 GMT",
+      "content-type": "application/json;charset=utf-8",
+      "content-length": "1684",
+      "connection": "close",
+      "intuit_tid": "1-62528aaf-2cc81aab4d9e3cf864e0a368",
+      "x-spanid": "79659172-0772-4535-b167-81e53c5ddbc3",
+      "x-amzn-trace-id": "Root=1-62528aaf-2cc81aab4d9e3cf864e0a368",
+      "x-content-type-options": "nosniff",
+      "server": "envoy",
+      "cache-control": "no-cache, no-store",
+      "pragma": "no-cache",
+      "x-frame-options": "SAMEORIGIN",
+      "x-xss-protection": "1; mode=block",
+      "x-envoy-upstream-service-time": "116",
+      "strict-transport-security": "max-age=31536000"
+    },
+    "body": "{\"x_refresh_token_expires_in\":8726400,\"refresh_token\":\"AB11658303023yEzcnTPRscRvQDrbB05UcEBJ2kF5prGsrNoj2\",\"id_token\":\"eyJraWQiOiJPUElDUFJEMDkxODIwMTQiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJmNzhlYzJiMC1jZGFiLTQzMTktYTAzNi1jZTJkYTFkMmU5NjQiLCJhdWQiOlsiQUJxRFd2d21hY1NQcE9ocWljQjNSYWQ2TG1nSDdJQjhtWkduZW5HbHRrU3RTTUdLYUsiXSwicmVhbG1pZCI6IjQ2MjA4MTYzNjUyMDEwNjc2MDAiLCJhdXRoX3RpbWUiOjE2NDk1NzUyMjQsImlzcyI6Imh0dHBzOlwvXC9vYXV0aC5wbGF0Zm9ybS5pbnR1aXQuY29tXC9vcFwvdjEiLCJleHAiOjE2NDk1ODAyMjMsImlhdCI6MTY0OTU3NjYyM30.O1ptdwFYJFQ1KDiMzoK-zmSggfFHWyAly0X5dWZxXT_yTx_GR6EiDZVW9dZVpwsM3TbR88OqIulO_IQS6da1XJO3cPUanrb3oeWExq6eztfPzHfSstQpMqnwuz4bRbOMAGhBcRrpur07o4Ym3c6WGUfL2zL6QudgTyQQRDeyD6g\",\"access_token\":\"eyJlbmMiOiJBMTI4Q0JDLUhTMjU2IiwiYWxnIjoiZGlyIn0..ot6MpsepOCu0aWD0urzjoQ.peup8SNjwGSpXU-fgLbwpiLcXeNHc65XllJ66fdxOD-oJ6TRCdYnH2l52EpRWOYGjX0pBFNg-xliGHVU9rBH8yxj9Q3pBjmRnA_JSrBpsOHFIK14s3ybpO7vX3mIimaGMApBaQEnF1cjtWm3uF2x6VBwraeZJ5GAL7YCUaEnXrAAbtWwbDsEhWOJG4qMccJJi34ZGVaVYABysz2Q_TiHpWtvM5Ea-C22mJNbXfXIVP3AavKf1J0M-qteNU2Randt58Exl1IsK9lqaWXPxSPZRdTp-ZGKn486CVuhJKNcF94WxurdQlXRR2zzmXS2m67D_p1RbDHvq724WkJ5Tfkohqd8J-sPjZVx2vEpRb73-K0XMv9EjKluyknR7lra2dFhKb8CY92r5iQIZadcrVEOsNePDq-zHFwiBGM95mXCTLPVheK93jVI8wvZs1ANnB2o51ZCqn0_fbRev_J4R7OEhtNUiXcAQ2_tJvKJUTswHfLyRA9KF22uJATA47FeMuBH52m4vqgp5m9g5_lDcLLBQRNZQHjz7V9I995oOLYYayjnn7ACTS6Grr_crPQR1eNUtFzftoQeomOAAOqT8zTuR6HK7eFsFJCZYgoaA53HC7_DcrRzTPYTA3k-s7pdN2mELm0vTbgzPuD_ZXRiV3c5mbYP5m0Gd6EzMZX6dPskc7bbN0G1HS8UNjj08yYi5Rhg-5ifkeTF1EkT0xJs0O76mH9fOgHmZ_L02UBKX1EiVTpkJtfFOSAXxI0DRyrm5y_oL7DPCbE-oNAAIm_pv-kgXX7TpebUthARSgq5563TQcBwRW6wIkQzJR1jMlPK2RoTSzSIBcuVoQpPTtkEPazkJA.J0pc8YY2mRC_t62wVFYmIw\",\"token_type\":\"bearer\",\"expires_in\":3600}",
+    "status": 200,
+    "statusText": "OK"
+  },
+  "body": "{\"x_refresh_token_expires_in\":8726400,\"refresh_token\":\"AB11658303023yEzcnTPRscRvQDrbB05UcEBJ2kF5prGsrNoj2\",\"id_token\":\"eyJraWQiOiJPUElDUFJEMDkxODIwMTQiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJmNzhlYzJiMC1jZGFiLTQzMTktYTAzNi1jZTJkYTFkMmU5NjQiLCJhdWQiOlsiQUJxRFd2d21hY1NQcE9ocWljQjNSYWQ2TG1nSDdJQjhtWkduZW5HbHRrU3RTTUdLYUsiXSwicmVhbG1pZCI6IjQ2MjA4MTYzNjUyMDEwNjc2MDAiLCJhdXRoX3RpbWUiOjE2NDk1NzUyMjQsImlzcyI6Imh0dHBzOlwvXC9vYXV0aC5wbGF0Zm9ybS5pbnR1aXQuY29tXC9vcFwvdjEiLCJleHAiOjE2NDk1ODAyMjMsImlhdCI6MTY0OTU3NjYyM30.O1ptdwFYJFQ1KDiMzoK-zmSggfFHWyAly0X5dWZxXT_yTx_GR6EiDZVW9dZVpwsM3TbR88OqIulO_IQS6da1XJO3cPUanrb3oeWExq6eztfPzHfSstQpMqnwuz4bRbOMAGhBcRrpur07o4Ym3c6WGUfL2zL6QudgTyQQRDeyD6g\",\"access_token\":\"eyJlbmMiOiJBMTI4Q0JDLUhTMjU2IiwiYWxnIjoiZGlyIn0..ot6MpsepOCu0aWD0urzjoQ.peup8SNjwGSpXU-fgLbwpiLcXeNHc65XllJ66fdxOD-oJ6TRCdYnH2l52EpRWOYGjX0pBFNg-xliGHVU9rBH8yxj9Q3pBjmRnA_JSrBpsOHFIK14s3ybpO7vX3mIimaGMApBaQEnF1cjtWm3uF2x6VBwraeZJ5GAL7YCUaEnXrAAbtWwbDsEhWOJG4qMccJJi34ZGVaVYABysz2Q_TiHpWtvM5Ea-C22mJNbXfXIVP3AavKf1J0M-qteNU2Randt58Exl1IsK9lqaWXPxSPZRdTp-ZGKn486CVuhJKNcF94WxurdQlXRR2zzmXS2m67D_p1RbDHvq724WkJ5Tfkohqd8J-sPjZVx2vEpRb73-K0XMv9EjKluyknR7lra2dFhKb8CY92r5iQIZadcrVEOsNePDq-zHFwiBGM95mXCTLPVheK93jVI8wvZs1ANnB2o51ZCqn0_fbRev_J4R7OEhtNUiXcAQ2_tJvKJUTswHfLyRA9KF22uJATA47FeMuBH52m4vqgp5m9g5_lDcLLBQRNZQHjz7V9I995oOLYYayjnn7ACTS6Grr_crPQR1eNUtFzftoQeomOAAOqT8zTuR6HK7eFsFJCZYgoaA53HC7_DcrRzTPYTA3k-s7pdN2mELm0vTbgzPuD_ZXRiV3c5mbYP5m0Gd6EzMZX6dPskc7bbN0G1HS8UNjj08yYi5Rhg-5ifkeTF1EkT0xJs0O76mH9fOgHmZ_L02UBKX1EiVTpkJtfFOSAXxI0DRyrm5y_oL7DPCbE-oNAAIm_pv-kgXX7TpebUthARSgq5563TQcBwRW6wIkQzJR1jMlPK2RoTSzSIBcuVoQpPTtkEPazkJA.J0pc8YY2mRC_t62wVFYmIw\",\"token_type\":\"bearer\",\"expires_in\":3600}",
+  "json": {
+    "x_refresh_token_expires_in": 8726400,
+    "refresh_token": "AB11658303023yEzcnTPRscRvQDrbB05UcEBJ2kF5prGsrNoj2",
+    "id_token": "eyJraWQiOiJPUElDUFJEMDkxODIwMTQiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJmNzhlYzJiMC1jZGFiLTQzMTktYTAzNi1jZTJkYTFkMmU5NjQiLCJhdWQiOlsiQUJxRFd2d21hY1NQcE9ocWljQjNSYWQ2TG1nSDdJQjhtWkduZW5HbHRrU3RTTUdLYUsiXSwicmVhbG1pZCI6IjQ2MjA4MTYzNjUyMDEwNjc2MDAiLCJhdXRoX3RpbWUiOjE2NDk1NzUyMjQsImlzcyI6Imh0dHBzOlwvXC9vYXV0aC5wbGF0Zm9ybS5pbnR1aXQuY29tXC9vcFwvdjEiLCJleHAiOjE2NDk1ODAyMjMsImlhdCI6MTY0OTU3NjYyM30.O1ptdwFYJFQ1KDiMzoK-zmSggfFHWyAly0X5dWZxXT_yTx_GR6EiDZVW9dZVpwsM3TbR88OqIulO_IQS6da1XJO3cPUanrb3oeWExq6eztfPzHfSstQpMqnwuz4bRbOMAGhBcRrpur07o4Ym3c6WGUfL2zL6QudgTyQQRDeyD6g",
+    "access_token": "eyJlbmMiOiJBMTI4Q0JDLUhTMjU2IiwiYWxnIjoiZGlyIn0..ot6MpsepOCu0aWD0urzjoQ.peup8SNjwGSpXU-fgLbwpiLcXeNHc65XllJ66fdxOD-oJ6TRCdYnH2l52EpRWOYGjX0pBFNg-xliGHVU9rBH8yxj9Q3pBjmRnA_JSrBpsOHFIK14s3ybpO7vX3mIimaGMApBaQEnF1cjtWm3uF2x6VBwraeZJ5GAL7YCUaEnXrAAbtWwbDsEhWOJG4qMccJJi34ZGVaVYABysz2Q_TiHpWtvM5Ea-C22mJNbXfXIVP3AavKf1J0M-qteNU2Randt58Exl1IsK9lqaWXPxSPZRdTp-ZGKn486CVuhJKNcF94WxurdQlXRR2zzmXS2m67D_p1RbDHvq724WkJ5Tfkohqd8J-sPjZVx2vEpRb73-K0XMv9EjKluyknR7lra2dFhKb8CY92r5iQIZadcrVEOsNePDq-zHFwiBGM95mXCTLPVheK93jVI8wvZs1ANnB2o51ZCqn0_fbRev_J4R7OEhtNUiXcAQ2_tJvKJUTswHfLyRA9KF22uJATA47FeMuBH52m4vqgp5m9g5_lDcLLBQRNZQHjz7V9I995oOLYYayjnn7ACTS6Grr_crPQR1eNUtFzftoQeomOAAOqT8zTuR6HK7eFsFJCZYgoaA53HC7_DcrRzTPYTA3k-s7pdN2mELm0vTbgzPuD_ZXRiV3c5mbYP5m0Gd6EzMZX6dPskc7bbN0G1HS8UNjj08yYi5Rhg-5ifkeTF1EkT0xJs0O76mH9fOgHmZ_L02UBKX1EiVTpkJtfFOSAXxI0DRyrm5y_oL7DPCbE-oNAAIm_pv-kgXX7TpebUthARSgq5563TQcBwRW6wIkQzJR1jMlPK2RoTSzSIBcuVoQpPTtkEPazkJA.J0pc8YY2mRC_t62wVFYmIw",
+    "token_type": "bearer",
+    "expires_in": 3600
+  },
+  "intuit_tid": "1-62528aaf-2cc81aab4d9e3cf864e0a368"
+}
+2022-04-10T07:43:46.317Z info: The makeAPICall () response is : {
+  "token": {
+    "realmId": "4620816365201067600",
+    "token_type": "bearer",
+    "access_token": "eyJlbmMiOiJBMTI4Q0JDLUhTMjU2IiwiYWxnIjoiZGlyIn0..ot6MpsepOCu0aWD0urzjoQ.peup8SNjwGSpXU-fgLbwpiLcXeNHc65XllJ66fdxOD-oJ6TRCdYnH2l52EpRWOYGjX0pBFNg-xliGHVU9rBH8yxj9Q3pBjmRnA_JSrBpsOHFIK14s3ybpO7vX3mIimaGMApBaQEnF1cjtWm3uF2x6VBwraeZJ5GAL7YCUaEnXrAAbtWwbDsEhWOJG4qMccJJi34ZGVaVYABysz2Q_TiHpWtvM5Ea-C22mJNbXfXIVP3AavKf1J0M-qteNU2Randt58Exl1IsK9lqaWXPxSPZRdTp-ZGKn486CVuhJKNcF94WxurdQlXRR2zzmXS2m67D_p1RbDHvq724WkJ5Tfkohqd8J-sPjZVx2vEpRb73-K0XMv9EjKluyknR7lra2dFhKb8CY92r5iQIZadcrVEOsNePDq-zHFwiBGM95mXCTLPVheK93jVI8wvZs1ANnB2o51ZCqn0_fbRev_J4R7OEhtNUiXcAQ2_tJvKJUTswHfLyRA9KF22uJATA47FeMuBH52m4vqgp5m9g5_lDcLLBQRNZQHjz7V9I995oOLYYayjnn7ACTS6Grr_crPQR1eNUtFzftoQeomOAAOqT8zTuR6HK7eFsFJCZYgoaA53HC7_DcrRzTPYTA3k-s7pdN2mELm0vTbgzPuD_ZXRiV3c5mbYP5m0Gd6EzMZX6dPskc7bbN0G1HS8UNjj08yYi5Rhg-5ifkeTF1EkT0xJs0O76mH9fOgHmZ_L02UBKX1EiVTpkJtfFOSAXxI0DRyrm5y_oL7DPCbE-oNAAIm_pv-kgXX7TpebUthARSgq5563TQcBwRW6wIkQzJR1jMlPK2RoTSzSIBcuVoQpPTtkEPazkJA.J0pc8YY2mRC_t62wVFYmIw",
+    "refresh_token": "AB11658303023yEzcnTPRscRvQDrbB05UcEBJ2kF5prGsrNoj2",
+    "expires_in": 3600,
+    "x_refresh_token_expires_in": 8726400,
+    "id_token": "eyJraWQiOiJPUElDUFJEMDkxODIwMTQiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJmNzhlYzJiMC1jZGFiLTQzMTktYTAzNi1jZTJkYTFkMmU5NjQiLCJhdWQiOlsiQUJxRFd2d21hY1NQcE9ocWljQjNSYWQ2TG1nSDdJQjhtWkduZW5HbHRrU3RTTUdLYUsiXSwicmVhbG1pZCI6IjQ2MjA4MTYzNjUyMDEwNjc2MDAiLCJhdXRoX3RpbWUiOjE2NDk1NzUyMjQsImlzcyI6Imh0dHBzOlwvXC9vYXV0aC5wbGF0Zm9ybS5pbnR1aXQuY29tXC9vcFwvdjEiLCJleHAiOjE2NDk1ODAyMjMsImlhdCI6MTY0OTU3NjYyM30.O1ptdwFYJFQ1KDiMzoK-zmSggfFHWyAly0X5dWZxXT_yTx_GR6EiDZVW9dZVpwsM3TbR88OqIulO_IQS6da1XJO3cPUanrb3oeWExq6eztfPzHfSstQpMqnwuz4bRbOMAGhBcRrpur07o4Ym3c6WGUfL2zL6QudgTyQQRDeyD6g",
+    "latency": 60000,
+    "createdAt": 1649576623950,
+    "state": "{\"action\":\"create_customer\",\"id\":6}"
+  },
+  "response": {
+    "url": "https://sandbox-quickbooks.api.intuit.com/v3/company/4620816365201067600/customer?minorversion=63",
+    "headers": {
+      "date": "Sun, 10 Apr 2022 07:43:46 GMT",
+      "content-type": "application/json;charset=utf-8",
+      "transfer-encoding": "chunked",
+      "connection": "close",
+      "intuit_tid": "1-62528ab1-12f31884001d22d106258aaa",
+      "x-spanid": "359339fb-730a-49a9-bd1b-fa7850b754f3",
+      "x-amzn-trace-id": "Root=1-62528ab1-12f31884001d22d106258aaa",
+      "x-content-type-options": "nosniff",
+      "x-xss-protection": "1; mode=block",
+      "qbo-version": "1978.180",
+      "service-time": "total=495, db=167",
+      "expires": "0",
+      "content-encoding": "gzip",
+      "cache-control": "max-age=0, no-cache, no-store, must-revalidate, private",
+      "x-envoy-upstream-service-time": "526",
+      "strict-transport-security": "max-age=31536000",
+      "server": "envoy"
+    },
+    "body": "{\"Customer\":{\"Taxable\":true,\"BillAddr\":{\"Id\":\"101\",\"Line1\":\"1234 Street\",\"City\":\"Dallas\",\"Country\":\"USA\",\"CountrySubDivisionCode\":\"LV\",\"PostalCode\":\"76262\"},\"ShipAddr\":{\"Id\":\"102\",\"Line1\":\"1234 Street\",\"City\":\"Dallas\",\"Country\":\"USA\",\"CountrySubDivisionCode\":\"LV\",\"PostalCode\":\"76262\"},\"Job\":false,\"BillWithParent\":false,\"Balance\":0,\"BalanceWithJobs\":0,\"CurrencyRef\":{\"value\":\"USD\",\"name\":\"United States Dollar\"},\"PreferredDeliveryMethod\":\"Print\",\"IsProject\":false,\"domain\":\"QBO\",\"sparse\":false,\"Id\":\"63\",\"SyncToken\":\"0\",\"MetaData\":{\"CreateTime\":\"2022-04-10T00:43:45-07:00\",\"LastUpdatedTime\":\"2022-04-10T00:43:45-07:00\"},\"GivenName\":\"David\",\"FamilyName\":\"Lam\",\"FullyQualifiedName\":\"My Law Firm3 - Dallas, LV\",\"CompanyName\":\"My Law Firm3\",\"DisplayName\":\"My Law Firm3 - Dallas, LV\",\"PrintOnCheckName\":\"My Law Firm3\",\"Active\":true,\"PrimaryPhone\":{\"FreeFormNumber\":\"15552224444\"},\"PrimaryEmailAddr\":{\"Address\":\"test3@testemail.com\"},\"DefaultTaxCodeRef\":{\"value\":\"2\"}},\"time\":\"2022-04-10T00:43:45.794-07:00\"}",
+    "status": 200,
+    "statusText": "OK"
+  },
+  "body": "{\"Customer\":{\"Taxable\":true,\"BillAddr\":{\"Id\":\"101\",\"Line1\":\"1234 Street\",\"City\":\"Dallas\",\"Country\":\"USA\",\"CountrySubDivisionCode\":\"LV\",\"PostalCode\":\"76262\"},\"ShipAddr\":{\"Id\":\"102\",\"Line1\":\"1234 Street\",\"City\":\"Dallas\",\"Country\":\"USA\",\"CountrySubDivisionCode\":\"LV\",\"PostalCode\":\"76262\"},\"Job\":false,\"BillWithParent\":false,\"Balance\":0,\"BalanceWithJobs\":0,\"CurrencyRef\":{\"value\":\"USD\",\"name\":\"United States Dollar\"},\"PreferredDeliveryMethod\":\"Print\",\"IsProject\":false,\"domain\":\"QBO\",\"sparse\":false,\"Id\":\"63\",\"SyncToken\":\"0\",\"MetaData\":{\"CreateTime\":\"2022-04-10T00:43:45-07:00\",\"LastUpdatedTime\":\"2022-04-10T00:43:45-07:00\"},\"GivenName\":\"David\",\"FamilyName\":\"Lam\",\"FullyQualifiedName\":\"My Law Firm3 - Dallas, LV\",\"CompanyName\":\"My Law Firm3\",\"DisplayName\":\"My Law Firm3 - Dallas, LV\",\"PrintOnCheckName\":\"My Law Firm3\",\"Active\":true,\"PrimaryPhone\":{\"FreeFormNumber\":\"15552224444\"},\"PrimaryEmailAddr\":{\"Address\":\"test3@testemail.com\"},\"DefaultTaxCodeRef\":{\"value\":\"2\"}},\"time\":\"2022-04-10T00:43:45.794-07:00\"}",
+  "json": {
+    "Customer": {
+      "Taxable": true,
+      "BillAddr": {
+        "Id": "101",
+        "Line1": "1234 Street",
+        "City": "Dallas",
+        "Country": "USA",
+        "CountrySubDivisionCode": "LV",
+        "PostalCode": "76262"
+      },
+      "ShipAddr": {
+        "Id": "102",
+        "Line1": "1234 Street",
+        "City": "Dallas",
+        "Country": "USA",
+        "CountrySubDivisionCode": "LV",
+        "PostalCode": "76262"
+      },
+      "Job": false,
+      "BillWithParent": false,
+      "Balance": 0,
+      "BalanceWithJobs": 0,
+      "CurrencyRef": {
+        "value": "USD",
+        "name": "United States Dollar"
+      },
+      "PreferredDeliveryMethod": "Print",
+      "IsProject": false,
+      "domain": "QBO",
+      "sparse": false,
+      "Id": "63",
+      "SyncToken": "0",
+      "MetaData": {
+        "CreateTime": "2022-04-10T00:43:45-07:00",
+        "LastUpdatedTime": "2022-04-10T00:43:45-07:00"
+      },
+      "GivenName": "David",
+      "FamilyName": "Lam",
+      "FullyQualifiedName": "My Law Firm3 - Dallas, LV",
+      "CompanyName": "My Law Firm3",
+      "DisplayName": "My Law Firm3 - Dallas, LV",
+      "PrintOnCheckName": "My Law Firm3",
+      "Active": true,
+      "PrimaryPhone": {
+        "FreeFormNumber": "15552224444"
+      },
+      "PrimaryEmailAddr": {
+        "Address": "test3@testemail.com"
+      },
+      "DefaultTaxCodeRef": {
+        "value": "2"
+      }
+    },
+    "time": "2022-04-10T00:43:45.794-07:00"
+  },
+  "intuit_tid": "1-62528ab1-12f31884001d22d106258aaa"
+}
+2022-04-10T07:47:19.296Z error: Create Token () threw an exception : {
+  "authResponse": {
+    "token": {
+      "realmId": "4620816365201067600",
+      "token_type": "",
+      "access_token": "",
+      "refresh_token": "",
+      "expires_in": 0,
+      "x_refresh_token_expires_in": 0,
+      "id_token": "",
+      "latency": 60000,
+      "createdAt": 1649576752847,
+      "state": "{\"action\":\"create_customer\",\"id\":6}"
+    },
+    "response": {
+      "url": "https://oauth.platform.intuit.com/oauth2/v1/tokens/bearer",
+      "headers": {
+        "date": "Sun, 10 Apr 2022 07:47:19 GMT",
+        "content-type": "application/json;charset=utf-8",
+        "content-length": "76",
+        "connection": "close",
+        "intuit_tid": "1-62528b87-734220b91b074103610b93bd",
+        "x-spanid": "8cf7287c-c754-4ab9-95d7-fadbf870d65d",
+        "x-amzn-trace-id": "Root=1-62528b87-734220b91b074103610b93bd",
+        "x-content-type-options": "nosniff",
+        "server": "envoy",
+        "cache-control": "no-cache, no-store",
+        "pragma": "no-cache",
+        "x-envoy-upstream-service-time": "12",
+        "strict-transport-security": "max-age=31536000"
+      },
+      "body": "{\"error_description\":\"Authorization code incorrect\",\"error\":\"invalid_grant\"}",
+      "status": 400,
+      "statusText": "Bad Request"
+    },
+    "body": "{\"error_description\":\"Authorization code incorrect\",\"error\":\"invalid_grant\"}",
+    "json": {
+      "error_description": "Authorization code incorrect",
+      "error": "invalid_grant"
+    },
+    "intuit_tid": "1-62528b87-734220b91b074103610b93bd"
+  },
+  "originalMessage": "Response has an Error",
+  "error": "invalid_grant",
+  "error_description": "Authorization code incorrect",
+  "intuit_tid": "1-62528b87-734220b91b074103610b93bd"
+}
+2022-04-10T07:48:45.802Z error: Create Token () threw an exception : {
+  "authResponse": {
+    "token": {
+      "realmId": "4620816365201067600",
+      "token_type": "",
+      "access_token": "",
+      "refresh_token": "",
+      "expires_in": 0,
+      "x_refresh_token_expires_in": 0,
+      "id_token": "",
+      "latency": 60000,
+      "createdAt": 1649576920901,
+      "state": "{\"action\":\"create_customer\",\"id\":6}"
+    },
+    "response": {
+      "url": "https://oauth.platform.intuit.com/oauth2/v1/tokens/bearer",
+      "headers": {
+        "date": "Sun, 10 Apr 2022 07:48:45 GMT",
+        "content-type": "application/json;charset=utf-8",
+        "content-length": "25",
+        "connection": "close",
+        "intuit_tid": "1-62528bdd-6f6decd44da428eb088f7f32",
+        "x-spanid": "7dc264cf-3ef0-422f-ba31-1e237343d9e8",
+        "x-amzn-trace-id": "Root=1-62528bdd-6f6decd44da428eb088f7f32",
+        "x-content-type-options": "nosniff",
+        "server": "envoy",
+        "cache-control": "no-cache, no-store",
+        "pragma": "no-cache",
+        "x-envoy-upstream-service-time": "24",
+        "strict-transport-security": "max-age=31536000"
+      },
+      "body": "{\"error\":\"invalid_grant\"}",
+      "status": 400,
+      "statusText": "Bad Request"
+    },
+    "body": "{\"error\":\"invalid_grant\"}",
+    "json": {
+      "error": "invalid_grant"
+    },
+    "intuit_tid": "1-62528bdd-6f6decd44da428eb088f7f32"
+  },
+  "originalMessage": "Response has an Error",
+  "error": "invalid_grant",
+  "error_description": "Bad Request",
+  "intuit_tid": "1-62528bdd-6f6decd44da428eb088f7f32"
+}
+2022-04-10T07:51:07.330Z info: The Authorize Uri is :https://appcenter.intuit.com/connect/oauth2?client_id=ABqDWvwmacSPpOhqicB3Rad6LmgH7IB8mZGnenGltkStSMGKaK&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fcallback&response_type=code&scope=com.intuit.quickbooks.accounting%20openid&state=%7B%22action%22%3A%22create_customer%22%2C%22id%22%3A7%7D
+2022-04-10T07:51:33.931Z info: Create Token response is : {
+  "token": {
+    "realmId": "4620816365201067600",
+    "token_type": "bearer",
+    "access_token": "eyJlbmMiOiJBMTI4Q0JDLUhTMjU2IiwiYWxnIjoiZGlyIn0..PGBD-2HkQp2013yktuVMGQ.Zo-fQDtQwPsXXa1sptUtfD7M24AHgIJ_Faos3KVZ7LTqvMAe7Y1W8Xe6-1c7OJCcA8MQD30qQ29PQ81S_VGk5okWbVVWCfpCOh1PuwtEibb1a7DC_AL1XFZqw0MJ-bhlMHi_yFkcJG6cni55KfnBIXnmnYcxVqr6-WTohBLHT5cxD-oEKAjMlV8RyMZOkAifg8yU3-Ot_N6IflDxbanvlUy8ZGSxb41iczWPp16CnBPrwO4qTkUsX_R9nHCTJhPN6g7_cLKMkzd4TNfaGY8KMFo2-5Zn1lyv832G6eYBQhN1Y9BtTLWkmmtka5vn2BO8Rd-Hxhl1cD1aJFrh4BG_5pmYhT0wboWtWdQ3fHMdKHawnj-90zCfSYX4h4TiQTgpdJQ25F5t-9JRbAnE8tFF7YvWwDcpicV251IzkKwcG9TxsKoPQMWq4fqA9GO2X1ECLgFW8NB7bVThUEgNP3xCvkhD-p0hLAEhZsXYQJf-52fokfWaJ26Vg94jwBgZaFOqov2QogJ9UCPhaHGpzAJDaLLA7E-Ytdbxq1c8vlDHA5i3z2QTb-e3t5v4bTtgyWF7N7xLeMvNvY-IYWjH3pqKC4bTrGq6puTiSFovcvPTBuhVoTPPth2GKjUTWgKNdustoedVAvmG82DpWieHVAG8_wuxtEYbVcdkDjcAxfECwPTlFcfQx33pCIEeZacOMQBVn8rPAfe1ekFDGzel9_WAwtCMna-stwZNnZZbjfhoe8mwzfF1ypVyaRG69fSgGklEaTg6gPlVAr5VhLLsdLBpwHLtsEd6RFJktprt96nJpxRhFqUBEd8l65Acj8uO97Y1-d9LXVU8JUFBwjnsGVrTPg.A5-9294aO0x7zQk-cOP8Kw",
+    "refresh_token": "AB11658303493UBolmOban76weFsl1nfOmFH5L0GEHSJux989U",
+    "expires_in": 3600,
+    "x_refresh_token_expires_in": 8726400,
+    "id_token": "eyJraWQiOiJPUElDUFJEMDkxODIwMTQiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJmNzhlYzJiMC1jZGFiLTQzMTktYTAzNi1jZTJkYTFkMmU5NjQiLCJhdWQiOlsiQUJxRFd2d21hY1NQcE9ocWljQjNSYWQ2TG1nSDdJQjhtWkduZW5HbHRrU3RTTUdLYUsiXSwicmVhbG1pZCI6IjQ2MjA4MTYzNjUyMDEwNjc2MDAiLCJhdXRoX3RpbWUiOjE2NDk1NzUyMjQsImlzcyI6Imh0dHBzOlwvXC9vYXV0aC5wbGF0Zm9ybS5pbnR1aXQuY29tXC9vcFwvdjEiLCJleHAiOjE2NDk1ODA2OTMsImlhdCI6MTY0OTU3NzA5M30.UEVBkvXur8BdbEcNvaQ27LKw24haXjiM4Yc4YUw1namlEAYqqDdNPOCzNCvawoNMd4NzFbGewQQqEvgbJUPdcZ5KZ4O-A0FefoaBGgD1h1N1Qe7LDkpmzC-K_C4xKkC3aGYcAGLPH3qf34erQbccK5xK3cEkUuRqvWhXuf-GYOk",
+    "latency": 60000,
+    "createdAt": 1649577093931,
+    "state": "{\"action\":\"create_customer\",\"id\":7}"
+  },
+  "response": {
+    "url": "https://oauth.platform.intuit.com/oauth2/v1/tokens/bearer",
+    "headers": {
+      "date": "Sun, 10 Apr 2022 07:51:33 GMT",
+      "content-type": "application/json;charset=utf-8",
+      "content-length": "1684",
+      "connection": "close",
+      "intuit_tid": "1-62528c85-42a3a6095b583d715170a703",
+      "x-spanid": "b44294dd-5648-4faa-91ff-5a3fcec5255e",
+      "x-amzn-trace-id": "Root=1-62528c85-42a3a6095b583d715170a703",
+      "x-content-type-options": "nosniff",
+      "server": "envoy",
+      "cache-control": "no-cache, no-store",
+      "pragma": "no-cache",
+      "x-frame-options": "SAMEORIGIN",
+      "x-xss-protection": "1; mode=block",
+      "x-envoy-upstream-service-time": "180",
+      "strict-transport-security": "max-age=31536000"
+    },
+    "body": "{\"x_refresh_token_expires_in\":8726400,\"id_token\":\"eyJraWQiOiJPUElDUFJEMDkxODIwMTQiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJmNzhlYzJiMC1jZGFiLTQzMTktYTAzNi1jZTJkYTFkMmU5NjQiLCJhdWQiOlsiQUJxRFd2d21hY1NQcE9ocWljQjNSYWQ2TG1nSDdJQjhtWkduZW5HbHRrU3RTTUdLYUsiXSwicmVhbG1pZCI6IjQ2MjA4MTYzNjUyMDEwNjc2MDAiLCJhdXRoX3RpbWUiOjE2NDk1NzUyMjQsImlzcyI6Imh0dHBzOlwvXC9vYXV0aC5wbGF0Zm9ybS5pbnR1aXQuY29tXC9vcFwvdjEiLCJleHAiOjE2NDk1ODA2OTMsImlhdCI6MTY0OTU3NzA5M30.UEVBkvXur8BdbEcNvaQ27LKw24haXjiM4Yc4YUw1namlEAYqqDdNPOCzNCvawoNMd4NzFbGewQQqEvgbJUPdcZ5KZ4O-A0FefoaBGgD1h1N1Qe7LDkpmzC-K_C4xKkC3aGYcAGLPH3qf34erQbccK5xK3cEkUuRqvWhXuf-GYOk\",\"refresh_token\":\"AB11658303493UBolmOban76weFsl1nfOmFH5L0GEHSJux989U\",\"access_token\":\"eyJlbmMiOiJBMTI4Q0JDLUhTMjU2IiwiYWxnIjoiZGlyIn0..PGBD-2HkQp2013yktuVMGQ.Zo-fQDtQwPsXXa1sptUtfD7M24AHgIJ_Faos3KVZ7LTqvMAe7Y1W8Xe6-1c7OJCcA8MQD30qQ29PQ81S_VGk5okWbVVWCfpCOh1PuwtEibb1a7DC_AL1XFZqw0MJ-bhlMHi_yFkcJG6cni55KfnBIXnmnYcxVqr6-WTohBLHT5cxD-oEKAjMlV8RyMZOkAifg8yU3-Ot_N6IflDxbanvlUy8ZGSxb41iczWPp16CnBPrwO4qTkUsX_R9nHCTJhPN6g7_cLKMkzd4TNfaGY8KMFo2-5Zn1lyv832G6eYBQhN1Y9BtTLWkmmtka5vn2BO8Rd-Hxhl1cD1aJFrh4BG_5pmYhT0wboWtWdQ3fHMdKHawnj-90zCfSYX4h4TiQTgpdJQ25F5t-9JRbAnE8tFF7YvWwDcpicV251IzkKwcG9TxsKoPQMWq4fqA9GO2X1ECLgFW8NB7bVThUEgNP3xCvkhD-p0hLAEhZsXYQJf-52fokfWaJ26Vg94jwBgZaFOqov2QogJ9UCPhaHGpzAJDaLLA7E-Ytdbxq1c8vlDHA5i3z2QTb-e3t5v4bTtgyWF7N7xLeMvNvY-IYWjH3pqKC4bTrGq6puTiSFovcvPTBuhVoTPPth2GKjUTWgKNdustoedVAvmG82DpWieHVAG8_wuxtEYbVcdkDjcAxfECwPTlFcfQx33pCIEeZacOMQBVn8rPAfe1ekFDGzel9_WAwtCMna-stwZNnZZbjfhoe8mwzfF1ypVyaRG69fSgGklEaTg6gPlVAr5VhLLsdLBpwHLtsEd6RFJktprt96nJpxRhFqUBEd8l65Acj8uO97Y1-d9LXVU8JUFBwjnsGVrTPg.A5-9294aO0x7zQk-cOP8Kw\",\"token_type\":\"bearer\",\"expires_in\":3600}",
+    "status": 200,
+    "statusText": "OK"
+  },
+  "body": "{\"x_refresh_token_expires_in\":8726400,\"id_token\":\"eyJraWQiOiJPUElDUFJEMDkxODIwMTQiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJmNzhlYzJiMC1jZGFiLTQzMTktYTAzNi1jZTJkYTFkMmU5NjQiLCJhdWQiOlsiQUJxRFd2d21hY1NQcE9ocWljQjNSYWQ2TG1nSDdJQjhtWkduZW5HbHRrU3RTTUdLYUsiXSwicmVhbG1pZCI6IjQ2MjA4MTYzNjUyMDEwNjc2MDAiLCJhdXRoX3RpbWUiOjE2NDk1NzUyMjQsImlzcyI6Imh0dHBzOlwvXC9vYXV0aC5wbGF0Zm9ybS5pbnR1aXQuY29tXC9vcFwvdjEiLCJleHAiOjE2NDk1ODA2OTMsImlhdCI6MTY0OTU3NzA5M30.UEVBkvXur8BdbEcNvaQ27LKw24haXjiM4Yc4YUw1namlEAYqqDdNPOCzNCvawoNMd4NzFbGewQQqEvgbJUPdcZ5KZ4O-A0FefoaBGgD1h1N1Qe7LDkpmzC-K_C4xKkC3aGYcAGLPH3qf34erQbccK5xK3cEkUuRqvWhXuf-GYOk\",\"refresh_token\":\"AB11658303493UBolmOban76weFsl1nfOmFH5L0GEHSJux989U\",\"access_token\":\"eyJlbmMiOiJBMTI4Q0JDLUhTMjU2IiwiYWxnIjoiZGlyIn0..PGBD-2HkQp2013yktuVMGQ.Zo-fQDtQwPsXXa1sptUtfD7M24AHgIJ_Faos3KVZ7LTqvMAe7Y1W8Xe6-1c7OJCcA8MQD30qQ29PQ81S_VGk5okWbVVWCfpCOh1PuwtEibb1a7DC_AL1XFZqw0MJ-bhlMHi_yFkcJG6cni55KfnBIXnmnYcxVqr6-WTohBLHT5cxD-oEKAjMlV8RyMZOkAifg8yU3-Ot_N6IflDxbanvlUy8ZGSxb41iczWPp16CnBPrwO4qTkUsX_R9nHCTJhPN6g7_cLKMkzd4TNfaGY8KMFo2-5Zn1lyv832G6eYBQhN1Y9BtTLWkmmtka5vn2BO8Rd-Hxhl1cD1aJFrh4BG_5pmYhT0wboWtWdQ3fHMdKHawnj-90zCfSYX4h4TiQTgpdJQ25F5t-9JRbAnE8tFF7YvWwDcpicV251IzkKwcG9TxsKoPQMWq4fqA9GO2X1ECLgFW8NB7bVThUEgNP3xCvkhD-p0hLAEhZsXYQJf-52fokfWaJ26Vg94jwBgZaFOqov2QogJ9UCPhaHGpzAJDaLLA7E-Ytdbxq1c8vlDHA5i3z2QTb-e3t5v4bTtgyWF7N7xLeMvNvY-IYWjH3pqKC4bTrGq6puTiSFovcvPTBuhVoTPPth2GKjUTWgKNdustoedVAvmG82DpWieHVAG8_wuxtEYbVcdkDjcAxfECwPTlFcfQx33pCIEeZacOMQBVn8rPAfe1ekFDGzel9_WAwtCMna-stwZNnZZbjfhoe8mwzfF1ypVyaRG69fSgGklEaTg6gPlVAr5VhLLsdLBpwHLtsEd6RFJktprt96nJpxRhFqUBEd8l65Acj8uO97Y1-d9LXVU8JUFBwjnsGVrTPg.A5-9294aO0x7zQk-cOP8Kw\",\"token_type\":\"bearer\",\"expires_in\":3600}",
+  "json": {
+    "x_refresh_token_expires_in": 8726400,
+    "id_token": "eyJraWQiOiJPUElDUFJEMDkxODIwMTQiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJmNzhlYzJiMC1jZGFiLTQzMTktYTAzNi1jZTJkYTFkMmU5NjQiLCJhdWQiOlsiQUJxRFd2d21hY1NQcE9ocWljQjNSYWQ2TG1nSDdJQjhtWkduZW5HbHRrU3RTTUdLYUsiXSwicmVhbG1pZCI6IjQ2MjA4MTYzNjUyMDEwNjc2MDAiLCJhdXRoX3RpbWUiOjE2NDk1NzUyMjQsImlzcyI6Imh0dHBzOlwvXC9vYXV0aC5wbGF0Zm9ybS5pbnR1aXQuY29tXC9vcFwvdjEiLCJleHAiOjE2NDk1ODA2OTMsImlhdCI6MTY0OTU3NzA5M30.UEVBkvXur8BdbEcNvaQ27LKw24haXjiM4Yc4YUw1namlEAYqqDdNPOCzNCvawoNMd4NzFbGewQQqEvgbJUPdcZ5KZ4O-A0FefoaBGgD1h1N1Qe7LDkpmzC-K_C4xKkC3aGYcAGLPH3qf34erQbccK5xK3cEkUuRqvWhXuf-GYOk",
+    "refresh_token": "AB11658303493UBolmOban76weFsl1nfOmFH5L0GEHSJux989U",
+    "access_token": "eyJlbmMiOiJBMTI4Q0JDLUhTMjU2IiwiYWxnIjoiZGlyIn0..PGBD-2HkQp2013yktuVMGQ.Zo-fQDtQwPsXXa1sptUtfD7M24AHgIJ_Faos3KVZ7LTqvMAe7Y1W8Xe6-1c7OJCcA8MQD30qQ29PQ81S_VGk5okWbVVWCfpCOh1PuwtEibb1a7DC_AL1XFZqw0MJ-bhlMHi_yFkcJG6cni55KfnBIXnmnYcxVqr6-WTohBLHT5cxD-oEKAjMlV8RyMZOkAifg8yU3-Ot_N6IflDxbanvlUy8ZGSxb41iczWPp16CnBPrwO4qTkUsX_R9nHCTJhPN6g7_cLKMkzd4TNfaGY8KMFo2-5Zn1lyv832G6eYBQhN1Y9BtTLWkmmtka5vn2BO8Rd-Hxhl1cD1aJFrh4BG_5pmYhT0wboWtWdQ3fHMdKHawnj-90zCfSYX4h4TiQTgpdJQ25F5t-9JRbAnE8tFF7YvWwDcpicV251IzkKwcG9TxsKoPQMWq4fqA9GO2X1ECLgFW8NB7bVThUEgNP3xCvkhD-p0hLAEhZsXYQJf-52fokfWaJ26Vg94jwBgZaFOqov2QogJ9UCPhaHGpzAJDaLLA7E-Ytdbxq1c8vlDHA5i3z2QTb-e3t5v4bTtgyWF7N7xLeMvNvY-IYWjH3pqKC4bTrGq6puTiSFovcvPTBuhVoTPPth2GKjUTWgKNdustoedVAvmG82DpWieHVAG8_wuxtEYbVcdkDjcAxfECwPTlFcfQx33pCIEeZacOMQBVn8rPAfe1ekFDGzel9_WAwtCMna-stwZNnZZbjfhoe8mwzfF1ypVyaRG69fSgGklEaTg6gPlVAr5VhLLsdLBpwHLtsEd6RFJktprt96nJpxRhFqUBEd8l65Acj8uO97Y1-d9LXVU8JUFBwjnsGVrTPg.A5-9294aO0x7zQk-cOP8Kw",
+    "token_type": "bearer",
+    "expires_in": 3600
+  },
+  "intuit_tid": "1-62528c85-42a3a6095b583d715170a703"
+}
+2022-04-10T07:51:35.918Z info: The makeAPICall () response is : {
+  "token": {
+    "realmId": "4620816365201067600",
+    "token_type": "bearer",
+    "access_token": "eyJlbmMiOiJBMTI4Q0JDLUhTMjU2IiwiYWxnIjoiZGlyIn0..PGBD-2HkQp2013yktuVMGQ.Zo-fQDtQwPsXXa1sptUtfD7M24AHgIJ_Faos3KVZ7LTqvMAe7Y1W8Xe6-1c7OJCcA8MQD30qQ29PQ81S_VGk5okWbVVWCfpCOh1PuwtEibb1a7DC_AL1XFZqw0MJ-bhlMHi_yFkcJG6cni55KfnBIXnmnYcxVqr6-WTohBLHT5cxD-oEKAjMlV8RyMZOkAifg8yU3-Ot_N6IflDxbanvlUy8ZGSxb41iczWPp16CnBPrwO4qTkUsX_R9nHCTJhPN6g7_cLKMkzd4TNfaGY8KMFo2-5Zn1lyv832G6eYBQhN1Y9BtTLWkmmtka5vn2BO8Rd-Hxhl1cD1aJFrh4BG_5pmYhT0wboWtWdQ3fHMdKHawnj-90zCfSYX4h4TiQTgpdJQ25F5t-9JRbAnE8tFF7YvWwDcpicV251IzkKwcG9TxsKoPQMWq4fqA9GO2X1ECLgFW8NB7bVThUEgNP3xCvkhD-p0hLAEhZsXYQJf-52fokfWaJ26Vg94jwBgZaFOqov2QogJ9UCPhaHGpzAJDaLLA7E-Ytdbxq1c8vlDHA5i3z2QTb-e3t5v4bTtgyWF7N7xLeMvNvY-IYWjH3pqKC4bTrGq6puTiSFovcvPTBuhVoTPPth2GKjUTWgKNdustoedVAvmG82DpWieHVAG8_wuxtEYbVcdkDjcAxfECwPTlFcfQx33pCIEeZacOMQBVn8rPAfe1ekFDGzel9_WAwtCMna-stwZNnZZbjfhoe8mwzfF1ypVyaRG69fSgGklEaTg6gPlVAr5VhLLsdLBpwHLtsEd6RFJktprt96nJpxRhFqUBEd8l65Acj8uO97Y1-d9LXVU8JUFBwjnsGVrTPg.A5-9294aO0x7zQk-cOP8Kw",
+    "refresh_token": "AB11658303493UBolmOban76weFsl1nfOmFH5L0GEHSJux989U",
+    "expires_in": 3600,
+    "x_refresh_token_expires_in": 8726400,
+    "id_token": "eyJraWQiOiJPUElDUFJEMDkxODIwMTQiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJmNzhlYzJiMC1jZGFiLTQzMTktYTAzNi1jZTJkYTFkMmU5NjQiLCJhdWQiOlsiQUJxRFd2d21hY1NQcE9ocWljQjNSYWQ2TG1nSDdJQjhtWkduZW5HbHRrU3RTTUdLYUsiXSwicmVhbG1pZCI6IjQ2MjA4MTYzNjUyMDEwNjc2MDAiLCJhdXRoX3RpbWUiOjE2NDk1NzUyMjQsImlzcyI6Imh0dHBzOlwvXC9vYXV0aC5wbGF0Zm9ybS5pbnR1aXQuY29tXC9vcFwvdjEiLCJleHAiOjE2NDk1ODA2OTMsImlhdCI6MTY0OTU3NzA5M30.UEVBkvXur8BdbEcNvaQ27LKw24haXjiM4Yc4YUw1namlEAYqqDdNPOCzNCvawoNMd4NzFbGewQQqEvgbJUPdcZ5KZ4O-A0FefoaBGgD1h1N1Qe7LDkpmzC-K_C4xKkC3aGYcAGLPH3qf34erQbccK5xK3cEkUuRqvWhXuf-GYOk",
+    "latency": 60000,
+    "createdAt": 1649577093931,
+    "state": "{\"action\":\"create_customer\",\"id\":7}"
+  },
+  "response": {
+    "url": "https://sandbox-quickbooks.api.intuit.com/v3/company/4620816365201067600/customer?minorversion=63",
+    "headers": {
+      "date": "Sun, 10 Apr 2022 07:51:35 GMT",
+      "content-type": "application/json;charset=utf-8",
+      "transfer-encoding": "chunked",
+      "connection": "close",
+      "intuit_tid": "1-62528c87-5b0f147d6343fe44023953c0",
+      "x-spanid": "78e04f7d-9438-4f6b-8eac-4832a6993dac",
+      "x-amzn-trace-id": "Root=1-62528c87-5b0f147d6343fe44023953c0",
+      "x-content-type-options": "nosniff",
+      "x-xss-protection": "1; mode=block",
+      "qbo-version": "1978.180",
+      "service-time": "total=203, db=45",
+      "expires": "0",
+      "content-encoding": "gzip",
+      "cache-control": "max-age=0, no-cache, no-store, must-revalidate, private",
+      "x-envoy-upstream-service-time": "233",
+      "strict-transport-security": "max-age=31536000",
+      "server": "envoy"
+    },
+    "body": "{\"Customer\":{\"Taxable\":true,\"BillAddr\":{\"Id\":\"103\",\"Line1\":\"1234 Street\",\"City\":\"Dallas\",\"Country\":\"USA\",\"CountrySubDivisionCode\":\"LV\",\"PostalCode\":\"76262\"},\"ShipAddr\":{\"Id\":\"104\",\"Line1\":\"1234 Street\",\"City\":\"Dallas\",\"Country\":\"USA\",\"CountrySubDivisionCode\":\"LV\",\"PostalCode\":\"76262\"},\"Job\":false,\"BillWithParent\":false,\"Balance\":0,\"BalanceWithJobs\":0,\"CurrencyRef\":{\"value\":\"USD\",\"name\":\"United States Dollar\"},\"PreferredDeliveryMethod\":\"Print\",\"IsProject\":false,\"domain\":\"QBO\",\"sparse\":false,\"Id\":\"64\",\"SyncToken\":\"0\",\"MetaData\":{\"CreateTime\":\"2022-04-10T00:51:35-07:00\",\"LastUpdatedTime\":\"2022-04-10T00:51:35-07:00\"},\"GivenName\":\"David\",\"FamilyName\":\"Lam\",\"FullyQualifiedName\":\"My Law Firm5 - Dallas, LV\",\"CompanyName\":\"My Law Firm5\",\"DisplayName\":\"My Law Firm5 - Dallas, LV\",\"PrintOnCheckName\":\"My Law Firm5\",\"Active\":true,\"PrimaryPhone\":{\"FreeFormNumber\":\"15552224444\"},\"PrimaryEmailAddr\":{\"Address\":\"test5@testemail.com\"},\"DefaultTaxCodeRef\":{\"value\":\"2\"}},\"time\":\"2022-04-10T00:51:35.579-07:00\"}",
+    "status": 200,
+    "statusText": "OK"
+  },
+  "body": "{\"Customer\":{\"Taxable\":true,\"BillAddr\":{\"Id\":\"103\",\"Line1\":\"1234 Street\",\"City\":\"Dallas\",\"Country\":\"USA\",\"CountrySubDivisionCode\":\"LV\",\"PostalCode\":\"76262\"},\"ShipAddr\":{\"Id\":\"104\",\"Line1\":\"1234 Street\",\"City\":\"Dallas\",\"Country\":\"USA\",\"CountrySubDivisionCode\":\"LV\",\"PostalCode\":\"76262\"},\"Job\":false,\"BillWithParent\":false,\"Balance\":0,\"BalanceWithJobs\":0,\"CurrencyRef\":{\"value\":\"USD\",\"name\":\"United States Dollar\"},\"PreferredDeliveryMethod\":\"Print\",\"IsProject\":false,\"domain\":\"QBO\",\"sparse\":false,\"Id\":\"64\",\"SyncToken\":\"0\",\"MetaData\":{\"CreateTime\":\"2022-04-10T00:51:35-07:00\",\"LastUpdatedTime\":\"2022-04-10T00:51:35-07:00\"},\"GivenName\":\"David\",\"FamilyName\":\"Lam\",\"FullyQualifiedName\":\"My Law Firm5 - Dallas, LV\",\"CompanyName\":\"My Law Firm5\",\"DisplayName\":\"My Law Firm5 - Dallas, LV\",\"PrintOnCheckName\":\"My Law Firm5\",\"Active\":true,\"PrimaryPhone\":{\"FreeFormNumber\":\"15552224444\"},\"PrimaryEmailAddr\":{\"Address\":\"test5@testemail.com\"},\"DefaultTaxCodeRef\":{\"value\":\"2\"}},\"time\":\"2022-04-10T00:51:35.579-07:00\"}",
+  "json": {
+    "Customer": {
+      "Taxable": true,
+      "BillAddr": {
+        "Id": "103",
+        "Line1": "1234 Street",
+        "City": "Dallas",
+        "Country": "USA",
+        "CountrySubDivisionCode": "LV",
+        "PostalCode": "76262"
+      },
+      "ShipAddr": {
+        "Id": "104",
+        "Line1": "1234 Street",
+        "City": "Dallas",
+        "Country": "USA",
+        "CountrySubDivisionCode": "LV",
+        "PostalCode": "76262"
+      },
+      "Job": false,
+      "BillWithParent": false,
+      "Balance": 0,
+      "BalanceWithJobs": 0,
+      "CurrencyRef": {
+        "value": "USD",
+        "name": "United States Dollar"
+      },
+      "PreferredDeliveryMethod": "Print",
+      "IsProject": false,
+      "domain": "QBO",
+      "sparse": false,
+      "Id": "64",
+      "SyncToken": "0",
+      "MetaData": {
+        "CreateTime": "2022-04-10T00:51:35-07:00",
+        "LastUpdatedTime": "2022-04-10T00:51:35-07:00"
+      },
+      "GivenName": "David",
+      "FamilyName": "Lam",
+      "FullyQualifiedName": "My Law Firm5 - Dallas, LV",
+      "CompanyName": "My Law Firm5",
+      "DisplayName": "My Law Firm5 - Dallas, LV",
+      "PrintOnCheckName": "My Law Firm5",
+      "Active": true,
+      "PrimaryPhone": {
+        "FreeFormNumber": "15552224444"
+      },
+      "PrimaryEmailAddr": {
+        "Address": "test5@testemail.com"
+      },
+      "DefaultTaxCodeRef": {
+        "value": "2"
+      }
+    },
+    "time": "2022-04-10T00:51:35.579-07:00"
+  },
+  "intuit_tid": "1-62528c87-5b0f147d6343fe44023953c0"
+}
+2022-04-10T07:53:21.168Z error: Create Token () threw an exception : {
+  "authResponse": {
+    "token": {
+      "realmId": "4620816365201067600",
+      "token_type": "",
+      "access_token": "",
+      "refresh_token": "",
+      "expires_in": 0,
+      "x_refresh_token_expires_in": 0,
+      "id_token": "",
+      "latency": 60000,
+      "createdAt": 1649577190354,
+      "state": "{\"action\":\"create_customer\",\"id\":7}"
+    },
+    "response": {
+      "url": "https://oauth.platform.intuit.com/oauth2/v1/tokens/bearer",
+      "headers": {
+        "date": "Sun, 10 Apr 2022 07:53:21 GMT",
+        "content-type": "application/json;charset=utf-8",
+        "content-length": "76",
+        "connection": "close",
+        "intuit_tid": "1-62528cf1-72c25a24716b6a622375b1ca",
+        "x-spanid": "3015a812-f80c-49ce-b9f9-3d882e79e3a1",
+        "x-amzn-trace-id": "Root=1-62528cf1-72c25a24716b6a622375b1ca",
+        "x-content-type-options": "nosniff",
+        "server": "envoy",
+        "cache-control": "no-cache, no-store",
+        "pragma": "no-cache",
+        "x-envoy-upstream-service-time": "16",
+        "strict-transport-security": "max-age=31536000"
+      },
+      "body": "{\"error_description\":\"Authorization code incorrect\",\"error\":\"invalid_grant\"}",
+      "status": 400,
+      "statusText": "Bad Request"
+    },
+    "body": "{\"error_description\":\"Authorization code incorrect\",\"error\":\"invalid_grant\"}",
+    "json": {
+      "error_description": "Authorization code incorrect",
+      "error": "invalid_grant"
+    },
+    "intuit_tid": "1-62528cf1-72c25a24716b6a622375b1ca"
+  },
+  "originalMessage": "Response has an Error",
+  "error": "invalid_grant",
+  "error_description": "Authorization code incorrect",
+  "intuit_tid": "1-62528cf1-72c25a24716b6a622375b1ca"
+}
+2022-04-10T07:55:10.508Z info: The Authorize Uri is :https://appcenter.intuit.com/connect/oauth2?client_id=ABqDWvwmacSPpOhqicB3Rad6LmgH7IB8mZGnenGltkStSMGKaK&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fcallback&response_type=code&scope=com.intuit.quickbooks.accounting%20openid&state=%7B%22action%22%3A%22create_customer%22%2C%22id%22%3A8%7D
+2022-04-10T07:55:32.353Z info: Create Token response is : {
+  "token": {
+    "realmId": "4620816365201067600",
+    "token_type": "bearer",
+    "access_token": "eyJlbmMiOiJBMTI4Q0JDLUhTMjU2IiwiYWxnIjoiZGlyIn0..2u-pOGEZjNDlxy25TYRBUw.T5xF2e5MG2AuhcvJT6kXCpJsWPMiKqUUfns2isJMECL3BWqWEiOQOickXJXTbsuwYbyg3NFmKSbY8z_wd5DbaY88O-gSYR4RFieSf0-ieFkHqk7P9UyVc4Wfm-X5xrgHn-oL63jShJWjwBBvSHYdNMnwmwIINSGBr3vLcU4dGNuR-f70DJOzETSXzXdqvYN9pSIAR9AiQ8V8bttrWR0ictvV3-da9TBMGiVoRkeFavLFEcw2gcooFzduglDUfjCMmpcMCtr26qltRZ6vcgcNRz3pSPnrMH9kknobEnr3Wk55VR6baH7UrLlrG1X8sB7AGuOyhxZxewAS9WkMlZXAGx3dXRNyQdHVIByUWI6IrEX5374oFf4FBp-mCJAgaSC1PB9t27KAZvKx8qiTiv0jMuu09FazDU1heVyYMWK1V3T06dpio0QBgsOke0K3PcoaZxeYc5gQlgv7ish4pnGIdrOKaSmMfxi25spJIfsOr4v-eqp9A1V7sYciqpNGHETZ5KVJE4Tsxd2zY4vUjN3RoMfksEbqGQUkohJ2h5vtJBL7q3nSN-ICuo9RnClFNfb2pqW-eNu_sA76PFtJpLEe5MMlqPNKtO9OiBUdbo_LyTirv4INC32QJK4eyl_lXLUaP5LETTDRdnwMrH9Arz2gNdKOe8Mh1b9nzf9_t5d1bq6K1VWv0JgaCBUuDoeGOsQSCcvjJJcN96Tr-2uZhdGvgIVawUn7KWoflAJ3QHeb41fS71wQLn5FM3MU0-jycioy2fGmKk9BuW3WU6c0LtVOMf4WKXb4yJGXp-SZq2DXiQ-8an9lScxxYkXX8RwQna90JkFq6qOkTuSf-zXpQR8cuQ.ViN24QML131IZ2i6XF74Nw",
+    "refresh_token": "AB116583037325KSGrUDIjLMK2rYwZBuPBWlLcdj8VWN21o1R0",
+    "expires_in": 3600,
+    "x_refresh_token_expires_in": 8726400,
+    "id_token": "eyJraWQiOiJPUElDUFJEMDkxODIwMTQiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJmNzhlYzJiMC1jZGFiLTQzMTktYTAzNi1jZTJkYTFkMmU5NjQiLCJhdWQiOlsiQUJxRFd2d21hY1NQcE9ocWljQjNSYWQ2TG1nSDdJQjhtWkduZW5HbHRrU3RTTUdLYUsiXSwicmVhbG1pZCI6IjQ2MjA4MTYzNjUyMDEwNjc2MDAiLCJhdXRoX3RpbWUiOjE2NDk1NzUyMjQsImlzcyI6Imh0dHBzOlwvXC9vYXV0aC5wbGF0Zm9ybS5pbnR1aXQuY29tXC9vcFwvdjEiLCJleHAiOjE2NDk1ODA5MzIsImlhdCI6MTY0OTU3NzMzMn0.jKBTIQy6l3dAhm7X7rwbgRjI6Ft_-A_wwPwQV29ABsl0YaoZKSULJsQx2rM1po7fEemcZOAq_m8RVDCPNH9zm8Q20t9a0UUPzd2sbTAgcj6DfR_rfFt6ZELXHevgBvmX8xkGy5pm9pUJXX-oYj3vp_Cbeg_lgOt_P_W-OvxdCqM",
+    "latency": 60000,
+    "createdAt": 1649577332352,
+    "state": "{\"action\":\"create_customer\",\"id\":8}"
+  },
+  "response": {
+    "url": "https://oauth.platform.intuit.com/oauth2/v1/tokens/bearer",
+    "headers": {
+      "date": "Sun, 10 Apr 2022 07:55:32 GMT",
+      "content-type": "application/json;charset=utf-8",
+      "content-length": "1684",
+      "connection": "close",
+      "intuit_tid": "1-62528d74-3234ac925bdfd98f47994e28",
+      "x-spanid": "2b8f5670-7fab-4927-9afb-07b00b0ae74c",
+      "x-amzn-trace-id": "Root=1-62528d74-3234ac925bdfd98f47994e28",
+      "x-content-type-options": "nosniff",
+      "server": "envoy",
+      "cache-control": "no-cache, no-store",
+      "pragma": "no-cache",
+      "x-frame-options": "SAMEORIGIN",
+      "x-xss-protection": "1; mode=block",
+      "x-envoy-upstream-service-time": "149",
+      "strict-transport-security": "max-age=31536000"
+    },
+    "body": "{\"x_refresh_token_expires_in\":8726400,\"access_token\":\"eyJlbmMiOiJBMTI4Q0JDLUhTMjU2IiwiYWxnIjoiZGlyIn0..2u-pOGEZjNDlxy25TYRBUw.T5xF2e5MG2AuhcvJT6kXCpJsWPMiKqUUfns2isJMECL3BWqWEiOQOickXJXTbsuwYbyg3NFmKSbY8z_wd5DbaY88O-gSYR4RFieSf0-ieFkHqk7P9UyVc4Wfm-X5xrgHn-oL63jShJWjwBBvSHYdNMnwmwIINSGBr3vLcU4dGNuR-f70DJOzETSXzXdqvYN9pSIAR9AiQ8V8bttrWR0ictvV3-da9TBMGiVoRkeFavLFEcw2gcooFzduglDUfjCMmpcMCtr26qltRZ6vcgcNRz3pSPnrMH9kknobEnr3Wk55VR6baH7UrLlrG1X8sB7AGuOyhxZxewAS9WkMlZXAGx3dXRNyQdHVIByUWI6IrEX5374oFf4FBp-mCJAgaSC1PB9t27KAZvKx8qiTiv0jMuu09FazDU1heVyYMWK1V3T06dpio0QBgsOke0K3PcoaZxeYc5gQlgv7ish4pnGIdrOKaSmMfxi25spJIfsOr4v-eqp9A1V7sYciqpNGHETZ5KVJE4Tsxd2zY4vUjN3RoMfksEbqGQUkohJ2h5vtJBL7q3nSN-ICuo9RnClFNfb2pqW-eNu_sA76PFtJpLEe5MMlqPNKtO9OiBUdbo_LyTirv4INC32QJK4eyl_lXLUaP5LETTDRdnwMrH9Arz2gNdKOe8Mh1b9nzf9_t5d1bq6K1VWv0JgaCBUuDoeGOsQSCcvjJJcN96Tr-2uZhdGvgIVawUn7KWoflAJ3QHeb41fS71wQLn5FM3MU0-jycioy2fGmKk9BuW3WU6c0LtVOMf4WKXb4yJGXp-SZq2DXiQ-8an9lScxxYkXX8RwQna90JkFq6qOkTuSf-zXpQR8cuQ.ViN24QML131IZ2i6XF74Nw\",\"refresh_token\":\"AB116583037325KSGrUDIjLMK2rYwZBuPBWlLcdj8VWN21o1R0\",\"id_token\":\"eyJraWQiOiJPUElDUFJEMDkxODIwMTQiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJmNzhlYzJiMC1jZGFiLTQzMTktYTAzNi1jZTJkYTFkMmU5NjQiLCJhdWQiOlsiQUJxRFd2d21hY1NQcE9ocWljQjNSYWQ2TG1nSDdJQjhtWkduZW5HbHRrU3RTTUdLYUsiXSwicmVhbG1pZCI6IjQ2MjA4MTYzNjUyMDEwNjc2MDAiLCJhdXRoX3RpbWUiOjE2NDk1NzUyMjQsImlzcyI6Imh0dHBzOlwvXC9vYXV0aC5wbGF0Zm9ybS5pbnR1aXQuY29tXC9vcFwvdjEiLCJleHAiOjE2NDk1ODA5MzIsImlhdCI6MTY0OTU3NzMzMn0.jKBTIQy6l3dAhm7X7rwbgRjI6Ft_-A_wwPwQV29ABsl0YaoZKSULJsQx2rM1po7fEemcZOAq_m8RVDCPNH9zm8Q20t9a0UUPzd2sbTAgcj6DfR_rfFt6ZELXHevgBvmX8xkGy5pm9pUJXX-oYj3vp_Cbeg_lgOt_P_W-OvxdCqM\",\"token_type\":\"bearer\",\"expires_in\":3600}",
+    "status": 200,
+    "statusText": "OK"
+  },
+  "body": "{\"x_refresh_token_expires_in\":8726400,\"access_token\":\"eyJlbmMiOiJBMTI4Q0JDLUhTMjU2IiwiYWxnIjoiZGlyIn0..2u-pOGEZjNDlxy25TYRBUw.T5xF2e5MG2AuhcvJT6kXCpJsWPMiKqUUfns2isJMECL3BWqWEiOQOickXJXTbsuwYbyg3NFmKSbY8z_wd5DbaY88O-gSYR4RFieSf0-ieFkHqk7P9UyVc4Wfm-X5xrgHn-oL63jShJWjwBBvSHYdNMnwmwIINSGBr3vLcU4dGNuR-f70DJOzETSXzXdqvYN9pSIAR9AiQ8V8bttrWR0ictvV3-da9TBMGiVoRkeFavLFEcw2gcooFzduglDUfjCMmpcMCtr26qltRZ6vcgcNRz3pSPnrMH9kknobEnr3Wk55VR6baH7UrLlrG1X8sB7AGuOyhxZxewAS9WkMlZXAGx3dXRNyQdHVIByUWI6IrEX5374oFf4FBp-mCJAgaSC1PB9t27KAZvKx8qiTiv0jMuu09FazDU1heVyYMWK1V3T06dpio0QBgsOke0K3PcoaZxeYc5gQlgv7ish4pnGIdrOKaSmMfxi25spJIfsOr4v-eqp9A1V7sYciqpNGHETZ5KVJE4Tsxd2zY4vUjN3RoMfksEbqGQUkohJ2h5vtJBL7q3nSN-ICuo9RnClFNfb2pqW-eNu_sA76PFtJpLEe5MMlqPNKtO9OiBUdbo_LyTirv4INC32QJK4eyl_lXLUaP5LETTDRdnwMrH9Arz2gNdKOe8Mh1b9nzf9_t5d1bq6K1VWv0JgaCBUuDoeGOsQSCcvjJJcN96Tr-2uZhdGvgIVawUn7KWoflAJ3QHeb41fS71wQLn5FM3MU0-jycioy2fGmKk9BuW3WU6c0LtVOMf4WKXb4yJGXp-SZq2DXiQ-8an9lScxxYkXX8RwQna90JkFq6qOkTuSf-zXpQR8cuQ.ViN24QML131IZ2i6XF74Nw\",\"refresh_token\":\"AB116583037325KSGrUDIjLMK2rYwZBuPBWlLcdj8VWN21o1R0\",\"id_token\":\"eyJraWQiOiJPUElDUFJEMDkxODIwMTQiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJmNzhlYzJiMC1jZGFiLTQzMTktYTAzNi1jZTJkYTFkMmU5NjQiLCJhdWQiOlsiQUJxRFd2d21hY1NQcE9ocWljQjNSYWQ2TG1nSDdJQjhtWkduZW5HbHRrU3RTTUdLYUsiXSwicmVhbG1pZCI6IjQ2MjA4MTYzNjUyMDEwNjc2MDAiLCJhdXRoX3RpbWUiOjE2NDk1NzUyMjQsImlzcyI6Imh0dHBzOlwvXC9vYXV0aC5wbGF0Zm9ybS5pbnR1aXQuY29tXC9vcFwvdjEiLCJleHAiOjE2NDk1ODA5MzIsImlhdCI6MTY0OTU3NzMzMn0.jKBTIQy6l3dAhm7X7rwbgRjI6Ft_-A_wwPwQV29ABsl0YaoZKSULJsQx2rM1po7fEemcZOAq_m8RVDCPNH9zm8Q20t9a0UUPzd2sbTAgcj6DfR_rfFt6ZELXHevgBvmX8xkGy5pm9pUJXX-oYj3vp_Cbeg_lgOt_P_W-OvxdCqM\",\"token_type\":\"bearer\",\"expires_in\":3600}",
+  "json": {
+    "x_refresh_token_expires_in": 8726400,
+    "access_token": "eyJlbmMiOiJBMTI4Q0JDLUhTMjU2IiwiYWxnIjoiZGlyIn0..2u-pOGEZjNDlxy25TYRBUw.T5xF2e5MG2AuhcvJT6kXCpJsWPMiKqUUfns2isJMECL3BWqWEiOQOickXJXTbsuwYbyg3NFmKSbY8z_wd5DbaY88O-gSYR4RFieSf0-ieFkHqk7P9UyVc4Wfm-X5xrgHn-oL63jShJWjwBBvSHYdNMnwmwIINSGBr3vLcU4dGNuR-f70DJOzETSXzXdqvYN9pSIAR9AiQ8V8bttrWR0ictvV3-da9TBMGiVoRkeFavLFEcw2gcooFzduglDUfjCMmpcMCtr26qltRZ6vcgcNRz3pSPnrMH9kknobEnr3Wk55VR6baH7UrLlrG1X8sB7AGuOyhxZxewAS9WkMlZXAGx3dXRNyQdHVIByUWI6IrEX5374oFf4FBp-mCJAgaSC1PB9t27KAZvKx8qiTiv0jMuu09FazDU1heVyYMWK1V3T06dpio0QBgsOke0K3PcoaZxeYc5gQlgv7ish4pnGIdrOKaSmMfxi25spJIfsOr4v-eqp9A1V7sYciqpNGHETZ5KVJE4Tsxd2zY4vUjN3RoMfksEbqGQUkohJ2h5vtJBL7q3nSN-ICuo9RnClFNfb2pqW-eNu_sA76PFtJpLEe5MMlqPNKtO9OiBUdbo_LyTirv4INC32QJK4eyl_lXLUaP5LETTDRdnwMrH9Arz2gNdKOe8Mh1b9nzf9_t5d1bq6K1VWv0JgaCBUuDoeGOsQSCcvjJJcN96Tr-2uZhdGvgIVawUn7KWoflAJ3QHeb41fS71wQLn5FM3MU0-jycioy2fGmKk9BuW3WU6c0LtVOMf4WKXb4yJGXp-SZq2DXiQ-8an9lScxxYkXX8RwQna90JkFq6qOkTuSf-zXpQR8cuQ.ViN24QML131IZ2i6XF74Nw",
+    "refresh_token": "AB116583037325KSGrUDIjLMK2rYwZBuPBWlLcdj8VWN21o1R0",
+    "id_token": "eyJraWQiOiJPUElDUFJEMDkxODIwMTQiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJmNzhlYzJiMC1jZGFiLTQzMTktYTAzNi1jZTJkYTFkMmU5NjQiLCJhdWQiOlsiQUJxRFd2d21hY1NQcE9ocWljQjNSYWQ2TG1nSDdJQjhtWkduZW5HbHRrU3RTTUdLYUsiXSwicmVhbG1pZCI6IjQ2MjA4MTYzNjUyMDEwNjc2MDAiLCJhdXRoX3RpbWUiOjE2NDk1NzUyMjQsImlzcyI6Imh0dHBzOlwvXC9vYXV0aC5wbGF0Zm9ybS5pbnR1aXQuY29tXC9vcFwvdjEiLCJleHAiOjE2NDk1ODA5MzIsImlhdCI6MTY0OTU3NzMzMn0.jKBTIQy6l3dAhm7X7rwbgRjI6Ft_-A_wwPwQV29ABsl0YaoZKSULJsQx2rM1po7fEemcZOAq_m8RVDCPNH9zm8Q20t9a0UUPzd2sbTAgcj6DfR_rfFt6ZELXHevgBvmX8xkGy5pm9pUJXX-oYj3vp_Cbeg_lgOt_P_W-OvxdCqM",
+    "token_type": "bearer",
+    "expires_in": 3600
+  },
+  "intuit_tid": "1-62528d74-3234ac925bdfd98f47994e28"
+}
+2022-04-10T07:55:34.319Z info: The makeAPICall () response is : {
+  "token": {
+    "realmId": "4620816365201067600",
+    "token_type": "bearer",
+    "access_token": "eyJlbmMiOiJBMTI4Q0JDLUhTMjU2IiwiYWxnIjoiZGlyIn0..2u-pOGEZjNDlxy25TYRBUw.T5xF2e5MG2AuhcvJT6kXCpJsWPMiKqUUfns2isJMECL3BWqWEiOQOickXJXTbsuwYbyg3NFmKSbY8z_wd5DbaY88O-gSYR4RFieSf0-ieFkHqk7P9UyVc4Wfm-X5xrgHn-oL63jShJWjwBBvSHYdNMnwmwIINSGBr3vLcU4dGNuR-f70DJOzETSXzXdqvYN9pSIAR9AiQ8V8bttrWR0ictvV3-da9TBMGiVoRkeFavLFEcw2gcooFzduglDUfjCMmpcMCtr26qltRZ6vcgcNRz3pSPnrMH9kknobEnr3Wk55VR6baH7UrLlrG1X8sB7AGuOyhxZxewAS9WkMlZXAGx3dXRNyQdHVIByUWI6IrEX5374oFf4FBp-mCJAgaSC1PB9t27KAZvKx8qiTiv0jMuu09FazDU1heVyYMWK1V3T06dpio0QBgsOke0K3PcoaZxeYc5gQlgv7ish4pnGIdrOKaSmMfxi25spJIfsOr4v-eqp9A1V7sYciqpNGHETZ5KVJE4Tsxd2zY4vUjN3RoMfksEbqGQUkohJ2h5vtJBL7q3nSN-ICuo9RnClFNfb2pqW-eNu_sA76PFtJpLEe5MMlqPNKtO9OiBUdbo_LyTirv4INC32QJK4eyl_lXLUaP5LETTDRdnwMrH9Arz2gNdKOe8Mh1b9nzf9_t5d1bq6K1VWv0JgaCBUuDoeGOsQSCcvjJJcN96Tr-2uZhdGvgIVawUn7KWoflAJ3QHeb41fS71wQLn5FM3MU0-jycioy2fGmKk9BuW3WU6c0LtVOMf4WKXb4yJGXp-SZq2DXiQ-8an9lScxxYkXX8RwQna90JkFq6qOkTuSf-zXpQR8cuQ.ViN24QML131IZ2i6XF74Nw",
+    "refresh_token": "AB116583037325KSGrUDIjLMK2rYwZBuPBWlLcdj8VWN21o1R0",
+    "expires_in": 3600,
+    "x_refresh_token_expires_in": 8726400,
+    "id_token": "eyJraWQiOiJPUElDUFJEMDkxODIwMTQiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJmNzhlYzJiMC1jZGFiLTQzMTktYTAzNi1jZTJkYTFkMmU5NjQiLCJhdWQiOlsiQUJxRFd2d21hY1NQcE9ocWljQjNSYWQ2TG1nSDdJQjhtWkduZW5HbHRrU3RTTUdLYUsiXSwicmVhbG1pZCI6IjQ2MjA4MTYzNjUyMDEwNjc2MDAiLCJhdXRoX3RpbWUiOjE2NDk1NzUyMjQsImlzcyI6Imh0dHBzOlwvXC9vYXV0aC5wbGF0Zm9ybS5pbnR1aXQuY29tXC9vcFwvdjEiLCJleHAiOjE2NDk1ODA5MzIsImlhdCI6MTY0OTU3NzMzMn0.jKBTIQy6l3dAhm7X7rwbgRjI6Ft_-A_wwPwQV29ABsl0YaoZKSULJsQx2rM1po7fEemcZOAq_m8RVDCPNH9zm8Q20t9a0UUPzd2sbTAgcj6DfR_rfFt6ZELXHevgBvmX8xkGy5pm9pUJXX-oYj3vp_Cbeg_lgOt_P_W-OvxdCqM",
+    "latency": 60000,
+    "createdAt": 1649577332352,
+    "state": "{\"action\":\"create_customer\",\"id\":8}"
+  },
+  "response": {
+    "url": "https://sandbox-quickbooks.api.intuit.com/v3/company/4620816365201067600/customer?minorversion=63",
+    "headers": {
+      "date": "Sun, 10 Apr 2022 07:55:34 GMT",
+      "content-type": "application/json;charset=utf-8",
+      "transfer-encoding": "chunked",
+      "connection": "close",
+      "intuit_tid": "1-62528d75-42b642fc45e63d4c7ea62e51",
+      "x-spanid": "a0585a7d-0baa-4a26-b733-6e6136497710",
+      "x-amzn-trace-id": "Root=1-62528d75-42b642fc45e63d4c7ea62e51",
+      "x-content-type-options": "nosniff",
+      "x-xss-protection": "1; mode=block",
+      "qbo-version": "1978.180",
+      "service-time": "total=281, db=94",
+      "expires": "0",
+      "content-encoding": "gzip",
+      "cache-control": "max-age=0, no-cache, no-store, must-revalidate, private",
+      "x-envoy-upstream-service-time": "313",
+      "strict-transport-security": "max-age=31536000",
+      "server": "envoy"
+    },
+    "body": "{\"Customer\":{\"Taxable\":true,\"BillAddr\":{\"Id\":\"105\",\"Line1\":\"1234 Street\",\"City\":\"Dallas\",\"Country\":\"USA\",\"CountrySubDivisionCode\":\"LV\",\"PostalCode\":\"76262\"},\"ShipAddr\":{\"Id\":\"106\",\"Line1\":\"1234 Street\",\"City\":\"Dallas\",\"Country\":\"USA\",\"CountrySubDivisionCode\":\"LV\",\"PostalCode\":\"76262\"},\"Job\":false,\"BillWithParent\":false,\"Balance\":0,\"BalanceWithJobs\":0,\"CurrencyRef\":{\"value\":\"USD\",\"name\":\"United States Dollar\"},\"PreferredDeliveryMethod\":\"Print\",\"IsProject\":false,\"domain\":\"QBO\",\"sparse\":false,\"Id\":\"65\",\"SyncToken\":\"0\",\"MetaData\":{\"CreateTime\":\"2022-04-10T00:55:34-07:00\",\"LastUpdatedTime\":\"2022-04-10T00:55:34-07:00\"},\"GivenName\":\"David\",\"FamilyName\":\"Lam\",\"FullyQualifiedName\":\"My Law Firm6 - Dallas, LV\",\"CompanyName\":\"My Law Firm6\",\"DisplayName\":\"My Law Firm6 - Dallas, LV\",\"PrintOnCheckName\":\"My Law Firm6\",\"Active\":true,\"PrimaryPhone\":{\"FreeFormNumber\":\"15552224444\"},\"PrimaryEmailAddr\":{\"Address\":\"test6@testemail.com\"},\"DefaultTaxCodeRef\":{\"value\":\"2\"}},\"time\":\"2022-04-10T00:55:34.018-07:00\"}",
+    "status": 200,
+    "statusText": "OK"
+  },
+  "body": "{\"Customer\":{\"Taxable\":true,\"BillAddr\":{\"Id\":\"105\",\"Line1\":\"1234 Street\",\"City\":\"Dallas\",\"Country\":\"USA\",\"CountrySubDivisionCode\":\"LV\",\"PostalCode\":\"76262\"},\"ShipAddr\":{\"Id\":\"106\",\"Line1\":\"1234 Street\",\"City\":\"Dallas\",\"Country\":\"USA\",\"CountrySubDivisionCode\":\"LV\",\"PostalCode\":\"76262\"},\"Job\":false,\"BillWithParent\":false,\"Balance\":0,\"BalanceWithJobs\":0,\"CurrencyRef\":{\"value\":\"USD\",\"name\":\"United States Dollar\"},\"PreferredDeliveryMethod\":\"Print\",\"IsProject\":false,\"domain\":\"QBO\",\"sparse\":false,\"Id\":\"65\",\"SyncToken\":\"0\",\"MetaData\":{\"CreateTime\":\"2022-04-10T00:55:34-07:00\",\"LastUpdatedTime\":\"2022-04-10T00:55:34-07:00\"},\"GivenName\":\"David\",\"FamilyName\":\"Lam\",\"FullyQualifiedName\":\"My Law Firm6 - Dallas, LV\",\"CompanyName\":\"My Law Firm6\",\"DisplayName\":\"My Law Firm6 - Dallas, LV\",\"PrintOnCheckName\":\"My Law Firm6\",\"Active\":true,\"PrimaryPhone\":{\"FreeFormNumber\":\"15552224444\"},\"PrimaryEmailAddr\":{\"Address\":\"test6@testemail.com\"},\"DefaultTaxCodeRef\":{\"value\":\"2\"}},\"time\":\"2022-04-10T00:55:34.018-07:00\"}",
+  "json": {
+    "Customer": {
+      "Taxable": true,
+      "BillAddr": {
+        "Id": "105",
+        "Line1": "1234 Street",
+        "City": "Dallas",
+        "Country": "USA",
+        "CountrySubDivisionCode": "LV",
+        "PostalCode": "76262"
+      },
+      "ShipAddr": {
+        "Id": "106",
+        "Line1": "1234 Street",
+        "City": "Dallas",
+        "Country": "USA",
+        "CountrySubDivisionCode": "LV",
+        "PostalCode": "76262"
+      },
+      "Job": false,
+      "BillWithParent": false,
+      "Balance": 0,
+      "BalanceWithJobs": 0,
+      "CurrencyRef": {
+        "value": "USD",
+        "name": "United States Dollar"
+      },
+      "PreferredDeliveryMethod": "Print",
+      "IsProject": false,
+      "domain": "QBO",
+      "sparse": false,
+      "Id": "65",
+      "SyncToken": "0",
+      "MetaData": {
+        "CreateTime": "2022-04-10T00:55:34-07:00",
+        "LastUpdatedTime": "2022-04-10T00:55:34-07:00"
+      },
+      "GivenName": "David",
+      "FamilyName": "Lam",
+      "FullyQualifiedName": "My Law Firm6 - Dallas, LV",
+      "CompanyName": "My Law Firm6",
+      "DisplayName": "My Law Firm6 - Dallas, LV",
+      "PrintOnCheckName": "My Law Firm6",
+      "Active": true,
+      "PrimaryPhone": {
+        "FreeFormNumber": "15552224444"
+      },
+      "PrimaryEmailAddr": {
+        "Address": "test6@testemail.com"
+      },
+      "DefaultTaxCodeRef": {
+        "value": "2"
+      }
+    },
+    "time": "2022-04-10T00:55:34.018-07:00"
+  },
+  "intuit_tid": "1-62528d75-42b642fc45e63d4c7ea62e51"
+}
+2022-04-10T07:59:01.844Z error: Get makeAPICall ()  threw an exception : {
+  "authResponse": {
+    "token": {
+      "realmId": "",
+      "token_type": "",
+      "access_token": "",
+      "refresh_token": "",
+      "expires_in": 0,
+      "x_refresh_token_expires_in": 0,
+      "id_token": "",
+      "latency": 60000,
+      "createdAt": 1649577530017
+    },
+    "response": {
+      "url": "https://sandbox-quickbooks.api.intuit.com/v3/company/4620816365201068000/customer?minorversion=63",
+      "headers": {
+        "date": "Sun, 10 Apr 2022 07:59:01 GMT",
+        "content-type": "application/json",
+        "content-length": "370",
+        "connection": "close",
+        "intuit_tid": "1-62528e45-0d8df94a22ef84de6c9894db",
+        "x-envoy-upstream-service-time": "65",
+        "strict-transport-security": "max-age=31536000",
+        "server": "envoy"
+      },
+      "body": "{\"warnings\":null,\"intuitObject\":null,\"fault\":{\"error\":[{\"message\":\"message=DispatcherError; errorCode=003100; statusCode=401\",\"detail\":\"\",\"code\":\"3100\",\"element\":null}],\"type\":\"AUTHENTICATION\"},\"report\":null,\"queryResponse\":null,\"batchItemResponse\":[],\"attachableResponse\":[],\"syncErrorResponse\":null,\"requestId\":null,\"time\":1649577541671,\"status\":null,\"cdcresponse\":[]}",
+      "status": 401,
+      "statusText": "Unauthorized"
+    },
+    "body": "{\"warnings\":null,\"intuitObject\":null,\"fault\":{\"error\":[{\"message\":\"message=DispatcherError; errorCode=003100; statusCode=401\",\"detail\":\"\",\"code\":\"3100\",\"element\":null}],\"type\":\"AUTHENTICATION\"},\"report\":null,\"queryResponse\":null,\"batchItemResponse\":[],\"attachableResponse\":[],\"syncErrorResponse\":null,\"requestId\":null,\"time\":1649577541671,\"status\":null,\"cdcresponse\":[]}",
+    "json": {
+      "warnings": null,
+      "intuitObject": null,
+      "fault": {
+        "error": [
+          {
+            "message": "message=DispatcherError; errorCode=003100; statusCode=401",
+            "detail": "",
+            "code": "3100",
+            "element": null
+          }
+        ],
+        "type": "AUTHENTICATION"
+      },
+      "report": null,
+      "queryResponse": null,
+      "batchItemResponse": [],
+      "attachableResponse": [],
+      "syncErrorResponse": null,
+      "requestId": null,
+      "time": 1649577541671,
+      "status": null,
+      "cdcresponse": []
+    },
+    "intuit_tid": "1-62528e45-0d8df94a22ef84de6c9894db"
+  },
+  "originalMessage": "Response has an Error",
+  "error": "Unauthorized",
+  "error_description": "Unauthorized",
+  "intuit_tid": "1-62528e45-0d8df94a22ef84de6c9894db"
+}
+2022-04-10T07:59:18.140Z error: Get makeAPICall ()  threw an exception : {
+  "authResponse": {
+    "token": {
+      "realmId": "",
+      "token_type": "",
+      "access_token": "",
+      "refresh_token": "",
+      "expires_in": 0,
+      "x_refresh_token_expires_in": 0,
+      "id_token": "",
+      "latency": 60000,
+      "createdAt": 1649577530017
+    },
+    "response": {
+      "url": "https://sandbox-quickbooks.api.intuit.com/v3/company/4620816365201068000/customer?minorversion=63",
+      "headers": {
+        "date": "Sun, 10 Apr 2022 07:59:17 GMT",
+        "content-type": "application/json",
+        "content-length": "370",
+        "connection": "close",
+        "intuit_tid": "1-62528e55-30adb02f27a178751b409ea3",
+        "x-envoy-upstream-service-time": "50",
+        "strict-transport-security": "max-age=31536000",
+        "server": "envoy"
+      },
+      "body": "{\"warnings\":null,\"intuitObject\":null,\"fault\":{\"error\":[{\"message\":\"message=DispatcherError; errorCode=003100; statusCode=401\",\"detail\":\"\",\"code\":\"3100\",\"element\":null}],\"type\":\"AUTHENTICATION\"},\"report\":null,\"queryResponse\":null,\"batchItemResponse\":[],\"attachableResponse\":[],\"syncErrorResponse\":null,\"requestId\":null,\"time\":1649577557992,\"status\":null,\"cdcresponse\":[]}",
+      "status": 401,
+      "statusText": "Unauthorized"
+    },
+    "body": "{\"warnings\":null,\"intuitObject\":null,\"fault\":{\"error\":[{\"message\":\"message=DispatcherError; errorCode=003100; statusCode=401\",\"detail\":\"\",\"code\":\"3100\",\"element\":null}],\"type\":\"AUTHENTICATION\"},\"report\":null,\"queryResponse\":null,\"batchItemResponse\":[],\"attachableResponse\":[],\"syncErrorResponse\":null,\"requestId\":null,\"time\":1649577557992,\"status\":null,\"cdcresponse\":[]}",
+    "json": {
+      "warnings": null,
+      "intuitObject": null,
+      "fault": {
+        "error": [
+          {
+            "message": "message=DispatcherError; errorCode=003100; statusCode=401",
+            "detail": "",
+            "code": "3100",
+            "element": null
+          }
+        ],
+        "type": "AUTHENTICATION"
+      },
+      "report": null,
+      "queryResponse": null,
+      "batchItemResponse": [],
+      "attachableResponse": [],
+      "syncErrorResponse": null,
+      "requestId": null,
+      "time": 1649577557992,
+      "status": null,
+      "cdcresponse": []
+    },
+    "intuit_tid": "1-62528e55-30adb02f27a178751b409ea3"
+  },
+  "originalMessage": "Response has an Error",
+  "error": "Unauthorized",
+  "error_description": "Unauthorized",
+  "intuit_tid": "1-62528e55-30adb02f27a178751b409ea3"
+}
+2022-04-10T12:14:27.740Z error: Get makeAPICall ()  threw an exception : {
+  "authResponse": {
+    "token": {
+      "realmId": "",
+      "token_type": "",
+      "access_token": "",
+      "refresh_token": "",
+      "expires_in": 0,
+      "x_refresh_token_expires_in": 0,
+      "id_token": "",
+      "latency": 60000,
+      "createdAt": 1649577530017
+    },
+    "response": {
+      "url": "https://sandbox-quickbooks.api.intuit.com/v3/company/4620816365201068000/customer?minorversion=63",
+      "headers": {
+        "date": "Sun, 10 Apr 2022 12:14:27 GMT",
+        "content-type": "application/json",
+        "content-length": "440",
+        "connection": "close",
+        "intuit_tid": "1-6252ca23-32a6860809b4436d1a68141c",
+        "www-authenticate": "Bearer realm=\"Intuit\", error=\"invalid_token\"",
+        "x-envoy-upstream-service-time": "9",
+        "strict-transport-security": "max-age=31536000",
+        "server": "envoy"
+      },
+      "body": "{\"warnings\":null,\"intuitObject\":null,\"fault\":{\"error\":[{\"message\":\"message=AuthenticationFailed; errorCode=003200; statusCode=401\",\"detail\":\"Token expired: AB01649580932UTNUCpOX1nbwQGFQHS9zFGzzdQGXwuUCU6Ppb\",\"code\":\"3200\",\"element\":null}],\"type\":\"AUTHENTICATION\"},\"report\":null,\"queryResponse\":null,\"batchItemResponse\":[],\"attachableResponse\":[],\"syncErrorResponse\":null,\"requestId\":null,\"time\":1649592867672,\"status\":null,\"cdcresponse\":[]}",
+      "status": 401,
+      "statusText": "Unauthorized"
+    },
+    "body": "{\"warnings\":null,\"intuitObject\":null,\"fault\":{\"error\":[{\"message\":\"message=AuthenticationFailed; errorCode=003200; statusCode=401\",\"detail\":\"Token expired: AB01649580932UTNUCpOX1nbwQGFQHS9zFGzzdQGXwuUCU6Ppb\",\"code\":\"3200\",\"element\":null}],\"type\":\"AUTHENTICATION\"},\"report\":null,\"queryResponse\":null,\"batchItemResponse\":[],\"attachableResponse\":[],\"syncErrorResponse\":null,\"requestId\":null,\"time\":1649592867672,\"status\":null,\"cdcresponse\":[]}",
+    "json": {
+      "warnings": null,
+      "intuitObject": null,
+      "fault": {
+        "error": [
+          {
+            "message": "message=AuthenticationFailed; errorCode=003200; statusCode=401",
+            "detail": "Token expired: AB01649580932UTNUCpOX1nbwQGFQHS9zFGzzdQGXwuUCU6Ppb",
+            "code": "3200",
+            "element": null
+          }
+        ],
+        "type": "AUTHENTICATION"
+      },
+      "report": null,
+      "queryResponse": null,
+      "batchItemResponse": [],
+      "attachableResponse": [],
+      "syncErrorResponse": null,
+      "requestId": null,
+      "time": 1649592867672,
+      "status": null,
+      "cdcresponse": []
+    },
+    "intuit_tid": "1-6252ca23-32a6860809b4436d1a68141c"
+  },
+  "originalMessage": "Response has an Error",
+  "error": "Unauthorized",
+  "error_description": "Unauthorized",
+  "intuit_tid": "1-6252ca23-32a6860809b4436d1a68141c"
+}
+2022-04-10T12:22:50.228Z info: The Authorize Uri is :https://appcenter.intuit.com/connect/oauth2?client_id=ABqDWvwmacSPpOhqicB3Rad6LmgH7IB8mZGnenGltkStSMGKaK&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fcallback&response_type=code&scope=com.intuit.quickbooks.accounting%20openid&state=%7B%22action%22%3A%22create_customer%22%2C%22id%22%3A10%7D
+2022-04-10T12:23:28.505Z info: Create Token response is : {
+  "token": {
+    "realmId": "4620816365201067600",
+    "token_type": "bearer",
+    "access_token": "eyJlbmMiOiJBMTI4Q0JDLUhTMjU2IiwiYWxnIjoiZGlyIn0..01_kK70iZp9k5BiqTyP3wg.drxcQfkeBlRufyDD1VXR9yH6U3DNB6kXoCVo6J7XC0Z6EVPiexPmHcjq4C8EKLByzJHm7TQs4sAqyx9KZMgl6vNztmjuA1QL7Rn9njVc7qkpdf_zMA6agpZCw9_MWBRRtBkJXTgp802t93atkcpYiKln4rwZdkb4vKtp3jD0leYbdmhPvmXHRFMfJdobl8a4I4f734Og0HO_huzyOfsG44Df6PeISJcrJLpOYhr7clF5pO_Fg6VbCimczQCM4FeVR2ewSMFPF7HRDDmqKQ6b_J3OyEa4HvFNFDdmtJCcdpro1Wx7EoVTD-ar8KkPIa4HN6qMHeBLYnY23Z8f8OUydTdX0COVTsFyhILyrHLH7k43VAP7vUwhN4Yt_ocDu7Br48IFQA6vuMPIccDOF6iB4k7Q_XyiYqGNXEA9uTFTmGuE7PNocatya5OxB6F1_6a415iRKb_85BDQoXHh0g_6_WffFnGarpiIFKBd6YCO4jEbIuml2OVYeND-Ik9MxPSajlQV5ZgzpsK5gZSuDr8KQsQpHEQdjX5NugzXNuPWbN-9SgUAVOzXeUS18yEfqB7W0zJegXxEVc-NXVaCMXeND2TxzZAc55M8IPuulDw0XLepRcx-uS19ZImMAszwOuQ0M4qH4dQTevodZcfzI7nEDpt6NX2Kd08ZWHWftLaya0iKhLYe6qSt7low9ETlZkEhYBcYeb4N8pRcJWg4XOVn8pKNs54b7tmngKkm4e6xAaWos3g2wx-yBly1aeyXTQ-OflLTMdXLcfXCdafmwZbEN5nBfI3_n3dgwyGhkIjfhUnoepWE6JkXj3MVN9nGlliQb4agVdo0NvePHVljSjggYA._3rHmi18seV1XSaekBdDpg",
+    "refresh_token": "AB11658319808ViQaKwo4p6AR6NuH5nryRPG4aY5qcyJ0oIP42",
+    "expires_in": 3600,
+    "x_refresh_token_expires_in": 8726400,
+    "id_token": "eyJraWQiOiJPUElDUFJEMDkxODIwMTQiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJmNzhlYzJiMC1jZGFiLTQzMTktYTAzNi1jZTJkYTFkMmU5NjQiLCJhdWQiOlsiQUJxRFd2d21hY1NQcE9ocWljQjNSYWQ2TG1nSDdJQjhtWkduZW5HbHRrU3RTTUdLYUsiXSwicmVhbG1pZCI6IjQ2MjA4MTYzNjUyMDEwNjc2MDAiLCJhdXRoX3RpbWUiOjE2NDk1OTMzOTAsImlzcyI6Imh0dHBzOlwvXC9vYXV0aC5wbGF0Zm9ybS5pbnR1aXQuY29tXC9vcFwvdjEiLCJleHAiOjE2NDk1OTcwMDgsImlhdCI6MTY0OTU5MzQwOH0.R-1glEOnbCCpbs845GZAf2TJth5qg6STRc_TBpicYcfxaoM5AXdmIRFJqG0sITJz8D77dpgBV_bpkEtuF6FDRGY6SlEtiK6X5VbmRW1YINo003IZcpRJMutIqwH6u2WDBHRPNRcs6LU65-Gx_TS0L0KdyRsFl1xh1UORNQUZsVw",
+    "latency": 60000,
+    "createdAt": 1649593408505,
+    "state": "{\"action\":\"create_customer\",\"id\":10}"
+  },
+  "response": {
+    "url": "https://oauth.platform.intuit.com/oauth2/v1/tokens/bearer",
+    "headers": {
+      "date": "Sun, 10 Apr 2022 12:23:28 GMT",
+      "content-type": "application/json;charset=utf-8",
+      "content-length": "1684",
+      "connection": "close",
+      "intuit_tid": "1-6252cc40-7cd3d53971d9e09545d795a7",
+      "x-spanid": "1c42924e-1793-4973-a1e6-11d1bd4be0cf",
+      "x-amzn-trace-id": "Root=1-6252cc40-7cd3d53971d9e09545d795a7",
+      "x-content-type-options": "nosniff",
+      "server": "envoy",
+      "cache-control": "no-cache, no-store",
+      "pragma": "no-cache",
+      "x-frame-options": "SAMEORIGIN",
+      "x-xss-protection": "1; mode=block",
+      "x-envoy-upstream-service-time": "64",
+      "strict-transport-security": "max-age=31536000"
+    },
+    "body": "{\"x_refresh_token_expires_in\":8726400,\"id_token\":\"eyJraWQiOiJPUElDUFJEMDkxODIwMTQiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJmNzhlYzJiMC1jZGFiLTQzMTktYTAzNi1jZTJkYTFkMmU5NjQiLCJhdWQiOlsiQUJxRFd2d21hY1NQcE9ocWljQjNSYWQ2TG1nSDdJQjhtWkduZW5HbHRrU3RTTUdLYUsiXSwicmVhbG1pZCI6IjQ2MjA4MTYzNjUyMDEwNjc2MDAiLCJhdXRoX3RpbWUiOjE2NDk1OTMzOTAsImlzcyI6Imh0dHBzOlwvXC9vYXV0aC5wbGF0Zm9ybS5pbnR1aXQuY29tXC9vcFwvdjEiLCJleHAiOjE2NDk1OTcwMDgsImlhdCI6MTY0OTU5MzQwOH0.R-1glEOnbCCpbs845GZAf2TJth5qg6STRc_TBpicYcfxaoM5AXdmIRFJqG0sITJz8D77dpgBV_bpkEtuF6FDRGY6SlEtiK6X5VbmRW1YINo003IZcpRJMutIqwH6u2WDBHRPNRcs6LU65-Gx_TS0L0KdyRsFl1xh1UORNQUZsVw\",\"refresh_token\":\"AB11658319808ViQaKwo4p6AR6NuH5nryRPG4aY5qcyJ0oIP42\",\"access_token\":\"eyJlbmMiOiJBMTI4Q0JDLUhTMjU2IiwiYWxnIjoiZGlyIn0..01_kK70iZp9k5BiqTyP3wg.drxcQfkeBlRufyDD1VXR9yH6U3DNB6kXoCVo6J7XC0Z6EVPiexPmHcjq4C8EKLByzJHm7TQs4sAqyx9KZMgl6vNztmjuA1QL7Rn9njVc7qkpdf_zMA6agpZCw9_MWBRRtBkJXTgp802t93atkcpYiKln4rwZdkb4vKtp3jD0leYbdmhPvmXHRFMfJdobl8a4I4f734Og0HO_huzyOfsG44Df6PeISJcrJLpOYhr7clF5pO_Fg6VbCimczQCM4FeVR2ewSMFPF7HRDDmqKQ6b_J3OyEa4HvFNFDdmtJCcdpro1Wx7EoVTD-ar8KkPIa4HN6qMHeBLYnY23Z8f8OUydTdX0COVTsFyhILyrHLH7k43VAP7vUwhN4Yt_ocDu7Br48IFQA6vuMPIccDOF6iB4k7Q_XyiYqGNXEA9uTFTmGuE7PNocatya5OxB6F1_6a415iRKb_85BDQoXHh0g_6_WffFnGarpiIFKBd6YCO4jEbIuml2OVYeND-Ik9MxPSajlQV5ZgzpsK5gZSuDr8KQsQpHEQdjX5NugzXNuPWbN-9SgUAVOzXeUS18yEfqB7W0zJegXxEVc-NXVaCMXeND2TxzZAc55M8IPuulDw0XLepRcx-uS19ZImMAszwOuQ0M4qH4dQTevodZcfzI7nEDpt6NX2Kd08ZWHWftLaya0iKhLYe6qSt7low9ETlZkEhYBcYeb4N8pRcJWg4XOVn8pKNs54b7tmngKkm4e6xAaWos3g2wx-yBly1aeyXTQ-OflLTMdXLcfXCdafmwZbEN5nBfI3_n3dgwyGhkIjfhUnoepWE6JkXj3MVN9nGlliQb4agVdo0NvePHVljSjggYA._3rHmi18seV1XSaekBdDpg\",\"token_type\":\"bearer\",\"expires_in\":3600}",
+    "status": 200,
+    "statusText": "OK"
+  },
+  "body": "{\"x_refresh_token_expires_in\":8726400,\"id_token\":\"eyJraWQiOiJPUElDUFJEMDkxODIwMTQiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJmNzhlYzJiMC1jZGFiLTQzMTktYTAzNi1jZTJkYTFkMmU5NjQiLCJhdWQiOlsiQUJxRFd2d21hY1NQcE9ocWljQjNSYWQ2TG1nSDdJQjhtWkduZW5HbHRrU3RTTUdLYUsiXSwicmVhbG1pZCI6IjQ2MjA4MTYzNjUyMDEwNjc2MDAiLCJhdXRoX3RpbWUiOjE2NDk1OTMzOTAsImlzcyI6Imh0dHBzOlwvXC9vYXV0aC5wbGF0Zm9ybS5pbnR1aXQuY29tXC9vcFwvdjEiLCJleHAiOjE2NDk1OTcwMDgsImlhdCI6MTY0OTU5MzQwOH0.R-1glEOnbCCpbs845GZAf2TJth5qg6STRc_TBpicYcfxaoM5AXdmIRFJqG0sITJz8D77dpgBV_bpkEtuF6FDRGY6SlEtiK6X5VbmRW1YINo003IZcpRJMutIqwH6u2WDBHRPNRcs6LU65-Gx_TS0L0KdyRsFl1xh1UORNQUZsVw\",\"refresh_token\":\"AB11658319808ViQaKwo4p6AR6NuH5nryRPG4aY5qcyJ0oIP42\",\"access_token\":\"eyJlbmMiOiJBMTI4Q0JDLUhTMjU2IiwiYWxnIjoiZGlyIn0..01_kK70iZp9k5BiqTyP3wg.drxcQfkeBlRufyDD1VXR9yH6U3DNB6kXoCVo6J7XC0Z6EVPiexPmHcjq4C8EKLByzJHm7TQs4sAqyx9KZMgl6vNztmjuA1QL7Rn9njVc7qkpdf_zMA6agpZCw9_MWBRRtBkJXTgp802t93atkcpYiKln4rwZdkb4vKtp3jD0leYbdmhPvmXHRFMfJdobl8a4I4f734Og0HO_huzyOfsG44Df6PeISJcrJLpOYhr7clF5pO_Fg6VbCimczQCM4FeVR2ewSMFPF7HRDDmqKQ6b_J3OyEa4HvFNFDdmtJCcdpro1Wx7EoVTD-ar8KkPIa4HN6qMHeBLYnY23Z8f8OUydTdX0COVTsFyhILyrHLH7k43VAP7vUwhN4Yt_ocDu7Br48IFQA6vuMPIccDOF6iB4k7Q_XyiYqGNXEA9uTFTmGuE7PNocatya5OxB6F1_6a415iRKb_85BDQoXHh0g_6_WffFnGarpiIFKBd6YCO4jEbIuml2OVYeND-Ik9MxPSajlQV5ZgzpsK5gZSuDr8KQsQpHEQdjX5NugzXNuPWbN-9SgUAVOzXeUS18yEfqB7W0zJegXxEVc-NXVaCMXeND2TxzZAc55M8IPuulDw0XLepRcx-uS19ZImMAszwOuQ0M4qH4dQTevodZcfzI7nEDpt6NX2Kd08ZWHWftLaya0iKhLYe6qSt7low9ETlZkEhYBcYeb4N8pRcJWg4XOVn8pKNs54b7tmngKkm4e6xAaWos3g2wx-yBly1aeyXTQ-OflLTMdXLcfXCdafmwZbEN5nBfI3_n3dgwyGhkIjfhUnoepWE6JkXj3MVN9nGlliQb4agVdo0NvePHVljSjggYA._3rHmi18seV1XSaekBdDpg\",\"token_type\":\"bearer\",\"expires_in\":3600}",
+  "json": {
+    "x_refresh_token_expires_in": 8726400,
+    "id_token": "eyJraWQiOiJPUElDUFJEMDkxODIwMTQiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJmNzhlYzJiMC1jZGFiLTQzMTktYTAzNi1jZTJkYTFkMmU5NjQiLCJhdWQiOlsiQUJxRFd2d21hY1NQcE9ocWljQjNSYWQ2TG1nSDdJQjhtWkduZW5HbHRrU3RTTUdLYUsiXSwicmVhbG1pZCI6IjQ2MjA4MTYzNjUyMDEwNjc2MDAiLCJhdXRoX3RpbWUiOjE2NDk1OTMzOTAsImlzcyI6Imh0dHBzOlwvXC9vYXV0aC5wbGF0Zm9ybS5pbnR1aXQuY29tXC9vcFwvdjEiLCJleHAiOjE2NDk1OTcwMDgsImlhdCI6MTY0OTU5MzQwOH0.R-1glEOnbCCpbs845GZAf2TJth5qg6STRc_TBpicYcfxaoM5AXdmIRFJqG0sITJz8D77dpgBV_bpkEtuF6FDRGY6SlEtiK6X5VbmRW1YINo003IZcpRJMutIqwH6u2WDBHRPNRcs6LU65-Gx_TS0L0KdyRsFl1xh1UORNQUZsVw",
+    "refresh_token": "AB11658319808ViQaKwo4p6AR6NuH5nryRPG4aY5qcyJ0oIP42",
+    "access_token": "eyJlbmMiOiJBMTI4Q0JDLUhTMjU2IiwiYWxnIjoiZGlyIn0..01_kK70iZp9k5BiqTyP3wg.drxcQfkeBlRufyDD1VXR9yH6U3DNB6kXoCVo6J7XC0Z6EVPiexPmHcjq4C8EKLByzJHm7TQs4sAqyx9KZMgl6vNztmjuA1QL7Rn9njVc7qkpdf_zMA6agpZCw9_MWBRRtBkJXTgp802t93atkcpYiKln4rwZdkb4vKtp3jD0leYbdmhPvmXHRFMfJdobl8a4I4f734Og0HO_huzyOfsG44Df6PeISJcrJLpOYhr7clF5pO_Fg6VbCimczQCM4FeVR2ewSMFPF7HRDDmqKQ6b_J3OyEa4HvFNFDdmtJCcdpro1Wx7EoVTD-ar8KkPIa4HN6qMHeBLYnY23Z8f8OUydTdX0COVTsFyhILyrHLH7k43VAP7vUwhN4Yt_ocDu7Br48IFQA6vuMPIccDOF6iB4k7Q_XyiYqGNXEA9uTFTmGuE7PNocatya5OxB6F1_6a415iRKb_85BDQoXHh0g_6_WffFnGarpiIFKBd6YCO4jEbIuml2OVYeND-Ik9MxPSajlQV5ZgzpsK5gZSuDr8KQsQpHEQdjX5NugzXNuPWbN-9SgUAVOzXeUS18yEfqB7W0zJegXxEVc-NXVaCMXeND2TxzZAc55M8IPuulDw0XLepRcx-uS19ZImMAszwOuQ0M4qH4dQTevodZcfzI7nEDpt6NX2Kd08ZWHWftLaya0iKhLYe6qSt7low9ETlZkEhYBcYeb4N8pRcJWg4XOVn8pKNs54b7tmngKkm4e6xAaWos3g2wx-yBly1aeyXTQ-OflLTMdXLcfXCdafmwZbEN5nBfI3_n3dgwyGhkIjfhUnoepWE6JkXj3MVN9nGlliQb4agVdo0NvePHVljSjggYA._3rHmi18seV1XSaekBdDpg",
+    "token_type": "bearer",
+    "expires_in": 3600
+  },
+  "intuit_tid": "1-6252cc40-7cd3d53971d9e09545d795a7"
+}
+2022-04-10T12:23:30.793Z info: The makeAPICall () response is : {
+  "token": {
+    "realmId": "4620816365201067600",
+    "token_type": "bearer",
+    "access_token": "eyJlbmMiOiJBMTI4Q0JDLUhTMjU2IiwiYWxnIjoiZGlyIn0..01_kK70iZp9k5BiqTyP3wg.drxcQfkeBlRufyDD1VXR9yH6U3DNB6kXoCVo6J7XC0Z6EVPiexPmHcjq4C8EKLByzJHm7TQs4sAqyx9KZMgl6vNztmjuA1QL7Rn9njVc7qkpdf_zMA6agpZCw9_MWBRRtBkJXTgp802t93atkcpYiKln4rwZdkb4vKtp3jD0leYbdmhPvmXHRFMfJdobl8a4I4f734Og0HO_huzyOfsG44Df6PeISJcrJLpOYhr7clF5pO_Fg6VbCimczQCM4FeVR2ewSMFPF7HRDDmqKQ6b_J3OyEa4HvFNFDdmtJCcdpro1Wx7EoVTD-ar8KkPIa4HN6qMHeBLYnY23Z8f8OUydTdX0COVTsFyhILyrHLH7k43VAP7vUwhN4Yt_ocDu7Br48IFQA6vuMPIccDOF6iB4k7Q_XyiYqGNXEA9uTFTmGuE7PNocatya5OxB6F1_6a415iRKb_85BDQoXHh0g_6_WffFnGarpiIFKBd6YCO4jEbIuml2OVYeND-Ik9MxPSajlQV5ZgzpsK5gZSuDr8KQsQpHEQdjX5NugzXNuPWbN-9SgUAVOzXeUS18yEfqB7W0zJegXxEVc-NXVaCMXeND2TxzZAc55M8IPuulDw0XLepRcx-uS19ZImMAszwOuQ0M4qH4dQTevodZcfzI7nEDpt6NX2Kd08ZWHWftLaya0iKhLYe6qSt7low9ETlZkEhYBcYeb4N8pRcJWg4XOVn8pKNs54b7tmngKkm4e6xAaWos3g2wx-yBly1aeyXTQ-OflLTMdXLcfXCdafmwZbEN5nBfI3_n3dgwyGhkIjfhUnoepWE6JkXj3MVN9nGlliQb4agVdo0NvePHVljSjggYA._3rHmi18seV1XSaekBdDpg",
+    "refresh_token": "AB11658319808ViQaKwo4p6AR6NuH5nryRPG4aY5qcyJ0oIP42",
+    "expires_in": 3600,
+    "x_refresh_token_expires_in": 8726400,
+    "id_token": "eyJraWQiOiJPUElDUFJEMDkxODIwMTQiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJmNzhlYzJiMC1jZGFiLTQzMTktYTAzNi1jZTJkYTFkMmU5NjQiLCJhdWQiOlsiQUJxRFd2d21hY1NQcE9ocWljQjNSYWQ2TG1nSDdJQjhtWkduZW5HbHRrU3RTTUdLYUsiXSwicmVhbG1pZCI6IjQ2MjA4MTYzNjUyMDEwNjc2MDAiLCJhdXRoX3RpbWUiOjE2NDk1OTMzOTAsImlzcyI6Imh0dHBzOlwvXC9vYXV0aC5wbGF0Zm9ybS5pbnR1aXQuY29tXC9vcFwvdjEiLCJleHAiOjE2NDk1OTcwMDgsImlhdCI6MTY0OTU5MzQwOH0.R-1glEOnbCCpbs845GZAf2TJth5qg6STRc_TBpicYcfxaoM5AXdmIRFJqG0sITJz8D77dpgBV_bpkEtuF6FDRGY6SlEtiK6X5VbmRW1YINo003IZcpRJMutIqwH6u2WDBHRPNRcs6LU65-Gx_TS0L0KdyRsFl1xh1UORNQUZsVw",
+    "latency": 60000,
+    "createdAt": 1649593408505,
+    "state": "{\"action\":\"create_customer\",\"id\":10}"
+  },
+  "response": {
+    "url": "https://sandbox-quickbooks.api.intuit.com/v3/company/4620816365201067600/customer?minorversion=63",
+    "headers": {
+      "date": "Sun, 10 Apr 2022 12:23:30 GMT",
+      "content-type": "application/json;charset=utf-8",
+      "transfer-encoding": "chunked",
+      "connection": "close",
+      "intuit_tid": "1-6252cc42-0d6cf206079266b34b624576",
+      "x-spanid": "7263cc6a-9e74-4641-b74b-c9d8b1f0b1d7",
+      "x-amzn-trace-id": "Root=1-6252cc42-0d6cf206079266b34b624576",
+      "x-content-type-options": "nosniff",
+      "x-xss-protection": "1; mode=block",
+      "qbo-version": "1978.180",
+      "service-time": "total=470, db=139",
+      "expires": "0",
+      "content-encoding": "gzip",
+      "cache-control": "max-age=0, no-cache, no-store, must-revalidate, private",
+      "x-envoy-upstream-service-time": "507",
+      "strict-transport-security": "max-age=31536000",
+      "server": "envoy"
+    },
+    "body": "{\"Customer\":{\"Taxable\":true,\"BillAddr\":{\"Id\":\"107\",\"Line1\":\"1234 Street\",\"City\":\"Dallas\",\"Country\":\"USA\",\"CountrySubDivisionCode\":\"LV\",\"PostalCode\":\"76262\"},\"ShipAddr\":{\"Id\":\"108\",\"Line1\":\"1234 Street\",\"City\":\"Dallas\",\"Country\":\"USA\",\"CountrySubDivisionCode\":\"LV\",\"PostalCode\":\"76262\"},\"Job\":false,\"BillWithParent\":false,\"Balance\":0,\"BalanceWithJobs\":0,\"CurrencyRef\":{\"value\":\"USD\",\"name\":\"United States Dollar\"},\"PreferredDeliveryMethod\":\"Print\",\"IsProject\":false,\"domain\":\"QBO\",\"sparse\":false,\"Id\":\"66\",\"SyncToken\":\"0\",\"MetaData\":{\"CreateTime\":\"2022-04-10T05:23:30-07:00\",\"LastUpdatedTime\":\"2022-04-10T05:23:30-07:00\"},\"GivenName\":\"David\",\"FamilyName\":\"Lam\",\"FullyQualifiedName\":\"My Law Firm8 - Dallas, LV\",\"CompanyName\":\"My Law Firm8\",\"DisplayName\":\"My Law Firm8 - Dallas, LV\",\"PrintOnCheckName\":\"My Law Firm8\",\"Active\":true,\"PrimaryPhone\":{\"FreeFormNumber\":\"15552224444\"},\"PrimaryEmailAddr\":{\"Address\":\"test8@testemail.com\"},\"DefaultTaxCodeRef\":{\"value\":\"2\"}},\"time\":\"2022-04-10T05:23:30.364-07:00\"}",
+    "status": 200,
+    "statusText": "OK"
+  },
+  "body": "{\"Customer\":{\"Taxable\":true,\"BillAddr\":{\"Id\":\"107\",\"Line1\":\"1234 Street\",\"City\":\"Dallas\",\"Country\":\"USA\",\"CountrySubDivisionCode\":\"LV\",\"PostalCode\":\"76262\"},\"ShipAddr\":{\"Id\":\"108\",\"Line1\":\"1234 Street\",\"City\":\"Dallas\",\"Country\":\"USA\",\"CountrySubDivisionCode\":\"LV\",\"PostalCode\":\"76262\"},\"Job\":false,\"BillWithParent\":false,\"Balance\":0,\"BalanceWithJobs\":0,\"CurrencyRef\":{\"value\":\"USD\",\"name\":\"United States Dollar\"},\"PreferredDeliveryMethod\":\"Print\",\"IsProject\":false,\"domain\":\"QBO\",\"sparse\":false,\"Id\":\"66\",\"SyncToken\":\"0\",\"MetaData\":{\"CreateTime\":\"2022-04-10T05:23:30-07:00\",\"LastUpdatedTime\":\"2022-04-10T05:23:30-07:00\"},\"GivenName\":\"David\",\"FamilyName\":\"Lam\",\"FullyQualifiedName\":\"My Law Firm8 - Dallas, LV\",\"CompanyName\":\"My Law Firm8\",\"DisplayName\":\"My Law Firm8 - Dallas, LV\",\"PrintOnCheckName\":\"My Law Firm8\",\"Active\":true,\"PrimaryPhone\":{\"FreeFormNumber\":\"15552224444\"},\"PrimaryEmailAddr\":{\"Address\":\"test8@testemail.com\"},\"DefaultTaxCodeRef\":{\"value\":\"2\"}},\"time\":\"2022-04-10T05:23:30.364-07:00\"}",
+  "json": {
+    "Customer": {
+      "Taxable": true,
+      "BillAddr": {
+        "Id": "107",
+        "Line1": "1234 Street",
+        "City": "Dallas",
+        "Country": "USA",
+        "CountrySubDivisionCode": "LV",
+        "PostalCode": "76262"
+      },
+      "ShipAddr": {
+        "Id": "108",
+        "Line1": "1234 Street",
+        "City": "Dallas",
+        "Country": "USA",
+        "CountrySubDivisionCode": "LV",
+        "PostalCode": "76262"
+      },
+      "Job": false,
+      "BillWithParent": false,
+      "Balance": 0,
+      "BalanceWithJobs": 0,
+      "CurrencyRef": {
+        "value": "USD",
+        "name": "United States Dollar"
+      },
+      "PreferredDeliveryMethod": "Print",
+      "IsProject": false,
+      "domain": "QBO",
+      "sparse": false,
+      "Id": "66",
+      "SyncToken": "0",
+      "MetaData": {
+        "CreateTime": "2022-04-10T05:23:30-07:00",
+        "LastUpdatedTime": "2022-04-10T05:23:30-07:00"
+      },
+      "GivenName": "David",
+      "FamilyName": "Lam",
+      "FullyQualifiedName": "My Law Firm8 - Dallas, LV",
+      "CompanyName": "My Law Firm8",
+      "DisplayName": "My Law Firm8 - Dallas, LV",
+      "PrintOnCheckName": "My Law Firm8",
+      "Active": true,
+      "PrimaryPhone": {
+        "FreeFormNumber": "15552224444"
+      },
+      "PrimaryEmailAddr": {
+        "Address": "test8@testemail.com"
+      },
+      "DefaultTaxCodeRef": {
+        "value": "2"
+      }
+    },
+    "time": "2022-04-10T05:23:30.364-07:00"
+  },
+  "intuit_tid": "1-6252cc42-0d6cf206079266b34b624576"
+}
+2022-04-10T12:40:51.039Z info: The Authorize Uri is :https://appcenter.intuit.com/connect/oauth2?client_id=ABeZA8VYLZaqgXkVmNgKJlNLq3ZX2QEtZGFZGtNrdNwgCgIxel&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fcallback&response_type=code&scope=com.intuit.quickbooks.accounting%20openid&state=%7B%22action%22%3A%22create_customer%22%2C%22id%22%3A11%7D
+2022-04-10T12:41:58.454Z info: The Authorize Uri is :https://appcenter.intuit.com/connect/oauth2?client_id=ABeZA8VYLZaqgXkVmNgKJlNLq3ZX2QEtZGFZGtNrdNwgCgIxel&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fcallback&response_type=code&scope=com.intuit.quickbooks.accounting%20openid&state=%7B%22action%22%3A%22create_customer%22%2C%22id%22%3A12%7D
+2022-04-10T12:44:36.015Z info: The Authorize Uri is :https://appcenter.intuit.com/connect/oauth2?client_id=ABqDWvwmacSPpOhqicB3Rad6LmgH7IB8mZGnenGltkStSMGKaK&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fcallback&response_type=code&scope=com.intuit.quickbooks.accounting%20openid&state=%7B%22action%22%3A%22create_customer%22%2C%22id%22%3A13%7D
+2022-04-10T12:45:08.672Z info: Create Token response is : {
+  "token": {
+    "realmId": "4620816365201067600",
+    "token_type": "bearer",
+    "access_token": "eyJlbmMiOiJBMTI4Q0JDLUhTMjU2IiwiYWxnIjoiZGlyIn0..AcDmUYak2Fv3o8mhxpdizQ.8LhJhCjCGVYGcLNtg0KLmgRjYfJcaPWtHfN76ox38HDX4yJrp0ksOugBaqn6Gloliixv0FOxKAgo5VknFP6YRJKKJT6uxdZVs956JjzpDUfJQd7F1sYw1urEh_w_fd3yy_5W1FkD0I3Juc-ZYGBBBJFdaR0Wga3RbFL-28gvcNz8u8kt_wVw_tCQQA5PslP-bEd0smqN70E15qLPt4NoYRBlDpSvCe0TXTY74tjWwtQ4AP_msJWHoA1fMLNxHKXIYmNb0ZtjPQsoZWtRgAtwx3hNuefW_kxBsjkVToJoTnJtuJMJ6KLMPl3rYOpB3r8bNrAVtmbf-cDhIXlt1hMF6h8nPNyFSfxllVT6e67JewhZtqGwHUmFj4bAOakvBs3XIcZhOSw4o60AjLfXRwPq_cyRA42vc1mQEqCtABXg638JLZNejbNGi4e3CLUjmtZoPCY_NBOOWjvyOEwbPvECCp5aQzdYaS3J9sVsobnDP2Ufl8GavhA3TjfNJlXwhuokSiIcJWg032nbZHwGySEltosknirLnenfySbgpGUNdmsXq9MJzhn6jGCVAiSKdDgR_qKfsMf56O33PTj4T2z6CCzqDEGo3KRZJvsTbaGN_Tw3iQoesTB4wnnNAtxf2ocijWdmQ0818rn-QmR5AmkWi_dmTP6mgpFnpYzZcfsr3v5HAlidMeiATXVNLvV4soSW0KG4haqLa7okZpII-TxfGNCuCQJDIqkYFoviWlBJ0qfIagoB_XqvlwQLLchpVAB3otcSS6_zPOduefc45HMdDSA3mylQ8czGvUvEJjFFcTKRnXy0jKpfNIn5FhnkCpNIurCAJH2PjBAVQDEpZKhtTA.sr24sRFwIbvVP7vkVAw1Ag",
+    "refresh_token": "AB11658321108sybWJQ8ifi8aIYG1eNG86klZzgnibKVGI4lDH",
+    "expires_in": 3600,
+    "x_refresh_token_expires_in": 8726400,
+    "id_token": "eyJraWQiOiJPUElDUFJEMDkxODIwMTQiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJmNzhlYzJiMC1jZGFiLTQzMTktYTAzNi1jZTJkYTFkMmU5NjQiLCJhdWQiOlsiQUJxRFd2d21hY1NQcE9ocWljQjNSYWQ2TG1nSDdJQjhtWkduZW5HbHRrU3RTTUdLYUsiXSwicmVhbG1pZCI6IjQ2MjA4MTYzNjUyMDEwNjc2MDAiLCJhdXRoX3RpbWUiOjE2NDk1OTMzOTAsImlzcyI6Imh0dHBzOlwvXC9vYXV0aC5wbGF0Zm9ybS5pbnR1aXQuY29tXC9vcFwvdjEiLCJleHAiOjE2NDk1OTgzMDgsImlhdCI6MTY0OTU5NDcwOH0.G7Asf0wsujA2foDkhCVaQodQLcssjX8wEG0wOqXck3y7XRCLDSe6AAWauO91balwPA95-8oXCtP3LOj4LnO6NLjdmcqKzjQMHmPoSIvt-el1GQZxjmiLVVoL8yo7sSW8pKJcjZUdZ7ruz2POMuD2yEi6n86bQOQsEW3tlCsXE_s",
+    "latency": 60000,
+    "createdAt": 1649594708671,
+    "state": "{\"action\":\"create_customer\",\"id\":13}"
+  },
+  "response": {
+    "url": "https://oauth.platform.intuit.com/oauth2/v1/tokens/bearer",
+    "headers": {
+      "date": "Sun, 10 Apr 2022 12:45:08 GMT",
+      "content-type": "application/json;charset=utf-8",
+      "content-length": "1684",
+      "connection": "close",
+      "intuit_tid": "1-6252d154-3c53797f01152d7b437798ec",
+      "x-spanid": "f11fdd23-c690-47d6-ab83-4f3071c0c4bb",
+      "x-amzn-trace-id": "Root=1-6252d154-3c53797f01152d7b437798ec",
+      "x-content-type-options": "nosniff",
+      "server": "envoy",
+      "cache-control": "no-cache, no-store",
+      "pragma": "no-cache",
+      "x-frame-options": "SAMEORIGIN",
+      "x-xss-protection": "1; mode=block",
+      "x-envoy-upstream-service-time": "141",
+      "strict-transport-security": "max-age=31536000"
+    },
+    "body": "{\"x_refresh_token_expires_in\":8726400,\"access_token\":\"eyJlbmMiOiJBMTI4Q0JDLUhTMjU2IiwiYWxnIjoiZGlyIn0..AcDmUYak2Fv3o8mhxpdizQ.8LhJhCjCGVYGcLNtg0KLmgRjYfJcaPWtHfN76ox38HDX4yJrp0ksOugBaqn6Gloliixv0FOxKAgo5VknFP6YRJKKJT6uxdZVs956JjzpDUfJQd7F1sYw1urEh_w_fd3yy_5W1FkD0I3Juc-ZYGBBBJFdaR0Wga3RbFL-28gvcNz8u8kt_wVw_tCQQA5PslP-bEd0smqN70E15qLPt4NoYRBlDpSvCe0TXTY74tjWwtQ4AP_msJWHoA1fMLNxHKXIYmNb0ZtjPQsoZWtRgAtwx3hNuefW_kxBsjkVToJoTnJtuJMJ6KLMPl3rYOpB3r8bNrAVtmbf-cDhIXlt1hMF6h8nPNyFSfxllVT6e67JewhZtqGwHUmFj4bAOakvBs3XIcZhOSw4o60AjLfXRwPq_cyRA42vc1mQEqCtABXg638JLZNejbNGi4e3CLUjmtZoPCY_NBOOWjvyOEwbPvECCp5aQzdYaS3J9sVsobnDP2Ufl8GavhA3TjfNJlXwhuokSiIcJWg032nbZHwGySEltosknirLnenfySbgpGUNdmsXq9MJzhn6jGCVAiSKdDgR_qKfsMf56O33PTj4T2z6CCzqDEGo3KRZJvsTbaGN_Tw3iQoesTB4wnnNAtxf2ocijWdmQ0818rn-QmR5AmkWi_dmTP6mgpFnpYzZcfsr3v5HAlidMeiATXVNLvV4soSW0KG4haqLa7okZpII-TxfGNCuCQJDIqkYFoviWlBJ0qfIagoB_XqvlwQLLchpVAB3otcSS6_zPOduefc45HMdDSA3mylQ8czGvUvEJjFFcTKRnXy0jKpfNIn5FhnkCpNIurCAJH2PjBAVQDEpZKhtTA.sr24sRFwIbvVP7vkVAw1Ag\",\"refresh_token\":\"AB11658321108sybWJQ8ifi8aIYG1eNG86klZzgnibKVGI4lDH\",\"id_token\":\"eyJraWQiOiJPUElDUFJEMDkxODIwMTQiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJmNzhlYzJiMC1jZGFiLTQzMTktYTAzNi1jZTJkYTFkMmU5NjQiLCJhdWQiOlsiQUJxRFd2d21hY1NQcE9ocWljQjNSYWQ2TG1nSDdJQjhtWkduZW5HbHRrU3RTTUdLYUsiXSwicmVhbG1pZCI6IjQ2MjA4MTYzNjUyMDEwNjc2MDAiLCJhdXRoX3RpbWUiOjE2NDk1OTMzOTAsImlzcyI6Imh0dHBzOlwvXC9vYXV0aC5wbGF0Zm9ybS5pbnR1aXQuY29tXC9vcFwvdjEiLCJleHAiOjE2NDk1OTgzMDgsImlhdCI6MTY0OTU5NDcwOH0.G7Asf0wsujA2foDkhCVaQodQLcssjX8wEG0wOqXck3y7XRCLDSe6AAWauO91balwPA95-8oXCtP3LOj4LnO6NLjdmcqKzjQMHmPoSIvt-el1GQZxjmiLVVoL8yo7sSW8pKJcjZUdZ7ruz2POMuD2yEi6n86bQOQsEW3tlCsXE_s\",\"token_type\":\"bearer\",\"expires_in\":3600}",
+    "status": 200,
+    "statusText": "OK"
+  },
+  "body": "{\"x_refresh_token_expires_in\":8726400,\"access_token\":\"eyJlbmMiOiJBMTI4Q0JDLUhTMjU2IiwiYWxnIjoiZGlyIn0..AcDmUYak2Fv3o8mhxpdizQ.8LhJhCjCGVYGcLNtg0KLmgRjYfJcaPWtHfN76ox38HDX4yJrp0ksOugBaqn6Gloliixv0FOxKAgo5VknFP6YRJKKJT6uxdZVs956JjzpDUfJQd7F1sYw1urEh_w_fd3yy_5W1FkD0I3Juc-ZYGBBBJFdaR0Wga3RbFL-28gvcNz8u8kt_wVw_tCQQA5PslP-bEd0smqN70E15qLPt4NoYRBlDpSvCe0TXTY74tjWwtQ4AP_msJWHoA1fMLNxHKXIYmNb0ZtjPQsoZWtRgAtwx3hNuefW_kxBsjkVToJoTnJtuJMJ6KLMPl3rYOpB3r8bNrAVtmbf-cDhIXlt1hMF6h8nPNyFSfxllVT6e67JewhZtqGwHUmFj4bAOakvBs3XIcZhOSw4o60AjLfXRwPq_cyRA42vc1mQEqCtABXg638JLZNejbNGi4e3CLUjmtZoPCY_NBOOWjvyOEwbPvECCp5aQzdYaS3J9sVsobnDP2Ufl8GavhA3TjfNJlXwhuokSiIcJWg032nbZHwGySEltosknirLnenfySbgpGUNdmsXq9MJzhn6jGCVAiSKdDgR_qKfsMf56O33PTj4T2z6CCzqDEGo3KRZJvsTbaGN_Tw3iQoesTB4wnnNAtxf2ocijWdmQ0818rn-QmR5AmkWi_dmTP6mgpFnpYzZcfsr3v5HAlidMeiATXVNLvV4soSW0KG4haqLa7okZpII-TxfGNCuCQJDIqkYFoviWlBJ0qfIagoB_XqvlwQLLchpVAB3otcSS6_zPOduefc45HMdDSA3mylQ8czGvUvEJjFFcTKRnXy0jKpfNIn5FhnkCpNIurCAJH2PjBAVQDEpZKhtTA.sr24sRFwIbvVP7vkVAw1Ag\",\"refresh_token\":\"AB11658321108sybWJQ8ifi8aIYG1eNG86klZzgnibKVGI4lDH\",\"id_token\":\"eyJraWQiOiJPUElDUFJEMDkxODIwMTQiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJmNzhlYzJiMC1jZGFiLTQzMTktYTAzNi1jZTJkYTFkMmU5NjQiLCJhdWQiOlsiQUJxRFd2d21hY1NQcE9ocWljQjNSYWQ2TG1nSDdJQjhtWkduZW5HbHRrU3RTTUdLYUsiXSwicmVhbG1pZCI6IjQ2MjA4MTYzNjUyMDEwNjc2MDAiLCJhdXRoX3RpbWUiOjE2NDk1OTMzOTAsImlzcyI6Imh0dHBzOlwvXC9vYXV0aC5wbGF0Zm9ybS5pbnR1aXQuY29tXC9vcFwvdjEiLCJleHAiOjE2NDk1OTgzMDgsImlhdCI6MTY0OTU5NDcwOH0.G7Asf0wsujA2foDkhCVaQodQLcssjX8wEG0wOqXck3y7XRCLDSe6AAWauO91balwPA95-8oXCtP3LOj4LnO6NLjdmcqKzjQMHmPoSIvt-el1GQZxjmiLVVoL8yo7sSW8pKJcjZUdZ7ruz2POMuD2yEi6n86bQOQsEW3tlCsXE_s\",\"token_type\":\"bearer\",\"expires_in\":3600}",
+  "json": {
+    "x_refresh_token_expires_in": 8726400,
+    "access_token": "eyJlbmMiOiJBMTI4Q0JDLUhTMjU2IiwiYWxnIjoiZGlyIn0..AcDmUYak2Fv3o8mhxpdizQ.8LhJhCjCGVYGcLNtg0KLmgRjYfJcaPWtHfN76ox38HDX4yJrp0ksOugBaqn6Gloliixv0FOxKAgo5VknFP6YRJKKJT6uxdZVs956JjzpDUfJQd7F1sYw1urEh_w_fd3yy_5W1FkD0I3Juc-ZYGBBBJFdaR0Wga3RbFL-28gvcNz8u8kt_wVw_tCQQA5PslP-bEd0smqN70E15qLPt4NoYRBlDpSvCe0TXTY74tjWwtQ4AP_msJWHoA1fMLNxHKXIYmNb0ZtjPQsoZWtRgAtwx3hNuefW_kxBsjkVToJoTnJtuJMJ6KLMPl3rYOpB3r8bNrAVtmbf-cDhIXlt1hMF6h8nPNyFSfxllVT6e67JewhZtqGwHUmFj4bAOakvBs3XIcZhOSw4o60AjLfXRwPq_cyRA42vc1mQEqCtABXg638JLZNejbNGi4e3CLUjmtZoPCY_NBOOWjvyOEwbPvECCp5aQzdYaS3J9sVsobnDP2Ufl8GavhA3TjfNJlXwhuokSiIcJWg032nbZHwGySEltosknirLnenfySbgpGUNdmsXq9MJzhn6jGCVAiSKdDgR_qKfsMf56O33PTj4T2z6CCzqDEGo3KRZJvsTbaGN_Tw3iQoesTB4wnnNAtxf2ocijWdmQ0818rn-QmR5AmkWi_dmTP6mgpFnpYzZcfsr3v5HAlidMeiATXVNLvV4soSW0KG4haqLa7okZpII-TxfGNCuCQJDIqkYFoviWlBJ0qfIagoB_XqvlwQLLchpVAB3otcSS6_zPOduefc45HMdDSA3mylQ8czGvUvEJjFFcTKRnXy0jKpfNIn5FhnkCpNIurCAJH2PjBAVQDEpZKhtTA.sr24sRFwIbvVP7vkVAw1Ag",
+    "refresh_token": "AB11658321108sybWJQ8ifi8aIYG1eNG86klZzgnibKVGI4lDH",
+    "id_token": "eyJraWQiOiJPUElDUFJEMDkxODIwMTQiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJmNzhlYzJiMC1jZGFiLTQzMTktYTAzNi1jZTJkYTFkMmU5NjQiLCJhdWQiOlsiQUJxRFd2d21hY1NQcE9ocWljQjNSYWQ2TG1nSDdJQjhtWkduZW5HbHRrU3RTTUdLYUsiXSwicmVhbG1pZCI6IjQ2MjA4MTYzNjUyMDEwNjc2MDAiLCJhdXRoX3RpbWUiOjE2NDk1OTMzOTAsImlzcyI6Imh0dHBzOlwvXC9vYXV0aC5wbGF0Zm9ybS5pbnR1aXQuY29tXC9vcFwvdjEiLCJleHAiOjE2NDk1OTgzMDgsImlhdCI6MTY0OTU5NDcwOH0.G7Asf0wsujA2foDkhCVaQodQLcssjX8wEG0wOqXck3y7XRCLDSe6AAWauO91balwPA95-8oXCtP3LOj4LnO6NLjdmcqKzjQMHmPoSIvt-el1GQZxjmiLVVoL8yo7sSW8pKJcjZUdZ7ruz2POMuD2yEi6n86bQOQsEW3tlCsXE_s",
+    "token_type": "bearer",
+    "expires_in": 3600
+  },
+  "intuit_tid": "1-6252d154-3c53797f01152d7b437798ec"
+}
+2022-04-10T12:45:10.810Z info: The makeAPICall () response is : {
+  "token": {
+    "realmId": "4620816365201067600",
+    "token_type": "bearer",
+    "access_token": "eyJlbmMiOiJBMTI4Q0JDLUhTMjU2IiwiYWxnIjoiZGlyIn0..AcDmUYak2Fv3o8mhxpdizQ.8LhJhCjCGVYGcLNtg0KLmgRjYfJcaPWtHfN76ox38HDX4yJrp0ksOugBaqn6Gloliixv0FOxKAgo5VknFP6YRJKKJT6uxdZVs956JjzpDUfJQd7F1sYw1urEh_w_fd3yy_5W1FkD0I3Juc-ZYGBBBJFdaR0Wga3RbFL-28gvcNz8u8kt_wVw_tCQQA5PslP-bEd0smqN70E15qLPt4NoYRBlDpSvCe0TXTY74tjWwtQ4AP_msJWHoA1fMLNxHKXIYmNb0ZtjPQsoZWtRgAtwx3hNuefW_kxBsjkVToJoTnJtuJMJ6KLMPl3rYOpB3r8bNrAVtmbf-cDhIXlt1hMF6h8nPNyFSfxllVT6e67JewhZtqGwHUmFj4bAOakvBs3XIcZhOSw4o60AjLfXRwPq_cyRA42vc1mQEqCtABXg638JLZNejbNGi4e3CLUjmtZoPCY_NBOOWjvyOEwbPvECCp5aQzdYaS3J9sVsobnDP2Ufl8GavhA3TjfNJlXwhuokSiIcJWg032nbZHwGySEltosknirLnenfySbgpGUNdmsXq9MJzhn6jGCVAiSKdDgR_qKfsMf56O33PTj4T2z6CCzqDEGo3KRZJvsTbaGN_Tw3iQoesTB4wnnNAtxf2ocijWdmQ0818rn-QmR5AmkWi_dmTP6mgpFnpYzZcfsr3v5HAlidMeiATXVNLvV4soSW0KG4haqLa7okZpII-TxfGNCuCQJDIqkYFoviWlBJ0qfIagoB_XqvlwQLLchpVAB3otcSS6_zPOduefc45HMdDSA3mylQ8czGvUvEJjFFcTKRnXy0jKpfNIn5FhnkCpNIurCAJH2PjBAVQDEpZKhtTA.sr24sRFwIbvVP7vkVAw1Ag",
+    "refresh_token": "AB11658321108sybWJQ8ifi8aIYG1eNG86klZzgnibKVGI4lDH",
+    "expires_in": 3600,
+    "x_refresh_token_expires_in": 8726400,
+    "id_token": "eyJraWQiOiJPUElDUFJEMDkxODIwMTQiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJmNzhlYzJiMC1jZGFiLTQzMTktYTAzNi1jZTJkYTFkMmU5NjQiLCJhdWQiOlsiQUJxRFd2d21hY1NQcE9ocWljQjNSYWQ2TG1nSDdJQjhtWkduZW5HbHRrU3RTTUdLYUsiXSwicmVhbG1pZCI6IjQ2MjA4MTYzNjUyMDEwNjc2MDAiLCJhdXRoX3RpbWUiOjE2NDk1OTMzOTAsImlzcyI6Imh0dHBzOlwvXC9vYXV0aC5wbGF0Zm9ybS5pbnR1aXQuY29tXC9vcFwvdjEiLCJleHAiOjE2NDk1OTgzMDgsImlhdCI6MTY0OTU5NDcwOH0.G7Asf0wsujA2foDkhCVaQodQLcssjX8wEG0wOqXck3y7XRCLDSe6AAWauO91balwPA95-8oXCtP3LOj4LnO6NLjdmcqKzjQMHmPoSIvt-el1GQZxjmiLVVoL8yo7sSW8pKJcjZUdZ7ruz2POMuD2yEi6n86bQOQsEW3tlCsXE_s",
+    "latency": 60000,
+    "createdAt": 1649594708671,
+    "state": "{\"action\":\"create_customer\",\"id\":13}"
+  },
+  "response": {
+    "url": "https://sandbox-quickbooks.api.intuit.com/v3/company/4620816365201067600/customer?minorversion=63",
+    "headers": {
+      "date": "Sun, 10 Apr 2022 12:45:10 GMT",
+      "content-type": "application/json;charset=utf-8",
+      "transfer-encoding": "chunked",
+      "connection": "close",
+      "intuit_tid": "1-6252d156-3abd5ab72bcdeb7a47b74eab",
+      "x-spanid": "096f8774-7173-4a29-86ae-7a3d011891bd",
+      "x-amzn-trace-id": "Root=1-6252d156-3abd5ab72bcdeb7a47b74eab",
+      "x-content-type-options": "nosniff",
+      "x-xss-protection": "1; mode=block",
+      "qbo-version": "1978.180",
+      "service-time": "total=253, db=97",
+      "expires": "0",
+      "content-encoding": "gzip",
+      "cache-control": "max-age=0, no-cache, no-store, must-revalidate, private",
+      "x-envoy-upstream-service-time": "283",
+      "strict-transport-security": "max-age=31536000",
+      "server": "envoy"
+    },
+    "body": "{\"Customer\":{\"Taxable\":true,\"BillAddr\":{\"Id\":\"109\",\"Line1\":\"1234 Street\",\"City\":\"Dallas\",\"Country\":\"USA\",\"CountrySubDivisionCode\":\"LV\",\"PostalCode\":\"76262\"},\"ShipAddr\":{\"Id\":\"110\",\"Line1\":\"1234 Street\",\"City\":\"Dallas\",\"Country\":\"USA\",\"CountrySubDivisionCode\":\"LV\",\"PostalCode\":\"76262\"},\"Job\":false,\"BillWithParent\":false,\"Balance\":0,\"BalanceWithJobs\":0,\"CurrencyRef\":{\"value\":\"USD\",\"name\":\"United States Dollar\"},\"PreferredDeliveryMethod\":\"Print\",\"IsProject\":false,\"domain\":\"QBO\",\"sparse\":false,\"Id\":\"67\",\"SyncToken\":\"0\",\"MetaData\":{\"CreateTime\":\"2022-04-10T05:45:10-07:00\",\"LastUpdatedTime\":\"2022-04-10T05:45:10-07:00\"},\"GivenName\":\"David\",\"FamilyName\":\"Lam\",\"FullyQualifiedName\":\"My Law Firm1 - Dallas, LV\",\"CompanyName\":\"My Law Firm1\",\"DisplayName\":\"My Law Firm1 - Dallas, LV\",\"PrintOnCheckName\":\"My Law Firm1\",\"Active\":true,\"PrimaryPhone\":{\"FreeFormNumber\":\"15552224444\"},\"PrimaryEmailAddr\":{\"Address\":\"test1@testemail.com\"},\"DefaultTaxCodeRef\":{\"value\":\"2\"}},\"time\":\"2022-04-10T05:45:10.533-07:00\"}",
+    "status": 200,
+    "statusText": "OK"
+  },
+  "body": "{\"Customer\":{\"Taxable\":true,\"BillAddr\":{\"Id\":\"109\",\"Line1\":\"1234 Street\",\"City\":\"Dallas\",\"Country\":\"USA\",\"CountrySubDivisionCode\":\"LV\",\"PostalCode\":\"76262\"},\"ShipAddr\":{\"Id\":\"110\",\"Line1\":\"1234 Street\",\"City\":\"Dallas\",\"Country\":\"USA\",\"CountrySubDivisionCode\":\"LV\",\"PostalCode\":\"76262\"},\"Job\":false,\"BillWithParent\":false,\"Balance\":0,\"BalanceWithJobs\":0,\"CurrencyRef\":{\"value\":\"USD\",\"name\":\"United States Dollar\"},\"PreferredDeliveryMethod\":\"Print\",\"IsProject\":false,\"domain\":\"QBO\",\"sparse\":false,\"Id\":\"67\",\"SyncToken\":\"0\",\"MetaData\":{\"CreateTime\":\"2022-04-10T05:45:10-07:00\",\"LastUpdatedTime\":\"2022-04-10T05:45:10-07:00\"},\"GivenName\":\"David\",\"FamilyName\":\"Lam\",\"FullyQualifiedName\":\"My Law Firm1 - Dallas, LV\",\"CompanyName\":\"My Law Firm1\",\"DisplayName\":\"My Law Firm1 - Dallas, LV\",\"PrintOnCheckName\":\"My Law Firm1\",\"Active\":true,\"PrimaryPhone\":{\"FreeFormNumber\":\"15552224444\"},\"PrimaryEmailAddr\":{\"Address\":\"test1@testemail.com\"},\"DefaultTaxCodeRef\":{\"value\":\"2\"}},\"time\":\"2022-04-10T05:45:10.533-07:00\"}",
+  "json": {
+    "Customer": {
+      "Taxable": true,
+      "BillAddr": {
+        "Id": "109",
+        "Line1": "1234 Street",
+        "City": "Dallas",
+        "Country": "USA",
+        "CountrySubDivisionCode": "LV",
+        "PostalCode": "76262"
+      },
+      "ShipAddr": {
+        "Id": "110",
+        "Line1": "1234 Street",
+        "City": "Dallas",
+        "Country": "USA",
+        "CountrySubDivisionCode": "LV",
+        "PostalCode": "76262"
+      },
+      "Job": false,
+      "BillWithParent": false,
+      "Balance": 0,
+      "BalanceWithJobs": 0,
+      "CurrencyRef": {
+        "value": "USD",
+        "name": "United States Dollar"
+      },
+      "PreferredDeliveryMethod": "Print",
+      "IsProject": false,
+      "domain": "QBO",
+      "sparse": false,
+      "Id": "67",
+      "SyncToken": "0",
+      "MetaData": {
+        "CreateTime": "2022-04-10T05:45:10-07:00",
+        "LastUpdatedTime": "2022-04-10T05:45:10-07:00"
+      },
+      "GivenName": "David",
+      "FamilyName": "Lam",
+      "FullyQualifiedName": "My Law Firm1 - Dallas, LV",
+      "CompanyName": "My Law Firm1",
+      "DisplayName": "My Law Firm1 - Dallas, LV",
+      "PrintOnCheckName": "My Law Firm1",
+      "Active": true,
+      "PrimaryPhone": {
+        "FreeFormNumber": "15552224444"
+      },
+      "PrimaryEmailAddr": {
+        "Address": "test1@testemail.com"
+      },
+      "DefaultTaxCodeRef": {
+        "value": "2"
+      }
+    },
+    "time": "2022-04-10T05:45:10.533-07:00"
+  },
+  "intuit_tid": "1-6252d156-3abd5ab72bcdeb7a47b74eab"
+}
+2022-04-10T13:28:28.260Z info: The Authorize Uri is :https://appcenter.intuit.com/connect/oauth2?client_id=ABqDWvwmacSPpOhqicB3Rad6LmgH7IB8mZGnenGltkStSMGKaK&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fcallback&response_type=code&scope=com.intuit.quickbooks.accounting%20openid&state=%7B%22action%22%3A%22create_customer%22%2C%22id%22%3A14%7D
+2022-04-10T13:29:09.101Z info: Create Token response is : {
+  "token": {
+    "realmId": "4620816365201067600",
+    "token_type": "bearer",
+    "access_token": "eyJlbmMiOiJBMTI4Q0JDLUhTMjU2IiwiYWxnIjoiZGlyIn0..TQEkHjxAZS6MPgt2SUCI7A.lznKp_RiQzYE2wa6wzKX6VzBkjwo1MdUc5w5F9Hpgs9eKWHJ8lpj47L18pIdoqSLyFxCE8ct2V8z5131hn8nU6WdGcyXBccAtXymSqyDtThyYiEdkN-zdJllCmqBM5xxJX5THip_ejLRM1OyCNTvDdzKU4glSuVJEGfPu1XQK6ltT_awI_hHwrWyk3L6sLrZBeTpx9ArYO33kAsdM2IHtxOEuM7dg6B4OP3m4hPdLUgOQ7EMVq2AB8_WXgE-TBuvoVvOJNDnzM9fGFKsqDYTxWKwIiWhskxNmwqwvMiam_x4soEfWJEdvPBFKHRDD6Cr--yaCnQxSHynFMWeo6M-sR_UDRRHRX0eXhQIyo0JCnsveUY4Chdr9LkbrHV1WCqBCvT94rsdkcTwQvbxTXiOD0mdMIAdGHntDQzRl4OY0eCDWtwaRgdKGL3H_NAq2A4jbQkS1fOJXmy90vgeKdJUed-G6c6Z_7JzcM024d0HZkQ2gLdJa-R_lvLU4HtYJliav6u9EN7G3CfQkK9Lgb0c-s6BCoKHaROoKlz0vSUXXRrQ1Brb9YQoyPa_i6xu5e34VEh8ezaXILegE6Xvql5_Fg9r-6DnadhNhV9gD7eFH4pW-Ty6tzZ-JKSCXqimA_cU2Jq1cTnEbKgYaDEOdOWviaWdQAAOyMl4s7jiKdkTxUHOzC3ENuNr1NvU5Rp-nrdXMzcX90Q3jWOKeFNxLOAbHut-5SLuxns-ct-p4iF6XWO7XfbouLDJWNDpQzT7pWJsI8S47ReKMBGmlb1mc2DjS1pZHzIz1X6S2G1F41tk1jzvkMDeC4seUfBhwZ1MXN0qwLaXuakuDsY6SDZLHgFLTA.Jz9HSFj2ZCVQMcYvhz6vOQ",
+    "refresh_token": "AB11658323749HxqDIcsnEoXuJ4jbGLnlUfiCZt1v5fLrqL3rT",
+    "expires_in": 3600,
+    "x_refresh_token_expires_in": 8726400,
+    "id_token": "eyJraWQiOiJPUElDUFJEMDkxODIwMTQiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJmNzhlYzJiMC1jZGFiLTQzMTktYTAzNi1jZTJkYTFkMmU5NjQiLCJhdWQiOlsiQUJxRFd2d21hY1NQcE9ocWljQjNSYWQ2TG1nSDdJQjhtWkduZW5HbHRrU3RTTUdLYUsiXSwicmVhbG1pZCI6IjQ2MjA4MTYzNjUyMDEwNjc2MDAiLCJhdXRoX3RpbWUiOjE2NDk1OTMzOTAsImlzcyI6Imh0dHBzOlwvXC9vYXV0aC5wbGF0Zm9ybS5pbnR1aXQuY29tXC9vcFwvdjEiLCJleHAiOjE2NDk2MDA5NDgsImlhdCI6MTY0OTU5NzM0OH0.gYTiqOPZ5axYtb5t4HKz7RtzTYB6jYoadC5MSpNwisNaYp2M_lcNMQiqlYp2DPu1M47ySQWA64X_EWAmsIRAU3Mlmt5GV6VsGHW7yM92N671xs0SwVefiJDgChcQE5fk_75yGDc8I1jmZ1wt8L2d_tkbjM189REya8jM7Y0rJAk",
+    "latency": 60000,
+    "createdAt": 1649597349100,
+    "state": "{\"action\":\"create_customer\",\"id\":14}"
+  },
+  "response": {
+    "url": "https://oauth.platform.intuit.com/oauth2/v1/tokens/bearer",
+    "headers": {
+      "date": "Sun, 10 Apr 2022 13:29:09 GMT",
+      "content-type": "application/json;charset=utf-8",
+      "content-length": "1684",
+      "connection": "close",
+      "intuit_tid": "1-6252dba4-141768c808e7109c30e33bc0",
+      "x-spanid": "73de6d7d-a9d9-4540-8682-d90804b09b3e",
+      "x-amzn-trace-id": "Root=1-6252dba4-141768c808e7109c30e33bc0",
+      "x-content-type-options": "nosniff",
+      "server": "envoy",
+      "cache-control": "no-cache, no-store",
+      "pragma": "no-cache",
+      "x-frame-options": "SAMEORIGIN",
+      "x-xss-protection": "1; mode=block",
+      "x-envoy-upstream-service-time": "182",
+      "strict-transport-security": "max-age=31536000"
+    },
+    "body": "{\"x_refresh_token_expires_in\":8726400,\"access_token\":\"eyJlbmMiOiJBMTI4Q0JDLUhTMjU2IiwiYWxnIjoiZGlyIn0..TQEkHjxAZS6MPgt2SUCI7A.lznKp_RiQzYE2wa6wzKX6VzBkjwo1MdUc5w5F9Hpgs9eKWHJ8lpj47L18pIdoqSLyFxCE8ct2V8z5131hn8nU6WdGcyXBccAtXymSqyDtThyYiEdkN-zdJllCmqBM5xxJX5THip_ejLRM1OyCNTvDdzKU4glSuVJEGfPu1XQK6ltT_awI_hHwrWyk3L6sLrZBeTpx9ArYO33kAsdM2IHtxOEuM7dg6B4OP3m4hPdLUgOQ7EMVq2AB8_WXgE-TBuvoVvOJNDnzM9fGFKsqDYTxWKwIiWhskxNmwqwvMiam_x4soEfWJEdvPBFKHRDD6Cr--yaCnQxSHynFMWeo6M-sR_UDRRHRX0eXhQIyo0JCnsveUY4Chdr9LkbrHV1WCqBCvT94rsdkcTwQvbxTXiOD0mdMIAdGHntDQzRl4OY0eCDWtwaRgdKGL3H_NAq2A4jbQkS1fOJXmy90vgeKdJUed-G6c6Z_7JzcM024d0HZkQ2gLdJa-R_lvLU4HtYJliav6u9EN7G3CfQkK9Lgb0c-s6BCoKHaROoKlz0vSUXXRrQ1Brb9YQoyPa_i6xu5e34VEh8ezaXILegE6Xvql5_Fg9r-6DnadhNhV9gD7eFH4pW-Ty6tzZ-JKSCXqimA_cU2Jq1cTnEbKgYaDEOdOWviaWdQAAOyMl4s7jiKdkTxUHOzC3ENuNr1NvU5Rp-nrdXMzcX90Q3jWOKeFNxLOAbHut-5SLuxns-ct-p4iF6XWO7XfbouLDJWNDpQzT7pWJsI8S47ReKMBGmlb1mc2DjS1pZHzIz1X6S2G1F41tk1jzvkMDeC4seUfBhwZ1MXN0qwLaXuakuDsY6SDZLHgFLTA.Jz9HSFj2ZCVQMcYvhz6vOQ\",\"refresh_token\":\"AB11658323749HxqDIcsnEoXuJ4jbGLnlUfiCZt1v5fLrqL3rT\",\"id_token\":\"eyJraWQiOiJPUElDUFJEMDkxODIwMTQiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJmNzhlYzJiMC1jZGFiLTQzMTktYTAzNi1jZTJkYTFkMmU5NjQiLCJhdWQiOlsiQUJxRFd2d21hY1NQcE9ocWljQjNSYWQ2TG1nSDdJQjhtWkduZW5HbHRrU3RTTUdLYUsiXSwicmVhbG1pZCI6IjQ2MjA4MTYzNjUyMDEwNjc2MDAiLCJhdXRoX3RpbWUiOjE2NDk1OTMzOTAsImlzcyI6Imh0dHBzOlwvXC9vYXV0aC5wbGF0Zm9ybS5pbnR1aXQuY29tXC9vcFwvdjEiLCJleHAiOjE2NDk2MDA5NDgsImlhdCI6MTY0OTU5NzM0OH0.gYTiqOPZ5axYtb5t4HKz7RtzTYB6jYoadC5MSpNwisNaYp2M_lcNMQiqlYp2DPu1M47ySQWA64X_EWAmsIRAU3Mlmt5GV6VsGHW7yM92N671xs0SwVefiJDgChcQE5fk_75yGDc8I1jmZ1wt8L2d_tkbjM189REya8jM7Y0rJAk\",\"token_type\":\"bearer\",\"expires_in\":3600}",
+    "status": 200,
+    "statusText": "OK"
+  },
+  "body": "{\"x_refresh_token_expires_in\":8726400,\"access_token\":\"eyJlbmMiOiJBMTI4Q0JDLUhTMjU2IiwiYWxnIjoiZGlyIn0..TQEkHjxAZS6MPgt2SUCI7A.lznKp_RiQzYE2wa6wzKX6VzBkjwo1MdUc5w5F9Hpgs9eKWHJ8lpj47L18pIdoqSLyFxCE8ct2V8z5131hn8nU6WdGcyXBccAtXymSqyDtThyYiEdkN-zdJllCmqBM5xxJX5THip_ejLRM1OyCNTvDdzKU4glSuVJEGfPu1XQK6ltT_awI_hHwrWyk3L6sLrZBeTpx9ArYO33kAsdM2IHtxOEuM7dg6B4OP3m4hPdLUgOQ7EMVq2AB8_WXgE-TBuvoVvOJNDnzM9fGFKsqDYTxWKwIiWhskxNmwqwvMiam_x4soEfWJEdvPBFKHRDD6Cr--yaCnQxSHynFMWeo6M-sR_UDRRHRX0eXhQIyo0JCnsveUY4Chdr9LkbrHV1WCqBCvT94rsdkcTwQvbxTXiOD0mdMIAdGHntDQzRl4OY0eCDWtwaRgdKGL3H_NAq2A4jbQkS1fOJXmy90vgeKdJUed-G6c6Z_7JzcM024d0HZkQ2gLdJa-R_lvLU4HtYJliav6u9EN7G3CfQkK9Lgb0c-s6BCoKHaROoKlz0vSUXXRrQ1Brb9YQoyPa_i6xu5e34VEh8ezaXILegE6Xvql5_Fg9r-6DnadhNhV9gD7eFH4pW-Ty6tzZ-JKSCXqimA_cU2Jq1cTnEbKgYaDEOdOWviaWdQAAOyMl4s7jiKdkTxUHOzC3ENuNr1NvU5Rp-nrdXMzcX90Q3jWOKeFNxLOAbHut-5SLuxns-ct-p4iF6XWO7XfbouLDJWNDpQzT7pWJsI8S47ReKMBGmlb1mc2DjS1pZHzIz1X6S2G1F41tk1jzvkMDeC4seUfBhwZ1MXN0qwLaXuakuDsY6SDZLHgFLTA.Jz9HSFj2ZCVQMcYvhz6vOQ\",\"refresh_token\":\"AB11658323749HxqDIcsnEoXuJ4jbGLnlUfiCZt1v5fLrqL3rT\",\"id_token\":\"eyJraWQiOiJPUElDUFJEMDkxODIwMTQiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJmNzhlYzJiMC1jZGFiLTQzMTktYTAzNi1jZTJkYTFkMmU5NjQiLCJhdWQiOlsiQUJxRFd2d21hY1NQcE9ocWljQjNSYWQ2TG1nSDdJQjhtWkduZW5HbHRrU3RTTUdLYUsiXSwicmVhbG1pZCI6IjQ2MjA4MTYzNjUyMDEwNjc2MDAiLCJhdXRoX3RpbWUiOjE2NDk1OTMzOTAsImlzcyI6Imh0dHBzOlwvXC9vYXV0aC5wbGF0Zm9ybS5pbnR1aXQuY29tXC9vcFwvdjEiLCJleHAiOjE2NDk2MDA5NDgsImlhdCI6MTY0OTU5NzM0OH0.gYTiqOPZ5axYtb5t4HKz7RtzTYB6jYoadC5MSpNwisNaYp2M_lcNMQiqlYp2DPu1M47ySQWA64X_EWAmsIRAU3Mlmt5GV6VsGHW7yM92N671xs0SwVefiJDgChcQE5fk_75yGDc8I1jmZ1wt8L2d_tkbjM189REya8jM7Y0rJAk\",\"token_type\":\"bearer\",\"expires_in\":3600}",
+  "json": {
+    "x_refresh_token_expires_in": 8726400,
+    "access_token": "eyJlbmMiOiJBMTI4Q0JDLUhTMjU2IiwiYWxnIjoiZGlyIn0..TQEkHjxAZS6MPgt2SUCI7A.lznKp_RiQzYE2wa6wzKX6VzBkjwo1MdUc5w5F9Hpgs9eKWHJ8lpj47L18pIdoqSLyFxCE8ct2V8z5131hn8nU6WdGcyXBccAtXymSqyDtThyYiEdkN-zdJllCmqBM5xxJX5THip_ejLRM1OyCNTvDdzKU4glSuVJEGfPu1XQK6ltT_awI_hHwrWyk3L6sLrZBeTpx9ArYO33kAsdM2IHtxOEuM7dg6B4OP3m4hPdLUgOQ7EMVq2AB8_WXgE-TBuvoVvOJNDnzM9fGFKsqDYTxWKwIiWhskxNmwqwvMiam_x4soEfWJEdvPBFKHRDD6Cr--yaCnQxSHynFMWeo6M-sR_UDRRHRX0eXhQIyo0JCnsveUY4Chdr9LkbrHV1WCqBCvT94rsdkcTwQvbxTXiOD0mdMIAdGHntDQzRl4OY0eCDWtwaRgdKGL3H_NAq2A4jbQkS1fOJXmy90vgeKdJUed-G6c6Z_7JzcM024d0HZkQ2gLdJa-R_lvLU4HtYJliav6u9EN7G3CfQkK9Lgb0c-s6BCoKHaROoKlz0vSUXXRrQ1Brb9YQoyPa_i6xu5e34VEh8ezaXILegE6Xvql5_Fg9r-6DnadhNhV9gD7eFH4pW-Ty6tzZ-JKSCXqimA_cU2Jq1cTnEbKgYaDEOdOWviaWdQAAOyMl4s7jiKdkTxUHOzC3ENuNr1NvU5Rp-nrdXMzcX90Q3jWOKeFNxLOAbHut-5SLuxns-ct-p4iF6XWO7XfbouLDJWNDpQzT7pWJsI8S47ReKMBGmlb1mc2DjS1pZHzIz1X6S2G1F41tk1jzvkMDeC4seUfBhwZ1MXN0qwLaXuakuDsY6SDZLHgFLTA.Jz9HSFj2ZCVQMcYvhz6vOQ",
+    "refresh_token": "AB11658323749HxqDIcsnEoXuJ4jbGLnlUfiCZt1v5fLrqL3rT",
+    "id_token": "eyJraWQiOiJPUElDUFJEMDkxODIwMTQiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJmNzhlYzJiMC1jZGFiLTQzMTktYTAzNi1jZTJkYTFkMmU5NjQiLCJhdWQiOlsiQUJxRFd2d21hY1NQcE9ocWljQjNSYWQ2TG1nSDdJQjhtWkduZW5HbHRrU3RTTUdLYUsiXSwicmVhbG1pZCI6IjQ2MjA4MTYzNjUyMDEwNjc2MDAiLCJhdXRoX3RpbWUiOjE2NDk1OTMzOTAsImlzcyI6Imh0dHBzOlwvXC9vYXV0aC5wbGF0Zm9ybS5pbnR1aXQuY29tXC9vcFwvdjEiLCJleHAiOjE2NDk2MDA5NDgsImlhdCI6MTY0OTU5NzM0OH0.gYTiqOPZ5axYtb5t4HKz7RtzTYB6jYoadC5MSpNwisNaYp2M_lcNMQiqlYp2DPu1M47ySQWA64X_EWAmsIRAU3Mlmt5GV6VsGHW7yM92N671xs0SwVefiJDgChcQE5fk_75yGDc8I1jmZ1wt8L2d_tkbjM189REya8jM7Y0rJAk",
+    "token_type": "bearer",
+    "expires_in": 3600
+  },
+  "intuit_tid": "1-6252dba4-141768c808e7109c30e33bc0"
+}
+2022-04-10T13:29:11.274Z info: The makeAPICall () response is : {
+  "token": {
+    "realmId": "4620816365201067600",
+    "token_type": "bearer",
+    "access_token": "eyJlbmMiOiJBMTI4Q0JDLUhTMjU2IiwiYWxnIjoiZGlyIn0..TQEkHjxAZS6MPgt2SUCI7A.lznKp_RiQzYE2wa6wzKX6VzBkjwo1MdUc5w5F9Hpgs9eKWHJ8lpj47L18pIdoqSLyFxCE8ct2V8z5131hn8nU6WdGcyXBccAtXymSqyDtThyYiEdkN-zdJllCmqBM5xxJX5THip_ejLRM1OyCNTvDdzKU4glSuVJEGfPu1XQK6ltT_awI_hHwrWyk3L6sLrZBeTpx9ArYO33kAsdM2IHtxOEuM7dg6B4OP3m4hPdLUgOQ7EMVq2AB8_WXgE-TBuvoVvOJNDnzM9fGFKsqDYTxWKwIiWhskxNmwqwvMiam_x4soEfWJEdvPBFKHRDD6Cr--yaCnQxSHynFMWeo6M-sR_UDRRHRX0eXhQIyo0JCnsveUY4Chdr9LkbrHV1WCqBCvT94rsdkcTwQvbxTXiOD0mdMIAdGHntDQzRl4OY0eCDWtwaRgdKGL3H_NAq2A4jbQkS1fOJXmy90vgeKdJUed-G6c6Z_7JzcM024d0HZkQ2gLdJa-R_lvLU4HtYJliav6u9EN7G3CfQkK9Lgb0c-s6BCoKHaROoKlz0vSUXXRrQ1Brb9YQoyPa_i6xu5e34VEh8ezaXILegE6Xvql5_Fg9r-6DnadhNhV9gD7eFH4pW-Ty6tzZ-JKSCXqimA_cU2Jq1cTnEbKgYaDEOdOWviaWdQAAOyMl4s7jiKdkTxUHOzC3ENuNr1NvU5Rp-nrdXMzcX90Q3jWOKeFNxLOAbHut-5SLuxns-ct-p4iF6XWO7XfbouLDJWNDpQzT7pWJsI8S47ReKMBGmlb1mc2DjS1pZHzIz1X6S2G1F41tk1jzvkMDeC4seUfBhwZ1MXN0qwLaXuakuDsY6SDZLHgFLTA.Jz9HSFj2ZCVQMcYvhz6vOQ",
+    "refresh_token": "AB11658323749HxqDIcsnEoXuJ4jbGLnlUfiCZt1v5fLrqL3rT",
+    "expires_in": 3600,
+    "x_refresh_token_expires_in": 8726400,
+    "id_token": "eyJraWQiOiJPUElDUFJEMDkxODIwMTQiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJmNzhlYzJiMC1jZGFiLTQzMTktYTAzNi1jZTJkYTFkMmU5NjQiLCJhdWQiOlsiQUJxRFd2d21hY1NQcE9ocWljQjNSYWQ2TG1nSDdJQjhtWkduZW5HbHRrU3RTTUdLYUsiXSwicmVhbG1pZCI6IjQ2MjA4MTYzNjUyMDEwNjc2MDAiLCJhdXRoX3RpbWUiOjE2NDk1OTMzOTAsImlzcyI6Imh0dHBzOlwvXC9vYXV0aC5wbGF0Zm9ybS5pbnR1aXQuY29tXC9vcFwvdjEiLCJleHAiOjE2NDk2MDA5NDgsImlhdCI6MTY0OTU5NzM0OH0.gYTiqOPZ5axYtb5t4HKz7RtzTYB6jYoadC5MSpNwisNaYp2M_lcNMQiqlYp2DPu1M47ySQWA64X_EWAmsIRAU3Mlmt5GV6VsGHW7yM92N671xs0SwVefiJDgChcQE5fk_75yGDc8I1jmZ1wt8L2d_tkbjM189REya8jM7Y0rJAk",
+    "latency": 60000,
+    "createdAt": 1649597349100,
+    "state": "{\"action\":\"create_customer\",\"id\":14}"
+  },
+  "response": {
+    "url": "https://sandbox-quickbooks.api.intuit.com/v3/company/4620816365201067600/customer?minorversion=63",
+    "headers": {
+      "date": "Sun, 10 Apr 2022 13:29:11 GMT",
+      "content-type": "application/json;charset=utf-8",
+      "transfer-encoding": "chunked",
+      "connection": "close",
+      "intuit_tid": "1-6252dba6-344b25450dfbed8c2602d156",
+      "x-spanid": "47813041-ab64-4436-a0ae-60bfe7651bec",
+      "x-amzn-trace-id": "Root=1-6252dba6-344b25450dfbed8c2602d156",
+      "x-content-type-options": "nosniff",
+      "x-xss-protection": "1; mode=block",
+      "qbo-version": "1978.180",
+      "service-time": "total=195, db=104",
+      "expires": "0",
+      "content-encoding": "gzip",
+      "cache-control": "max-age=0, no-cache, no-store, must-revalidate, private",
+      "x-envoy-upstream-service-time": "236",
+      "strict-transport-security": "max-age=31536000",
+      "server": "envoy"
+    },
+    "body": "{\"Customer\":{\"Taxable\":true,\"BillAddr\":{\"Id\":\"111\",\"Line1\":\"1234 Street\",\"City\":\"Dallas\",\"Country\":\"USA\",\"CountrySubDivisionCode\":\"LV\",\"PostalCode\":\"76262\"},\"ShipAddr\":{\"Id\":\"112\",\"Line1\":\"1234 Street\",\"City\":\"Dallas\",\"Country\":\"USA\",\"CountrySubDivisionCode\":\"LV\",\"PostalCode\":\"76262\"},\"Job\":false,\"BillWithParent\":false,\"Balance\":0,\"BalanceWithJobs\":0,\"CurrencyRef\":{\"value\":\"USD\",\"name\":\"United States Dollar\"},\"PreferredDeliveryMethod\":\"Print\",\"IsProject\":false,\"domain\":\"QBO\",\"sparse\":false,\"Id\":\"68\",\"SyncToken\":\"0\",\"MetaData\":{\"CreateTime\":\"2022-04-10T06:29:11-07:00\",\"LastUpdatedTime\":\"2022-04-10T06:29:11-07:00\"},\"GivenName\":\"David\",\"FamilyName\":\"Lam\",\"FullyQualifiedName\":\"My Law Firm1 - Dallas, LV\",\"CompanyName\":\"My Law Firm1\",\"DisplayName\":\"My Law Firm1 - Dallas, LV\",\"PrintOnCheckName\":\"My Law Firm1\",\"Active\":true,\"PrimaryPhone\":{\"FreeFormNumber\":\"15552224444\"},\"PrimaryEmailAddr\":{\"Address\":\"test1@testemail.com\"},\"DefaultTaxCodeRef\":{\"value\":\"2\"}},\"time\":\"2022-04-10T06:29:11.037-07:00\"}",
+    "status": 200,
+    "statusText": "OK"
+  },
+  "body": "{\"Customer\":{\"Taxable\":true,\"BillAddr\":{\"Id\":\"111\",\"Line1\":\"1234 Street\",\"City\":\"Dallas\",\"Country\":\"USA\",\"CountrySubDivisionCode\":\"LV\",\"PostalCode\":\"76262\"},\"ShipAddr\":{\"Id\":\"112\",\"Line1\":\"1234 Street\",\"City\":\"Dallas\",\"Country\":\"USA\",\"CountrySubDivisionCode\":\"LV\",\"PostalCode\":\"76262\"},\"Job\":false,\"BillWithParent\":false,\"Balance\":0,\"BalanceWithJobs\":0,\"CurrencyRef\":{\"value\":\"USD\",\"name\":\"United States Dollar\"},\"PreferredDeliveryMethod\":\"Print\",\"IsProject\":false,\"domain\":\"QBO\",\"sparse\":false,\"Id\":\"68\",\"SyncToken\":\"0\",\"MetaData\":{\"CreateTime\":\"2022-04-10T06:29:11-07:00\",\"LastUpdatedTime\":\"2022-04-10T06:29:11-07:00\"},\"GivenName\":\"David\",\"FamilyName\":\"Lam\",\"FullyQualifiedName\":\"My Law Firm1 - Dallas, LV\",\"CompanyName\":\"My Law Firm1\",\"DisplayName\":\"My Law Firm1 - Dallas, LV\",\"PrintOnCheckName\":\"My Law Firm1\",\"Active\":true,\"PrimaryPhone\":{\"FreeFormNumber\":\"15552224444\"},\"PrimaryEmailAddr\":{\"Address\":\"test1@testemail.com\"},\"DefaultTaxCodeRef\":{\"value\":\"2\"}},\"time\":\"2022-04-10T06:29:11.037-07:00\"}",
+  "json": {
+    "Customer": {
+      "Taxable": true,
+      "BillAddr": {
+        "Id": "111",
+        "Line1": "1234 Street",
+        "City": "Dallas",
+        "Country": "USA",
+        "CountrySubDivisionCode": "LV",
+        "PostalCode": "76262"
+      },
+      "ShipAddr": {
+        "Id": "112",
+        "Line1": "1234 Street",
+        "City": "Dallas",
+        "Country": "USA",
+        "CountrySubDivisionCode": "LV",
+        "PostalCode": "76262"
+      },
+      "Job": false,
+      "BillWithParent": false,
+      "Balance": 0,
+      "BalanceWithJobs": 0,
+      "CurrencyRef": {
+        "value": "USD",
+        "name": "United States Dollar"
+      },
+      "PreferredDeliveryMethod": "Print",
+      "IsProject": false,
+      "domain": "QBO",
+      "sparse": false,
+      "Id": "68",
+      "SyncToken": "0",
+      "MetaData": {
+        "CreateTime": "2022-04-10T06:29:11-07:00",
+        "LastUpdatedTime": "2022-04-10T06:29:11-07:00"
+      },
+      "GivenName": "David",
+      "FamilyName": "Lam",
+      "FullyQualifiedName": "My Law Firm1 - Dallas, LV",
+      "CompanyName": "My Law Firm1",
+      "DisplayName": "My Law Firm1 - Dallas, LV",
+      "PrintOnCheckName": "My Law Firm1",
+      "Active": true,
+      "PrimaryPhone": {
+        "FreeFormNumber": "15552224444"
+      },
+      "PrimaryEmailAddr": {
+        "Address": "test1@testemail.com"
+      },
+      "DefaultTaxCodeRef": {
+        "value": "2"
+      }
+    },
+    "time": "2022-04-10T06:29:11.037-07:00"
+  },
+  "intuit_tid": "1-6252dba6-344b25450dfbed8c2602d156"
+}
+2022-04-10T13:29:28.752Z error: Create Token () threw an exception : {
+  "authResponse": {
+    "token": {
+      "realmId": "4620816365201067600",
+      "token_type": "bearer",
+      "access_token": "eyJlbmMiOiJBMTI4Q0JDLUhTMjU2IiwiYWxnIjoiZGlyIn0..TQEkHjxAZS6MPgt2SUCI7A.lznKp_RiQzYE2wa6wzKX6VzBkjwo1MdUc5w5F9Hpgs9eKWHJ8lpj47L18pIdoqSLyFxCE8ct2V8z5131hn8nU6WdGcyXBccAtXymSqyDtThyYiEdkN-zdJllCmqBM5xxJX5THip_ejLRM1OyCNTvDdzKU4glSuVJEGfPu1XQK6ltT_awI_hHwrWyk3L6sLrZBeTpx9ArYO33kAsdM2IHtxOEuM7dg6B4OP3m4hPdLUgOQ7EMVq2AB8_WXgE-TBuvoVvOJNDnzM9fGFKsqDYTxWKwIiWhskxNmwqwvMiam_x4soEfWJEdvPBFKHRDD6Cr--yaCnQxSHynFMWeo6M-sR_UDRRHRX0eXhQIyo0JCnsveUY4Chdr9LkbrHV1WCqBCvT94rsdkcTwQvbxTXiOD0mdMIAdGHntDQzRl4OY0eCDWtwaRgdKGL3H_NAq2A4jbQkS1fOJXmy90vgeKdJUed-G6c6Z_7JzcM024d0HZkQ2gLdJa-R_lvLU4HtYJliav6u9EN7G3CfQkK9Lgb0c-s6BCoKHaROoKlz0vSUXXRrQ1Brb9YQoyPa_i6xu5e34VEh8ezaXILegE6Xvql5_Fg9r-6DnadhNhV9gD7eFH4pW-Ty6tzZ-JKSCXqimA_cU2Jq1cTnEbKgYaDEOdOWviaWdQAAOyMl4s7jiKdkTxUHOzC3ENuNr1NvU5Rp-nrdXMzcX90Q3jWOKeFNxLOAbHut-5SLuxns-ct-p4iF6XWO7XfbouLDJWNDpQzT7pWJsI8S47ReKMBGmlb1mc2DjS1pZHzIz1X6S2G1F41tk1jzvkMDeC4seUfBhwZ1MXN0qwLaXuakuDsY6SDZLHgFLTA.Jz9HSFj2ZCVQMcYvhz6vOQ",
+      "refresh_token": "AB11658323749HxqDIcsnEoXuJ4jbGLnlUfiCZt1v5fLrqL3rT",
+      "expires_in": 3600,
+      "x_refresh_token_expires_in": 8726400,
+      "id_token": "eyJraWQiOiJPUElDUFJEMDkxODIwMTQiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJmNzhlYzJiMC1jZGFiLTQzMTktYTAzNi1jZTJkYTFkMmU5NjQiLCJhdWQiOlsiQUJxRFd2d21hY1NQcE9ocWljQjNSYWQ2TG1nSDdJQjhtWkduZW5HbHRrU3RTTUdLYUsiXSwicmVhbG1pZCI6IjQ2MjA4MTYzNjUyMDEwNjc2MDAiLCJhdXRoX3RpbWUiOjE2NDk1OTMzOTAsImlzcyI6Imh0dHBzOlwvXC9vYXV0aC5wbGF0Zm9ybS5pbnR1aXQuY29tXC9vcFwvdjEiLCJleHAiOjE2NDk2MDA5NDgsImlhdCI6MTY0OTU5NzM0OH0.gYTiqOPZ5axYtb5t4HKz7RtzTYB6jYoadC5MSpNwisNaYp2M_lcNMQiqlYp2DPu1M47ySQWA64X_EWAmsIRAU3Mlmt5GV6VsGHW7yM92N671xs0SwVefiJDgChcQE5fk_75yGDc8I1jmZ1wt8L2d_tkbjM189REya8jM7Y0rJAk",
+      "latency": 60000,
+      "createdAt": 1649597349100,
+      "state": "{\"action\":\"create_customer\",\"id\":14}"
+    },
+    "response": {
+      "url": "https://oauth.platform.intuit.com/oauth2/v1/tokens/bearer",
+      "headers": {
+        "date": "Sun, 10 Apr 2022 13:29:28 GMT",
+        "content-type": "application/json;charset=utf-8",
+        "content-length": "76",
+        "connection": "close",
+        "intuit_tid": "1-6252dbb8-284f3d41607410ec4b24b471",
+        "x-spanid": "704cc5a4-7253-4cd0-bb9e-c37420b67671",
+        "x-amzn-trace-id": "Root=1-6252dbb8-284f3d41607410ec4b24b471",
+        "x-content-type-options": "nosniff",
+        "server": "envoy",
+        "cache-control": "no-cache, no-store",
+        "pragma": "no-cache",
+        "x-envoy-upstream-service-time": "16",
+        "strict-transport-security": "max-age=31536000"
+      },
+      "body": "{\"error_description\":\"Authorization code incorrect\",\"error\":\"invalid_grant\"}",
+      "status": 400,
+      "statusText": "Bad Request"
+    },
+    "body": "{\"error_description\":\"Authorization code incorrect\",\"error\":\"invalid_grant\"}",
+    "json": {
+      "error_description": "Authorization code incorrect",
+      "error": "invalid_grant"
+    },
+    "intuit_tid": "1-6252dbb8-284f3d41607410ec4b24b471"
+  },
+  "originalMessage": "Response has an Error",
+  "error": "invalid_grant",
+  "error_description": "Authorization code incorrect",
+  "intuit_tid": "1-6252dbb8-284f3d41607410ec4b24b471"
+}
+2022-04-10T13:33:30.115Z info: The Authorize Uri is :https://appcenter.intuit.com/connect/oauth2?client_id=ABqDWvwmacSPpOhqicB3Rad6LmgH7IB8mZGnenGltkStSMGKaK&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fcallback&response_type=code&scope=com.intuit.quickbooks.accounting%20openid&state=%7B%22action%22%3A%22create_customer%22%2C%22id%22%3A15%7D
+2022-04-10T13:34:55.652Z info: Create Token response is : {
+  "token": {
+    "realmId": "4620816365201067600",
+    "token_type": "bearer",
+    "access_token": "eyJlbmMiOiJBMTI4Q0JDLUhTMjU2IiwiYWxnIjoiZGlyIn0..Kr93BGV6L8RH2uyMdedg0A.IqRrz4t4p5BrQszUWPdIH6cgeeBHKhw2irTVZ6dypJ0FtuKmquHlPfHi0PEZwWEqVUlziNm734kITnaPEpi6Lzib4gPG_jwK4Pgc1ywzXuZYhpw0iUDx_DH6gGfMEotps8PcKRaP2jKKxgD1wRpc_cEoKNTNfAeniktRMk23KY_2N8jkmeFdMdvOapT0j2NrFag6S_PCECzPzkexHX_wAkDjlu-QRzR5bHT0N2OUfG-n3nzjogUk9bEyAC66ycDXy6GXvA374vvhhhoAkuKy5SwgZXjTLYAGr42SnZCFXP94KS0LeeU9neXoAMJaqR-FRd1m22ppurNtHIgHmyYscQVjYel3Eapch3jpj3iLSTHpMroYKVjo-gqP_OfC2RT0NHvEGgTbPk-GFomN612zX6fn0bpIDeYnaWeRww56_O9HNajFJNXzxeB99i7If3aA__hvb3tFoscUWNCIljqKHUjLx_ipzbMvANeL_fv908mtbLI1H7jKjI3ZbTWKgnHOzUrKOgVsSShZiSgHQ2j6vzFCU8KVMEf3MWIbkTqZXwDEJnY5lfc5Plj0o1XRTmDu5G4XzaNysmG68Q3Xo0SrTGoeC0VMbyhQndIdJ_7BvbQLlqRxQV2t7Fjik6l2lJSrpBbv1Qtn3bfPLkkCCneVPhq07afYxtk1jkZGk4t4Qe8pO2s_GcjzkbifYfj4mEr1_VCdigN9EGruWjnb5ZMFZUdC9GOH8VkpxYizUtHxiGN-VuQlph_gsAuj8SPCJvx6SWVrBaEwBjXD6B_RqwuMIhF5NmVGk4mbCIvm9mQdy9eUlnp6FNy57W0gWuE7WVWI9s3haoXH_JHFKkvAdbmGSg.58rZhB2nyh_5VLEauDOAkA",
+    "refresh_token": "AB11658324095gMMDVK6GlXAT7gyUF3zBPpiKdKyJKqCdit70C",
+    "expires_in": 3600,
+    "x_refresh_token_expires_in": 8726400,
+    "id_token": "eyJraWQiOiJPUElDUFJEMDkxODIwMTQiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJmNzhlYzJiMC1jZGFiLTQzMTktYTAzNi1jZTJkYTFkMmU5NjQiLCJhdWQiOlsiQUJxRFd2d21hY1NQcE9ocWljQjNSYWQ2TG1nSDdJQjhtWkduZW5HbHRrU3RTTUdLYUsiXSwicmVhbG1pZCI6IjQ2MjA4MTYzNjUyMDEwNjc2MDAiLCJhdXRoX3RpbWUiOjE2NDk1OTMzOTAsImlzcyI6Imh0dHBzOlwvXC9vYXV0aC5wbGF0Zm9ybS5pbnR1aXQuY29tXC9vcFwvdjEiLCJleHAiOjE2NDk2MDEyOTUsImlhdCI6MTY0OTU5NzY5NX0.oPpr0IwG4ekvWExXaPrZF4dH2a8fPh3jcmxkOlbKH95dWN9HxN_k5Zm9laGxlfiJDi7S2mODRuYf6g0aEcm1qXTjqbEINSGsNDNFRT1gdjQ7zRwLq7_atKZ9FvFmcuxtF1jfz_vdvE_UHz0J3XBYi-rcjWQaLt6n_gGDvo7N1B0",
+    "latency": 60000,
+    "createdAt": 1649597695651,
+    "state": "{\"action\":\"create_customer\",\"id\":15}"
+  },
+  "response": {
+    "url": "https://oauth.platform.intuit.com/oauth2/v1/tokens/bearer",
+    "headers": {
+      "date": "Sun, 10 Apr 2022 13:34:55 GMT",
+      "content-type": "application/json;charset=utf-8",
+      "content-length": "1684",
+      "connection": "close",
+      "intuit_tid": "1-6252dcff-04b2fd8b6ed01fe07e7d6eb7",
+      "x-spanid": "bc5ea463-c25c-4620-81d5-ce811ebea1ad",
+      "x-amzn-trace-id": "Root=1-6252dcff-04b2fd8b6ed01fe07e7d6eb7",
+      "x-content-type-options": "nosniff",
+      "server": "envoy",
+      "cache-control": "no-cache, no-store",
+      "pragma": "no-cache",
+      "x-frame-options": "SAMEORIGIN",
+      "x-xss-protection": "1; mode=block",
+      "x-envoy-upstream-service-time": "94",
+      "strict-transport-security": "max-age=31536000"
+    },
+    "body": "{\"x_refresh_token_expires_in\":8726400,\"id_token\":\"eyJraWQiOiJPUElDUFJEMDkxODIwMTQiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJmNzhlYzJiMC1jZGFiLTQzMTktYTAzNi1jZTJkYTFkMmU5NjQiLCJhdWQiOlsiQUJxRFd2d21hY1NQcE9ocWljQjNSYWQ2TG1nSDdJQjhtWkduZW5HbHRrU3RTTUdLYUsiXSwicmVhbG1pZCI6IjQ2MjA4MTYzNjUyMDEwNjc2MDAiLCJhdXRoX3RpbWUiOjE2NDk1OTMzOTAsImlzcyI6Imh0dHBzOlwvXC9vYXV0aC5wbGF0Zm9ybS5pbnR1aXQuY29tXC9vcFwvdjEiLCJleHAiOjE2NDk2MDEyOTUsImlhdCI6MTY0OTU5NzY5NX0.oPpr0IwG4ekvWExXaPrZF4dH2a8fPh3jcmxkOlbKH95dWN9HxN_k5Zm9laGxlfiJDi7S2mODRuYf6g0aEcm1qXTjqbEINSGsNDNFRT1gdjQ7zRwLq7_atKZ9FvFmcuxtF1jfz_vdvE_UHz0J3XBYi-rcjWQaLt6n_gGDvo7N1B0\",\"refresh_token\":\"AB11658324095gMMDVK6GlXAT7gyUF3zBPpiKdKyJKqCdit70C\",\"token_type\":\"bearer\",\"access_token\":\"eyJlbmMiOiJBMTI4Q0JDLUhTMjU2IiwiYWxnIjoiZGlyIn0..Kr93BGV6L8RH2uyMdedg0A.IqRrz4t4p5BrQszUWPdIH6cgeeBHKhw2irTVZ6dypJ0FtuKmquHlPfHi0PEZwWEqVUlziNm734kITnaPEpi6Lzib4gPG_jwK4Pgc1ywzXuZYhpw0iUDx_DH6gGfMEotps8PcKRaP2jKKxgD1wRpc_cEoKNTNfAeniktRMk23KY_2N8jkmeFdMdvOapT0j2NrFag6S_PCECzPzkexHX_wAkDjlu-QRzR5bHT0N2OUfG-n3nzjogUk9bEyAC66ycDXy6GXvA374vvhhhoAkuKy5SwgZXjTLYAGr42SnZCFXP94KS0LeeU9neXoAMJaqR-FRd1m22ppurNtHIgHmyYscQVjYel3Eapch3jpj3iLSTHpMroYKVjo-gqP_OfC2RT0NHvEGgTbPk-GFomN612zX6fn0bpIDeYnaWeRww56_O9HNajFJNXzxeB99i7If3aA__hvb3tFoscUWNCIljqKHUjLx_ipzbMvANeL_fv908mtbLI1H7jKjI3ZbTWKgnHOzUrKOgVsSShZiSgHQ2j6vzFCU8KVMEf3MWIbkTqZXwDEJnY5lfc5Plj0o1XRTmDu5G4XzaNysmG68Q3Xo0SrTGoeC0VMbyhQndIdJ_7BvbQLlqRxQV2t7Fjik6l2lJSrpBbv1Qtn3bfPLkkCCneVPhq07afYxtk1jkZGk4t4Qe8pO2s_GcjzkbifYfj4mEr1_VCdigN9EGruWjnb5ZMFZUdC9GOH8VkpxYizUtHxiGN-VuQlph_gsAuj8SPCJvx6SWVrBaEwBjXD6B_RqwuMIhF5NmVGk4mbCIvm9mQdy9eUlnp6FNy57W0gWuE7WVWI9s3haoXH_JHFKkvAdbmGSg.58rZhB2nyh_5VLEauDOAkA\",\"expires_in\":3600}",
+    "status": 200,
+    "statusText": "OK"
+  },
+  "body": "{\"x_refresh_token_expires_in\":8726400,\"id_token\":\"eyJraWQiOiJPUElDUFJEMDkxODIwMTQiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJmNzhlYzJiMC1jZGFiLTQzMTktYTAzNi1jZTJkYTFkMmU5NjQiLCJhdWQiOlsiQUJxRFd2d21hY1NQcE9ocWljQjNSYWQ2TG1nSDdJQjhtWkduZW5HbHRrU3RTTUdLYUsiXSwicmVhbG1pZCI6IjQ2MjA4MTYzNjUyMDEwNjc2MDAiLCJhdXRoX3RpbWUiOjE2NDk1OTMzOTAsImlzcyI6Imh0dHBzOlwvXC9vYXV0aC5wbGF0Zm9ybS5pbnR1aXQuY29tXC9vcFwvdjEiLCJleHAiOjE2NDk2MDEyOTUsImlhdCI6MTY0OTU5NzY5NX0.oPpr0IwG4ekvWExXaPrZF4dH2a8fPh3jcmxkOlbKH95dWN9HxN_k5Zm9laGxlfiJDi7S2mODRuYf6g0aEcm1qXTjqbEINSGsNDNFRT1gdjQ7zRwLq7_atKZ9FvFmcuxtF1jfz_vdvE_UHz0J3XBYi-rcjWQaLt6n_gGDvo7N1B0\",\"refresh_token\":\"AB11658324095gMMDVK6GlXAT7gyUF3zBPpiKdKyJKqCdit70C\",\"token_type\":\"bearer\",\"access_token\":\"eyJlbmMiOiJBMTI4Q0JDLUhTMjU2IiwiYWxnIjoiZGlyIn0..Kr93BGV6L8RH2uyMdedg0A.IqRrz4t4p5BrQszUWPdIH6cgeeBHKhw2irTVZ6dypJ0FtuKmquHlPfHi0PEZwWEqVUlziNm734kITnaPEpi6Lzib4gPG_jwK4Pgc1ywzXuZYhpw0iUDx_DH6gGfMEotps8PcKRaP2jKKxgD1wRpc_cEoKNTNfAeniktRMk23KY_2N8jkmeFdMdvOapT0j2NrFag6S_PCECzPzkexHX_wAkDjlu-QRzR5bHT0N2OUfG-n3nzjogUk9bEyAC66ycDXy6GXvA374vvhhhoAkuKy5SwgZXjTLYAGr42SnZCFXP94KS0LeeU9neXoAMJaqR-FRd1m22ppurNtHIgHmyYscQVjYel3Eapch3jpj3iLSTHpMroYKVjo-gqP_OfC2RT0NHvEGgTbPk-GFomN612zX6fn0bpIDeYnaWeRww56_O9HNajFJNXzxeB99i7If3aA__hvb3tFoscUWNCIljqKHUjLx_ipzbMvANeL_fv908mtbLI1H7jKjI3ZbTWKgnHOzUrKOgVsSShZiSgHQ2j6vzFCU8KVMEf3MWIbkTqZXwDEJnY5lfc5Plj0o1XRTmDu5G4XzaNysmG68Q3Xo0SrTGoeC0VMbyhQndIdJ_7BvbQLlqRxQV2t7Fjik6l2lJSrpBbv1Qtn3bfPLkkCCneVPhq07afYxtk1jkZGk4t4Qe8pO2s_GcjzkbifYfj4mEr1_VCdigN9EGruWjnb5ZMFZUdC9GOH8VkpxYizUtHxiGN-VuQlph_gsAuj8SPCJvx6SWVrBaEwBjXD6B_RqwuMIhF5NmVGk4mbCIvm9mQdy9eUlnp6FNy57W0gWuE7WVWI9s3haoXH_JHFKkvAdbmGSg.58rZhB2nyh_5VLEauDOAkA\",\"expires_in\":3600}",
+  "json": {
+    "x_refresh_token_expires_in": 8726400,
+    "id_token": "eyJraWQiOiJPUElDUFJEMDkxODIwMTQiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJmNzhlYzJiMC1jZGFiLTQzMTktYTAzNi1jZTJkYTFkMmU5NjQiLCJhdWQiOlsiQUJxRFd2d21hY1NQcE9ocWljQjNSYWQ2TG1nSDdJQjhtWkduZW5HbHRrU3RTTUdLYUsiXSwicmVhbG1pZCI6IjQ2MjA4MTYzNjUyMDEwNjc2MDAiLCJhdXRoX3RpbWUiOjE2NDk1OTMzOTAsImlzcyI6Imh0dHBzOlwvXC9vYXV0aC5wbGF0Zm9ybS5pbnR1aXQuY29tXC9vcFwvdjEiLCJleHAiOjE2NDk2MDEyOTUsImlhdCI6MTY0OTU5NzY5NX0.oPpr0IwG4ekvWExXaPrZF4dH2a8fPh3jcmxkOlbKH95dWN9HxN_k5Zm9laGxlfiJDi7S2mODRuYf6g0aEcm1qXTjqbEINSGsNDNFRT1gdjQ7zRwLq7_atKZ9FvFmcuxtF1jfz_vdvE_UHz0J3XBYi-rcjWQaLt6n_gGDvo7N1B0",
+    "refresh_token": "AB11658324095gMMDVK6GlXAT7gyUF3zBPpiKdKyJKqCdit70C",
+    "token_type": "bearer",
+    "access_token": "eyJlbmMiOiJBMTI4Q0JDLUhTMjU2IiwiYWxnIjoiZGlyIn0..Kr93BGV6L8RH2uyMdedg0A.IqRrz4t4p5BrQszUWPdIH6cgeeBHKhw2irTVZ6dypJ0FtuKmquHlPfHi0PEZwWEqVUlziNm734kITnaPEpi6Lzib4gPG_jwK4Pgc1ywzXuZYhpw0iUDx_DH6gGfMEotps8PcKRaP2jKKxgD1wRpc_cEoKNTNfAeniktRMk23KY_2N8jkmeFdMdvOapT0j2NrFag6S_PCECzPzkexHX_wAkDjlu-QRzR5bHT0N2OUfG-n3nzjogUk9bEyAC66ycDXy6GXvA374vvhhhoAkuKy5SwgZXjTLYAGr42SnZCFXP94KS0LeeU9neXoAMJaqR-FRd1m22ppurNtHIgHmyYscQVjYel3Eapch3jpj3iLSTHpMroYKVjo-gqP_OfC2RT0NHvEGgTbPk-GFomN612zX6fn0bpIDeYnaWeRww56_O9HNajFJNXzxeB99i7If3aA__hvb3tFoscUWNCIljqKHUjLx_ipzbMvANeL_fv908mtbLI1H7jKjI3ZbTWKgnHOzUrKOgVsSShZiSgHQ2j6vzFCU8KVMEf3MWIbkTqZXwDEJnY5lfc5Plj0o1XRTmDu5G4XzaNysmG68Q3Xo0SrTGoeC0VMbyhQndIdJ_7BvbQLlqRxQV2t7Fjik6l2lJSrpBbv1Qtn3bfPLkkCCneVPhq07afYxtk1jkZGk4t4Qe8pO2s_GcjzkbifYfj4mEr1_VCdigN9EGruWjnb5ZMFZUdC9GOH8VkpxYizUtHxiGN-VuQlph_gsAuj8SPCJvx6SWVrBaEwBjXD6B_RqwuMIhF5NmVGk4mbCIvm9mQdy9eUlnp6FNy57W0gWuE7WVWI9s3haoXH_JHFKkvAdbmGSg.58rZhB2nyh_5VLEauDOAkA",
+    "expires_in": 3600
+  },
+  "intuit_tid": "1-6252dcff-04b2fd8b6ed01fe07e7d6eb7"
+}
+2022-04-10T13:34:57.591Z info: The makeAPICall () response is : {
+  "token": {
+    "realmId": "4620816365201067600",
+    "token_type": "bearer",
+    "access_token": "eyJlbmMiOiJBMTI4Q0JDLUhTMjU2IiwiYWxnIjoiZGlyIn0..Kr93BGV6L8RH2uyMdedg0A.IqRrz4t4p5BrQszUWPdIH6cgeeBHKhw2irTVZ6dypJ0FtuKmquHlPfHi0PEZwWEqVUlziNm734kITnaPEpi6Lzib4gPG_jwK4Pgc1ywzXuZYhpw0iUDx_DH6gGfMEotps8PcKRaP2jKKxgD1wRpc_cEoKNTNfAeniktRMk23KY_2N8jkmeFdMdvOapT0j2NrFag6S_PCECzPzkexHX_wAkDjlu-QRzR5bHT0N2OUfG-n3nzjogUk9bEyAC66ycDXy6GXvA374vvhhhoAkuKy5SwgZXjTLYAGr42SnZCFXP94KS0LeeU9neXoAMJaqR-FRd1m22ppurNtHIgHmyYscQVjYel3Eapch3jpj3iLSTHpMroYKVjo-gqP_OfC2RT0NHvEGgTbPk-GFomN612zX6fn0bpIDeYnaWeRww56_O9HNajFJNXzxeB99i7If3aA__hvb3tFoscUWNCIljqKHUjLx_ipzbMvANeL_fv908mtbLI1H7jKjI3ZbTWKgnHOzUrKOgVsSShZiSgHQ2j6vzFCU8KVMEf3MWIbkTqZXwDEJnY5lfc5Plj0o1XRTmDu5G4XzaNysmG68Q3Xo0SrTGoeC0VMbyhQndIdJ_7BvbQLlqRxQV2t7Fjik6l2lJSrpBbv1Qtn3bfPLkkCCneVPhq07afYxtk1jkZGk4t4Qe8pO2s_GcjzkbifYfj4mEr1_VCdigN9EGruWjnb5ZMFZUdC9GOH8VkpxYizUtHxiGN-VuQlph_gsAuj8SPCJvx6SWVrBaEwBjXD6B_RqwuMIhF5NmVGk4mbCIvm9mQdy9eUlnp6FNy57W0gWuE7WVWI9s3haoXH_JHFKkvAdbmGSg.58rZhB2nyh_5VLEauDOAkA",
+    "refresh_token": "AB11658324095gMMDVK6GlXAT7gyUF3zBPpiKdKyJKqCdit70C",
+    "expires_in": 3600,
+    "x_refresh_token_expires_in": 8726400,
+    "id_token": "eyJraWQiOiJPUElDUFJEMDkxODIwMTQiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJmNzhlYzJiMC1jZGFiLTQzMTktYTAzNi1jZTJkYTFkMmU5NjQiLCJhdWQiOlsiQUJxRFd2d21hY1NQcE9ocWljQjNSYWQ2TG1nSDdJQjhtWkduZW5HbHRrU3RTTUdLYUsiXSwicmVhbG1pZCI6IjQ2MjA4MTYzNjUyMDEwNjc2MDAiLCJhdXRoX3RpbWUiOjE2NDk1OTMzOTAsImlzcyI6Imh0dHBzOlwvXC9vYXV0aC5wbGF0Zm9ybS5pbnR1aXQuY29tXC9vcFwvdjEiLCJleHAiOjE2NDk2MDEyOTUsImlhdCI6MTY0OTU5NzY5NX0.oPpr0IwG4ekvWExXaPrZF4dH2a8fPh3jcmxkOlbKH95dWN9HxN_k5Zm9laGxlfiJDi7S2mODRuYf6g0aEcm1qXTjqbEINSGsNDNFRT1gdjQ7zRwLq7_atKZ9FvFmcuxtF1jfz_vdvE_UHz0J3XBYi-rcjWQaLt6n_gGDvo7N1B0",
+    "latency": 60000,
+    "createdAt": 1649597695651,
+    "state": "{\"action\":\"create_customer\",\"id\":15}"
+  },
+  "response": {
+    "url": "https://sandbox-quickbooks.api.intuit.com/v3/company/4620816365201067600/customer?minorversion=63",
+    "headers": {
+      "date": "Sun, 10 Apr 2022 13:34:57 GMT",
+      "content-type": "application/json;charset=utf-8",
+      "transfer-encoding": "chunked",
+      "connection": "close",
+      "intuit_tid": "1-6252dd01-7e9c1e1271fe49d96571e0e4",
+      "x-spanid": "08a50f3a-94fb-453f-a914-f0d8a9d79575",
+      "x-amzn-trace-id": "Root=1-6252dd01-7e9c1e1271fe49d96571e0e4",
+      "x-content-type-options": "nosniff",
+      "x-xss-protection": "1; mode=block",
+      "qbo-version": "1978.180",
+      "service-time": "total=190, db=96",
+      "expires": "0",
+      "content-encoding": "gzip",
+      "cache-control": "max-age=0, no-cache, no-store, must-revalidate, private",
+      "x-envoy-upstream-service-time": "225",
+      "strict-transport-security": "max-age=31536000",
+      "server": "envoy"
+    },
+    "body": "{\"Customer\":{\"Taxable\":true,\"BillAddr\":{\"Id\":\"113\",\"Line1\":\"1234 Street\",\"City\":\"Dallas\",\"Country\":\"USA\",\"CountrySubDivisionCode\":\"LV\",\"PostalCode\":\"76262\"},\"ShipAddr\":{\"Id\":\"114\",\"Line1\":\"1234 Street\",\"City\":\"Dallas\",\"Country\":\"USA\",\"CountrySubDivisionCode\":\"LV\",\"PostalCode\":\"76262\"},\"Job\":false,\"BillWithParent\":false,\"Balance\":0,\"BalanceWithJobs\":0,\"CurrencyRef\":{\"value\":\"USD\",\"name\":\"United States Dollar\"},\"PreferredDeliveryMethod\":\"Print\",\"IsProject\":false,\"domain\":\"QBO\",\"sparse\":false,\"Id\":\"69\",\"SyncToken\":\"0\",\"MetaData\":{\"CreateTime\":\"2022-04-10T06:34:57-07:00\",\"LastUpdatedTime\":\"2022-04-10T06:34:57-07:00\"},\"GivenName\":\"David\",\"FamilyName\":\"Lam\",\"FullyQualifiedName\":\"My Law Firm1 - Dallas, LV\",\"CompanyName\":\"My Law Firm1\",\"DisplayName\":\"My Law Firm1 - Dallas, LV\",\"PrintOnCheckName\":\"My Law Firm1\",\"Active\":true,\"PrimaryPhone\":{\"FreeFormNumber\":\"15552224444\"},\"PrimaryEmailAddr\":{\"Address\":\"test1@testemail.com\"},\"DefaultTaxCodeRef\":{\"value\":\"2\"}},\"time\":\"2022-04-10T06:34:57.377-07:00\"}",
+    "status": 200,
+    "statusText": "OK"
+  },
+  "body": "{\"Customer\":{\"Taxable\":true,\"BillAddr\":{\"Id\":\"113\",\"Line1\":\"1234 Street\",\"City\":\"Dallas\",\"Country\":\"USA\",\"CountrySubDivisionCode\":\"LV\",\"PostalCode\":\"76262\"},\"ShipAddr\":{\"Id\":\"114\",\"Line1\":\"1234 Street\",\"City\":\"Dallas\",\"Country\":\"USA\",\"CountrySubDivisionCode\":\"LV\",\"PostalCode\":\"76262\"},\"Job\":false,\"BillWithParent\":false,\"Balance\":0,\"BalanceWithJobs\":0,\"CurrencyRef\":{\"value\":\"USD\",\"name\":\"United States Dollar\"},\"PreferredDeliveryMethod\":\"Print\",\"IsProject\":false,\"domain\":\"QBO\",\"sparse\":false,\"Id\":\"69\",\"SyncToken\":\"0\",\"MetaData\":{\"CreateTime\":\"2022-04-10T06:34:57-07:00\",\"LastUpdatedTime\":\"2022-04-10T06:34:57-07:00\"},\"GivenName\":\"David\",\"FamilyName\":\"Lam\",\"FullyQualifiedName\":\"My Law Firm1 - Dallas, LV\",\"CompanyName\":\"My Law Firm1\",\"DisplayName\":\"My Law Firm1 - Dallas, LV\",\"PrintOnCheckName\":\"My Law Firm1\",\"Active\":true,\"PrimaryPhone\":{\"FreeFormNumber\":\"15552224444\"},\"PrimaryEmailAddr\":{\"Address\":\"test1@testemail.com\"},\"DefaultTaxCodeRef\":{\"value\":\"2\"}},\"time\":\"2022-04-10T06:34:57.377-07:00\"}",
+  "json": {
+    "Customer": {
+      "Taxable": true,
+      "BillAddr": {
+        "Id": "113",
+        "Line1": "1234 Street",
+        "City": "Dallas",
+        "Country": "USA",
+        "CountrySubDivisionCode": "LV",
+        "PostalCode": "76262"
+      },
+      "ShipAddr": {
+        "Id": "114",
+        "Line1": "1234 Street",
+        "City": "Dallas",
+        "Country": "USA",
+        "CountrySubDivisionCode": "LV",
+        "PostalCode": "76262"
+      },
+      "Job": false,
+      "BillWithParent": false,
+      "Balance": 0,
+      "BalanceWithJobs": 0,
+      "CurrencyRef": {
+        "value": "USD",
+        "name": "United States Dollar"
+      },
+      "PreferredDeliveryMethod": "Print",
+      "IsProject": false,
+      "domain": "QBO",
+      "sparse": false,
+      "Id": "69",
+      "SyncToken": "0",
+      "MetaData": {
+        "CreateTime": "2022-04-10T06:34:57-07:00",
+        "LastUpdatedTime": "2022-04-10T06:34:57-07:00"
+      },
+      "GivenName": "David",
+      "FamilyName": "Lam",
+      "FullyQualifiedName": "My Law Firm1 - Dallas, LV",
+      "CompanyName": "My Law Firm1",
+      "DisplayName": "My Law Firm1 - Dallas, LV",
+      "PrintOnCheckName": "My Law Firm1",
+      "Active": true,
+      "PrimaryPhone": {
+        "FreeFormNumber": "15552224444"
+      },
+      "PrimaryEmailAddr": {
+        "Address": "test1@testemail.com"
+      },
+      "DefaultTaxCodeRef": {
+        "value": "2"
+      }
+    },
+    "time": "2022-04-10T06:34:57.377-07:00"
+  },
+  "intuit_tid": "1-6252dd01-7e9c1e1271fe49d96571e0e4"
+}
+2022-04-10T13:38:01.914Z info: The Authorize Uri is :https://appcenter.intuit.com/connect/oauth2?client_id=ABqDWvwmacSPpOhqicB3Rad6LmgH7IB8mZGnenGltkStSMGKaK&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fcallback&response_type=code&scope=com.intuit.quickbooks.accounting%20openid&state=%7B%22action%22%3A%22create_customer%22%2C%22id%22%3A16%7D
+2022-04-10T13:38:30.253Z info: Create Token response is : {
+  "token": {
+    "realmId": "4620816365201067600",
+    "token_type": "bearer",
+    "access_token": "eyJlbmMiOiJBMTI4Q0JDLUhTMjU2IiwiYWxnIjoiZGlyIn0..8_Ue84BLcxkqPkMUgNclkA.bWoYwfRWWKHa2vL24yVF4Md3Rv9xtBQgSZfxXeusHz4AdFffD8klcFI5xKVzfMi_84-EOY2IPLYb0PHWTrXYBSeGROufTrSgrLCKsG-xY60I_B4b8ufr9ksewbtKxANbOxR5hdb-k4lVuoDnY8N8NVhHQGRC6tWgjOE1WpfQHySZe3IesKNofz622bQNprkMdBBKsUybuhIKJ8e1rkRj-irjZff2ee3mL7MjjiNOVUtJhGs7iNhUyq8w253lzpAlH_LCZnxGAQzautxNpeK7jdgP8lbfpH_X1b51Ogey1nQBfL4QT1zsgoSpuw1Qp-4O0pcwmcJGZ4rxCKfgoXlhDdj2Pz9YG5wgmreD3Rw7-Eia5SIoJw1cUK8nK4jMMWKnuDfwLSYT290gyThqQPhdwhVpUoixExddqgN-MHFQ-1-6Wu8ByuoE4Bkrfm9a0kyV_uhbgO3_hHTaoMEGh1hgJR9wJrZ0DYg78vQ1_CmD6063ezReVFkhpDLiLCCanZKdc2OouiI4kcBfC5iDjm7nirSnpgg777vV0xYYAZeTPAWMU3CNx4d8Lz-Qy-C8AtbuqgjXncyiH9S8AMu6fdIZsV73bviyuyaUrYvGOo55NxXovq_ngN7aCwkqENNk03UhqsywEWp0ab1qGQngCYt-KsllTFyFwVXEkwRjHvqyXF511E2MaLcwTH72rFfV-BuVzF_xQnaGPwp5GoWCuruNdsZvLWmEcvCEHH-oX3TIxdcqe5MEN_ukwCfeDCZ_iOjLKJIwlOHcHCe97hjTTfGZ2AXvH0tZ17P6qAFnLZgyOB94rfc6M6Db88fwYYRWUBmNpLqodg0PRFE4xtIEqF4MAQ.pV8bA8li_0Zhwex_bwoyXA",
+    "refresh_token": "AB11658324310YgfnsbGlXdoo7TPmCsO9GRPZynfNV6AQRZaEy",
+    "expires_in": 3600,
+    "x_refresh_token_expires_in": 8726400,
+    "id_token": "eyJraWQiOiJPUElDUFJEMDkxODIwMTQiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJmNzhlYzJiMC1jZGFiLTQzMTktYTAzNi1jZTJkYTFkMmU5NjQiLCJhdWQiOlsiQUJxRFd2d21hY1NQcE9ocWljQjNSYWQ2TG1nSDdJQjhtWkduZW5HbHRrU3RTTUdLYUsiXSwicmVhbG1pZCI6IjQ2MjA4MTYzNjUyMDEwNjc2MDAiLCJhdXRoX3RpbWUiOjE2NDk1OTMzOTAsImlzcyI6Imh0dHBzOlwvXC9vYXV0aC5wbGF0Zm9ybS5pbnR1aXQuY29tXC9vcFwvdjEiLCJleHAiOjE2NDk2MDE1MTAsImlhdCI6MTY0OTU5NzkxMH0.Ii2jVIw8CTjNrYxqjcRutivcLelOHKagMre1bRaGmZf6jlQPDz0vzlZd422fRyKPeWzM9v9H684AaEKOsmWzEdtJdgHKO05jbdPx0C0J-BWSajHDQnOYbgh5Z21JXMazwbkxTjJ4hWoXi699GJgCzVN7FIdylh_EHLvOi61w6AU",
+    "latency": 60000,
+    "createdAt": 1649597910252,
+    "state": "{\"action\":\"create_customer\",\"id\":16}"
+  },
+  "response": {
+    "url": "https://oauth.platform.intuit.com/oauth2/v1/tokens/bearer",
+    "headers": {
+      "date": "Sun, 10 Apr 2022 13:38:30 GMT",
+      "content-type": "application/json;charset=utf-8",
+      "content-length": "1684",
+      "connection": "close",
+      "intuit_tid": "1-6252ddd6-6e8046ca235ed4600e4d3891",
+      "x-spanid": "4ebc8ba0-5093-4260-8bae-b36cabdccda1",
+      "x-amzn-trace-id": "Root=1-6252ddd6-6e8046ca235ed4600e4d3891",
+      "x-content-type-options": "nosniff",
+      "server": "envoy",
+      "cache-control": "no-cache, no-store",
+      "pragma": "no-cache",
+      "x-frame-options": "SAMEORIGIN",
+      "x-xss-protection": "1; mode=block",
+      "x-envoy-upstream-service-time": "55",
+      "strict-transport-security": "max-age=31536000"
+    },
+    "body": "{\"x_refresh_token_expires_in\":8726400,\"access_token\":\"eyJlbmMiOiJBMTI4Q0JDLUhTMjU2IiwiYWxnIjoiZGlyIn0..8_Ue84BLcxkqPkMUgNclkA.bWoYwfRWWKHa2vL24yVF4Md3Rv9xtBQgSZfxXeusHz4AdFffD8klcFI5xKVzfMi_84-EOY2IPLYb0PHWTrXYBSeGROufTrSgrLCKsG-xY60I_B4b8ufr9ksewbtKxANbOxR5hdb-k4lVuoDnY8N8NVhHQGRC6tWgjOE1WpfQHySZe3IesKNofz622bQNprkMdBBKsUybuhIKJ8e1rkRj-irjZff2ee3mL7MjjiNOVUtJhGs7iNhUyq8w253lzpAlH_LCZnxGAQzautxNpeK7jdgP8lbfpH_X1b51Ogey1nQBfL4QT1zsgoSpuw1Qp-4O0pcwmcJGZ4rxCKfgoXlhDdj2Pz9YG5wgmreD3Rw7-Eia5SIoJw1cUK8nK4jMMWKnuDfwLSYT290gyThqQPhdwhVpUoixExddqgN-MHFQ-1-6Wu8ByuoE4Bkrfm9a0kyV_uhbgO3_hHTaoMEGh1hgJR9wJrZ0DYg78vQ1_CmD6063ezReVFkhpDLiLCCanZKdc2OouiI4kcBfC5iDjm7nirSnpgg777vV0xYYAZeTPAWMU3CNx4d8Lz-Qy-C8AtbuqgjXncyiH9S8AMu6fdIZsV73bviyuyaUrYvGOo55NxXovq_ngN7aCwkqENNk03UhqsywEWp0ab1qGQngCYt-KsllTFyFwVXEkwRjHvqyXF511E2MaLcwTH72rFfV-BuVzF_xQnaGPwp5GoWCuruNdsZvLWmEcvCEHH-oX3TIxdcqe5MEN_ukwCfeDCZ_iOjLKJIwlOHcHCe97hjTTfGZ2AXvH0tZ17P6qAFnLZgyOB94rfc6M6Db88fwYYRWUBmNpLqodg0PRFE4xtIEqF4MAQ.pV8bA8li_0Zhwex_bwoyXA\",\"refresh_token\":\"AB11658324310YgfnsbGlXdoo7TPmCsO9GRPZynfNV6AQRZaEy\",\"id_token\":\"eyJraWQiOiJPUElDUFJEMDkxODIwMTQiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJmNzhlYzJiMC1jZGFiLTQzMTktYTAzNi1jZTJkYTFkMmU5NjQiLCJhdWQiOlsiQUJxRFd2d21hY1NQcE9ocWljQjNSYWQ2TG1nSDdJQjhtWkduZW5HbHRrU3RTTUdLYUsiXSwicmVhbG1pZCI6IjQ2MjA4MTYzNjUyMDEwNjc2MDAiLCJhdXRoX3RpbWUiOjE2NDk1OTMzOTAsImlzcyI6Imh0dHBzOlwvXC9vYXV0aC5wbGF0Zm9ybS5pbnR1aXQuY29tXC9vcFwvdjEiLCJleHAiOjE2NDk2MDE1MTAsImlhdCI6MTY0OTU5NzkxMH0.Ii2jVIw8CTjNrYxqjcRutivcLelOHKagMre1bRaGmZf6jlQPDz0vzlZd422fRyKPeWzM9v9H684AaEKOsmWzEdtJdgHKO05jbdPx0C0J-BWSajHDQnOYbgh5Z21JXMazwbkxTjJ4hWoXi699GJgCzVN7FIdylh_EHLvOi61w6AU\",\"token_type\":\"bearer\",\"expires_in\":3600}",
+    "status": 200,
+    "statusText": "OK"
+  },
+  "body": "{\"x_refresh_token_expires_in\":8726400,\"access_token\":\"eyJlbmMiOiJBMTI4Q0JDLUhTMjU2IiwiYWxnIjoiZGlyIn0..8_Ue84BLcxkqPkMUgNclkA.bWoYwfRWWKHa2vL24yVF4Md3Rv9xtBQgSZfxXeusHz4AdFffD8klcFI5xKVzfMi_84-EOY2IPLYb0PHWTrXYBSeGROufTrSgrLCKsG-xY60I_B4b8ufr9ksewbtKxANbOxR5hdb-k4lVuoDnY8N8NVhHQGRC6tWgjOE1WpfQHySZe3IesKNofz622bQNprkMdBBKsUybuhIKJ8e1rkRj-irjZff2ee3mL7MjjiNOVUtJhGs7iNhUyq8w253lzpAlH_LCZnxGAQzautxNpeK7jdgP8lbfpH_X1b51Ogey1nQBfL4QT1zsgoSpuw1Qp-4O0pcwmcJGZ4rxCKfgoXlhDdj2Pz9YG5wgmreD3Rw7-Eia5SIoJw1cUK8nK4jMMWKnuDfwLSYT290gyThqQPhdwhVpUoixExddqgN-MHFQ-1-6Wu8ByuoE4Bkrfm9a0kyV_uhbgO3_hHTaoMEGh1hgJR9wJrZ0DYg78vQ1_CmD6063ezReVFkhpDLiLCCanZKdc2OouiI4kcBfC5iDjm7nirSnpgg777vV0xYYAZeTPAWMU3CNx4d8Lz-Qy-C8AtbuqgjXncyiH9S8AMu6fdIZsV73bviyuyaUrYvGOo55NxXovq_ngN7aCwkqENNk03UhqsywEWp0ab1qGQngCYt-KsllTFyFwVXEkwRjHvqyXF511E2MaLcwTH72rFfV-BuVzF_xQnaGPwp5GoWCuruNdsZvLWmEcvCEHH-oX3TIxdcqe5MEN_ukwCfeDCZ_iOjLKJIwlOHcHCe97hjTTfGZ2AXvH0tZ17P6qAFnLZgyOB94rfc6M6Db88fwYYRWUBmNpLqodg0PRFE4xtIEqF4MAQ.pV8bA8li_0Zhwex_bwoyXA\",\"refresh_token\":\"AB11658324310YgfnsbGlXdoo7TPmCsO9GRPZynfNV6AQRZaEy\",\"id_token\":\"eyJraWQiOiJPUElDUFJEMDkxODIwMTQiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJmNzhlYzJiMC1jZGFiLTQzMTktYTAzNi1jZTJkYTFkMmU5NjQiLCJhdWQiOlsiQUJxRFd2d21hY1NQcE9ocWljQjNSYWQ2TG1nSDdJQjhtWkduZW5HbHRrU3RTTUdLYUsiXSwicmVhbG1pZCI6IjQ2MjA4MTYzNjUyMDEwNjc2MDAiLCJhdXRoX3RpbWUiOjE2NDk1OTMzOTAsImlzcyI6Imh0dHBzOlwvXC9vYXV0aC5wbGF0Zm9ybS5pbnR1aXQuY29tXC9vcFwvdjEiLCJleHAiOjE2NDk2MDE1MTAsImlhdCI6MTY0OTU5NzkxMH0.Ii2jVIw8CTjNrYxqjcRutivcLelOHKagMre1bRaGmZf6jlQPDz0vzlZd422fRyKPeWzM9v9H684AaEKOsmWzEdtJdgHKO05jbdPx0C0J-BWSajHDQnOYbgh5Z21JXMazwbkxTjJ4hWoXi699GJgCzVN7FIdylh_EHLvOi61w6AU\",\"token_type\":\"bearer\",\"expires_in\":3600}",
+  "json": {
+    "x_refresh_token_expires_in": 8726400,
+    "access_token": "eyJlbmMiOiJBMTI4Q0JDLUhTMjU2IiwiYWxnIjoiZGlyIn0..8_Ue84BLcxkqPkMUgNclkA.bWoYwfRWWKHa2vL24yVF4Md3Rv9xtBQgSZfxXeusHz4AdFffD8klcFI5xKVzfMi_84-EOY2IPLYb0PHWTrXYBSeGROufTrSgrLCKsG-xY60I_B4b8ufr9ksewbtKxANbOxR5hdb-k4lVuoDnY8N8NVhHQGRC6tWgjOE1WpfQHySZe3IesKNofz622bQNprkMdBBKsUybuhIKJ8e1rkRj-irjZff2ee3mL7MjjiNOVUtJhGs7iNhUyq8w253lzpAlH_LCZnxGAQzautxNpeK7jdgP8lbfpH_X1b51Ogey1nQBfL4QT1zsgoSpuw1Qp-4O0pcwmcJGZ4rxCKfgoXlhDdj2Pz9YG5wgmreD3Rw7-Eia5SIoJw1cUK8nK4jMMWKnuDfwLSYT290gyThqQPhdwhVpUoixExddqgN-MHFQ-1-6Wu8ByuoE4Bkrfm9a0kyV_uhbgO3_hHTaoMEGh1hgJR9wJrZ0DYg78vQ1_CmD6063ezReVFkhpDLiLCCanZKdc2OouiI4kcBfC5iDjm7nirSnpgg777vV0xYYAZeTPAWMU3CNx4d8Lz-Qy-C8AtbuqgjXncyiH9S8AMu6fdIZsV73bviyuyaUrYvGOo55NxXovq_ngN7aCwkqENNk03UhqsywEWp0ab1qGQngCYt-KsllTFyFwVXEkwRjHvqyXF511E2MaLcwTH72rFfV-BuVzF_xQnaGPwp5GoWCuruNdsZvLWmEcvCEHH-oX3TIxdcqe5MEN_ukwCfeDCZ_iOjLKJIwlOHcHCe97hjTTfGZ2AXvH0tZ17P6qAFnLZgyOB94rfc6M6Db88fwYYRWUBmNpLqodg0PRFE4xtIEqF4MAQ.pV8bA8li_0Zhwex_bwoyXA",
+    "refresh_token": "AB11658324310YgfnsbGlXdoo7TPmCsO9GRPZynfNV6AQRZaEy",
+    "id_token": "eyJraWQiOiJPUElDUFJEMDkxODIwMTQiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJmNzhlYzJiMC1jZGFiLTQzMTktYTAzNi1jZTJkYTFkMmU5NjQiLCJhdWQiOlsiQUJxRFd2d21hY1NQcE9ocWljQjNSYWQ2TG1nSDdJQjhtWkduZW5HbHRrU3RTTUdLYUsiXSwicmVhbG1pZCI6IjQ2MjA4MTYzNjUyMDEwNjc2MDAiLCJhdXRoX3RpbWUiOjE2NDk1OTMzOTAsImlzcyI6Imh0dHBzOlwvXC9vYXV0aC5wbGF0Zm9ybS5pbnR1aXQuY29tXC9vcFwvdjEiLCJleHAiOjE2NDk2MDE1MTAsImlhdCI6MTY0OTU5NzkxMH0.Ii2jVIw8CTjNrYxqjcRutivcLelOHKagMre1bRaGmZf6jlQPDz0vzlZd422fRyKPeWzM9v9H684AaEKOsmWzEdtJdgHKO05jbdPx0C0J-BWSajHDQnOYbgh5Z21JXMazwbkxTjJ4hWoXi699GJgCzVN7FIdylh_EHLvOi61w6AU",
+    "token_type": "bearer",
+    "expires_in": 3600
+  },
+  "intuit_tid": "1-6252ddd6-6e8046ca235ed4600e4d3891"
+}
+2022-04-10T13:38:32.295Z info: The makeAPICall () response is : {
+  "token": {
+    "realmId": "4620816365201067600",
+    "token_type": "bearer",
+    "access_token": "eyJlbmMiOiJBMTI4Q0JDLUhTMjU2IiwiYWxnIjoiZGlyIn0..8_Ue84BLcxkqPkMUgNclkA.bWoYwfRWWKHa2vL24yVF4Md3Rv9xtBQgSZfxXeusHz4AdFffD8klcFI5xKVzfMi_84-EOY2IPLYb0PHWTrXYBSeGROufTrSgrLCKsG-xY60I_B4b8ufr9ksewbtKxANbOxR5hdb-k4lVuoDnY8N8NVhHQGRC6tWgjOE1WpfQHySZe3IesKNofz622bQNprkMdBBKsUybuhIKJ8e1rkRj-irjZff2ee3mL7MjjiNOVUtJhGs7iNhUyq8w253lzpAlH_LCZnxGAQzautxNpeK7jdgP8lbfpH_X1b51Ogey1nQBfL4QT1zsgoSpuw1Qp-4O0pcwmcJGZ4rxCKfgoXlhDdj2Pz9YG5wgmreD3Rw7-Eia5SIoJw1cUK8nK4jMMWKnuDfwLSYT290gyThqQPhdwhVpUoixExddqgN-MHFQ-1-6Wu8ByuoE4Bkrfm9a0kyV_uhbgO3_hHTaoMEGh1hgJR9wJrZ0DYg78vQ1_CmD6063ezReVFkhpDLiLCCanZKdc2OouiI4kcBfC5iDjm7nirSnpgg777vV0xYYAZeTPAWMU3CNx4d8Lz-Qy-C8AtbuqgjXncyiH9S8AMu6fdIZsV73bviyuyaUrYvGOo55NxXovq_ngN7aCwkqENNk03UhqsywEWp0ab1qGQngCYt-KsllTFyFwVXEkwRjHvqyXF511E2MaLcwTH72rFfV-BuVzF_xQnaGPwp5GoWCuruNdsZvLWmEcvCEHH-oX3TIxdcqe5MEN_ukwCfeDCZ_iOjLKJIwlOHcHCe97hjTTfGZ2AXvH0tZ17P6qAFnLZgyOB94rfc6M6Db88fwYYRWUBmNpLqodg0PRFE4xtIEqF4MAQ.pV8bA8li_0Zhwex_bwoyXA",
+    "refresh_token": "AB11658324310YgfnsbGlXdoo7TPmCsO9GRPZynfNV6AQRZaEy",
+    "expires_in": 3600,
+    "x_refresh_token_expires_in": 8726400,
+    "id_token": "eyJraWQiOiJPUElDUFJEMDkxODIwMTQiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJmNzhlYzJiMC1jZGFiLTQzMTktYTAzNi1jZTJkYTFkMmU5NjQiLCJhdWQiOlsiQUJxRFd2d21hY1NQcE9ocWljQjNSYWQ2TG1nSDdJQjhtWkduZW5HbHRrU3RTTUdLYUsiXSwicmVhbG1pZCI6IjQ2MjA4MTYzNjUyMDEwNjc2MDAiLCJhdXRoX3RpbWUiOjE2NDk1OTMzOTAsImlzcyI6Imh0dHBzOlwvXC9vYXV0aC5wbGF0Zm9ybS5pbnR1aXQuY29tXC9vcFwvdjEiLCJleHAiOjE2NDk2MDE1MTAsImlhdCI6MTY0OTU5NzkxMH0.Ii2jVIw8CTjNrYxqjcRutivcLelOHKagMre1bRaGmZf6jlQPDz0vzlZd422fRyKPeWzM9v9H684AaEKOsmWzEdtJdgHKO05jbdPx0C0J-BWSajHDQnOYbgh5Z21JXMazwbkxTjJ4hWoXi699GJgCzVN7FIdylh_EHLvOi61w6AU",
+    "latency": 60000,
+    "createdAt": 1649597910252,
+    "state": "{\"action\":\"create_customer\",\"id\":16}"
+  },
+  "response": {
+    "url": "https://sandbox-quickbooks.api.intuit.com/v3/company/4620816365201067600/customer?minorversion=63",
+    "headers": {
+      "date": "Sun, 10 Apr 2022 13:38:32 GMT",
+      "content-type": "application/json;charset=utf-8",
+      "transfer-encoding": "chunked",
+      "connection": "close",
+      "intuit_tid": "1-6252ddd8-1389577f595c3a5b183ff414",
+      "x-spanid": "c589e4f1-c95d-49d1-a375-9a82514b8786",
+      "x-amzn-trace-id": "Root=1-6252ddd8-1389577f595c3a5b183ff414",
+      "x-content-type-options": "nosniff",
+      "x-xss-protection": "1; mode=block",
+      "qbo-version": "1978.180",
+      "service-time": "total=193, db=98",
+      "expires": "0",
+      "content-encoding": "gzip",
+      "cache-control": "max-age=0, no-cache, no-store, must-revalidate, private",
+      "x-envoy-upstream-service-time": "223",
+      "strict-transport-security": "max-age=31536000",
+      "server": "envoy"
+    },
+    "body": "{\"Customer\":{\"Taxable\":true,\"BillAddr\":{\"Id\":\"115\",\"Line1\":\"1234 Street\",\"City\":\"Dallas\",\"Country\":\"USA\",\"CountrySubDivisionCode\":\"LV\",\"PostalCode\":\"76262\"},\"ShipAddr\":{\"Id\":\"116\",\"Line1\":\"1234 Street\",\"City\":\"Dallas\",\"Country\":\"USA\",\"CountrySubDivisionCode\":\"LV\",\"PostalCode\":\"76262\"},\"Job\":false,\"BillWithParent\":false,\"Balance\":0,\"BalanceWithJobs\":0,\"CurrencyRef\":{\"value\":\"USD\",\"name\":\"United States Dollar\"},\"PreferredDeliveryMethod\":\"Print\",\"IsProject\":false,\"domain\":\"QBO\",\"sparse\":false,\"Id\":\"70\",\"SyncToken\":\"0\",\"MetaData\":{\"CreateTime\":\"2022-04-10T06:38:32-07:00\",\"LastUpdatedTime\":\"2022-04-10T06:38:32-07:00\"},\"GivenName\":\"David\",\"FamilyName\":\"Lam\",\"FullyQualifiedName\":\"My Law Firm1 - Dallas, LV\",\"CompanyName\":\"My Law Firm1\",\"DisplayName\":\"My Law Firm1 - Dallas, LV\",\"PrintOnCheckName\":\"My Law Firm1\",\"Active\":true,\"PrimaryPhone\":{\"FreeFormNumber\":\"15552224444\"},\"PrimaryEmailAddr\":{\"Address\":\"test1@testemail.com\"},\"DefaultTaxCodeRef\":{\"value\":\"2\"}},\"time\":\"2022-04-10T06:38:32.077-07:00\"}",
+    "status": 200,
+    "statusText": "OK"
+  },
+  "body": "{\"Customer\":{\"Taxable\":true,\"BillAddr\":{\"Id\":\"115\",\"Line1\":\"1234 Street\",\"City\":\"Dallas\",\"Country\":\"USA\",\"CountrySubDivisionCode\":\"LV\",\"PostalCode\":\"76262\"},\"ShipAddr\":{\"Id\":\"116\",\"Line1\":\"1234 Street\",\"City\":\"Dallas\",\"Country\":\"USA\",\"CountrySubDivisionCode\":\"LV\",\"PostalCode\":\"76262\"},\"Job\":false,\"BillWithParent\":false,\"Balance\":0,\"BalanceWithJobs\":0,\"CurrencyRef\":{\"value\":\"USD\",\"name\":\"United States Dollar\"},\"PreferredDeliveryMethod\":\"Print\",\"IsProject\":false,\"domain\":\"QBO\",\"sparse\":false,\"Id\":\"70\",\"SyncToken\":\"0\",\"MetaData\":{\"CreateTime\":\"2022-04-10T06:38:32-07:00\",\"LastUpdatedTime\":\"2022-04-10T06:38:32-07:00\"},\"GivenName\":\"David\",\"FamilyName\":\"Lam\",\"FullyQualifiedName\":\"My Law Firm1 - Dallas, LV\",\"CompanyName\":\"My Law Firm1\",\"DisplayName\":\"My Law Firm1 - Dallas, LV\",\"PrintOnCheckName\":\"My Law Firm1\",\"Active\":true,\"PrimaryPhone\":{\"FreeFormNumber\":\"15552224444\"},\"PrimaryEmailAddr\":{\"Address\":\"test1@testemail.com\"},\"DefaultTaxCodeRef\":{\"value\":\"2\"}},\"time\":\"2022-04-10T06:38:32.077-07:00\"}",
+  "json": {
+    "Customer": {
+      "Taxable": true,
+      "BillAddr": {
+        "Id": "115",
+        "Line1": "1234 Street",
+        "City": "Dallas",
+        "Country": "USA",
+        "CountrySubDivisionCode": "LV",
+        "PostalCode": "76262"
+      },
+      "ShipAddr": {
+        "Id": "116",
+        "Line1": "1234 Street",
+        "City": "Dallas",
+        "Country": "USA",
+        "CountrySubDivisionCode": "LV",
+        "PostalCode": "76262"
+      },
+      "Job": false,
+      "BillWithParent": false,
+      "Balance": 0,
+      "BalanceWithJobs": 0,
+      "CurrencyRef": {
+        "value": "USD",
+        "name": "United States Dollar"
+      },
+      "PreferredDeliveryMethod": "Print",
+      "IsProject": false,
+      "domain": "QBO",
+      "sparse": false,
+      "Id": "70",
+      "SyncToken": "0",
+      "MetaData": {
+        "CreateTime": "2022-04-10T06:38:32-07:00",
+        "LastUpdatedTime": "2022-04-10T06:38:32-07:00"
+      },
+      "GivenName": "David",
+      "FamilyName": "Lam",
+      "FullyQualifiedName": "My Law Firm1 - Dallas, LV",
+      "CompanyName": "My Law Firm1",
+      "DisplayName": "My Law Firm1 - Dallas, LV",
+      "PrintOnCheckName": "My Law Firm1",
+      "Active": true,
+      "PrimaryPhone": {
+        "FreeFormNumber": "15552224444"
+      },
+      "PrimaryEmailAddr": {
+        "Address": "test1@testemail.com"
+      },
+      "DefaultTaxCodeRef": {
+        "value": "2"
+      }
+    },
+    "time": "2022-04-10T06:38:32.077-07:00"
+  },
+  "intuit_tid": "1-6252ddd8-1389577f595c3a5b183ff414"
+}

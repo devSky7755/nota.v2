@@ -2,6 +2,9 @@ import { Injectable, NotFoundException } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { plainToClass } from "class-transformer";
 import { DeleteResult, Repository, UpdateResult } from "typeorm";
+import { S3 } from 'aws-sdk';
+import { v4 as uuid } from 'uuid';
+
 import { CreateDocActionDto } from "./dto/doc.action.create-dto";
 import { UpdateDocActionDto } from "./dto/doc.action.update-dto";
 import { CreateDocDto } from "./dto/doc.create-dto";
@@ -89,7 +92,13 @@ export class DocService {
     return await this.docRepository.findOne({ id });
   }
 
-  async createDoc(doc: CreateDocDto): Promise<DocEntity> {
+  async createDoc(doc: CreateDocDto, fileBuffer: Buffer, fileName: string, fileType: string): Promise<DocEntity> {
+    const s3 = new S3();
+    const uploadResult = await s3.upload({
+      Bucket: process.env.AWS_S3_BUCKET,
+      Body: fileBuffer,
+      Key: `${uuid()}-${fileName}`
+    }).promise();
     const {
       action,
       status,
@@ -98,26 +107,37 @@ export class DocService {
 
     return await this.docRepository.save({
       action: await this.docActionRepository.findOne({
-        id: action,
+        id: 1,
       }),
       status: await this.docStatusRepository.findOne({
-        id: status,
+        id: 1,
       }),
+      docUrl: uploadResult.Location,
+      docType: fileType,
       ...dto,
     });
   }
 
-  async updateDocById(id: number, docDto: UpdateDocDto): Promise<DocEntity> {
+  async updateDocById(id: number, docDto: UpdateDocDto, fileBuffer: Buffer, fileName: string, fileType: string): Promise<DocEntity> {
     const doc = await this.docRepository.findOne(id);
     if (!doc)
       throw new NotFoundException(`there is no doc with ID ${id}`);
-
     const {
       action,
       status,
       ...dto
     } = docDto;
 
+    const s3 = new S3();
+    s3.deleteObject({
+      Bucket: process.env.AWS_S3_BUCKET,
+      Key: doc.docUrl.replace(/^(https:\/\/s3.amazonaws.com\/notary.io-docs\/)/, '')
+    }).promise();
+    const uploadResult = await s3.upload({
+      Bucket: process.env.AWS_S3_BUCKET,
+      Body: fileBuffer,
+      Key: `${uuid()}-${fileName}`
+    }).promise();
     if (action) {
       dto['action'] = await this.docActionRepository.findOne({ id: action })
     }
@@ -126,7 +146,12 @@ export class DocService {
       dto['status'] = await this.docStatusRepository.findOne({ id: status })
     }
 
-    return await this.docRepository.save(plainToClass(DocEntity, { ...doc, ...dto }));
+    return await this.docRepository.save(plainToClass(DocEntity, {
+      ...doc,
+      docUrl: uploadResult.Location,
+      docType: fileType,
+      ...dto
+    }));
   }
 
   async removeDocById(id: number): Promise<DocEntity> {

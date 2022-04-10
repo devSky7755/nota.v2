@@ -7,7 +7,11 @@ import {
   Param,
   Put,
   Delete,
+  UseInterceptors,
+  UploadedFile,
 } from "@nestjs/common";
+import { Express } from 'express';
+import { FileInterceptor } from "@nestjs/platform-express";
 import { AuthGuard } from "@nestjs/passport";
 import { CreateDocDto } from "./dto/doc.create-dto";
 import { DocActionService, DocService, DocStatusService } from "./doc.service";
@@ -103,14 +107,16 @@ export class DocController {
 
   @Post()
   @UseGuards(AuthGuard("jwt"))
-  createDoc(@Body() doc: CreateDocDto): Promise<DocEntity> {
-    return this.docService.createDoc(doc);
+  @UseInterceptors(FileInterceptor('file'))
+  createDoc(@Body() doc: CreateDocDto, @UploadedFile() file: Express.Multer.File): Promise<DocEntity> {
+    return this.docService.createDoc(doc, file.buffer, file.originalname, file.mimetype);
   }
 
   @Put("/:id")
   @UseGuards(AuthGuard("jwt"))
-  updateDoc(@Param("id") id: number, @Body() doc: UpdateDocDto): Promise<DocEntity> {
-    return this.docService.updateDocById(id, doc);
+  @UseInterceptors(FileInterceptor('file'))
+  updateDoc(@Param("id") id: number, @Body() doc: UpdateDocDto, @UploadedFile() file: Express.Multer.File): Promise<DocEntity> {
+    return this.docService.updateDocById(id, doc, file.buffer, file.originalname, file.mimetype);
   }
 
   @Delete("/:id")

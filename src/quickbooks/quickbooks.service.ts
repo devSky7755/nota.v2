@@ -2,6 +2,7 @@ import { Injectable, NotFoundException, UnauthorizedException } from "@nestjs/co
 import { InjectRepository } from "@nestjs/typeorm";
 import OAuthClient = require("intuit-oauth")
 import { AccountEntity } from "src/account/entity/account.entity";
+import { BillingEntity } from "src/billing/entity/billing.entity";
 import { Repository } from "typeorm";
 
 @Injectable()
@@ -13,6 +14,8 @@ export class QBService {
   constructor(
     @InjectRepository(AccountEntity)
     private AccountRepository: Repository<AccountEntity>,
+    @InjectRepository(BillingEntity)
+    private billingRepository: Repository<BillingEntity>,
   ) {
     this.oauthClient = new OAuthClient({
       clientId: process.env.QB_CLIENT_ID,
@@ -52,7 +55,7 @@ export class QBService {
       });
   }
 
-  createCustomer = async (realmId: number, accId: number, accessToken: string) => {
+  createCustomer = async (realmId: number, accessToken: string, accId: number) => {
     if (!this.oauthClient) return;
     const acc: AccountEntity = await this.AccountRepository.findOne(
       { id: accId },
@@ -98,7 +101,7 @@ export class QBService {
           "Country": "USA"
         },
       };
-      await this.oauthClient
+      const reqResult = await this.oauthClient
         .makeApiCall({
           url: `${this.qbApi}company/${realmId}/customer?minorversion=63`,
           method: 'POST',
@@ -108,14 +111,18 @@ export class QBService {
           },
           body: JSON.stringify(body),
         });
-      return acc;
+      const customerID = reqResult.json.Customer.Id;
+      await this.AccountRepository.update({ id: accId }, {
+        qbCustomerId: customerID
+      });
+      return { ...acc, qbCustomerId: customerID };
     } catch (error) {
       console.log('error', error);
       throw new UnauthorizedException();
     }
   }
 
-  updateCustomer = async (realmId: number, accId: number, accessToken: string) => {
+  updateCustomer = async (realmId: number, accessToken: string, accId: number) => {
     if (!this.oauthClient) return;
     const acc: AccountEntity = await this.AccountRepository.findOne(
       { id: accId },
@@ -125,65 +132,101 @@ export class QBService {
       throw new NotFoundException(`there is no Account with ID ${accId}`);
 
     const dispalyName = `${acc.companyName} - ${acc.city}, ${acc.state?.abbr || ''}`;
-    const qbCustomerRes: any = await this.getCustomerByDisplayName(dispalyName, realmId, accessToken);
-    const parsedResBody = JSON.parse(qbCustomerRes.response.body);
-    const customers = parsedResBody?.QueryResponse?.Customer;
-    if (customers && customers?.length > 0) {
-      const customer = customers[0];
-      try {
-        const body = {
-          "FullyQualifiedName": dispalyName,
-          "PrimaryEmailAddr": {
-            "Address": acc.email
+
+    const body = {
+      "FullyQualifiedName": dispalyName,
+      "PrimaryEmailAddr": {
+        "Address": acc.email
+      },
+      "DisplayName": dispalyName,
+      "Suffix": "",
+      "Title": "",
+      "MiddleName": "",
+      "Taxable": true,
+      "Active": acc.status?.status || false,
+      "FamilyName": acc.lastName,
+      "GivenName": acc.firstName,
+      "PrimaryPhone": {
+        "FreeFormNumber": acc.phone
+      },
+      "CompanyName": acc.companyName,
+      "BillAddr": {
+        "CountrySubDivisionCode": acc.billingState?.abbr,
+        "City": acc.billingCity,
+        "PostalCode": acc.billingZipCode,
+        "Line1": acc.billingAddressOne,
+        "Line2": acc.billingAddressTwo,
+        "Country": "USA"
+      },
+      "ShipAddr": {
+        "City": acc.city,
+        "Line1": acc.addressOne,
+        "Line2": acc.addressTwo,
+        "PostalCode": acc.zipCode,
+        "CountrySubDivisionCode": acc.state?.abbr,
+        "Country": "USA"
+      },
+      "Id": acc.qbCustomerId || null,
+      "sparse": true
+    };
+
+    try {
+      const reqResult = await this.oauthClient
+        .makeApiCall({
+          url: `${this.qbApi}company/${realmId}/customer?minorversion=63`,
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${accessToken}`
           },
-          "DisplayName": dispalyName,
-          "Suffix": "",
-          "Title": "",
-          "MiddleName": "",
-          "Taxable": true,
-          "Active": acc.status?.status || false,
-          "FamilyName": acc.lastName,
-          "GivenName": acc.firstName,
-          "PrimaryPhone": {
-            "FreeFormNumber": acc.phone
-          },
-          "CompanyName": acc.companyName,
-          "BillAddr": {
-            "CountrySubDivisionCode": acc.billingState?.abbr,
-            "City": acc.billingCity,
-            "PostalCode": acc.billingZipCode,
-            "Line1": acc.billingAddressOne,
-            "Line2": acc.billingAddressTwo,
-            "Country": "USA"
-          },
-          "ShipAddr": {
-            "City": acc.city,
-            "Line1": acc.addressOne,
-            "Line2": acc.addressTwo,
-            "PostalCode": acc.zipCode,
-            "CountrySubDivisionCode": acc.state?.abbr,
-            "Country": "USA"
-          },
-          "Id": customer.Id,
-          "sparse": true
-        };
-        await this.oauthClient
-          .makeApiCall({
-            url: `${this.qbApi}company/${realmId}/customer?minorversion=63`,
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              'Authorization': `Bearer ${accessToken}`
-            },
-            body: JSON.stringify(body),
-          });
-        return acc;
-      } catch (error) {
-        console.log('error', error);
-        throw new UnauthorizedException();
+          body: JSON.stringify(body),
+        });
+      if (!acc.qbCustomerId) {
+        const customerID = reqResult.json.Customer.Id;
+        await this.AccountRepository.update({ id: accId }, {
+          qbCustomerId: customerID
+        });
+        return { ...acc, qbCustomerId: customerID };
       }
+      return acc;
+    } catch (error) {
+      console.log('error', error);
+      throw new UnauthorizedException();
+    }
+  }
+
+  createItem = async () => {
+
+  }
+
+  createInvoice = async (realmId: number, accessToken: string, accId: number, billingId: number) => {
+    if (!this.oauthClient) return;
+
+    const billing = await this.billingRepository.findOne(billingId);
+    if (!billing)
+      throw new NotFoundException(`there is no Billing with ID ${billingId}`);
+    const acc = billing.account;
+
+    if (acc.qbCustomerId) {
+      const body = {
+        CustomerRef: {
+          value: acc.qbCustomerId
+        }
+      }
+      const reqResult = await this.oauthClient
+        .makeApiCall({
+          url: `${this.qbApi}company/${realmId}/invoice?minorversion=63`,
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${accessToken}`
+          },
+          body: JSON.stringify(body),
+        });
+      console.log(reqResult)
+      return billing;
     } else {
-      throw new NotFoundException(`there is no Customer with DisplayName ${dispalyName}`);
+      throw new NotFoundException(`customer is not registered to quickbooks`);
     }
   }
 }

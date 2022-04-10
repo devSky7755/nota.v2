@@ -65,6 +65,9 @@ export class AccountEntity {
   @Column({ name: "qb_account_number" })
   qbAccountNumber: string;
 
+  @Column({ name: "customer_id", nullable: true })
+  qbCustomerId: number;
+
   @Column({ name: "brand_color" })
   brandColor: string;
 

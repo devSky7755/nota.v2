@@ -8,17 +8,11 @@ export class CreateDocDto {
   readonly docDate: string;
 
   @IsString()
-  readonly docType: string;
-
-  @IsString()
-  readonly docUrl: string;
-
-  @IsString()
   readonly destroyDate: string;
 
-  @IsNumber()
+  @IsString()
   readonly action: number;
 
-  @IsNumber()
+  @IsString()
   readonly status: number;
 }
