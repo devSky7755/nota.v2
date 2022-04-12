@@ -32,6 +32,9 @@ export class BillingItemEntity {
     @Column({ default: true, name: "taxable" })
     taxable: boolean;
 
+    @Column({ name: "qb_id", nullable: true })
+    qbId: number;
+
     @CreateDateColumn({ type: "timestamp", default: () => "CURRENT_TIMESTAMP(6)" })
     public created_at: Date;
 

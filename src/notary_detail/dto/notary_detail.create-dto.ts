@@ -30,7 +30,7 @@ export class CreateNotaryDetailDto {
   @IsBase64()
   readonly stamp: string;
   @IsBase64()
-  readonly notary_cert: string;
+  readonly notaryCert: string;
   @IsBase64()
-  readonly on_notary_cert: string;
+  readonly onNotaryCert: string;
 }

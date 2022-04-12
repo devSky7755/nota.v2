@@ -59,19 +59,16 @@ export class SessionService {
     const {
       account,
       user,
-      dateTime,
       duration,
-      docsNum,
       sessionType,
       sessionStatus,
       notarySessionType,
-      caseMatterNum,
-      videoUrl,
       clientIds,
       witnessIds,
       associateIds,
       assocUserIds,
       docIds,
+      ...dto
     } = session;
     const sessionEnt = await this.sessionRepository.save({
       hash: uuid(),
@@ -81,11 +78,9 @@ export class SessionService {
       user: await this.userRepository.findOne({
         id: user,
       }),
-      dateTime,
       duration: await this.durationRepository.findOne({
         id: duration,
       }),
-      docsNum,
       sessionType: await this.sTypeRepository.findOne({
         id: sessionType,
       }),
@@ -95,11 +90,10 @@ export class SessionService {
       notarySessionType: await this.nSessionTypeRepository.findOne({
         id: notarySessionType,
       }),
-      caseMatterNum,
-      videoUrl,
       clients: await this.clientRepository.findByIds(clientIds || []),
       witnesses: await this.witnessRepository.findByIds(witnessIds || []),
       docs: await this.docRepository.findByIds(docIds || []),
+      ...dto
     });
     await this.patchAssocitateRelations(sessionEnt, true, assocUserIds)
     await this.patchAssocitateRelations(sessionEnt, false, associateIds)

@@ -7,6 +7,8 @@ import {
   Param,
   Put,
   Delete,
+  Res,
+  BadRequestException,
 } from "@nestjs/common";
 import { DeleteResult } from "typeorm";
 import { AuthGuard } from "@nestjs/passport";
@@ -45,9 +47,19 @@ export class BillingController {
 
   @Post()
   @UseGuards(AuthGuard("jwt"))
-  async createBilling(@Body() billing: CreateBillingDto): Promise<BillingEntity> {
-    await this.qbService.getOAuthClient()
-    return this.billingService.createBilling(billing);
+  async createBilling(@Body() billing: CreateBillingDto, @Res() res): Promise<void> {
+    try {
+      // const billingEnt = await this.billingService.createBilling(billing);
+      this.qbService.setOAuthUri(JSON.stringify({
+        action: 'create_invoice',
+        // id: billingEnt?.id
+        id: 2
+      }))
+      console.log(this.qbService.getOAuthUri());
+      return res.redirect(this.qbService.getOAuthUri());
+    } catch (e) {
+      throw e;
+    }
   }
 
   @Get("/:id")

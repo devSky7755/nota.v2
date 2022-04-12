@@ -25,6 +25,9 @@ export class BillingPaymentEntity {
   @Column({ name: "payment_date" })
   paymentDate: string;
 
+  @Column({ name: "qb_id", nullable: true })
+  qbId: number;
+
   @CreateDateColumn({ type: "timestamp", default: () => "CURRENT_TIMESTAMP(6)" })
   public created_at: Date;
 

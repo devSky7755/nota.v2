@@ -18,30 +18,14 @@ export class AssociateService {
 
   async createAssociate(associate: CreateAssociateDto): Promise<AssociateEntity> {
     const {
-      firstName,
-      lastName,
-      addressOne,
-      addressTwo,
-      city,
       state,
-      zipCode,
-      phone,
-      email,
-      dob
+      ...dto
     } = associate;
     return await this.associateRepository.save({
-      firstName,
-      lastName,
-      addressOne,
-      addressTwo,
-      city,
       state: await this.StateRepository.findOne({
         id: state,
       }),
-      zipCode,
-      phone,
-      email,
-      dob
+      ...dto
     });
   }
 

@@ -34,15 +34,10 @@ export class UserService {
 
   async createUser(user: CreateUserDto): Promise<UserEntity> {
     const {
-      email,
       password,
-      firstName,
-      lastName,
-      phone,
-      isNotary,
-      signature,
       accIds,
       userDetails,
+      ...dto
     } = user;
     const hashPassword: string = await this.authService.hashPassword(password);
 
@@ -57,15 +52,10 @@ export class UserService {
 
     const userDetailEnts = await this.userDetailRepository.save(convUserDetails);
     return this.userRepository.save(plainToClass(UserEntity, {
-      email,
-      firstName,
-      lastName,
-      phone,
       password: hashPassword,
-      isNotary,
-      signature,
       accounts: await this.AccountRepository.findByIds(accIds || []),
-      userDetails: userDetailEnts
+      userDetails: userDetailEnts,
+      ...dto,
     }));
   }
 

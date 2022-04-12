@@ -58,9 +58,9 @@ export class DocStatusService {
     return await this.docStatusRepository.findOne({ id });
   }
 
-  async create(docAction: CreateDocActionDto): Promise<DocStatusEntity> {
+  async create(docStatus: CreateDocActionDto): Promise<DocStatusEntity> {
     return await this.docStatusRepository.save({
-      ...docAction,
+      ...docStatus,
     });
   }
 
@@ -107,10 +107,10 @@ export class DocService {
 
     return await this.docRepository.save({
       action: await this.docActionRepository.findOne({
-        id: 1,
+        id: action,
       }),
       status: await this.docStatusRepository.findOne({
-        id: 1,
+        id: status,
       }),
       docUrl: uploadResult.Location,
       docType: fileType,

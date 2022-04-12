@@ -35,6 +35,9 @@ export class BillingEntity {
   @Column({ name: "due_date" })
   dueDate: string;
 
+  @Column({ name: "qb_id", nullable: true })
+  qbId: number;
+
   @ManyToOne(() => BillingNetAccountEntity, (account) => account.billings)
   @JoinColumn({ name: 'net_account_id' })
   netAccount: BillingNetAccountEntity
@@ -54,8 +57,8 @@ export class BillingEntity {
   account: AccountEntity
 
   @OneToMany(() => BillingItemEntity, (item) => item.billing, { cascade: true })
-  items: BillingItemEntity
+  items: BillingItemEntity[]
 
   @OneToMany(() => BillingPaymentEntity, (payment) => payment.billing, { cascade: true })
-  payments: BillingPaymentEntity
+  payments: BillingPaymentEntity[]
 }

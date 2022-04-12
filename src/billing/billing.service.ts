@@ -45,21 +45,26 @@ export class BillingService {
 
   async createBilling(billing: CreateBillingDto): Promise<BillingEntity> {
     const { accountId, items, payments, netAccount, status, ...dto } = billing;
-    const itemEnts = await this.billingItemRepository.save(items);
-    const paymentEnts = await this.billingPaymentRepository.save(payments);
 
-    return await this.billingRepository.save(plainToClass(BillingEntity, {
-      ...dto,
-      status: await this.billingStatusRepository.findOne({ id: status }),
-      account: await this.accountRepository.findOne({
-        id: accountId,
-      }),
-      netAccount: await this.billingNARepository.findOne({
-        id: netAccount,
-      }),
-      items: itemEnts,
-      payments: paymentEnts
-    }));
+    try {
+      const itemEnts = await this.billingItemRepository.save(items);
+      const paymentEnts = await this.billingPaymentRepository.save(payments);
+
+      return await this.billingRepository.save(plainToClass(BillingEntity, {
+        ...dto,
+        status: await this.billingStatusRepository.findOne({ id: status }),
+        account: await this.accountRepository.findOne({
+          id: accountId,
+        }),
+        netAccount: await this.billingNARepository.findOne({
+          id: netAccount,
+        }),
+        items: itemEnts,
+        payments: paymentEnts
+      }));
+    } catch (error) {
+      throw error;
+    }
   }
 
   async updateBillingById(billingId: number, billingDto: UpdateBillingDto): Promise<BillingEntity> {

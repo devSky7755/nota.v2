@@ -3,6 +3,8 @@ import { InjectRepository } from "@nestjs/typeorm";
 import OAuthClient = require("intuit-oauth")
 import { AccountEntity } from "src/account/entity/account.entity";
 import { BillingEntity } from "src/billing/entity/billing.entity";
+import { BillingItemEntity } from "src/billing/entity/billing.item.entity";
+import { BillingPaymentEntity } from "src/billing/entity/billing.payment.entity";
 import { Repository } from "typeorm";
 
 @Injectable()
@@ -16,6 +18,10 @@ export class QBService {
     private AccountRepository: Repository<AccountEntity>,
     @InjectRepository(BillingEntity)
     private billingRepository: Repository<BillingEntity>,
+    @InjectRepository(BillingItemEntity)
+    private billingItemRepository: Repository<BillingItemEntity>,
+    @InjectRepository(BillingPaymentEntity)
+    private billingPaymentRepository: Repository<BillingPaymentEntity>,
   ) {
     this.oauthClient = new OAuthClient({
       clientId: process.env.QB_CLIENT_ID,
@@ -195,23 +201,87 @@ export class QBService {
     }
   }
 
-  createItem = async () => {
+  createItem = async (realmId: number, accessToken: string, items: Array<BillingItemEntity>) => {
+    if (!this.oauthClient) return [];
 
+    let Lines = [];
+    let LineNum = 1;
+    items.forEach(async (item: BillingItemEntity) => {
+      const body = {
+        TrackQtyOnHand: true,
+        Name: item.name,
+        QtyOnHand: item.qty,
+        // IncomeAccountRef: {
+        //   name: "Sales of Product Income",
+        //   value: "79"
+        // },
+        // AssetAccountRef: {
+        //   name: "Inventory Asset",
+        //   value: "81"
+        // },
+        Type: "Inventory",
+        Taxable: item.taxable,
+        Description: item.description,
+        PurchaseCost: item.amount,
+        UnitPrice: item.discount
+      }
+      try {
+        const reqResult = await this.oauthClient
+          .makeApiCall({
+            url: `${this.qbApi}company/${realmId}/item?minorversion=63`,
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${accessToken}`
+            },
+            body: JSON.stringify(body),
+          });
+        const resItem = reqResult.json.Item;
+        console.log(reqResult.json);
+        await this.billingItemRepository.update({ id: item.id }, {
+          qbId: resItem.Id,
+        });
+        Lines.push({
+          Description: resItem.Description,
+          DetailType: resItem.DetailType,
+          SalesItemLineDetail: {
+            Qty: item.qty,
+            UnitPrice: item.amount / item.qty,
+            ItemRef: {
+              name: resItem.Name,
+              value: resItem.Id
+            }
+          },
+          LineNum,
+          Amount: item.amount,
+          Id: LineNum
+        });
+        LineNum++;
+      } catch (error) {
+        console.log('error', error);
+      }
+    });
+    return Lines;
   }
 
-  createInvoice = async (realmId: number, accessToken: string, accId: number, billingId: number) => {
+  createInvoice = async (realmId: number, accessToken: string, billingId: number) => {
     if (!this.oauthClient) return;
 
-    const billing = await this.billingRepository.findOne(billingId);
+    const billing = await this.billingRepository.findOne({ id: billingId },
+      { relations: ["account", "items", "payments"] });
     if (!billing)
       throw new NotFoundException(`there is no Billing with ID ${billingId}`);
     const acc = billing.account;
-
     if (acc.qbCustomerId) {
+      const Lines = await this.createItem(realmId, accessToken, billing.items)
       const body = {
         CustomerRef: {
           value: acc.qbCustomerId
-        }
+        },
+        TotalAmt: billing.amountDue,
+        Line: Lines,
+        DueDate: billing.dueDate,
+        ApplyTaxAfterDiscount: true,
       }
       const reqResult = await this.oauthClient
         .makeApiCall({
