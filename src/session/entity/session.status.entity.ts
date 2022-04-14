@@ -5,6 +5,7 @@ import {
     CreateDateColumn,
     UpdateDateColumn,
     OneToMany,
+    OneToOne,
 } from "typeorm";
 
 import { SessionEntity } from "./session.entity";
@@ -26,6 +27,6 @@ export class SessionStatusEntity {
     @UpdateDateColumn({ type: "timestamp", default: () => "CURRENT_TIMESTAMP(6)", onUpdate: "CURRENT_TIMESTAMP(6)" })
     public updated_at: Date;
 
-    @OneToMany(() => SessionEntity, (session) => session.sessionType)
-    sessions: SessionEntity[]
+    @OneToOne(() => SessionEntity, (session) => session.sessionType)
+    session: SessionEntity
 }

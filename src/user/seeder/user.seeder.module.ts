@@ -6,6 +6,7 @@ import { UserSeederService } from "./user.seeder.service";
 import { NotaryDetailEntity } from "src/notary_detail/entity/notary_detail.entity";
 import { AccountEntity } from "src/account/entity/account.entity";
 import { BlockJwtEntity } from "../entity/block.jwt.entity";
+import { TimezoneEntity } from "src/timezone/entity/timezone.entity";
 
 const seederServices = [
   UserSeederService
@@ -13,7 +14,7 @@ const seederServices = [
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([AccUserJoinEntity, UserEntity, UserDetailEntity, NotaryDetailEntity, AccountEntity, BlockJwtEntity, StateEntity]),
+    TypeOrmModule.forFeature([AccUserJoinEntity, UserEntity, UserDetailEntity, NotaryDetailEntity, AccountEntity, BlockJwtEntity, StateEntity, TimezoneEntity]),
   ],
   providers: [
     ...seederServices

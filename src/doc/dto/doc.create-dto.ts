@@ -1,4 +1,4 @@
-import { IsNumber, IsString } from "class-validator";
+import { IsBoolean, IsNumber, IsString } from "class-validator";
 
 export class CreateDocDto {
   @IsString()
@@ -15,4 +15,7 @@ export class CreateDocDto {
 
   @IsString()
   readonly status: number;
+
+  @IsBoolean()
+  readonly needsNotary: boolean;
 }

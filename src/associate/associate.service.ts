@@ -1,7 +1,7 @@
 import { Injectable, NotFoundException } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
-import { plainToClass } from "class-transformer";
 import { StateEntity } from "src/state/entity/state.entity";
+import { TimezoneEntity } from "src/timezone/entity/timezone.entity";
 import { Repository, UpdateResult } from "typeorm";
 import { CreateAssociateDto } from "./dto/associate.create-dto";
 import { UpdateAssociateDto } from "./dto/associate.update-dto";
@@ -14,17 +14,21 @@ export class AssociateService {
     private associateRepository: Repository<AssociateEntity>,
     @InjectRepository(StateEntity)
     private StateRepository: Repository<StateEntity>,
+    @InjectRepository(TimezoneEntity)
+    private tzRepository: Repository<TimezoneEntity>,
   ) { }
 
   async createAssociate(associate: CreateAssociateDto): Promise<AssociateEntity> {
     const {
       state,
+      tz,
       ...dto
     } = associate;
     return await this.associateRepository.save({
       state: await this.StateRepository.findOne({
         id: state,
       }),
+      timezone: await this.tzRepository.findOne(tz),
       ...dto
     });
   }
@@ -46,12 +50,18 @@ export class AssociateService {
       throw new NotFoundException(`there is no associate with ID ${associateId}`);
     const {
       state,
+      tz,
       ...dto
     } = updateAssociateDto;
 
     if (state) {
       dto['state'] = await this.StateRepository.findOne({ id: state })
     }
+
+    if (tz) {
+      dto['timezone'] = await this.tzRepository.findOne(tz);
+    }
+
     return await this.associateRepository.update(associateId, { ...associate, ...dto });
   }
 

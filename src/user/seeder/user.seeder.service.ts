@@ -7,8 +7,8 @@ import { UserDetailEntity, UserEntity } from "../entity/user.entity";
 import { seedUsers } from "./user.seeder.data";
 import { StateEntity } from "src/state/entity/state.entity";
 import { AccountEntity } from "src/account/entity/account.entity";
-import { AuthService } from "src/auth/auth.service";
 import * as bcrypt from "bcrypt";
+import { TimezoneEntity } from "src/timezone/entity/timezone.entity";
 
 /**
  * Service dealing with user based operations.
@@ -33,6 +33,8 @@ export class UserSeederService {
         private stateRepository: Repository<StateEntity>,
         @InjectRepository(AccountEntity)
         private AccountRepository: Repository<AccountEntity>,
+        @InjectRepository(TimezoneEntity)
+        private tzRepository: Repository<TimezoneEntity>,
     ) { }
     /**
      * Seed all users.
@@ -52,6 +54,7 @@ export class UserSeederService {
                         password,
                         accIds,
                         userDetails,
+                        tz,
                         ...dto
                     } = user;
                     const hashPassword: string = await bcrypt.hash(password, 12);
@@ -71,6 +74,7 @@ export class UserSeederService {
                             password: hashPassword,
                             accounts: await this.AccountRepository.findByIds(accIds || []),
                             userDetails: userDetailEnts,
+                            timezone: await this.tzRepository.findOne(tz),
                             ...dto,
                         }))
                     );

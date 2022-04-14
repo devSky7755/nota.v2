@@ -1,5 +1,6 @@
 import { SessionEntity } from "src/session/entity/session.entity";
 import { StateEntity } from "src/state/entity/state.entity";
+import { TimezoneEntity } from "src/timezone/entity/timezone.entity";
 import { Entity, Column, PrimaryGeneratedColumn, ManyToMany, ManyToOne, JoinColumn } from "typeorm";
 
 @Entity({ name: "witnesses" })
@@ -46,4 +47,8 @@ export class WitnessEntity {
 
   @ManyToMany(() => SessionEntity, (session) => session.witnesses)
   sessions: SessionEntity[];
+
+  @ManyToOne(() => TimezoneEntity, (tz) => tz.witnesses)
+  @JoinColumn({ name: "timezone" })
+  timezone: TimezoneEntity;
 }

@@ -4,6 +4,7 @@ import { BillingEntity } from "src/billing/entity/billing.entity";
 import { ClientEntity } from "src/client/entity/client.entity";
 import { SessionEntity } from "src/session/entity/session.entity";
 import { StateEntity } from "src/state/entity/state.entity";
+import { TimezoneEntity } from "src/timezone/entity/timezone.entity";
 import { UserEntity } from "src/user/entity/user.entity";
 import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, ManyToOne, ManyToMany, JoinTable, OneToMany, JoinColumn } from "typeorm";
 import { AccountStatusEntity } from "./account.status.entity";
@@ -112,4 +113,8 @@ export class AccountEntity {
 
   @OneToMany(() => AuditEntity, (audit) => audit.account)
   audits: AuditEntity[]
+
+  @ManyToOne(() => TimezoneEntity, (tz) => tz.accounts)
+  @JoinColumn({ name: "timezone" })
+  timezone: TimezoneEntity;
 }

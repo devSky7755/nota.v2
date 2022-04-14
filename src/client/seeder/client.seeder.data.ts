@@ -49,6 +49,7 @@ export const seedClients: Array<CreateClientDto> = [
                 "correctAnswer": "Dallas"
             }
         ],
-        "ssn": "234456456"
+        "ssn": "234456456",
+        tz: 2
     }
 ];

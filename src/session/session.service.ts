@@ -17,6 +17,7 @@ import { SessionStatusEntity } from "./entity/session.status.entity";
 import { SessionTypeEntity } from "./entity/session.types.entity";
 import { v4 as uuid } from "uuid";
 import { DurationEntity } from "src/duration/entity/duration.entity";
+import { LessThan, MoreThan } from 'typeorm'
 
 @Injectable()
 export class SessionService {
@@ -60,6 +61,7 @@ export class SessionService {
       account,
       user,
       duration,
+      dateTime,
       sessionType,
       sessionStatus,
       notarySessionType,
@@ -70,11 +72,20 @@ export class SessionService {
       docIds,
       ...dto
     } = session;
+    const sAccount = await this.accountRepository.findOne({
+      id: account,
+    }, {
+      relations: ['timezone'],
+    });
+    let calcDateTime = parseInt(dateTime);
+    if (sAccount) {
+      calcDateTime -= sAccount.timezone.offset * 60 * 60 * 1000;
+    }
+
     const sessionEnt = await this.sessionRepository.save({
       hash: uuid(),
-      account: await this.accountRepository.findOne({
-        id: account,
-      }),
+      account: sAccount,
+      dateTime: `${calcDateTime}`,
       user: await this.userRepository.findOne({
         id: user,
       }),
@@ -213,5 +224,25 @@ export class SessionService {
         }
       });
     }
+  }
+
+  checkSessionTimeout = async () => {
+    const hrs24Before = Date.now() - (24 * 60 * 60 * 1000);
+    const sessions: SessionEntity[] = await this.sessionRepository.find({
+      relations: ['sessionStatus'],
+      where: {
+        sessionStatus: {
+          status: true
+        },
+        dateTime: LessThan(hrs24Before)
+      }
+    });
+
+    sessions.forEach(async (session) => {
+      await this.sStatusRepository.save(plainToClass(SessionStatusEntity, {
+        ...session.sessionStatus,
+        status: false,
+      }))
+    })
   }
 }

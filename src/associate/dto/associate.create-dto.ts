@@ -21,4 +21,6 @@ export class CreateAssociateDto {
   readonly email: string;
   @IsString()
   readonly dob: string;
+  @IsNumber()
+  readonly tz: number;
 }

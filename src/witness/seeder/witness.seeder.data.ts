@@ -11,6 +11,7 @@ export const seedWitnesss: Array<CreateWitnessDto> = [
         "zipCode": "76262",
         "phone": "15552224444",
         "email": "test1@testemail.com",
-        "dob": "1970-01-01"
+        "dob": "1970-01-01",
+        tz: 3,
     }
 ];

@@ -41,6 +41,9 @@ export class DocEntity {
   @Column({ name: "destroy_date" })
   destroyDate: string;
 
+  @Column({ name: "needs_notary" })
+  needsNotary: boolean;
+
   @CreateDateColumn({ type: "timestamp", default: () => "CURRENT_TIMESTAMP(6)" })
   public created_at: Date;
 

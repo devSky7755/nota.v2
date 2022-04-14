@@ -7,9 +7,10 @@ import { ClientController } from "./client.controller";
 import { ClientService } from "./client.service";
 import { KbaEntity } from "src/kba/entity/kba.entity";
 import { ClientSubscriber } from "./client.subscriber";
+import { TimezoneEntity } from "src/timezone/entity/timezone.entity";
 
 @Module({
-  imports: [TypeOrmModule.forFeature([ClientEntity, StateEntity, AccountEntity, KbaEntity])],
+  imports: [TypeOrmModule.forFeature([ClientEntity, StateEntity, AccountEntity, KbaEntity, TimezoneEntity])],
   controllers: [ClientController],
   providers: [ClientService, ClientSubscriber],
 })

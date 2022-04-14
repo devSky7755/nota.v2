@@ -1,4 +1,4 @@
-import { IsBase64, IsString } from "class-validator";
+import { IsBase64, IsNumber, IsString } from "class-validator";
 
 export class CreateWitnessDto {
   @IsString()
@@ -21,4 +21,6 @@ export class CreateWitnessDto {
   readonly email: string;
   @IsString()
   readonly dob: string;
+  @IsNumber()
+  readonly tz: number;
 }

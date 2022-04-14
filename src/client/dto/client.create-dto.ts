@@ -1,4 +1,4 @@
-import { IsArray, IsBase64, IsBoolean, IsNumber, IsOptional, IsString } from "class-validator";
+import { IsArray, IsBase64, IsBoolean, IsNumber, IsString } from "class-validator";
 
 export class CreateClientDto {
   @IsString()
@@ -55,4 +55,6 @@ export class CreateClientDto {
   readonly accIds: Array<number>;
   @IsArray()
   readonly kbas: Array<any>;
+  @IsNumber()
+  readonly tz: number;
 }

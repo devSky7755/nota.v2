@@ -13,6 +13,7 @@ import { RecordSeederService } from "src/record/seeder/record.seeder.service";
 import { RoleSeederService } from "src/role/seeder/role.seeder.service";
 import { SessionSeederService } from "src/session/seeder/session.seeder.service";
 import { StateSeederService } from "src/state/seeder/state.seeder.service";
+import { TimezoneSeederService } from "src/timezone/seeder/timezone.seeder.service";
 import { TypeSeederService } from "src/type/seeder/type.seeder.service";
 import { UserSeederService } from "src/user/seeder/user.seeder.service";
 import { WitnessSeederService } from "src/witness/seeder/witness.seeder.service";
@@ -39,8 +40,19 @@ export class Seeder {
         private readonly docSeederService: DocSeederService,
         private readonly recordSeederService: RecordSeederService,
         private readonly sessionSeederService: SessionSeederService,
+        private readonly tzSeederService: TimezoneSeederService,
     ) { }
     async seed() {
+        await this.timezones()
+            .then(completed => {
+                this.logger.debug('Successfuly completed seeding timezones...');
+                Promise.resolve(completed);
+            })
+            .catch(error => {
+                this.logger.error('Failed seeding timezones...');
+                Promise.reject(error);
+            });
+
         await this.states()
             .then(completed => {
                 this.logger.debug('Successfuly completed seeding states...');
@@ -48,6 +60,16 @@ export class Seeder {
             })
             .catch(error => {
                 this.logger.error('Failed seeding states...');
+                Promise.reject(error);
+            });
+
+        await this.sessionStatuses()
+            .then(completed => {
+                this.logger.debug('Successfuly completed seeding sessionStatuses...');
+                Promise.resolve(completed);
+            })
+            .catch(error => {
+                this.logger.error('Failed seeding sessionStatuses...');
                 Promise.reject(error);
             });
 
@@ -552,6 +574,38 @@ export class Seeder {
                 // Can also use this.logger.verbose('...');
                 this.logger.debug(
                     'No. of sessions created : ' +
+                    // Remove all null values and return only created records.
+                    createdRecords.filter(
+                        nullValueOrCreated => nullValueOrCreated,
+                    ).length,
+                );
+                return Promise.resolve(true);
+            })
+            .catch(error => Promise.reject(error));
+    }
+
+    async sessionStatuses() {
+        return await Promise.all(this.sessionSeederService.createSessionStatus())
+            .then(createdRecords => {
+                // Can also use this.logger.verbose('...');
+                this.logger.debug(
+                    'No. of sessionStatuses created : ' +
+                    // Remove all null values and return only created records.
+                    createdRecords.filter(
+                        nullValueOrCreated => nullValueOrCreated,
+                    ).length,
+                );
+                return Promise.resolve(true);
+            })
+            .catch(error => Promise.reject(error));
+    }
+
+    async timezones() {
+        return await Promise.all(this.tzSeederService.create())
+            .then(createdRecords => {
+                // Can also use this.logger.verbose('...');
+                this.logger.debug(
+                    'No. of timezones created : ' +
                     // Remove all null values and return only created records.
                     createdRecords.filter(
                         nullValueOrCreated => nullValueOrCreated,

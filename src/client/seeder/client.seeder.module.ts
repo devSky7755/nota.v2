@@ -6,6 +6,7 @@ import { KbaEntity } from "src/kba/entity/kba.entity";
 import { AccountEntity } from "src/account/entity/account.entity";
 
 import { ClientSeederService } from "./client.seeder.service";
+import { TimezoneEntity } from "src/timezone/entity/timezone.entity";
 
 const seederServices = [
   ClientSeederService
@@ -13,7 +14,7 @@ const seederServices = [
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([ClientEntity, StateEntity, AccountEntity, KbaEntity])
+    TypeOrmModule.forFeature([ClientEntity, StateEntity, AccountEntity, KbaEntity, TimezoneEntity])
   ],
   providers: [
     ...seederServices

@@ -1,3 +1,22 @@
+export const seedSessionStatuses: Array<any> = [
+    {
+        "name": "Booked",
+        "status": true,
+    },
+    {
+        "name": "Active",
+        "status": true,
+    },
+    {
+        "name": "Complete",
+        "status": true,
+    },
+    {
+        "name": "Canceled",
+        "status": true,
+    },
+]
+
 export const seedSessions: Array<any> = [
     {
         "account": 1,

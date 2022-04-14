@@ -3,6 +3,7 @@ import { TypeOrmModule } from "@nestjs/typeorm";
 import { AssociateEntity } from "../entity/associate.entity";
 import { StateEntity } from "src/state/entity/state.entity";
 import { AssociateSeederService } from "./associate.seeder.service";
+import { TimezoneEntity } from "src/timezone/entity/timezone.entity";
 
 const seederServices = [
   AssociateSeederService
@@ -10,7 +11,7 @@ const seederServices = [
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([AssociateEntity, StateEntity])
+    TypeOrmModule.forFeature([AssociateEntity, StateEntity, TimezoneEntity])
   ],
   providers: [
     ...seederServices

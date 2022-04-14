@@ -30,6 +30,8 @@ export class CreateUserDto {
   readonly password: string;
   @IsBoolean()
   readonly status: boolean;
+  @IsNumber()
+  readonly tz: number;
   @IsArray()
   readonly userDetails: Array<CreateUserDetailDto>;
   @IsBoolean()

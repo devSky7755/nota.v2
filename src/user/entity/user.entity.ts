@@ -7,6 +7,7 @@ import { RoleEntity } from "src/role/entity/role.entity";
 import { SessionAssociateJoinEntity } from "src/session/entity/session.assoc.join.entity";
 import { SessionEntity } from "src/session/entity/session.entity";
 import { StateEntity } from "src/state/entity/state.entity";
+import { TimezoneEntity } from "src/timezone/entity/timezone.entity";
 import {
   Entity,
   Column,
@@ -58,6 +59,10 @@ export class UserEntity {
 
   @Column()
   signature: string;
+
+  @ManyToOne(() => TimezoneEntity, (tz) => tz.users)
+  @JoinColumn({ name: "timezone" })
+  timezone: TimezoneEntity;
 
   @CreateDateColumn({ type: "timestamp", default: () => "CURRENT_TIMESTAMP(6)" })
   public created_at: Date;

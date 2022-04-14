@@ -8,6 +8,7 @@ import { seedClients } from "./client.seeder.data";
 import { StateEntity } from "src/state/entity/state.entity";
 import { AccountEntity } from "src/account/entity/account.entity";
 import { KbaEntity } from "src/kba/entity/kba.entity";
+import { TimezoneEntity } from "src/timezone/entity/timezone.entity";
 
 /**
  * Service dealing with client based operations.
@@ -32,6 +33,8 @@ export class ClientSeederService {
         private AccountRepository: Repository<AccountEntity>,
         @InjectRepository(KbaEntity)
         private kbaRepository: Repository<KbaEntity>,
+        @InjectRepository(TimezoneEntity)
+        private tzRepository: Repository<TimezoneEntity>,
     ) { }
     /**
      * Seed all clients.
@@ -54,6 +57,7 @@ export class ClientSeederService {
                         dlState,
                         accIds,
                         kbas,
+                        tz,
                         ...dto
                     } = client;
 
@@ -71,6 +75,7 @@ export class ClientSeederService {
                             }),
                             accounts: await this.AccountRepository.findByIds(accIds || []),
                             kbas: kbaEnts,
+                            timezone: await this.tzRepository.findOne(tz),
                             ...dto,
                         }))
                     );

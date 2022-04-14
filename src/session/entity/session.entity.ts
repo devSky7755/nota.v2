@@ -9,6 +9,7 @@ import {
   JoinColumn,
   ManyToMany,
   JoinTable,
+  OneToOne,
 } from "typeorm";
 
 import { AccountEntity } from "src/account/entity/account.entity";
@@ -52,7 +53,7 @@ export class SessionEntity {
   @JoinColumn({ name: 'type_id' })
   sessionType: SessionTypeEntity;
 
-  @ManyToOne(() => SessionStatusEntity, (ss) => ss.sessions)
+  @OneToOne(() => SessionStatusEntity, (ss) => ss.session)
   @JoinColumn({ name: 'status_id' })
   sessionStatus: SessionStatusEntity;
 

@@ -6,9 +6,10 @@ import { StateEntity } from "src/state/entity/state.entity";
 import { AssociateController } from "./associate.controller";
 import { AssociateService } from "./associate.service";
 import { AssociateSubscriber } from "./associate.subscriber";
+import { TimezoneEntity } from "src/timezone/entity/timezone.entity";
 
 @Module({
-  imports: [TypeOrmModule.forFeature([AssociateEntity, StateEntity])],
+  imports: [TypeOrmModule.forFeature([AssociateEntity, StateEntity, TimezoneEntity])],
   controllers: [AssociateController],
   providers: [AssociateService, AssociateSubscriber],
 })

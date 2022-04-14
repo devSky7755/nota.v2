@@ -2,6 +2,7 @@ import { Module } from "@nestjs/common";
 import { ConfigModule } from "@nestjs/config";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { TwilioModule } from 'nestjs-twilio';
+import { ScheduleModule } from '@nestjs/schedule';
 import { QBModule } from "./quickbooks/quickbooks.module";
 import { UserModule } from "./user/user.module";
 import { AccountModule } from "./account/account.module";
@@ -27,6 +28,7 @@ import { ServeStaticModule } from "@nestjs/serve-static";
 import { join } from "path";
 import { SmsModule } from "./sms/sms.module";
 import { SGEmailModule } from "./sendgrid/sendgrid.module";
+import { CronModule } from "./cron/cron.module";
 
 @Module({
   imports: [
@@ -52,6 +54,8 @@ import { SGEmailModule } from "./sendgrid/sendgrid.module";
       accountSid: process.env.TWILIO_ACCOUNT_SID,
       authToken: process.env.TWILIO_AUTH_TOKEN,
     }),
+    ScheduleModule.forRoot(),
+    CronModule,
     QBModule,
     UserModule,
     AccountModule,

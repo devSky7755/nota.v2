@@ -2,7 +2,7 @@ import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 import { CreateSessionDto } from "../dto/session.create-dto";
-import { seedSessions } from "./session.seeder.data";
+import { seedSessions, seedSessionStatuses } from "./session.seeder.data";
 import { SessionEntity } from "src/session/entity/session.entity";
 import { UserEntity } from "src/user/entity/user.entity";
 import { AccountEntity } from "src/account/entity/account.entity";
@@ -85,6 +85,24 @@ export class SessionSeederService {
         }
     }
 
+    createSessionStatus(): Array<Promise<SessionStatusEntity>> {
+        return seedSessionStatuses.map(async (status: any) => {
+            return await this.sStatusRepository
+                .findOne({ name: status.name })
+                .then(async dbStatus => {
+                    // We check if a session already exists.
+                    // If it does don't create a new one.
+                    if (dbStatus) {
+                        return Promise.resolve(null);
+                    }
+                    return Promise.resolve(
+                        await this.sStatusRepository.save(status)
+                    )
+                })
+                .catch(error => Promise.reject(error));
+        });
+    }
+
     /**
      * Seed all sessions.
      *
@@ -104,6 +122,7 @@ export class SessionSeederService {
                         account,
                         user,
                         duration,
+                        dateTime,
                         sessionType,
                         sessionStatus,
                         notarySessionType,
@@ -114,11 +133,20 @@ export class SessionSeederService {
                         docIds,
                         ...dto
                     } = session;
+
+                    const sAccount = await this.accountRepository.findOne({
+                        id: account,
+                    }, {
+                        relations: ['timezone'],
+                    });
+                    let calcDateTime = parseInt(dateTime);
+                    if (sAccount) {
+                        calcDateTime -= sAccount.timezone.offset * 60 * 60 * 1000;
+                    }
                     return await this.sessionRepository.save({
                         hash: uuid(),
-                        account: await this.accountRepository.findOne({
-                            id: account,
-                        }),
+                        account: sAccount,
+                        dateTime: `${calcDateTime}`,
                         user: await this.userRepository.findOne({
                             id: user,
                         }),

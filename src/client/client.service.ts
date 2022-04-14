@@ -8,6 +8,7 @@ import { plainToClass } from "class-transformer";
 import { UpdateClientDto } from "./dto/client.update-dto";
 import { AccountEntity } from "src/account/entity/account.entity";
 import { KbaEntity } from "src/kba/entity/kba.entity";
+import { TimezoneEntity } from "src/timezone/entity/timezone.entity";
 
 @Injectable()
 export class ClientService {
@@ -20,6 +21,8 @@ export class ClientService {
     private AccountRepository: Repository<AccountEntity>,
     @InjectRepository(KbaEntity)
     private kbaRepository: Repository<KbaEntity>,
+    @InjectRepository(TimezoneEntity)
+    private tzRepository: Repository<TimezoneEntity>,
   ) { }
 
   async findAllClients(): Promise<ClientEntity[]> {
@@ -37,6 +40,7 @@ export class ClientService {
       dlState,
       accIds,
       kbas,
+      tz,
       ...dto
     } = client;
 
@@ -54,6 +58,7 @@ export class ClientService {
       }),
       accounts: await this.AccountRepository.findByIds(accIds || []),
       kbas: kbaEnts,
+      timezone: await this.tzRepository.findOne(tz),
       ...dto,
     }));
   }
@@ -71,6 +76,7 @@ export class ClientService {
       dlState,
       accIds,
       kbas,
+      tz,
       ...dto
     } = updateClientDto;
 
@@ -102,6 +108,10 @@ export class ClientService {
 
     if (kbas) {
       dto['kbas'] = await this.kbaRepository.save(kbas || []);
+    }
+
+    if (tz) {
+      dto['timezone'] = await this.tzRepository.findOne(tz);
     }
 
     return await this.clientRepository.save(plainToClass(ClientEntity, { ...client, ...dto }));

@@ -2,6 +2,7 @@ import { Injectable, NotFoundException } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { plainToClass } from "class-transformer";
 import { StateEntity } from "src/state/entity/state.entity";
+import { TimezoneEntity } from "src/timezone/entity/timezone.entity";
 import { DeleteResult, Repository } from "typeorm";
 import { CreateWitnessDto } from "./dto/witness.create-dto";
 import { UpdateWitnessDto } from "./dto/witness.update-dto";
@@ -14,11 +15,14 @@ export class WitnessService {
     private witnessRepository: Repository<WitnessEntity>,
     @InjectRepository(StateEntity)
     private StateRepository: Repository<StateEntity>,
+    @InjectRepository(TimezoneEntity)
+    private tzRepository: Repository<TimezoneEntity>,
   ) { }
 
   async createWitness(witness: CreateWitnessDto): Promise<WitnessEntity> {
     const {
       state,
+      tz,
       ...dto
     } = witness;
 
@@ -26,6 +30,7 @@ export class WitnessService {
       state: await this.StateRepository.findOne({
         id: state
       }),
+      timezone: await this.tzRepository.findOne(tz),
       ...dto,
     });
   }
@@ -48,12 +53,18 @@ export class WitnessService {
 
     const {
       state,
+      tz,
       ...dto
     } = updateWitnessDto;
 
     if (state) {
       dto['state'] = await this.StateRepository.findOne({ id: state })
     }
+
+    if (tz) {
+      dto['timezone'] = await this.tzRepository.findOne(tz)
+    }
+
     return await this.witnessRepository.save(plainToClass(WitnessEntity, { ...witness, ...dto }));
   }
 

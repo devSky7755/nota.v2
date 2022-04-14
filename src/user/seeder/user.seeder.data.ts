@@ -15,6 +15,7 @@ export const seedUsers: Array<CreateUserDto> = [
             2
         ],
         "userDetails": [],
-        "notaryDetails": []
+        "notaryDetails": [],
+        tz: 1,
     }
 ];

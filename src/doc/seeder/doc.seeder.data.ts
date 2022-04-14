@@ -24,5 +24,6 @@ export const seedDocs: Array<any> = [
         "status": 1,
         "docUrl": "https://s3.amazonaws.com/notary.io-docs/3c2a509f-dd0b-41ba-96fd-0e640a49953e-Coding-Website-Layout.jpg",
         "docType": "image/jpeg",
+        "needsNotary": true,
     }
 ];

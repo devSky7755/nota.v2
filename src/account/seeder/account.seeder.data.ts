@@ -33,6 +33,7 @@ export const seedAccounts: Array<CreateAccountDto> = [
         "logo": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z/C/HgAGgwJ/lK3Q6wAAAABJRU5ErkJggg==",
         "whiteLabel": false,
         "status": 1,
-        "closedDate": "2025-01-01"
+        "closedDate": "2025-01-01",
+        "tz": 1,
     }
 ];

@@ -1,7 +1,8 @@
 import { SessionEntity } from "src/session/entity/session.entity";
 import { SessionAssociateJoinEntity } from "src/session/entity/session.assoc.join.entity";
 import { StateEntity } from "src/state/entity/state.entity";
-import { Entity, Column, PrimaryGeneratedColumn, ManyToMany, ManyToOne, OneToMany } from "typeorm";
+import { Entity, Column, PrimaryGeneratedColumn, ManyToMany, ManyToOne, OneToMany, JoinColumn } from "typeorm";
+import { TimezoneEntity } from "src/timezone/entity/timezone.entity";
 
 @Entity({ name: "associates" })
 export class AssociateEntity {
@@ -46,6 +47,10 @@ export class AssociateEntity {
 
   @OneToMany(() => SessionAssociateJoinEntity, (saj) => saj.associate, { cascade: true })
   associateSessionJoins: SessionAssociateJoinEntity[]
+
+  @ManyToOne(() => TimezoneEntity, (tz) => tz.associates)
+  @JoinColumn({ name: "timezone" })
+  timezone: TimezoneEntity;
 
   // @ManyToMany(() => SessionEntity, (session) => session.associates)
   // sessions: SessionEntity[];

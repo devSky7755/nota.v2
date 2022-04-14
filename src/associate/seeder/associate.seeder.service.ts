@@ -6,6 +6,7 @@ import { CreateAssociateDto } from "../dto/associate.create-dto";
 import { AssociateEntity } from "../entity/associate.entity";
 import { seedAssociates } from "./associate.seeder.data";
 import { StateEntity } from "src/state/entity/state.entity";
+import { TimezoneEntity } from "src/timezone/entity/timezone.entity";
 
 /**
  * Service dealing with associate based operations.
@@ -26,6 +27,8 @@ export class AssociateSeederService {
         private readonly associateRepository: Repository<AssociateEntity>,
         @InjectRepository(StateEntity)
         private StateRepository: Repository<StateEntity>,
+        @InjectRepository(TimezoneEntity)
+        private tzRepository: Repository<TimezoneEntity>,
     ) { }
     /**
      * Seed all associates.
@@ -44,6 +47,7 @@ export class AssociateSeederService {
                     }
                     const {
                         state,
+                        tz,
                         ...dto
                     } = associate;
                     return Promise.resolve(
@@ -51,6 +55,7 @@ export class AssociateSeederService {
                             state: await this.StateRepository.findOne({
                                 id: state,
                             }),
+                            timezone: await this.tzRepository.findOne(tz),
                             ...dto
                         }))
                     );

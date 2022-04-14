@@ -5,6 +5,7 @@ import { StateEntity } from "src/state/entity/state.entity";
 import { AccountEntity } from "src/account/entity/account.entity";
 import { IsNotEmpty } from "class-validator";
 import { KbaEntity } from "src/kba/entity/kba.entity";
+import { TimezoneEntity } from "src/timezone/entity/timezone.entity";
 
 @Entity({ name: "clients" })
 export class ClientEntity {
@@ -108,6 +109,10 @@ export class ClientEntity {
 
   @OneToMany(() => KbaEntity, (kba) => kba.client, { cascade: true })
   kbas: KbaEntity[];
+
+  @ManyToOne(() => TimezoneEntity, (tz) => tz.clients)
+  @JoinColumn({ name: "timezone" })
+  timezone: TimezoneEntity;
 }
 
 @Entity({ name: "client_account_join" })
@@ -125,7 +130,7 @@ export class ClientAccountJoinEntity {
   @PrimaryColumn()
   accountId: number
 
-  @Column({ name: "acc_num" })
+  @Column({ name: "acc_num", nullable: true })
   accountNumber: string;
 
   @CreateDateColumn({ type: "timestamp", default: () => "CURRENT_TIMESTAMP(6)" })

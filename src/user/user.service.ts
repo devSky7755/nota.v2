@@ -8,6 +8,7 @@ import { plainToClass } from "class-transformer";
 import { AccountEntity } from "src/account/entity/account.entity";
 import { AuthService } from "src/auth/auth.service";
 import { StateEntity } from "src/state/entity/state.entity";
+import { TimezoneEntity } from "src/timezone/entity/timezone.entity";
 import { Connection, Repository, UpdateResult } from "typeorm";
 import { CreateUserDto } from "./dto/user.create-dto";
 import { LoginUserDto } from "./dto/user.login-dto";
@@ -26,6 +27,8 @@ export class UserService {
     private stateRepository: Repository<StateEntity>,
     @InjectRepository(AccountEntity)
     private AccountRepository: Repository<AccountEntity>,
+    @InjectRepository(TimezoneEntity)
+    private tzRepository: Repository<TimezoneEntity>,
     @InjectRepository(BlockJwtEntity)
     private bJwtRepository: Repository<BlockJwtEntity>,
     private authService: AuthService,
@@ -37,6 +40,7 @@ export class UserService {
       password,
       accIds,
       userDetails,
+      tz,
       ...dto
     } = user;
     const hashPassword: string = await this.authService.hashPassword(password);
@@ -54,6 +58,7 @@ export class UserService {
     return this.userRepository.save(plainToClass(UserEntity, {
       password: hashPassword,
       accounts: await this.AccountRepository.findByIds(accIds || []),
+      timezone: await this.tzRepository.findOne(tz),
       userDetails: userDetailEnts,
       ...dto,
     }));
@@ -126,6 +131,7 @@ export class UserService {
       password,
       accIds,
       userDetails,
+      tz,
       ...dto
     } = updateUserDto;
 
@@ -135,6 +141,10 @@ export class UserService {
 
     if (accIds) {
       dto['accounts'] = await this.AccountRepository.findByIds(accIds || [])
+    }
+
+    if (tz) {
+      dto['timezone'] = await this.tzRepository.findOne(tz)
     }
 
     if (userDetails) {

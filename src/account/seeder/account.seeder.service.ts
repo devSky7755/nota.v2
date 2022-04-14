@@ -8,6 +8,7 @@ import { seedAccounts, seedAccountStatuses } from "./account.seeder.data";
 import { StateEntity } from "src/state/entity/state.entity";
 import { AccTypeEntity } from "src/acc_type/entity/acc_type.entity";
 import { AccountStatusEntity } from "../entity/account.status.entity";
+import { TimezoneEntity } from "src/timezone/entity/timezone.entity";
 
 /**
  * Service dealing with account based operations.
@@ -32,6 +33,8 @@ export class AccountSeederService {
         private AccTypeRepository: Repository<AccTypeEntity>,
         @InjectRepository(AccountStatusEntity)
         private AccStatusRepository: Repository<AccountStatusEntity>,
+        @InjectRepository(TimezoneEntity)
+        private tzRepository: Repository<TimezoneEntity>,
     ) { }
     /**
      * Seed all accounts.
@@ -53,6 +56,7 @@ export class AccountSeederService {
                         billingState,
                         accType,
                         status,
+                        tz,
                         ...dto
                     } = account;
                     return Promise.resolve(
@@ -69,6 +73,7 @@ export class AccountSeederService {
                             billingState: await this.StateRepository.findOne({
                                 id: billingState,
                             }),
+                            timezone: await this.tzRepository.findOne(tz),
                             ...dto
                         }))
                     );

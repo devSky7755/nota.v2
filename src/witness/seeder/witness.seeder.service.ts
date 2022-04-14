@@ -6,6 +6,7 @@ import { CreateWitnessDto } from "../dto/witness.create-dto";
 import { WitnessEntity } from "../entity/witness.entity";
 import { seedWitnesss } from "./witness.seeder.data";
 import { StateEntity } from "src/state/entity/state.entity";
+import { TimezoneEntity } from "src/timezone/entity/timezone.entity";
 
 /**
  * Service dealing with witness based operations.
@@ -26,6 +27,8 @@ export class WitnessSeederService {
         private readonly witnessRepository: Repository<WitnessEntity>,
         @InjectRepository(StateEntity)
         private StateRepository: Repository<StateEntity>,
+        @InjectRepository(TimezoneEntity)
+        private tzRepository: Repository<TimezoneEntity>,
     ) { }
     /**
      * Seed all witnesss.
@@ -44,6 +47,7 @@ export class WitnessSeederService {
                     }
                     const {
                         state,
+                        tz,
                         ...dto
                     } = witness;
                     return Promise.resolve(
@@ -51,6 +55,7 @@ export class WitnessSeederService {
                             state: await this.StateRepository.findOne({
                                 id: state,
                             }),
+                            timezone: await this.tzRepository.findOne(tz),
                             ...dto
                         }))
                     );

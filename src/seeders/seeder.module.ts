@@ -21,6 +21,7 @@ import { NotaryDetailSeederModule } from "src/notary_detail/seeder/notary_detail
 import { RoleSeederModule } from "src/role/seeder/role.seeder.module";
 import { RecordSeederModule } from "src/record/seeder/record.seeder.module";
 import { SessionSeederModule } from "src/session/seeder/session.seeder.module";
+import { TimezoneSeederModule } from "src/timezone/seeder/timezone.seeder.module";
 
 /**
  * Import and provide seeder classes.
@@ -61,6 +62,7 @@ import { SessionSeederModule } from "src/session/seeder/session.seeder.module";
         NotaryDetailSeederModule,
         RecordSeederModule,
         SessionSeederModule,
+        TimezoneSeederModule,
     ],
     providers: [Logger, Seeder],
 })

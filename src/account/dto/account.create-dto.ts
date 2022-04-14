@@ -53,4 +53,6 @@ export class CreateAccountDto {
   readonly status: number;
   @IsString()
   readonly closedDate: string;
+  @IsNumber()
+  readonly tz: number;
 }

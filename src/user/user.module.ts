@@ -10,10 +10,11 @@ import { StateEntity } from "src/state/entity/state.entity";
 import { UserService } from "./user.service";
 import { UserSubscriber } from "./user.subscriber";
 import { AuthModule } from "src/auth/auth.module";
+import { TimezoneEntity } from "src/timezone/entity/timezone.entity";
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([AccUserJoinEntity, UserEntity, UserDetailEntity, NotaryDetailEntity, AccountEntity, BlockJwtEntity, StateEntity]),
+    TypeOrmModule.forFeature([AccUserJoinEntity, UserEntity, UserDetailEntity, NotaryDetailEntity, AccountEntity, BlockJwtEntity, StateEntity, TimezoneEntity]),
     forwardRef(() => AuthModule),
   ],
   controllers: [UserController],

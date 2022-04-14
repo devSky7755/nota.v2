@@ -8,10 +8,11 @@ import { AccountService } from "./account.service";
 import { AuthModule } from "src/auth/auth.module";
 import { AccountStatusEntity } from "./entity/account.status.entity";
 import { AccountSubscriber } from "./account.subscriber";
+import { TimezoneEntity } from "src/timezone/entity/timezone.entity";
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([AccountEntity, StateEntity, AccTypeEntity, AccountStatusEntity]),
+    TypeOrmModule.forFeature([AccountEntity, StateEntity, AccTypeEntity, AccountStatusEntity, TimezoneEntity]),
     forwardRef(() => AuthModule),
   ],
   providers: [AccountService, AccountSubscriber],

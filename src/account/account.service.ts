@@ -15,6 +15,7 @@ import { plainToClass } from 'class-transformer';
 import { AccTypeEntity } from "src/acc_type/entity/acc_type.entity";
 import { QBService } from "src/quickbooks/quickbooks.service";
 import { AccountStatusEntity } from "./entity/account.status.entity";
+import { TimezoneEntity } from "src/timezone/entity/timezone.entity";
 
 @Injectable()
 export class AccountService {
@@ -27,6 +28,8 @@ export class AccountService {
     private AccTypeRepository: Repository<AccTypeEntity>,
     @InjectRepository(AccountStatusEntity)
     private AccStatusRepository: Repository<AccountStatusEntity>,
+    @InjectRepository(TimezoneEntity)
+    private tzRepository: Repository<TimezoneEntity>,
     private authService: AuthService,
     private connection: Connection,
     private qbService: QBService,
@@ -52,6 +55,7 @@ export class AccountService {
       billingState,
       accType,
       status,
+      tz,
       ...dto
     } = Account;
     try {
@@ -68,6 +72,7 @@ export class AccountService {
         billingState: await this.StateRepository.findOne({
           id: billingState,
         }),
+        timezone: await this.tzRepository.findOne(tz),
         ...dto
       }));
     } catch (error) {
@@ -93,7 +98,14 @@ export class AccountService {
     if (!account)
       throw new NotFoundException(`there is no Account with ID ${AccountId}`);
 
-    const { state, status, billingState, accType, ...dto } = updateAccountDto;
+    const {
+      state,
+      status,
+      billingState,
+      accType,
+      tz,
+      ...dto
+    } = updateAccountDto;
     if (dto?.email) {
       const findAccount: AccountEntity = await this.AccountRepository.findOne({
         email: dto.email,
@@ -118,6 +130,10 @@ export class AccountService {
 
     if (status) {
       dto['status'] = await this.AccStatusRepository.findOne({ id: status })
+    }
+
+    if (tz) {
+      dto['timezone'] = await this.tzRepository.findOne(tz);
     }
 
     return await this.AccountRepository.save(plainToClass(AccountEntity, { ...account, ...dto }));
