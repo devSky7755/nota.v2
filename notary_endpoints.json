@@ -322,7 +322,6 @@ Notary.io API Endpoints
         id | int
         acc_id | int
         uuid | uuid
-        rold_id | int
         status | boolean
         created_at | timestamp
         updated_at | timestamp
@@ -700,19 +699,31 @@ Notary.io API Endpoints
     ##Path Table:
     "sessions"
         id | int
-        hash | hash //session hash for url
+        hash | hash //session hash for url **NEW**
         acc_id | int //join to accounts table
-        uuid | uuid //user assigned to the session as the primary controller
+        user_id | uuid //user assigned to the session as the primary controller **NEW**
         date_time | timestamp //date and time of session
-        duration | int //number of minutes the session will take
+        video_duration | int(11) //number of minutes the session will take **NEW**
+        apt_duration | int //set apointment time join the duration table to populate **NEW**
+        rec_duration | int(11) //time in minuted of how long the record was used **NEW**
         docs_num | int(11) //number of docs going to be notarized, signed, or review
         session_type | int //id of joined session_type table
         session_status | int //id of joined session_type table
         notary_session_type | int //id of joined notary_session_type table one should have a value if the session type = online notary
         case_matter_num | text //Case number matter used by firms to keep tract of usage
-        video_url | text //url of the recorded session have to keep record by law for 5 years
+        // REMOVE **NEW** video_url | text //url of the recorded session have to keep record by law for 5 years
         created_at | timestamp
         updated_at | timestamp
+
+    //**NEW**
+    //You can have multipul records in a single session
+    "session_rec_join"
+        id | int
+        session_id | int //id of session
+        video_url | text //path of video in s3
+        created_at | timestamp
+        updated_at | timestamp
+
 
     // You can have multiple clients on a single session
     "session_client_join"
@@ -748,6 +759,7 @@ Notary.io API Endpoints
         id | int
         session_id | int //id of session
         doc_id | int //id of doc from docs table
+        needs_notary | boolean //this documents needs to be notarized **NEW**
         created_at | timestamp
         updated_at | timestamp
 
