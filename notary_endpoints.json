@@ -1,0 +1,1603 @@
+
+
+
+Notary.io API Endpoints
+
+    #Online Notary Records //only user with is_notary true can view, create, edit, delete this record and if the uuid matches the users uuid
+    Notes:
+        --
+        When a session is complete all the data from the session creates a record in /records. There is one record per client on session and one record per document
+        So if here is 2 clients and 2 document per client then there should be a total of 4 records created
+        If there is 2 clients and 1 document then 2 records would be added and so on...
+        --
+    Path: /records/
+                get - get all records that match uuid of signed in user
+                post - create new record with uuid of signed in user
+          /records/:id 
+                get - get single record that match uuid of signed in user
+                put - update record with matching uuid of signed in user
+                delete - update record with matching uuid of signed in user
+    Guards: 
+        1. only signed in users with the matching uuid of record view associated record "uuid === signed_in uuid"
+        2. only users with is_notary true, com_status = true, on_com_status = true can view, post, edit or delete
+        3. when an account status is = "pending, hold, closed" you can not create, edit or delete... view only
+       
+        //Sample
+        [
+        {
+            "id": 1,
+            "uuid": "uuid",
+            "notary_date": 2022-03-12,
+            "notary_county": "Dallas",
+            "doc_date": 2022-03-01,
+            "doc_title": "Notice of Fun",
+            "principle_name": "John Doe",
+            "principle_address": "1234 Street, City Name, State, Zipcode",
+            "principle_phone": 5552224444,
+            "principle_sig": "base64://png:dnscinsodinsodncsindcoinaloindocpaifpoi0293u923u3202903hdn2o38hj29nf20o02fn...",
+            "witness_name": "John Smith",
+            "witness_address": "1234 Street, City Name, State, Zipcode",
+            "type_of_notarizations": [
+                {
+                    "id": 1,
+                    "name": "Acknowledgment",
+                    "status": true
+                },
+            ],
+            "method_of_id" [
+                {
+                    "id": 1,
+                    "name": "Drivers License",
+                    "status": true
+                },
+            ]
+            "dl_num": "ABC1234567",
+            "dl_exp": 2025-01-01,
+            "dl_state": [
+                {
+                    "id": 1,
+                    "state": "Texas",
+                    "abbr": "TX",
+                    "status": true
+                },
+            ],
+            "dl_img": "base64://png:23093u91398ye918heb29381hg3rb1u3g3r9b3298g19r1938g71r1i3yrv19837vrv13r13r1...",
+            "fee": 1600,
+            "is_online": true,
+            "created_at": 1647113220,
+            "updated_at": 1647113220
+        },
+        ]
+
+    ##Path Table:
+    "notary_record_book"
+        id | int //auto incrementing 
+        uuid | uuid //Current logged in users UUID
+        notary_date | date //date of notarial act
+        notary_county | text //county the notarial act was performed
+        doc_date | date //date on document
+        doc_title | text //document title
+        principle_name | text //full name 
+        principle_address | text //use plugin address_standardizer_data_us to format address
+        principle_phone | int(10) //phone number
+        principle_sig | blob //base64 of signature
+        witness_name | text //full name
+        witness_address | text //use plugin address_standardizer_data_us to format address
+        type_of_notarizations | int or text //need to allow to have a custom one via the api post/put but not be added to "types_of_notarizations" table
+        method_of_id | int //method of identification - this will be joined with the "methods_of_id" table
+        dl_num | text //drivers license number
+        dl_exp | date //expiration date
+        dl_state | int //state - this will be tied to a state table
+        dl_img | blob //base64 of drivers license image
+        fee | int //fee that was charged for the notarial act
+        is_online | boolean // if the notary is online or in person
+        created_at | timestamp
+        updated_at | timestamp
+
+    #User
+    Path: /users/
+                get - get all records of acc_id from join table
+                post - add record to the "users" table & joined tables
+          /users/:id
+                get - get record by uuid in the "users" table & joined tables
+                put - update record by uuid in the "users" table & joined tables
+                delete - delete record in the "users" table
+
+    Notes:
+        --
+        Find user role in join table under the /rules endpoint... Users can be on different accounts and have different roles...
+        --
+    Guards:
+        1. status = false user can not sign in
+        2. only role owner can add, change status, edit user
+        3. get all by matching acc_id
+        4. Matching signed in user can view and edit there record
+        5. Global is account, user, role join table status is false they can no longer access that the data from that account 
+        but can still sign into the platform to get to there records without being able to create new records unless they are using an another account id
+    
+    
+        //Sample
+        [
+            {
+                "id": "2fd58ac8-b616-44cb-87c0-03f0079b3a37", //uuid
+                "uuid": "2fd58ac8-b616-44cb-87c0-03f0079b3a37",
+                "email": "test@testmail.com",
+                "first_name": "John",
+                "last_name": "Smith",
+                "phone": 5552224444,
+                "password": "ksdn&)(U@NO$NNKCJsodcsdn0993nO)*(",
+                "role": {
+                    "id": 2,
+                    "name": "owner", 
+                    "status": true,
+                },
+                "status": true,
+                "token": "29821u90812019212091u0391u103u1913001399"
+                "user_details": [
+                    {
+                        "id": 1,
+                        "address_one": "1234 Street",
+                        "address_two": "",
+                        "city": "City Name",
+                        "state": [
+                            {
+                                "id": 1,
+                                "state": "Texas",
+                                "abbr": "TX",
+                                "status": true
+                            },
+                        ],
+                        "zipcode": "76248"
+                    }
+                ]
+                "is_notary": true,
+                //if is_notary = true then need to add the following else empty notary_details
+                "notary_details": [
+                    {
+                        "id": 1,
+                        "com_name": "John Doe",
+                        "notary_dob": 1985-04-26,
+                        "com_num": "AB12345678",
+                        "com_state": [
+                            {
+                                "id": 1,
+                                "state": "Texas",
+                                "abbr": "TX",
+                                "status": true
+                            },
+                        ],
+                        "com_dat": 2021-06-10,
+                        "com_exp": 2025-10-01, 
+                        "com_status": true,
+                        "on_com_num": "ON128988381",
+                        "on_com_date": 2021-08-12,
+                        "on_com_exp": 2025-01-04,
+                        "on_com_status": true,
+                        "com_county": "Dallas",
+                        "sig": "base64://png:12920192ne1082hdbo219bd9bx98x9hbxb9b29b392b3b9b9b9283b8...",
+                        "stamp": "base64://png:12920192ne1082hdbo219bd9bx98x9hbxb9b29b392b3b9b9b9283b8...",
+                        "notary_cert": "base64://pdf:12920192ne1082hdbo219bd9bx98x9hbxb9b29b392b3b9b9b9283b8...",
+                        "on_notary_cert": "base64://pdf:12920192ne1082hdbo219bd9bx98x9hbxb9b29b392b3b9b9b9283b8...",
+                    }
+                ],
+                "sig": "base64://png:12920192ne1082hdbo219bd9bx98x9hbxb9b29b392b3b9b9b9283b8...",
+                "created_at": 1647113220,
+                "updated_at": 1647113220 
+            },
+        ]
+
+
+    ##Path Table:
+    "users"
+        id | int/uuid
+        email | text //user email
+        fist_name | text //users first name
+        last_name | text //users last name
+        phone | int(10) //users phone flat string no special characters
+        password | hash //users hashed password
+        status | boolean
+        token | hash //token when user is signed in
+        is_notary | boolean
+        signature | blob
+        created_at | timestamp
+        updated_at | timestamp
+
+
+    #Account //every account has to have a owner account attached to it... if the account type is notary record then there has to be a single user with role notary_records on it
+    Path: /account/ 
+                get - all account data users can be associated to many accounts as one time
+                post - create records with signed in uuid
+          /account/:id
+                get - get record of signed in matching uuid
+                put - update record of signed in matching uuid
+                delete - deletes account of matching signed in uuid
+
+    Notes:
+        --
+        When a new account is created it creates a new customer in Quickbooks via QB api
+        When a updated happens to an account it updates the record in Quickbooks via QB api
+        There has to be at least one user assigned role as owner for every account. See Account / User Join table
+        --
+
+    Guards:
+        1. Only user with owner role can view, update, and delete
+        2. Only users with role of owner can access account endpoint
+        3. Account can only be deleted if there is no notary records or sessions using the acc_id.. If so then account status get set to closed
+        4. If account status is = "pending, hold, closed" you can not create, edit or delete... view only for every endpoint
+
+        //Sample
+        [
+            {
+                "id": 1, | int
+                "company_name": "My Law Firm",
+                "first_name": "John",
+                "last_name": "Smith",
+                "address_one": "1234 Street",
+                "address_two": "",
+                "city": "Dallas",
+                "state": [
+                    {
+                        "id": 1,
+                        "state": "Texas",
+                        "abbr": "TX",
+                        "status": true,
+                    },
+                ],
+                "zipcode": "76262",
+                "billing_address_one": "1234 Street",
+                "billing_address_two": "",
+                "billing_city": "Dallas",
+                "billing_state": [
+                    {
+                        "id": 1,
+                        "state": "Texas",
+                        "abbr": "TX",
+                        "status": true,
+                    },
+                ],
+                "billing_zipcode": "76262",
+                "email": "test@testemail.com",
+                "billing_email": "test@testemail.com",
+                "phone": 15552224444,
+                "billing_phone": 15555555555,
+                "acc_type": [
+                    {
+                        "id": 1,
+                        "name": "suite",
+                        "status": true,
+                    }
+                ],
+                "qb_acc_num": "ASB120921u20910120912u09iosdi898981",
+                "brand_color": "#198271",
+                "logo": "base64://svg:239823u23b29d293bd982h3b2939bbddi23i2b93d23...",
+                "white_label": false,
+                "status" [
+                    {
+                        "id": 1,
+                        "name": "Pending",
+                        "status": true
+                    },
+                    //etc...
+                ],
+                "closed_date": 2025-01-01,
+                "created_at": 1647113220,
+                "updated_at": 1647113220,  
+            }
+        ]
+
+
+    ##Path Table:
+    "account"
+        id | int
+        company_name | text
+        first_name | text
+        last_name | text
+        address_one | text
+        address_two | text
+        city | text
+        state | int //id of states table needs joined
+        zipcode | text
+        billing_address_one | text
+        billing_address_two | text
+        billing_city | text
+        billing_state | int //id of states table needs joined
+        billing_zipcode | text
+        email | text
+        billing_email | text
+        phone | int(11)
+        billing_phone | int(11)
+        acc_type | int //id of account type joined table
+        qb_acc_num | text //Quickbooks customer account number
+        brand_color | text //hash or rgba of brand color
+        logo | blob //base64 of uploaded logo
+        white_label | boolean //if the platform is white labeled
+        status | int //id of account_statuses table
+        closed_date | date //date when an account is closed. Records have to be kept for 5 years after account is deleted
+        created_at | timestamp
+        updated_at | timestamp
+
+    #Account User Join Table
+    ##Table:
+    "acc_user_join" 
+        id | int
+        acc_id | int
+        uuid | uuid
+        rold_id | int
+        status | boolean
+        created_at | timestamp
+        updated_at | timestamp
+
+    
+    #Billing
+        Path: /billing //array of all invoices with matching acc_ids matching signed in
+            get - get all invoices with matching acc_id of signed in user
+            post - create new invoice
+        Path:  /billing/:inv_id //same as above just single invoice by inv_id with matching acc_id of signed in
+            get - get data by id
+            put - update data by id
+            delete - delete data by id
+        
+        Guard:
+        1. matching acc_id for signed in users acc_id
+        //Sample
+        [
+            {
+                "id": 1,
+                "acc_id": 1,
+                "qb_inv_id": "AFS129830193912823",
+                "amount_due": 65400,
+                "balance": 65400,
+                "amount_payed": 0,
+                "net_account" [
+                    {
+                        "id": 1,
+                        "name": "COD",
+                        "days": 0,
+                        "status": true
+                    }
+                ],
+                "due_date": 2022-03-12,
+                "status": [
+                    {
+                        "id": 2,
+                        "name": "Open",
+                        "status": true
+                    }
+                ],
+                "inv_items": [
+                    {
+                        "id": 1,
+                        "inv_id": 1,
+                        "name": "Session Fees",
+                        "description": "Session #1234 on 01/12/2022 - 15 mins",
+                        "qty": 15,
+                        "amount": 15,
+                        "created_at": 1647113220,
+                        "updated_at": 1647113220,
+                    },
+                    {
+                        "id": 1,
+                        "inv_id": 1,
+                        "name": "Document Fees",
+                        "description": "Session #1234 on 01/12/2022 - 2 documents notarized",
+                        "qty": 2,
+                        "amount": 1600,
+                        "created_at": 1647113220,
+                        "updated_at": 1647113220,
+                    }
+                ],
+                "payments" [
+                    {
+                        "id": 1,
+                        "inv_id": 1,
+                        "qb_payment_id": "122339203n28",
+                        "amount": 4500,
+                        "payment_date": 2022-03-12,
+                        "status": [
+                            {
+                                "id": 1,
+                                "name": "Pending",
+                                "status": true,
+                            }
+                        ],
+                        "created_at": 1647113220,
+                        "updated_at": 1647113220,
+                    }
+                ],
+                "created_at": 1647113220,
+                "updated_at": 1647113220,
+            },
+            //etc...
+        ]
+
+    ##Path Tables:
+    "platform_inv"
+        id | int
+        acc_id | int //id of account id display only for those this matching account id via join table
+        qb_inv_id | text //id assigned when created via the Quickbooks API
+        amount_due | int(50) //amount total of all items * qty - discount 
+        balance | int(50) //running balance of what is owed on the invoice
+        amount_payed | int(50) //running total of what was paid toward the invoice
+        net_account | int //id of net account table
+        due_date | date //date the invoice is due
+        status | int //id of inv_statuses table
+        created_at | timestamp
+        updated_at | timestamp
+
+    "platform_inv_items" // Joined tabled with invoice path
+        id | int
+        inv_id | int //id of platform invoice
+        name | text
+        description | text
+        qty | int(11)
+        amount | int(11)
+        discount | int(11)
+        taxable | boolean
+        created_at | timestamp
+        updated_at | timestamp
+
+    "platform_payments"
+        id | int
+        inv_id | int //id of platform invoice payment was made to
+        amount | int(11) //amount payed
+        qb_payment_id | text //id given by quickbooks when payment is processed
+        payment_status | int //id of payment status
+        payment_date | date
+        created_at | timestamp
+        updated_at | timestamp
+
+    #Auth
+    Paths: /auth/:type
+            Types:
+                - signin //post creds of user on sign in form username pass
+                    //Sample
+                    [{
+                        "email": "test@email.com",
+                        "password": "password1234"
+                    }]
+                - sign_out //remove token from id
+    
+    #Register
+    Path: /register/
+    
+    Steps:
+        1. Create User with "Owner" role
+        2. Create Account and add record in account user join table 
+        3. Agreements - Terms and Platform Contract
+    
+        
+    #Sessions
+    Paths: /sessions/
+                //Need to limit what is seen by what kind of user
+                get - all sessions with account id
+                post - add new session
+          
+            /sessions/:hash
+                get - all record data of hash
+                put - update data for record hash
+                delete - delete data from record hash
+            
+            /session/client/:hash
+                //client can only access data if email & date of birth is matches what is passed
+                //Need to return token
+                post - post date of birth and email
+                return - all record data of hash with token
+            /session/witness/:hash
+                //Witness can only access data if email & date of birth matches what is passed
+                //Need to return token
+                post - date of birth and email
+                return - all record data of hash with token
+            /session/associate/:hash
+                //Associate can only access data if email & date of birth matches what is passed
+                //Need to return token
+                post - date of birth & email
+                return - all record data of hash with token
+            /session/user/:hash
+                //Add another user to session
+                user must be signed in to view
+    When:
+        - When a session is status = complete a new record needs to be made in the "notary_record_book" table as stringed data
+        - When an account status is = "pending, hold, closed" you can not create a session
+ 
+        //Sample
+        [
+            {
+                "id": 1,
+                "hash": "1188f67d48c9f11afb8572977ef74c5e",
+                "acc_id": 1,
+                "uuid": "",
+                "date_time": 1647113220,
+                "duration": 60,
+                "docs_num": 2,
+                "session_type": [
+                    {
+                        "id": 1,
+                        "name": "online notary",
+                        "status": true,
+                    },
+                    //etc...
+                ],
+                "session_status": [
+                    {
+                        "id": 1,
+                        "name": "Booked",
+                        "status": true,
+                    },
+                    //etc...
+                ],
+                //if session_type = online notary need the following else empty
+                "notary_session_type": [
+                    {
+                        "id": 1,
+                        "name": "kba",
+                        "status": true
+                    },
+                    //etc...
+                ],
+                "case_matter_num": "CN-01921928",
+                "video_url": "1-20220104.mp4",
+                "clients": [
+                    {
+                        "id": 1,
+                        "first_name": "John",
+                        "middle_name": "Rich",
+                        "last_name": "Smith",
+                        "suffix": "JR",
+                        "address_one": "1234 Street",
+                        "address_two": "",
+                        "city": "City Name",
+                        "state": [
+                            {
+                                "id": 1,
+                                "name": "Texas",
+                                "abbr": "TX",
+                                "status": true,
+                            }
+                        ],
+                        "zipcode": "76262", //need to leave as string people format differently
+                        "billing_address_one": "1234 Street",
+                        "billing_address_two": "",
+                        "billing_ity": "City Name",
+                        "billing_state": [
+                            {
+                                "id": 1,
+                                "name": "Texas",
+                                "abbr": "TX",
+                                "status": true,
+                            }
+                        ],
+                        "billing_zipcode": "76262", //need to leave as string people format differently
+                        "phone": 5552224444,
+                        "send_sms": true,
+                        "email": "test@gmail.com",
+                        "send_email": true,
+                        "dob": 1983-02-28,
+                        "dl_num": "ABC1234567",
+                        "dl_state": [
+                            {
+                                "id": 1,
+                                "name": "Texas",
+                                "abbr": "TX",
+                                "status": true,
+                            }
+                        ],
+                        "dl_exp": 2025-04-02,
+                        "dl_image": "base64://png:nsco98jec0wne09j2nq390ud023j09djf2n93d0...",
+                        "signature": "base64://svg:0s9cdjcs8hw9ndff9w38hndwb9e8hd0w3hn908hdwb...",
+                        "acc": [
+                            {
+                                "acc_id": 1,
+                                "acc_num": "CM-12349239",
+                                "created_at": 1647113220,
+                                "updated_at": 1647113220,
+                            },
+                            //etc...
+                        ],
+                        "kba": [
+                            {
+                                "id": 1,
+                                "client_id": 1,
+                                "question": "Which city did you live in?",
+                                "possible_answers": "
+                                    [{
+                                        "answer": "Dallas",
+                                        "answer": "Fort Worth",
+                                        "answer": "Huston",
+                                        "answer": "Austin",
+                                    }]
+                                ",
+                                "correct_answer": "Dallas",
+                            }
+                        ],
+                        "created_at": 1647113220,
+                        "updated_at": 1647113220,
+                    }
+                ],
+                //if notary session type is = witness following will be used else it will be empty
+                "witnesses": [
+                    {
+                        "id": 1,
+                        "first_name": "John",
+                        "last_name": "Smith",
+                        "address_one": "1234 Street",
+                        "address_two": "",
+                        "city": "City Name",
+                        "state": [
+                            {
+                                "id": 1,
+                                "name": "Texas",
+                                "abbr": "TX",
+                                "status": true,
+                            }
+                        ],
+                        "zipcode": "76262",
+                        "phone": 5552224444,
+                        "email": "test@gmail.com",
+                        "dob": 1988-01-03,
+                        "created_at": 1647113220,
+                        "updated_at": 1647113220,
+                    },
+                    //etc...
+                ],
+                "associates": [
+                    {
+                        "id": 1,
+                        "first_name": "John",
+                        "last_name": "Smith",
+                        "address_one": "1234 Street",
+                        "address_two": "",
+                        "city": "City Name",
+                        "state": [
+                            {
+                                "id": 1,
+                                "name": "Texas",
+                                "abbr": "TX",
+                                "status": true,
+                            }
+                        ],
+                        "zipcode": "76262",
+                        "phone": 5552224444,
+                        "email": "test@gmail.com",
+                        "dob": 1988-01-03,
+                        "created_at": 1647113220,
+                        "updated_at": 1647113220,
+                    },
+                    //etc...
+                ],
+                //number of docs in array can never exceed the number of docs_num above 
+                "docs": [
+                    {
+                        "id": 1,
+                        "doc_title": "Sign Doc 1",
+                        "doc_date": 2022-01-02,
+                        "doc_action": [
+                            {
+                                "id": 1,
+                                "name": "signature only",
+                                "status": true,
+                            },
+                            //etc...
+                        ],
+                        "doc_status": [
+                            {
+                                "id": 1,
+                                "name": "Un-signed",
+                                "status": true,
+                            },
+                            //etc...
+                        ],
+                        "doc_url": "129819281912-Sign_Doc_1.pdf",
+                        "destroy_date": 2022-01-20
+                    },
+                    //etc...
+                ],
+                "created_at": 1647113220,
+                "updated_at": 1647113220,
+            },
+            //etc..
+        ]
+
+    ##Path Table:
+    "sessions"
+        id | int
+        hash | hash //session hash for url
+        acc_id | int //join to accounts table
+        uuid | uuid //user assigned to the session as the primary controller
+        date_time | timestamp //date and time of session
+        duration | int //number of minutes the session will take
+        docs_num | int(11) //number of docs going to be notarized, signed, or review
+        session_type | int //id of joined session_type table
+        session_status | int //id of joined session_type table
+        notary_session_type | int //id of joined notary_session_type table one should have a value if the session type = online notary
+        case_matter_num | text //Case number matter used by firms to keep tract of usage
+        video_url | text //url of the recorded session have to keep record by law for 5 years
+        created_at | timestamp
+        updated_at | timestamp
+
+    // You can have multiple clients on a single session
+    "session_client_join"
+        id | int
+        session_id | int //id of session
+        client_id | int //id of client that is going to be on the call
+        kba_tries | int //number of time trying to take the kba test
+        created_at | timestamp
+        updated_at | timestamp
+
+    // You can have multiple witnesses on a single session
+    "session_witness_join"
+        id | int
+        session_id | int //id of session
+        witness_id | int //id of witness that will be on the call
+        created_at | timestamp
+        updated_at | timestamp
+
+    // You can have multiple associates on a single session
+    "session_associate_join"
+        id | int
+        session_id | int //id of session
+        is_user | boolean //if associate is a user in the platform set true
+        associate_id | int //id of associate that would be on the call
+        uuid | uuid //if is user is true then is uses this field
+        created_at | timestamp
+        updated_at | timestamp
+        //need to add signature
+
+    //You can have multiple documents on a single session
+    //If document is deleted this record is deleted as well
+    "session_doc_join"
+        id | int
+        session_id | int //id of session
+        doc_id | int //id of doc from docs table
+        created_at | timestamp
+        updated_at | timestamp
+
+
+
+    #Client
+        Path: /clients
+            get - all records with matching signed in acc_ids
+            post - create new
+        Path: /clients/:id
+            get - get record
+            put - update record
+            delete - record
+
+        [
+            {
+                "id": 1,
+                "first_name": "John",
+                "middle_name": "Rich",
+                "last_name": "Smith",
+                "suffix": "JR",
+                "address_one": "1234 Street",
+                "address_two": "",
+                "city": "City Name",
+                "state": [
+                    {
+                        "id": 1,
+                        "name": "Texas",
+                        "abbr": "TX",
+                        "status": true,
+                    }
+                ],
+                "zipcode": "76262", //need to leave as string people format differently
+                "billing_address_one": "1234 Street",
+                "billing_address_two": "",
+                "billing_ity": "City Name",
+                "billing_state": [
+                    {
+                        "id": 1,
+                        "name": "Texas",
+                        "abbr": "TX",
+                        "status": true,
+                    }
+                ],
+                "billing_zipcode": "76262", //need to leave as string people format differently
+                "phone": 5552224444,
+                "send_sms": true,
+                "email": "test@gmail.com",
+                "send_email": true,
+                "dob": 1983-02-28,
+                "dl_num": "ABC1234567",
+                "dl_state": [
+                    {
+                        "id": 1,
+                        "name": "Texas",
+                        "abbr": "TX",
+                        "status": true,
+                    }
+                ],
+                "dl_exp": 2025-04-02,
+                "dl_image": "base64://png:nsco98jec0wne09j2nq390ud023j09djf2n93d0...",
+                "signature": "base64://svg:0s9cdjcs8hw9ndff9w38hndwb9e8hd0w3hn908hdwb...",
+                "acc": [
+                    {
+                        "acc_id": 1,
+                        "acc_num": "CM-12349239",
+                        "created_at": 1647113220,
+                        "updated_at": 1647113220,
+                    },
+                    //etc...
+                ],
+                "kba": [
+                    {
+                        "id": 1,
+                        "client_id": 1,
+                        "question": "Which city did you live in?",
+                        "possible_answers": "
+                            [{
+                                "answer": "Dallas",
+                                "answer": "Fort Worth",
+                                "answer": "Huston",
+                                "answer": "Austin",
+                            }]
+                        ",
+                        "correct_answer": "Dallas",
+                    }
+                ],
+                "created_at": 1647113220,
+                "updated_at": 1647113220,
+            }
+        ]
+        
+        
+    ##Path Table:
+    "client"
+        id | int
+        first_name | text
+        middle_name | text
+        last_name | text
+        suffix | text
+        address_one | text
+        address_two | text
+        city | text
+        state | id //id of state table join
+        zipcode | text
+        billing_address_one | text
+        billing_address_two | text
+        billing_city | text
+        billing_state | id //id of state table join
+        billing_zipcode | text
+        phone | int(10)
+        email | text
+        send_sms | boolean
+        send_email | boolean
+        dob | date //date of birth
+        ssn | hash //social security number hashed... never shows more than last for on front end
+        dl_num | text //drivers license number
+        dl_state | id //id of state table join
+        dl_exp | date //drivers license expiration date
+        dl_image | blob //base64 of image
+        signature | blob //base64 of signature
+        created_at | timestamp
+        updated_at | timestamp
+
+    
+    ##Join Table for client and account so a client can be on multiple accounts
+    "client_account_join"
+        id | int
+        acc_id | int //id of account
+        client_id | int //id of client
+        acc_num | text //special field to add client account number from companies software
+        created_at | timestamp
+        updated_at | timestamp
+    
+    #KBA Test
+        Path: /kba/:client_id
+            get - get all values that have the matching client_id
+
+        Guard: 
+            1. Have to have matching client id when on client page to display KBA test questions
+            2. No one else can see KBA test but client when signed in and has token
+        //Sample
+        [
+            {
+                "id": 1,
+                "client_id": 1,
+                "question": "Which city did you live in?",
+                "possible_answers": "
+                    [{
+                        "answer": "Dallas",
+                        "answer": "Fort Worth",
+                        "answer": "Huston",
+                        "answer": "Austin",
+                    }]
+                ",
+                "correct_answer": "Dallas",
+            }
+        ]
+
+    ##Path Table:
+    "kba"
+        id | int
+        client_id | int //id of client is was made for
+        question | text //test question
+        possible_answers | json //possible answers
+        correct_answer | text //correct answer
+        created_at | timestamp
+        updated_at | timestamp
+
+    #Witness
+        Path: /witnesses
+            get - all records with matching signed in acc_ids
+            post - create new
+        Path: /witnesses/:id
+            get - get record
+            put - update record
+            delete - record //can not delete record if session status is complete
+        Notes: 
+        --
+        --
+        Guards: 
+        1. Only user and client(s) on session can see witness name that is attached to session
+        2. Can not delete record if session status is = complete
+
+        //Sample
+        [
+            {
+                "id": 1,
+                "first_name": "John",
+                "last_name": "Smith",
+                "address_one": "1234 Street",
+                "address_two": "",
+                "city": "City Name",
+                "state": [
+                    {
+                        "id": 1,
+                        "name": "Texas",
+                        "abbr": "TX",
+                        "status": true,
+                    }
+                ],
+                "zipcode": "76262",
+                "phone": 5552224444,
+                "email": "test@gmail.com",
+                "dob": 1988-01-03,
+                "created_at": 1647113220,
+                "updated_at": 1647113220,
+            },
+            //etc...
+        ]
+
+    #Path Table:
+    "witnesses"
+        id | int
+        first_name | text
+        last_name | text
+        address_one | text
+        address_two | text
+        city | text
+        state | id //id of state from state table
+        zipcode | text
+        phone | in(10)
+        email | text
+        dob | date //date of birth
+        created_at | timestamp
+        updated_at | timestamp
+    
+    #Associate //people that need to join the call but are not witnesses, users of the platform or notary... Used for like law firm partners etc that need to join a call but do not have to be made a user
+        Path: /associate 
+            get - all records with matching signed in acc_ids
+            post - create new
+        Path: /associate/:id
+            get - get record
+            put - update record
+            delete - record
+        
+        //Sample
+        [
+            {
+                "id": 1,
+                "first_name": "John",
+                "last_name": "Smith",
+                "address_one": "1234 Street",
+                "address_two": "",
+                "city": "City Name",
+                "state": [
+                    {
+                        "id": 1,
+                        "name": "Texas",
+                        "abbr": "TX",
+                        "status": true,
+                    }
+                ],
+                "zipcode": "76262",
+                "phone": 5552224444,
+                "email": "test@gmail.com",
+                "dob": 1988-01-03,
+                "created_at": 1647113220,
+                "updated_at": 1647113220,
+            },
+            //etc...
+        ]
+
+    #Path Table:
+    "associate"
+        id | int
+        first_name | text
+        last_name | text
+        address_one | text
+        address_two | text
+        city | text
+        state | id //id of state from state table
+        zipcode | text
+        phone | in(10)
+        email | text
+        dob | date //date of birth
+        created_at | timestamp
+        updated_at | timestamp
+
+
+    #Docs
+        Path: /docs
+            get - all records that are associated to acc_id
+        Path: /docs/:hash
+            get - all records that have the session hash
+            post - add record for that session hash
+        Path: /docs/:id
+            get - get record
+            put - update record
+            delete - delete record
+        Notes:
+        --
+        This uses the "session_doc_join" seen above to join many docs to a session
+        --
+        Guards:
+        1. Only a session primary user and client(s) can get get access to document
+        
+        //Sample
+        [
+            {
+                "id": 1,
+                "doc_title": "Sign Doc 1",
+                "doc_date": 2022-01-02,
+                "doc_action": [
+                    {
+                        "id": 1,
+                        "name": "signature only",
+                        "status": true,
+                    },
+                    //etc...
+                ],
+                "doc_status": [
+                    {
+                        "id": 1,
+                        "name": "Un-signed",
+                        "status": true,
+                    },
+                    //etc...
+                ],
+                "doc_url": "129819281912-Sign_Doc_1.pdf",
+                "destroy_date": 2022-01-20,
+                "created_at": 1647113220,
+                "updated_at": 1647113220,
+            },
+            //etc...
+        ]
+
+    #Path Table:
+    "docs"
+        id | int
+        doc_title | text //document title
+        doc_date | date //date on document
+        doc_type | Text //what kind of document it is
+        doc_url | text //file name for bucket
+        destroy_date | date //default is 2 days after session date
+        created_at | timestamp
+        updated_at | timestamp
+
+
+
+    #Joined Tables & System Paths:
+
+    ##-Doc Action-## 
+    Path: /doc_action
+        get - all data from table
+        //Sample
+        [
+            {
+                "id": 1,
+                "name": "signature only",
+                "status": true,
+            },
+            //etc...
+        ]
+    Path table:
+    "doc_action"
+        id | int
+        name | text //notary type name
+        status | boolean
+        created_at | timestamp
+        updated_at | timestamp
+
+        ###data:
+            - signature only | true
+            - signature and notary | true
+            - notary only | true
+            - view only | true
+
+    ##-Doc Action-## 
+    Path: /doc_status
+        get - all data from table
+        //Sample
+        [
+            {
+                "id": 1,
+                "name": "un-signed",
+                "status": true,
+            },
+            //etc...
+        ]
+    Path table:
+    "doc_action"
+        id | int
+        name | text //notary type name
+        status | boolean
+        created_at | timestamp
+        updated_at | timestamp
+
+        ###data:
+            - un-signed | true
+            - signed | true
+            - notarized | true
+            - un-notarized | true
+        
+
+
+    ##-Types of Notarizations-## 
+    Path: /types_of_notarizations
+        get - all data from table
+        //Sample
+        [
+            {
+                "id": 1,
+                "name": "Acknowledgment",
+                "status": true,
+            },
+            //etc...
+        ]
+    Path table:
+    "types_of_notarizations"
+        id | int
+        name | text //notary type name
+        status | boolean
+        created_at | timestamp
+        updated_at | timestamp
+
+        ###data:
+            - Acknowledgment | true
+            - Jurat / Affidavit | true
+            - Verification | true
+            - Protest | true
+            - Oath | true
+            - Deposition of Witness | true
+            - Copy Certification | true
+            - Signature Witnessing | true
+            - Contents of Acknowledgment | true
+            - Proof of Identity | true
+
+    ##-Methods of Identification## 
+    Path: /methods_of_id
+        get - all data from table
+        //Sample
+        [
+            {
+                "id": 1,
+                "name": "Drivers License",
+                "status": true,
+            },
+            //etc...
+        ]
+    Path table:
+    "methods_of_id"
+        id | int
+        name | text //method name
+        status | boolean
+        created_at | timestamp
+        updated_at | timestamp
+
+        ###data:
+            - Drivers License | true
+            - Witness | true
+            - Known | true
+
+    ##-States-## 
+    Path: /states
+        get - all data from table
+        //Sample
+        [
+            {
+                "id": 1,
+                "name": "Texas",
+                "abbr": "TX",
+                "status": true,
+            },
+            //etc...
+        ]
+    Path table:
+    "states"
+        id | int
+        name | text //state name
+        abbr | text //state abbreviation
+        status | boolean
+        created_at | timestamp
+        updated_at | timestamp
+
+        ###data: //need a list of all 50 states + District of Columbia, American Samoa, Guam, Northern Mariana Islands, Puerto Rico, U.S. Virgin Islands
+            - Texas | TX | true
+            - Florida | FL |true
+            etc...
+
+    ##-User Details-## 
+    Path: /users/:id
+        Join table with users path
+    Path table:
+    "user_details"
+        id | int
+        address_one | text
+        address_two | text
+        city | text
+        state | int //id of states table
+        zipcode | text
+        created_at | timestamp
+        updated_at | timestamp
+
+    ##-Roles-##
+    Path: /roles
+        get - all data in table
+        //Sample
+        [
+            {
+                "id": 1,
+                "name": "notary",
+                "status": true,
+            },
+            //etc...
+        ]
+    Path table:
+    "roles"
+        id | int
+        name | text //role name
+        status | boolean
+        created_at | timestamp
+        updated_at | timestamp
+
+        ###data:
+            notary | true //can only create and view session that have their uuid
+            owner | true //super admin can see all billing and add users etc creator of account...
+            admin | true //can do everything a owner can but edit account info and delete account 
+            accounting | true //can only see billing information
+            notary_records | true //can only crud notary_book_records
+
+    ##-Roles Join-##
+    // Users Join table
+    "user_role_join"
+        id | int
+        acc_id | int //id of account
+        uuid | uuid //uuid of user
+        role_id | id //id od role for that account
+        status | boolean
+        created_at | timestamp
+        updated_at | timestamp
+
+    
+    ##-Notary Details-## 
+    Path: /user/:id
+        Join table with user path if is_notary is true
+    Path table:
+    "notary_details" //this will if is_notary is true need joined to be in get, post, update, delete
+        id | int
+        com_name | text //commission full name
+        notary_dob | date //notary date of birth
+        com_num | text //commission number
+        com_state | int //id of state - commission state
+        com_date | date //date of commission
+        com_exp | date //date commission expires   
+        com_status | boolean
+        on_com_num | text //online commission number
+        on_com_date | date //date online commission date
+        on_com_exp | date //date online commission expires
+        on_com_status | boolean
+        com_county | text //county that commissioned in
+        sig | blob //base64 of uploaded signature 
+        stamp | blob //base64 of uploaded stamp
+        notary_cert | blob //base64 of uploaded notary certificate
+        on_notary_cert | blob //base64 of uploaded online notary certificate
+        created_at | timestamp
+        updated_at | timestamp
+
+    ##-Account Types-## 
+    Path: /acc_types
+        get - all data from table
+        //Sample
+        [
+            {
+                "id": 1,
+                "name": "notary records",
+                "status": true,
+            },
+            //etc...
+        ]
+    Path table:
+    "acc_types" //this is a list of types of account that people can have
+        id | int
+        name | text
+        status | boolean
+        created_at | timestamp
+        updated_at | timestamp
+
+        ###data:
+            - notary records | true //access to record book only
+            - online notary | true //get access to online notary sessions and record book
+            - secure session | true //get access to secure sessions only
+            - suite | true //get access to everything
+
+    ##-Durations-## 
+    Path: /durations //list of time a session can take mainly used for the schedule feature 
+        get - all data from table
+        //Sample
+        [
+            {
+                "id": 1,
+                "time": 15,
+                "status": true,
+            },
+            //etc...
+        ]
+    Path table:
+    "durations"
+        id | int
+        time | int(5)
+        status | boolean
+        created_at | timestamp
+        update_at | timestamp
+
+        ###data:
+            - 15 | true
+            - 30 | true
+            - 45 | true
+            - 60 | true
+            - 75 | true
+            - 90 | true
+            - 105 | true
+            - 120 | true
+
+    ##-Session Types-## 
+    Path: /session_types //list of session types the platform can perform
+        get - all data from table
+        //Sample
+        [
+            {
+                "id": 1,
+                "name": "online notary",
+                "status": true,
+            },
+            //etc...
+        ]
+    Path table:
+    "session_types"
+        id | int
+        name | text
+        status | boolean
+        created_at | timestamp
+        updated_at | timestamp
+    
+        ###data:
+            - online notary | true
+            - secure session | true
+            - online deposition | false
+
+    ##-Session Status-## 
+    Path: /session_status
+        get - all data from table
+        //Sample
+        [
+            {
+                "id": 1,
+                "name": "Booked",
+                "status": true,
+            },
+            //etc...
+        ]
+    Path Table:
+    "session_status"
+        id | int
+        name | text
+        status | boolean
+        created_at | timestamp
+        updated_at | timestamp
+    
+        ###data:
+            - Booked | true
+            - Active | true
+            - Complete | true
+            - Canceled | true 
+    
+    ##-Notary Session Types-## //if the session type = online notary then this has to be used
+    Path: /notary_session_types
+        get - all data from table
+        //Sample
+        [
+            {
+                "id": 1,
+                "name": "kba",
+                "status": true
+            },
+            //etc...
+        ]
+    Path table:
+    "notary_session_types"
+        id | int
+        name | text
+        status | boolean
+        created_at | timestamp
+        updated_at | timestamp
+
+        ###data:
+            - kba | true
+            - known | true
+            - witness | true
+    
+    ##-Net Account Types-## 
+    Path: /net_account
+        get - all data from table
+        //Sample
+        [
+            {
+                "id": 1,
+                "name": "Net 30",
+                "days": "30",
+                "status": true
+            },
+            //etc...
+        ]
+    Path table:
+    "notary_session_types"
+        id | int
+        name | text
+        days | int(25)
+        status | boolean
+        created_at | timestamp
+        updated_at | timestamp
+
+        ###data:
+            - COD | 0 | true
+            - Net 15 | 15 | true
+            - Net 30 | 30 | true
+            - Net 60 | 60 | true
+            - Net 90 | 90 | true
+ 
+    ##-Invoice Statuses-## 
+    Path: /inv_statuses
+        get - all data from table
+        //Sample
+        [
+            {
+                "id": 1,
+                "name": "Draft",
+                "status": true
+            },
+            //etc...
+        ]
+    Path table:
+    "inv_statuses"
+        id | int
+        name | text
+        status | boolean
+        created_at | timestamp
+        updated_at | timestamp
+
+        ###data:
+            - Draft | true
+            - Open | true
+            - Closed | true
+            - Write Off | true
+
+    ##-Payment Statuses-## 
+    Path: /payment_statuses
+        get - all data from table
+        //Sample
+        [
+            {
+                "id": 1,
+                "name": "Draft",
+                "status": true
+            },
+            //etc...
+        ]
+    Path table:
+    "payment_statuses"
+        id | int
+        name | text
+        status | boolean
+        created_at | timestamp
+        updated_at | timestamp
+
+        ###data:
+            - Pending | true
+            - Complete | true
+            - Canceled | true
+            - Refunded | true
+
+
+    ##-Account Status-## 
+    Path: /account_statuses
+        get - all data from table
+        //Sample
+        [
+            {
+                "id": 1,
+                "name": "Pending",
+                "status": true
+            },
+            //etc...
+        ]
+    Path table:
+    "account_statuses"
+        id | int
+        name | text
+        status | boolean
+        created_at | timestamp
+        updated_at | timestamp
+
+        ###data:
+            - Pending | true
+            - Active | true
+            - Paused | true
+            - Closed | true
+    
+    ##-Account Status-## 
+    Path: /account_statuses
+        get - all data from table
+        //Sample
+        [
+            {
+                "id": 1,
+                "name": "Pending",
+                "status": true
+            },
+            //etc...
+        ]
+    Path table:
+    "account_statuses"
+        id | int
+        name | text
+        status | boolean
+        created_at | timestamp
+        updated_at | timestamp
+
+        ###data:
+            - Pending | true
+            - Active | true
+            - Paused | true
+            - Closed | true
+        
+
+    ##-Audit Log-##  
+    Path: /audit //ever time there is a post, put or delete by a user a new record needs to be made here... this can never be deleted This helps us meet HIPPA laws
+            get - all records with matching acc_ids
+            post - add record
+          /audit/:acc_id
+            get - all record with passed id
+            //Sample
+            [
+                {
+                    "id": 1,
+                    "acc_id": 1,
+                    "uuid": "uuid",
+                    "user_name": "Glenn Layson",
+                    "path": "/session",
+                    "path_id": 1,
+                    "auction": "post",
+                },
+                //etc...
+            ]
+    Path table:
+    "audit"
+        id | int
+        acc_id | int // account id from signed in user
+        uuid | uuid // uuid of signed in user
+        path | text //path of what was edited
+        path_id | int(11) //id of record that was past in path on put or delete // null if post
+        action | text //action to path ... post, put, delete
+        created_at | timestamp
