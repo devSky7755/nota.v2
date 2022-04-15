@@ -2,35 +2,35 @@ import { CreateDurationDto } from "../dto/duration.create-dto"
 
 export const seedDurations: Array<CreateDurationDto> = [
     {
-        "name": "15",
+        "time": 15,
         "status": true
     },
     {
-        "name": "30",
+        "time": 30,
         "status": true
     },
     {
-        "name": "45",
+        "time": 45,
         "status": true
     },
     {
-        "name": "60",
+        "time": 60,
         "status": true
     },
     {
-        "name": "75",
+        "time": 75,
         "status": true
     },
     {
-        "name": "90",
+        "time": 90,
         "status": true
     },
     {
-        "name": "105",
+        "time": 105,
         "status": true
     },
     {
-        "name": "120",
+        "time": 120,
         "status": true
     },
 ];

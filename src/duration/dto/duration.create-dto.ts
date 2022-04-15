@@ -1,8 +1,8 @@
-import { IsString, IsBoolean } from "class-validator";
+import { IsNumber, IsBoolean } from "class-validator";
 
 export class CreateDurationDto {
-  @IsString()
-  readonly name: string;
+  @IsNumber()
+  readonly time: number;
   @IsBoolean()
   readonly status: boolean;
 }

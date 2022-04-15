@@ -31,7 +31,7 @@ export class DurationSeederService {
     create(): Array<Promise<DurationEntity>> {
         return seedDurations.map(async (duration: CreateDurationDto) => {
             return await this.durationRepository
-                .findOne({ name: duration.name })
+                .findOne({ time: duration.time })
                 .then(async dbDuration => {
                     // We check if a duration already exists.
                     // If it does don't create a new one.

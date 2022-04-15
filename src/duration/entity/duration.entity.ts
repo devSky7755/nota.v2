@@ -9,13 +9,13 @@ import {
   OneToMany,
 } from "typeorm";
 
-@Entity({ name: "acc_types" })
+@Entity({ name: "durations" })
 export class DurationEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column()
-  name: string;
+  time: number;
 
   @Column()
   status: boolean;
