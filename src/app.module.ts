@@ -29,6 +29,8 @@ import { join } from "path";
 import { SmsModule } from "./sms/sms.module";
 import { SGEmailModule } from "./sendgrid/sendgrid.module";
 import { CronModule } from "./cron/cron.module";
+import { HealthModule } from "./health/health.module";
+import { HttpModule } from "@nestjs/axios";
 
 @Module({
   imports: [
@@ -54,6 +56,7 @@ import { CronModule } from "./cron/cron.module";
       accountSid: process.env.TWILIO_ACCOUNT_SID,
       authToken: process.env.TWILIO_AUTH_TOKEN,
     }),
+    HttpModule,
     ScheduleModule.forRoot(),
     CronModule,
     QBModule,
@@ -79,6 +82,7 @@ import { CronModule } from "./cron/cron.module";
     MethodModule,
     SmsModule,
     SGEmailModule,
+    HealthModule,
   ],
 })
 export class AppModule { }

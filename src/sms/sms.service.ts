@@ -26,4 +26,29 @@ export class SmsService {
       return e;
     }
   }
+
+  digitPinGen() {
+    var chars = 'acdefhiklmnoqrstuvwxyz0123456789'.split('');
+    var result = '';
+    for (var i = 0; i < 6; i++) {
+      var x = Math.floor(Math.random() * chars.length);
+      result += chars[x];
+    }
+    return result;
+  }
+
+  async initiatePhoneNumberVerification(phoneNumber: string): Promise<any> {
+    if (!phoneNumber) return;
+    const digitPin = this.digitPinGen();
+    const status = await this.client.messages.create({
+      body: digitPin,
+      // from: process.env.TWILIO_SENDER_PHONE_NUMBER,
+      from: '+19725734889',
+      to: phoneNumber,
+    });
+    return {
+      status,
+      digitPin
+    }
+  }
 }

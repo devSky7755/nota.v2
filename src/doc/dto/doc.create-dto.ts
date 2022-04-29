@@ -1,4 +1,4 @@
-import { IsBoolean, IsNumber, IsString } from "class-validator";
+import { IsArray, IsBoolean, IsNumber, IsString } from "class-validator";
 
 export class CreateDocDto {
   @IsString()
@@ -18,4 +18,10 @@ export class CreateDocDto {
 
   @IsBoolean()
   readonly needsNotary: boolean;
+
+  @IsNumber()
+  readonly clientId: number;
+
+  @IsNumber()
+  readonly sessionId: number;
 }

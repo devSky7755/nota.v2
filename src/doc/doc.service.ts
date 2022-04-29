@@ -12,6 +12,8 @@ import { UpdateDocDto } from "./dto/doc.update-dto";
 import { DocActionEntity } from "./entity/doc.action.entity";
 import { DocEntity } from "./entity/doc.entity";
 import { DocStatusEntity } from "./entity/doc.status.entity";
+import { SessionEntity } from "src/session/entity/session.entity";
+import { ClientEntity } from "src/client/entity/client.entity";
 
 @Injectable()
 export class DocActionService {
@@ -76,6 +78,10 @@ export class DocStatusService {
 @Injectable()
 export class DocService {
   constructor(
+    @InjectRepository(ClientEntity)
+    private clientRepository: Repository<ClientEntity>,
+    @InjectRepository(SessionEntity)
+    private sessionRepository: Repository<SessionEntity>,
     @InjectRepository(DocEntity)
     private docRepository: Repository<DocEntity>,
     @InjectRepository(DocActionEntity)
@@ -93,29 +99,48 @@ export class DocService {
   }
 
   async createDoc(doc: CreateDocDto, fileBuffer: Buffer, fileName: string, fileType: string): Promise<DocEntity> {
+    const {
+      action,
+      status,
+      sessionId,
+      clientId,
+      ...dto
+    } = doc;
+
+    // const sessionId = 1;
+    // const clientId = 1;
+    // const needsNotary = true;
+    const session = await this.sessionRepository.findOne({ id: sessionId });
+    if (!session)
+      throw new NotFoundException(`there is no session with ID ${sessionId}`);
+
+    const client = await this.clientRepository.findOne({ id: clientId });
+    if (!client)
+      throw new NotFoundException(`there is no client with ID ${clientId}`);
+
     const s3 = new S3();
     const uploadResult = await s3.upload({
       Bucket: process.env.AWS_S3_BUCKET,
       Body: fileBuffer,
-      Key: `${uuid()}-${fileName}`
+      Key: `${clientId}/${session.hash}/${uuid()}-${fileName}`
     }).promise();
-    const {
-      action,
-      status,
-      ...dto
-    } = doc;
 
-    return await this.docRepository.save({
+    const docRes = await this.docRepository.save({
       action: await this.docActionRepository.findOne({
         id: action,
       }),
       status: await this.docStatusRepository.findOne({
         id: status,
       }),
+      sessionId: sessionId,
+      clientId: clientId,
+      // needsNotary,
       docUrl: uploadResult.Location,
       docType: fileType,
       ...dto,
     });
+
+    return docRes;
   }
 
   async updateDocById(id: number, docDto: UpdateDocDto, fileBuffer: Buffer, fileName: string, fileType: string): Promise<DocEntity> {
@@ -125,18 +150,41 @@ export class DocService {
     const {
       action,
       status,
+      sessionId,
+      clientId,
       ...dto
     } = docDto;
+
+    // const sessionId = 1;
+    // const clientId = 1;
 
     const s3 = new S3();
     s3.deleteObject({
       Bucket: process.env.AWS_S3_BUCKET,
       Key: doc.docUrl.replace(/^(https:\/\/s3.amazonaws.com\/notary.io-docs\/)/, '')
     }).promise();
+
+    let key = '';
+    if (clientId) {
+      key += '' + clientId;
+      doc.clientId = clientId;
+    } else {
+      key += '' + doc.clientId;
+    }
+    if (sessionId) {
+      const session = await this.sessionRepository.findOne({ id: sessionId });
+      key += '/' + session.hash;
+      doc.sessionId = sessionId;
+    } else {
+      const session = await this.sessionRepository.findOne({ id: doc.sessionId });
+      key += '/' + session.hash;
+    }
+    key += '/' + `${uuid()}-${fileName}`;
+
     const uploadResult = await s3.upload({
       Bucket: process.env.AWS_S3_BUCKET,
       Body: fileBuffer,
-      Key: `${uuid()}-${fileName}`
+      Key: key
     }).promise();
     if (action) {
       dto['action'] = await this.docActionRepository.findOne({ id: action })

@@ -16,6 +16,8 @@ import { AssociateEntity } from "src/associate/entity/associate.entity";
 import { DocEntity } from "src/doc/entity/doc.entity";
 import { SessionAssociateJoinEntity } from "../entity/session.assoc.join.entity";
 import { v4 as uuid } from "uuid";
+import { S3 } from 'aws-sdk';
+import { emptyS3Directory } from "src/providers/utils";
 
 /**
  * Service dealing with session based operations.
@@ -169,6 +171,16 @@ export class SessionSeederService {
                     }).then(async resSession => {
                         await this.patchAssocitateRelations(resSession, true, assocUserIds)
                         await this.patchAssocitateRelations(resSession, false, associateIds)
+
+                        const s3 = new S3();
+                        resSession.clients.map(async client => {
+                            emptyS3Directory(`${client.id}/${resSession.hash}/`)
+                            const createFolderRes = await s3.upload({
+                                Bucket: process.env.AWS_S3_BUCKET,
+                                Key: `${client.id}/${resSession.hash}/`,
+                                Body: ''
+                            }).promise();
+                        })
                         return Promise.resolve(resSession)
                     }).catch(error => Promise.reject(error));
                 })

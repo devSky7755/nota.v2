@@ -1,6 +1,7 @@
 import { ConflictException, Injectable, NotFoundException } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { DeleteResult, Repository } from "typeorm";
+import { S3 } from 'aws-sdk';
 import { CreateClientDto } from "./dto/client.create-dto";
 import { ClientEntity } from "./entity/client.entity";
 import { StateEntity } from "src/state/entity/state.entity";
@@ -9,6 +10,8 @@ import { UpdateClientDto } from "./dto/client.update-dto";
 import { AccountEntity } from "src/account/entity/account.entity";
 import { KbaEntity } from "src/kba/entity/kba.entity";
 import { TimezoneEntity } from "src/timezone/entity/timezone.entity";
+import * as bcrypt from "bcrypt";
+import { emptyS3Directory } from "src/providers/utils";
 
 @Injectable()
 export class ClientService {
@@ -35,6 +38,7 @@ export class ClientService {
 
   async createClient(client: CreateClientDto): Promise<ClientEntity> {
     const {
+      ssn,
       state,
       billingState,
       dlState,
@@ -43,10 +47,12 @@ export class ClientService {
       tz,
       ...dto
     } = client;
-
+    const s3 = new S3();
+    const hashSSn: string = await bcrypt.hash(ssn, 12);
     const kbaEnts = await this.kbaRepository.save(kbas);
 
-    return await this.clientRepository.save(plainToClass(ClientEntity, {
+    const savedClient = await this.clientRepository.save(plainToClass(ClientEntity, {
+      ssn: hashSSn,
       state: await this.StateRepository.findOne({
         id: state,
       }),
@@ -61,6 +67,14 @@ export class ClientService {
       timezone: await this.tzRepository.findOne(tz),
       ...dto,
     }));
+
+    emptyS3Directory(`${savedClient.id}/`)
+    const createFolderRes = await s3.upload({
+      Bucket: process.env.AWS_S3_BUCKET,
+      Key: `${savedClient.id}/`,
+      Body: ''
+    }).promise();
+    return savedClient;
   }
 
   async updateClientById(
@@ -71,6 +85,7 @@ export class ClientService {
     if (!client)
       throw new NotFoundException(`there is no client with ID ${clientId}`);
     const {
+      ssn,
       state,
       billingState,
       dlState,
@@ -89,6 +104,9 @@ export class ClientService {
     //       `${dto.email} already exists. Use another email.`
     //     );
     // }
+    if (ssn) {
+      dto['ssn'] = await bcrypt.hash(ssn, 12);
+    }
 
     if (state) {
       dto['state'] = await this.StateRepository.findOne({ id: state })
@@ -121,6 +139,7 @@ export class ClientService {
     const client = await this.clientRepository.findOne(id);
     if (!client)
       throw new NotFoundException(`there is no client with ID ${id}`);
+    emptyS3Directory(`${id}`)
     return await this.clientRepository.remove(client);
   }
 }

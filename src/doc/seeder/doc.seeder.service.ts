@@ -9,6 +9,9 @@ import { DocStatusEntity } from "../entity/doc.status.entity";
 import { DocActionEntity } from "../entity/doc.action.entity";
 import { CreateDocActionDto } from "../dto/doc.action.create-dto";
 import { CreateDocStatusDto } from "../dto/doc.status.create-dto";
+import { ClientEntity } from "src/client/entity/client.entity";
+import { SessionEntity } from "src/session/entity/session.entity";
+import { S3 } from 'aws-sdk';
 
 /**
  * Service dealing with doc based operations.
@@ -27,6 +30,10 @@ export class DocSeederService {
     constructor(
         @InjectRepository(DocEntity)
         private docRepository: Repository<DocEntity>,
+        @InjectRepository(ClientEntity)
+        private clientRepository: Repository<ClientEntity>,
+        @InjectRepository(SessionEntity)
+        private sessionRepository: Repository<SessionEntity>,
         @InjectRepository(DocActionEntity)
         private docActionRepository: Repository<DocActionEntity>,
         @InjectRepository(DocStatusEntity)
@@ -100,8 +107,19 @@ export class DocSeederService {
                     const {
                         action,
                         status,
+                        sessionId,
+                        clientId,
                         ...dto
                     } = doc;
+
+                    const session = await this.sessionRepository.findOne({ id: sessionId });
+                    if (!session)
+                        Promise.reject(`there is no session with ID ${sessionId}`)
+
+                    const client = await this.clientRepository.findOne({ id: clientId });
+                    if (!client)
+                        Promise.reject(`there is no client with ID ${clientId}`)
+
                     return Promise.resolve(
                         await this.docRepository.save({
                             action: await this.docActionRepository.findOne({
@@ -110,6 +128,8 @@ export class DocSeederService {
                             status: await this.docStatusRepository.findOne({
                                 id: status,
                             }),
+                            sessionId: sessionId,
+                            clientId: clientId,
                             ...dto,
                         })
                     );

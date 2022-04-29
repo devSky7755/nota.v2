@@ -12,4 +12,10 @@ export class CronService {
         await this.sessionService.checkSessionTimeout();
         this.logger.debug('Called every an hour to check if session started 24 hrs later.');
     }
+
+    @Interval(1000)
+    async sendVerifDigitPin() {
+        await this.sessionService.sendVerifDigitPin();
+        this.logger.debug('Called every an second to send verif code started already');
+    }
 }

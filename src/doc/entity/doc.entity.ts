@@ -44,6 +44,12 @@ export class DocEntity {
   @Column({ name: "needs_notary" })
   needsNotary: boolean;
 
+  @Column({ name: "client_id" })
+  clientId: number;
+
+  @Column({ name: "session_id" })
+  sessionId: number;
+
   @CreateDateColumn({ type: "timestamp", default: () => "CURRENT_TIMESTAMP(6)" })
   public created_at: Date;
 

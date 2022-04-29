@@ -16,11 +16,24 @@ import { SessionTypeEntity } from "./entity/session.types.entity";
 import { SessionController } from "./session.controller";
 import { SessionService } from "./session.service";
 import { SessionSubscriber } from "./session.subscriber";
+import { SessionTokenEntity } from "./entity/session.token.entity";
+import { SmsService } from "src/sms/sms.service";
+import { JwtModule, JwtService } from "@nestjs/jwt";
+import { ConfigModule, ConfigService } from "@nestjs/config";
 
 @Module({
-  imports: [TypeOrmModule.forFeature([SessionEntity, AccountEntity, UserEntity, DurationEntity, SessionTypeEntity, SessionStatusEntity, NotarySessionTypeEntity, ClientEntity, WitnessEntity, AssociateEntity, DocEntity, SessionClientJoinEntity, SessionAssociateJoinEntity])],
+  imports: [
+    TypeOrmModule.forFeature([SessionEntity, AccountEntity, UserEntity, DurationEntity, SessionTypeEntity, SessionStatusEntity, NotarySessionTypeEntity, ClientEntity, WitnessEntity, AssociateEntity, DocEntity, SessionClientJoinEntity, SessionAssociateJoinEntity, SessionTokenEntity]),
+    JwtModule.registerAsync({
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: async (configService: ConfigService) => ({
+        secret: configService.get("JWT_SECRET"),
+        signOptions: { expiresIn: "1d" },
+      }),
+    }),],
   controllers: [SessionController],
-  providers: [SessionService, SessionSubscriber],
+  providers: [SessionService, SessionSubscriber, SmsService],
   exports: [SessionService],
 })
 export class SessionModule { }

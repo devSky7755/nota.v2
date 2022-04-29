@@ -22,6 +22,7 @@ import { SessionStatusEntity } from "./session.status.entity";
 import { NotarySessionTypeEntity } from "./notary.session.type.entity";
 import { SessionAssociateJoinEntity } from "./session.assoc.join.entity";
 import { DurationEntity } from "src/duration/entity/duration.entity";
+import { SessionTokenEntity } from "./session.token.entity";
 
 @Entity({ name: "sessions" })
 export class SessionEntity {
@@ -139,6 +140,9 @@ export class SessionEntity {
     },
   })
   docs: DocEntity[];
+
+  @OneToMany(() => SessionTokenEntity, token => token.session)
+  tokens: SessionTokenEntity[];
 
   @CreateDateColumn({ type: "timestamp", default: () => "CURRENT_TIMESTAMP(6)" })
   public created_at: Date;

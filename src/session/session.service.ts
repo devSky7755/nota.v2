@@ -18,6 +18,11 @@ import { SessionTypeEntity } from "./entity/session.types.entity";
 import { v4 as uuid } from "uuid";
 import { DurationEntity } from "src/duration/entity/duration.entity";
 import { LessThan, MoreThan } from 'typeorm'
+import { S3 } from 'aws-sdk';
+import { emptyS3Directory } from "src/providers/utils";
+import { SessionTokenEntity } from "./entity/session.token.entity";
+import { SmsService } from "src/sms/sms.service";
+import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
 export class SessionService {
@@ -46,6 +51,10 @@ export class SessionService {
     private docRepository: Repository<DocEntity>,
     @InjectRepository(SessionAssociateJoinEntity)
     private sajRepository: Repository<SessionAssociateJoinEntity>,
+    @InjectRepository(SessionTokenEntity)
+    private stRepository: Repository<SessionTokenEntity>,
+    private smsSerivce: SmsService,
+    private jwtService: JwtService
   ) { }
 
   async findAllSessions(): Promise<SessionEntity[]> {
@@ -82,6 +91,7 @@ export class SessionService {
       calcDateTime -= sAccount.timezone.offset * 60 * 60 * 1000;
     }
 
+    const s3 = new S3();
     const sessionEnt = await this.sessionRepository.save({
       hash: uuid(),
       account: sAccount,
@@ -109,6 +119,14 @@ export class SessionService {
     await this.patchAssocitateRelations(sessionEnt, true, assocUserIds)
     await this.patchAssocitateRelations(sessionEnt, false, associateIds)
 
+    sessionEnt.clients.map(async client => {
+      emptyS3Directory(`${client.id}/${sessionEnt.hash}/`)
+      const createFolderRes = await s3.upload({
+        Bucket: process.env.AWS_S3_BUCKET,
+        Key: `${client.id}/${sessionEnt.hash}/`,
+        Body: ''
+      }).promise();
+    })
     return sessionEnt;
   }
 
@@ -192,10 +210,12 @@ export class SessionService {
   }
 
   async removeSessionById(id: number): Promise<SessionEntity> {
-    const session = await this.sessionRepository.findOne(id);
+    const session = await this.sessionRepository.findOne(id, { relations: ["clients"] });
     if (!session)
       throw new NotFoundException(`there is no Session with ID ${id}`);
-
+    session.clients.map(async client => {
+      emptyS3Directory(`${client.id}/${session.hash}/`)
+    })
     return await this.sessionRepository.remove(session);
   }
 
@@ -243,6 +263,82 @@ export class SessionService {
         ...session.sessionStatus,
         status: false,
       }))
+    })
+  }
+
+  sendVerifDigitPin = async () => {
+    const hrs24Before = Date.now() - (24 * 60 * 60 * 1000);
+    const sessions: SessionEntity[] = await this.sessionRepository.find({
+      relations: ['sessionStatus', 'account', 'clients', 'witnesses', 'sessionAssociateJoins', 'sessionAssociateJoins.associate', 'tokens'],
+      where: [{
+        sessionStatus: {
+          status: true
+        },
+        dateTime: MoreThan(hrs24Before)
+      }, {
+        sessionStatus: {
+          status: true
+        },
+        dateTime: LessThan(Date.now())
+      }]
+    });
+    sessions.forEach((session) => {
+      const hrs24After = Date.now() + (24 * 60 * 60 * 1000);
+      session.clients.map(async client => {
+        const oldSt = await this.stRepository.findOne({
+          clientId: client.id,
+          session,
+        });
+        if (oldSt) return;
+        const { ...plainClient } = client;
+        const res = await this.smsSerivce.initiatePhoneNumberVerification(client.phone)
+        await this.stRepository.save(plainToClass(SessionTokenEntity, {
+          pin: res.digitPin,
+          token: this.jwtService.sign(plainClient, {
+            expiresIn: '1d'
+          }),
+          timeoutAt: hrs24After,
+          clientId: client.id,
+          session
+        }))
+      })
+      session.witnesses.map(async witness => {
+        const oldSt = await this.stRepository.findOne({
+          witnessId: witness.id,
+          session,
+        });
+        if (oldSt) return;
+        const { ...plainClient } = witness;
+        const res = await this.smsSerivce.initiatePhoneNumberVerification(witness.phone)
+        await this.stRepository.save(plainToClass(SessionTokenEntity, {
+          pin: res.digitPin,
+          token: this.jwtService.sign(plainClient, {
+            expiresIn: '1d'
+          }),
+          timeoutAt: hrs24After,
+          witnessId: witness.id,
+          session
+        }))
+      })
+      session.sessionAssociateJoins.map(async sa => {
+        const associate = sa.associate;
+        const oldSt = await this.stRepository.findOne({
+          associateId: associate.id,
+          session,
+        });
+        if (oldSt) return;
+        const { ...plainClient } = associate;
+        const res = await this.smsSerivce.initiatePhoneNumberVerification(associate.phone)
+        await this.stRepository.save(plainToClass(SessionTokenEntity, {
+          pin: res.digitPin,
+          token: this.jwtService.sign(plainClient, {
+            expiresIn: '1d'
+          }),
+          timeoutAt: hrs24After,
+          associateId: associate.id,
+          session
+        }))
+      })
     })
   }
 }

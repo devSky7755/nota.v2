@@ -223,6 +223,16 @@ export class Seeder {
                 Promise.reject(error);
             });
 
+        await this.sessions()
+            .then(completed => {
+                this.logger.debug('Successfuly completed seeding sessions...');
+                Promise.resolve(completed);
+            })
+            .catch(error => {
+                this.logger.error('Failed seeding sessions...');
+                Promise.reject(error);
+            });
+
         await this.docs()
             .then(completed => {
                 this.logger.debug('Successfuly completed seeding docs...');
@@ -250,16 +260,6 @@ export class Seeder {
             })
             .catch(error => {
                 this.logger.error('Failed seeding records...');
-                Promise.reject(error);
-            });
-
-        await this.sessions()
-            .then(completed => {
-                this.logger.debug('Successfuly completed seeding sessions...');
-                Promise.resolve(completed);
-            })
-            .catch(error => {
-                this.logger.error('Failed seeding sessions...');
                 Promise.reject(error);
             });
     }

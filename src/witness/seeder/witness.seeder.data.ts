@@ -9,7 +9,7 @@ export const seedWitnesss: Array<CreateWitnessDto> = [
         "city": "Dallas",
         "state": 1,
         "zipCode": "76262",
-        "phone": "15552224444",
+        "phone": "1(408) 786-5533",
         "email": "test1@testemail.com",
         "dob": "1970-01-01",
         tz: 3,

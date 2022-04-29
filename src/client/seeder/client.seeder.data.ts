@@ -16,7 +16,7 @@ export const seedClients: Array<CreateClientDto> = [
         "billingCity": "Dallas",
         "billingState": 1,
         "billingZipCode": "76262",
-        "phone": "15552224444",
+        "phone": "1(408) 786-5533",
         "sendSms": true,
         "sendEmail": true,
         "email": "test1@testemail.com",

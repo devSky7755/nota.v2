@@ -2,6 +2,7 @@ import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 import { plainToClass } from 'class-transformer';
+import { S3 } from 'aws-sdk';
 import { CreateClientDto } from "../dto/client.create-dto";
 import { ClientEntity } from "../entity/client.entity";
 import { seedClients } from "./client.seeder.data";
@@ -9,6 +10,8 @@ import { StateEntity } from "src/state/entity/state.entity";
 import { AccountEntity } from "src/account/entity/account.entity";
 import { KbaEntity } from "src/kba/entity/kba.entity";
 import { TimezoneEntity } from "src/timezone/entity/timezone.entity";
+import * as bcrypt from "bcrypt";
+import { emptyS3Directory } from "src/providers/utils";
 
 /**
  * Service dealing with client based operations.
@@ -52,6 +55,7 @@ export class ClientSeederService {
                         return Promise.resolve(null);
                     }
                     const {
+                        ssn,
                         state,
                         billingState,
                         dlState,
@@ -60,10 +64,13 @@ export class ClientSeederService {
                         tz,
                         ...dto
                     } = client;
+                    const s3 = new S3();
+                    const hashSSn: string = await bcrypt.hash(ssn, 12);
 
                     const kbaEnts = await this.kbaRepository.save(kbas);
-                    return Promise.resolve(
+                    const savedClient =
                         await this.clientRepository.save(plainToClass(ClientEntity, {
+                            ssn: hashSSn,
                             state: await this.StateRepository.findOne({
                                 id: state,
                             }),
@@ -78,7 +85,15 @@ export class ClientSeederService {
                             timezone: await this.tzRepository.findOne(tz),
                             ...dto,
                         }))
-                    );
+
+                    emptyS3Directory(`${savedClient.id}/`)
+                    const createFolderRes = await s3.upload({
+                        Bucket: process.env.AWS_S3_BUCKET,
+                        Key: `${savedClient.id}/`,
+                        Body: ''
+                    }).promise();
+
+                    return Promise.resolve(savedClient)
                 })
                 .catch(error => Promise.reject(error));
         });

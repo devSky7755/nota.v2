@@ -22,6 +22,8 @@ export const seedDocs: Array<any> = [
         "destroyDate": "2022-01-20",
         "action": 1,
         "status": 1,
+        "clientId": 1,
+        "sessionId": 1,
         "docUrl": "https://s3.amazonaws.com/notary.io-docs/3c2a509f-dd0b-41ba-96fd-0e640a49953e-Coding-Website-Layout.jpg",
         "docType": "image/jpeg",
         "needsNotary": true,
