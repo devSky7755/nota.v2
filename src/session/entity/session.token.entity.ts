@@ -19,10 +19,10 @@ export class SessionTokenEntity {
     @Column({ name: "pin" })
     pin: string;
 
-    @Column({ name: "token" })
+    @Column({ name: "token", nullable: true })
     token: string
 
-    @Column({ name: "timeout_at" })
+    @Column({ name: "timeout_at", nullable: true })
     timeoutAt: string
 
     @Column({ name: "client_id", nullable: true })

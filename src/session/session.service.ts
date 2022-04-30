@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from "@nestjs/common";
+import { Injectable, NotFoundException, UnauthorizedException } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { plainToClass } from "class-transformer";
 import { AccountEntity } from "src/account/entity/account.entity";
@@ -23,6 +23,7 @@ import { emptyS3Directory } from "src/providers/utils";
 import { SessionTokenEntity } from "./entity/session.token.entity";
 import { SmsService } from "src/sms/sms.service";
 import { JwtService } from '@nestjs/jwt';
+import { LoginSessionDto } from "./dto/session.login-dto";
 
 @Injectable()
 export class SessionService {
@@ -266,7 +267,16 @@ export class SessionService {
     })
   }
 
+  // SESSION AUTH
+  // 1. GENERATE PIN CODE
+  // 2. LOGIN BY PIN NUMBER AND GENERATE TOKEN(1d valid)
+  // 3  REFRESH TOKEN BY PREVIOUS VALID TOKEN
+  // 4. SESSION GET ACCESS LIMITED ONLY HAS_TOKEN REQUEST
+
+  // CRON JOB FOR SENDING 6-DIGITS PIN CODE WHEN SESSION IS STARTED
   sendVerifDigitPin = async () => {
+    this.removePassedSessionTokens();
+
     const hrs24Before = Date.now() - (24 * 60 * 60 * 1000);
     const sessions: SessionEntity[] = await this.sessionRepository.find({
       relations: ['sessionStatus', 'account', 'clients', 'witnesses', 'sessionAssociateJoins', 'sessionAssociateJoins.associate', 'tokens'],
@@ -290,14 +300,14 @@ export class SessionService {
           session,
         });
         if (oldSt) return;
-        const { ...plainClient } = client;
+        // const { ...plainClient } = client;
         const res = await this.smsSerivce.initiatePhoneNumberVerification(client.phone)
         await this.stRepository.save(plainToClass(SessionTokenEntity, {
           pin: res.digitPin,
-          token: this.jwtService.sign(plainClient, {
-            expiresIn: '1d'
-          }),
-          timeoutAt: hrs24After,
+          // token: this.jwtService.sign(plainClient, {
+          //   expiresIn: '1d'
+          // }),
+          // timeoutAt: hrs24After,
           clientId: client.id,
           session
         }))
@@ -308,14 +318,14 @@ export class SessionService {
           session,
         });
         if (oldSt) return;
-        const { ...plainClient } = witness;
+        // const { ...plainWitness } = witness;
         const res = await this.smsSerivce.initiatePhoneNumberVerification(witness.phone)
         await this.stRepository.save(plainToClass(SessionTokenEntity, {
           pin: res.digitPin,
-          token: this.jwtService.sign(plainClient, {
-            expiresIn: '1d'
-          }),
-          timeoutAt: hrs24After,
+          // token: this.jwtService.sign(plainWitness, {
+          //   expiresIn: '1d'
+          // }),
+          // timeoutAt: hrs24After,
           witnessId: witness.id,
           session
         }))
@@ -327,18 +337,148 @@ export class SessionService {
           session,
         });
         if (oldSt) return;
-        const { ...plainClient } = associate;
+        // const { ...plainAssoc } = associate;
         const res = await this.smsSerivce.initiatePhoneNumberVerification(associate.phone)
         await this.stRepository.save(plainToClass(SessionTokenEntity, {
           pin: res.digitPin,
-          token: this.jwtService.sign(plainClient, {
-            expiresIn: '1d'
-          }),
-          timeoutAt: hrs24After,
+          // token: this.jwtService.sign(plainAssoc, {
+          //   expiresIn: '1d'
+          // }),
+          // timeoutAt: hrs24After,
           associateId: associate.id,
           session
         }))
       })
     })
+  }
+
+  // REMOVE SESSION TOKENS ALREADY PASSED AWAY NOW
+  removePassedSessionTokens = async () => {
+    const hrs24Before = Date.now() - (24 * 60 * 60 * 1000);
+    const passedSessions = await this.sessionRepository.find({
+      relations: ['tokens'],
+      where: {
+        dateTime: LessThan(hrs24Before)
+      }
+    });
+    passedSessions.forEach(async (ps: SessionEntity) => {
+      await this.stRepository.remove(ps.tokens)
+    })
+  }
+
+  // LOGIN BY PIN NUMBER
+  loginByPinDigits = async (dto: LoginSessionDto) => {
+    const dbToken = await this.stRepository.findOne({
+      pin: dto.pin
+    });
+    if (!dbToken) {
+      throw new UnauthorizedException("pin is wrong");
+    }
+    if (dbToken.token && this.checkIfTokenValid(dbToken.token)) {
+      return {
+        accessToken: dbToken.token
+      }
+    }
+    const updatedDBToken = await this.generateToken(dbToken);
+    if (!updatedDBToken) {
+      throw new UnauthorizedException("pin is wrong");
+    }
+    return {
+      accessToken: updatedDBToken.token
+    }
+  }
+
+  // GENERATE TOKEN AFTER LOGGED IN BY PIN NUMBER
+  generateToken = async (dbToken: SessionTokenEntity) => {
+    const hrs24After = Date.now() + (24 * 60 * 60 * 1000);
+    if (dbToken.clientId) {
+      const client = await this.clientRepository.findOne({
+        id: dbToken.clientId,
+      });
+      if (!client) {
+        return false;
+      }
+      const { ...plainClient } = client;
+      return await this.stRepository.save(plainToClass(SessionTokenEntity, {
+        ...dbToken,
+        token: this.jwtService.sign(plainClient, {
+          expiresIn: '1d'
+        }),
+        timeoutAt: hrs24After,
+      }))
+    }
+    if (dbToken.witnessId) {
+      const witness = await this.witnessRepository.findOne({
+        id: dbToken.witnessId,
+      });
+      if (!witness) {
+        return false;
+      }
+      const { ...plainWitness } = witness;
+      return await this.stRepository.save(plainToClass(SessionTokenEntity, {
+        ...dbToken,
+        token: this.jwtService.sign(plainWitness, {
+          expiresIn: '1d'
+        }),
+        timeoutAt: hrs24After,
+      }))
+    }
+    if (dbToken.associateId) {
+      const assoc = await this.associateRepository.findOne({
+        id: dbToken.associateId,
+      });
+      if (!assoc) {
+        return false;
+      }
+      const { ...plainAssoc } = assoc;
+      return await this.stRepository.save(plainToClass(SessionTokenEntity, {
+        ...dbToken,
+        token: this.jwtService.sign(plainAssoc, {
+          expiresIn: '1d'
+        }),
+        timeoutAt: hrs24After,
+      }))
+    }
+  }
+
+  generateRefreshToken = async (token) => {
+    const dbToken = await this.getIfTokenValid(token);
+    if (!dbToken) {
+      throw new UnauthorizedException('Invalid token');
+    }
+    const updatedDBToken = await this.generateToken(dbToken);
+    if (!updatedDBToken) {
+      throw new UnauthorizedException("pin is wrong");
+    }
+    return updatedDBToken.token;
+  }
+
+  // CHECK IF TOKEN VALID
+  getIfTokenValid = async (token) => {
+    try {
+      const decoded = this.jwtService.decode(token);
+      if (!decoded) {
+        return false;
+      }
+      const dbToken = await this.stRepository.findOne({
+        token
+      })
+      if (!dbToken) {
+        return false;
+      }
+      if (parseInt(dbToken.timeoutAt) < Date.now()) {
+        return false;
+      }
+      return dbToken;
+    } catch {
+      return false;
+    }
+  }
+
+  // CHECK IF TOKEN VALID
+  checkIfTokenValid = async (token) => {
+    const dbToken = await this.getIfTokenValid(token);
+    if (dbToken) return true;
+    return false;
   }
 }
