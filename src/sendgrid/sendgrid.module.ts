@@ -4,7 +4,7 @@ import { SGEmailController } from './sendgrid.controller';
 import { SGEmailService } from './sendgrid.service';
 
 @Module({
-  imports: [],
+  imports: [HttpModule],
   controllers: [SGEmailController],
   providers: [SGEmailService],
   exports: [SGEmailService],

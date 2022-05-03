@@ -1,9 +1,10 @@
-import { Injectable } from "@nestjs/common";
+import { HttpException, Injectable } from "@nestjs/common";
 import { InjectTwilio, TwilioClient } from 'nestjs-twilio';
 import * as SendGrid from '@sendgrid/mail';
+import * as SendGridClient from '@sendgrid/client';
 import { SGEmailSendDto } from "./dto/sendgrid.send-dto";
 import { HttpService } from "@nestjs/axios";
-import { map } from "rxjs";
+import { catchError, lastValueFrom, map } from "rxjs";
 // import { join } from "path";
 // const Email = require('email-templates');
 
@@ -11,6 +12,7 @@ import { map } from "rxjs";
 export class SGEmailService {
   constructor(private http: HttpService) {
     SendGrid.setApiKey(process.env.SENDGRID_API_KEY);
+    SendGridClient.setApiKey(process.env.SENDGRID_API_KEY);
   }
 
   async sendEmail(sendDto: SGEmailSendDto): Promise<any> {
@@ -38,17 +40,62 @@ export class SGEmailService {
   async getFeedbackMsg(mid: string): Promise<any> {
     if (!mid) return false;
 
-    const requestConfig = {
-      headers: {
-        "authorization": `Bearer ${process.env.SENDGRID_API_KEY}`
-      },
-    };
+    // const requestConfig = {
+    //   headers: {
+    //     "authorization": `Bearer ${process.env.SENDGRID_API_KEY}`
+    //   },
+    // };
 
-    const responseData = await this.http.get('https://api.sendgrid.com/v3/messages?query=msg_id=' + mid, requestConfig).pipe(
-      map((response) => {
-        return response.data;
-      }));
-    console.log(responseData);
+    // const responseData = await lastValueFrom(this.http.get('https://api.sendgrid.com/v3/messages?query=msg_id%3D%22' + mid + '%22', requestConfig).pipe(
+    //   catchError(e => {
+    //     console.log(e)
+    //     throw new HttpException(e.response.data, e.response.status);
+    //   }),
+    //   map((response) => {
+    //     console.log(response)
+    //     return response.data;
+    //   })))
+
+    // const request = {
+    //   url: `/v3/messages?query=msg_id%3D%22` + mid + '%22',
+    //   method: 'GET',
+    //   headers: {},
+    //   qs: {
+    //     "start_date": "2010-01-22"
+    //   }
+    // }
+
+    // SendGridClient.request(request)
+    //   .then(([response, body]) => {
+    //     console.log(response.statusCode);
+    //     console.log(response.body);
+    //   })
+    //   .catch(error => {
+    //     console.error(error);
+    //   });
+
+    // const queryParams = {
+    //   "start_date": "2010-01-22"
+    // };
+    // const headers = {
+    //   "on-behalf-of": "The subuser's username. This header generates the API call as if the subuser account was making the call."
+    // };
+
+    // const request = {
+    //   url: `/v3/stats`,
+    //   method: 'GET',
+    //   headers: headers,
+    //   qs: queryParams
+    // }
+
+    // SendGridClient.request(request as any)
+    //   .then(([response, body]) => {
+    //     console.log(response.statusCode);
+    //     console.log(response.body);
+    //   })
+    //   .catch(error => {
+    //     console.error(error);
+    //   });
   }
 
   async initiateEmailVerification(email: string, digitPin: string): Promise<any> {
@@ -64,7 +111,7 @@ export class SGEmailService {
         },
       }
       const transport = await SendGrid.send(dto);
-      console.log(transport)
+      // console.log(transport)
       console.log(`E-Mail sent to ${dto.to}`);
       return (transport?.length > 0 && transport[0]) || {};
     } catch (e) {

@@ -306,65 +306,93 @@ export class SessionService {
     });
     sessions.forEach((session) => {
       session.clients.map(async (client: ClientEntity) => {
-        const digitPin = this.digitPinGen();
-        await this.handleSendPinViaSMS({
+        const sessionTokens = await Promise.all((await this.stRepository.find({
           clientId: client.id,
           session,
-          msgType: MSGTYPE.SMS
-        }, client.phone, digitPin)
-        await this.handleSendPinViaEmail({
-          clientId: client.id,
-          session,
-          msgType: MSGTYPE.EMAIL
-        }, client.email, digitPin)
+        })).map(async st => await this.updateDeliverStatus(st)));
+        const isDelivered = sessionTokens.find(st => st.isDelivered)
+        if (!isDelivered) {
+          console.log(isDelivered)
+          const digitPin = this.digitPinGen();
+          await this.handleSendPinViaSMS({
+            clientId: client.id,
+            session,
+            msgType: MSGTYPE.SMS
+          }, client.phone, digitPin)
+          await this.handleSendPinViaEmail({
+            clientId: client.id,
+            session,
+            msgType: MSGTYPE.EMAIL
+          }, client.email, digitPin)
+        }
       })
       session.witnesses.map(async witness => {
-        const digitPin = this.digitPinGen();
-        await this.handleSendPinViaSMS({
+        const sessionTokens = await Promise.all((await this.stRepository.find({
           witnessId: witness.id,
           session,
-          msgType: MSGTYPE.SMS
-        }, witness.phone, digitPin)
-        await this.handleSendPinViaEmail({
-          witnessId: witness.id,
-          session,
-          msgType: MSGTYPE.EMAIL
-        }, witness.email, digitPin)
+        })).map(async st => await this.updateDeliverStatus(st)));
+        const isDelivered = sessionTokens.find(st => st.isDelivered)
+        if (!isDelivered) {
+          const digitPin = this.digitPinGen();
+          await this.handleSendPinViaSMS({
+            witnessId: witness.id,
+            session,
+            msgType: MSGTYPE.SMS
+          }, witness.phone, digitPin)
+          await this.handleSendPinViaEmail({
+            witnessId: witness.id,
+            session,
+            msgType: MSGTYPE.EMAIL
+          }, witness.email, digitPin)
+        }
       })
       session.sessionAssociateJoins.map(async sa => {
         const associate = sa.associate;
-        const digitPin = this.digitPinGen();
-        await this.handleSendPinViaSMS({
+        const sessionTokens = await Promise.all((await this.stRepository.find({
           associateId: associate.id,
           session,
-          msgType: MSGTYPE.SMS
-        }, associate.phone, digitPin)
-        await this.handleSendPinViaEmail({
-          associateId: associate.id,
-          session,
-          msgType: MSGTYPE.EMAIL
-        }, associate.email, digitPin)
+        })).map(async st => await this.updateDeliverStatus(st)));
+        const isDelivered = sessionTokens.find(st => st.isDelivered)
+        if (!isDelivered) {
+          const digitPin = this.digitPinGen();
+          await this.handleSendPinViaSMS({
+            associateId: associate.id,
+            session,
+            msgType: MSGTYPE.SMS
+          }, associate.phone, digitPin)
+          await this.handleSendPinViaEmail({
+            associateId: associate.id,
+            session,
+            msgType: MSGTYPE.EMAIL
+          }, associate.email, digitPin)
+        }
       })
     })
   }
 
-  handleSendPinViaSMS = async (initalData: any, phoneNumber: string, digitPin: string) => {
-    const oldSt = await this.stRepository.findOne({
-      ...initalData
-    });
-    if (oldSt) {
-      if (oldSt.isDelivered) return;
-      const feedback = await this.smsSerivce.getFeedbackMsg(oldSt.deliveryMessageSid)
+  updateDeliverStatus = async (sessionToken: SessionTokenEntity) => {
+    if (sessionToken.msgType === MSGTYPE.EMAIL) {
+      // const feedback = await this.sgEmailService.getFeedbackMsg(sessionToken.deliveryMessageSid)
+      // TODO update session_token checken by feedback status
+    } else {
+      const feedback = await this.smsSerivce.getFeedbackMsg(sessionToken.deliveryMessageSid)
       if (feedback && feedback?.outcome === 'confirmed') {
-        await this.stRepository.save(plainToClass(SessionTokenEntity, {
-          ...oldSt,
+        return await this.stRepository.save(plainToClass(SessionTokenEntity, {
+          ...sessionToken,
           deliveryStatus: 'confirmed',
           isDelivered: true
         }))
-        return;
       }
     }
+    return sessionToken;
+  }
+
+  handleSendPinViaSMS = async (initalData: any, phoneNumber: string, digitPin: string) => {
     const res = await this.smsSerivce.initiatePhoneNumberVerification(phoneNumber, digitPin)
+
+    const oldSt = await this.stRepository.findOne({
+      ...initalData
+    });
     await this.stRepository.save(plainToClass(SessionTokenEntity, {
       ...(oldSt ? oldSt : initalData),
       pin: res.digitPin,
@@ -375,14 +403,11 @@ export class SessionService {
   }
 
   handleSendPinViaEmail = async (initalData: any, email: string, digitPin: string) => {
+    const res = await this.sgEmailService.initiateEmailVerification(email, digitPin)
+
     const oldSt = await this.stRepository.findOne({
       ...initalData
     });
-    if (oldSt) {
-      if (oldSt.isDelivered) return;
-      const feedback = await this.sgEmailService.getFeedbackMsg(oldSt.deliveryMessageSid)
-    }
-    const res = await this.sgEmailService.initiateEmailVerification(email, digitPin)
     await this.stRepository.save(plainToClass(SessionTokenEntity, {
       ...(oldSt ? oldSt : initalData),
       pin: digitPin,

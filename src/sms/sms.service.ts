@@ -33,7 +33,6 @@ export class SmsService {
       .feedback.create({
         outcome: 'confirmed',
       });
-    console.log(feedback);
     return feedback;
   }
 
@@ -45,7 +44,6 @@ export class SmsService {
       to: phoneNumber,
       provideFeedback: true,
     });
-    console.log(status)
     return {
       status,
       digitPin
