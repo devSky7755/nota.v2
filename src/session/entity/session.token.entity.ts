@@ -11,6 +11,11 @@ import {
 } from "typeorm";
 import { SessionEntity } from "./session.entity";
 
+export enum MSGTYPE {
+    EMAIL = "EMAIL",
+    SMS = "SMS",
+}
+
 @Entity({ name: "session_tokens" })
 export class SessionTokenEntity {
     @PrimaryGeneratedColumn()
@@ -33,6 +38,23 @@ export class SessionTokenEntity {
 
     @Column({ name: "witness_id", nullable: true })
     witnessId: number;
+
+    @Column({
+        type: "enum",
+        enum: MSGTYPE,
+        array: false,
+        default: MSGTYPE.SMS
+    })
+    msgType: MSGTYPE;
+
+    @Column({ name: "delivery_message_sid", nullable: true })
+    deliveryMessageSid: string;
+
+    @Column({ name: "delivery_status", nullable: true })
+    deliveryStatus: string;
+
+    @Column({ name: "is_delivered", default: false })
+    isDelivered: boolean;
 
     @CreateDateColumn({ type: "timestamp", default: () => "CURRENT_TIMESTAMP(6)" })
     public created_at: Date;

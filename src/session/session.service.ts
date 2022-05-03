@@ -20,10 +20,11 @@ import { DurationEntity } from "src/duration/entity/duration.entity";
 import { LessThan, MoreThan } from 'typeorm'
 import { S3 } from 'aws-sdk';
 import { emptyS3Directory } from "src/providers/utils";
-import { SessionTokenEntity } from "./entity/session.token.entity";
+import { MSGTYPE, SessionTokenEntity } from "./entity/session.token.entity";
 import { SmsService } from "src/sms/sms.service";
 import { JwtService } from '@nestjs/jwt';
 import { LoginSessionDto } from "./dto/session.login-dto";
+import { SGEmailService } from "src/sendgrid/sendgrid.service";
 
 @Injectable()
 export class SessionService {
@@ -55,6 +56,7 @@ export class SessionService {
     @InjectRepository(SessionTokenEntity)
     private stRepository: Repository<SessionTokenEntity>,
     private smsSerivce: SmsService,
+    private sgEmailService: SGEmailService,
     private jwtService: JwtService
   ) { }
 
@@ -273,7 +275,17 @@ export class SessionService {
   // 3  REFRESH TOKEN BY PREVIOUS VALID TOKEN
   // 4. SESSION GET ACCESS LIMITED ONLY HAS_TOKEN REQUEST
 
-  // CRON JOB FOR SENDING 6-DIGITS PIN CODE WHEN SESSION IS STARTED
+  // CRON JOB FOR SENDING 6-DIGITS PIN CODE WHEN SESSION IS STARTED 
+  digitPinGen() {
+    var chars = 'acdefhiklmnoqrstuvwxyz0123456789'.split('');
+    var result = '';
+    for (var i = 0; i < 6; i++) {
+      var x = Math.floor(Math.random() * chars.length);
+      result += chars[x];
+    }
+    return result;
+  }
+
   sendVerifDigitPin = async () => {
     this.removePassedSessionTokens();
 
@@ -293,63 +305,91 @@ export class SessionService {
       }]
     });
     sessions.forEach((session) => {
-      const hrs24After = Date.now() + (24 * 60 * 60 * 1000);
-      session.clients.map(async client => {
-        const oldSt = await this.stRepository.findOne({
+      session.clients.map(async (client: ClientEntity) => {
+        const digitPin = this.digitPinGen();
+        await this.handleSendPinViaSMS({
           clientId: client.id,
           session,
-        });
-        if (oldSt) return;
-        // const { ...plainClient } = client;
-        const res = await this.smsSerivce.initiatePhoneNumberVerification(client.phone)
-        await this.stRepository.save(plainToClass(SessionTokenEntity, {
-          pin: res.digitPin,
-          // token: this.jwtService.sign(plainClient, {
-          //   expiresIn: '1d'
-          // }),
-          // timeoutAt: hrs24After,
+          msgType: MSGTYPE.SMS
+        }, client.phone, digitPin)
+        await this.handleSendPinViaEmail({
           clientId: client.id,
-          session
-        }))
+          session,
+          msgType: MSGTYPE.EMAIL
+        }, client.email, digitPin)
       })
       session.witnesses.map(async witness => {
-        const oldSt = await this.stRepository.findOne({
+        const digitPin = this.digitPinGen();
+        await this.handleSendPinViaSMS({
           witnessId: witness.id,
           session,
-        });
-        if (oldSt) return;
-        // const { ...plainWitness } = witness;
-        const res = await this.smsSerivce.initiatePhoneNumberVerification(witness.phone)
-        await this.stRepository.save(plainToClass(SessionTokenEntity, {
-          pin: res.digitPin,
-          // token: this.jwtService.sign(plainWitness, {
-          //   expiresIn: '1d'
-          // }),
-          // timeoutAt: hrs24After,
+          msgType: MSGTYPE.SMS
+        }, witness.phone, digitPin)
+        await this.handleSendPinViaEmail({
           witnessId: witness.id,
-          session
-        }))
+          session,
+          msgType: MSGTYPE.EMAIL
+        }, witness.email, digitPin)
       })
       session.sessionAssociateJoins.map(async sa => {
         const associate = sa.associate;
-        const oldSt = await this.stRepository.findOne({
+        const digitPin = this.digitPinGen();
+        await this.handleSendPinViaSMS({
           associateId: associate.id,
           session,
-        });
-        if (oldSt) return;
-        // const { ...plainAssoc } = associate;
-        const res = await this.smsSerivce.initiatePhoneNumberVerification(associate.phone)
-        await this.stRepository.save(plainToClass(SessionTokenEntity, {
-          pin: res.digitPin,
-          // token: this.jwtService.sign(plainAssoc, {
-          //   expiresIn: '1d'
-          // }),
-          // timeoutAt: hrs24After,
+          msgType: MSGTYPE.SMS
+        }, associate.phone, digitPin)
+        await this.handleSendPinViaEmail({
           associateId: associate.id,
-          session
-        }))
+          session,
+          msgType: MSGTYPE.EMAIL
+        }, associate.email, digitPin)
       })
     })
+  }
+
+  handleSendPinViaSMS = async (initalData: any, phoneNumber: string, digitPin: string) => {
+    const oldSt = await this.stRepository.findOne({
+      ...initalData
+    });
+    if (oldSt) {
+      if (oldSt.isDelivered) return;
+      const feedback = await this.smsSerivce.getFeedbackMsg(oldSt.deliveryMessageSid)
+      if (feedback && feedback?.outcome === 'confirmed') {
+        await this.stRepository.save(plainToClass(SessionTokenEntity, {
+          ...oldSt,
+          deliveryStatus: 'confirmed',
+          isDelivered: true
+        }))
+        return;
+      }
+    }
+    const res = await this.smsSerivce.initiatePhoneNumberVerification(phoneNumber, digitPin)
+    await this.stRepository.save(plainToClass(SessionTokenEntity, {
+      ...(oldSt ? oldSt : initalData),
+      pin: res.digitPin,
+      deliveryMessageSid: res.status?.sid,
+      deliveryStatus: res.status?.status || '',
+      isDelivered: res.status?.status === 'sent'
+    }))
+  }
+
+  handleSendPinViaEmail = async (initalData: any, email: string, digitPin: string) => {
+    const oldSt = await this.stRepository.findOne({
+      ...initalData
+    });
+    if (oldSt) {
+      if (oldSt.isDelivered) return;
+      const feedback = await this.sgEmailService.getFeedbackMsg(oldSt.deliveryMessageSid)
+    }
+    const res = await this.sgEmailService.initiateEmailVerification(email, digitPin)
+    await this.stRepository.save(plainToClass(SessionTokenEntity, {
+      ...(oldSt ? oldSt : initalData),
+      pin: digitPin,
+      deliveryMessageSid: res?.headers['x-message-id'],
+      deliveryStatus: 'Processed',
+      isDelivered: false
+    }))
   }
 
   // REMOVE SESSION TOKENS ALREADY PASSED AWAY NOW

@@ -18,8 +18,10 @@ import { SessionService } from "./session.service";
 import { SessionSubscriber } from "./session.subscriber";
 import { SessionTokenEntity } from "./entity/session.token.entity";
 import { SmsService } from "src/sms/sms.service";
+import { SGEmailService } from "src/sendgrid/sendgrid.service";
 import { JwtModule, JwtService } from "@nestjs/jwt";
 import { ConfigModule, ConfigService } from "@nestjs/config";
+import { HttpModule } from "@nestjs/axios";
 
 @Module({
   imports: [
@@ -31,9 +33,9 @@ import { ConfigModule, ConfigService } from "@nestjs/config";
         secret: configService.get("JWT_SECRET"),
         signOptions: { expiresIn: "1d" },
       }),
-    }),],
+    }), HttpModule],
   controllers: [SessionController],
-  providers: [SessionService, SessionSubscriber, SmsService],
+  providers: [SessionService, SessionSubscriber, SmsService, SGEmailService],
   exports: [SessionService],
 })
 export class SessionModule { }
