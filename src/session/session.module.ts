@@ -24,6 +24,7 @@ import { HttpModule } from "@nestjs/axios";
 import { SessionStatusService } from "./session.status.service";
 import { SessionController } from "./session.controller";
 import { SessionStatusController } from "./session.status.controller";
+import { SessionStatusListener } from "./session.status.listener.service";
 
 @Module({
   imports: [
@@ -37,7 +38,7 @@ import { SessionStatusController } from "./session.status.controller";
       }),
     }), HttpModule],
   controllers: [SessionController, SessionStatusController],
-  providers: [SessionService, SessionStatusService, SessionSubscriber, SmsService, SGEmailService],
+  providers: [SessionService, SessionStatusService, SessionStatusListener, SessionSubscriber, SmsService, SGEmailService],
   exports: [SessionService],
 })
 export class SessionModule { }

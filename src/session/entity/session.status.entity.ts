@@ -21,6 +21,15 @@ export class SessionStatusEntity {
     @Column({ name: "status" })
     status: boolean;
 
+    @Column({ name: "notified", default: false })
+    notified: boolean;
+
+    @Column({ name: "sms_sid", nullable: true })
+    smsSid: string;
+
+    @Column({ name: "email_sid", nullable: true })
+    emailSid: string;
+
     @CreateDateColumn({ type: "timestamp", default: () => "CURRENT_TIMESTAMP(6)" })
     public created_at: Date;
 
