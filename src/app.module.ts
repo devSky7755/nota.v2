@@ -31,6 +31,7 @@ import { SGEmailModule } from "./sendgrid/sendgrid.module";
 import { CronModule } from "./cron/cron.module";
 import { HealthModule } from "./health/health.module";
 import { HttpModule } from "@nestjs/axios";
+import { EventEmitterModule } from '@nestjs/event-emitter';
 
 @Module({
   imports: [
@@ -58,6 +59,7 @@ import { HttpModule } from "@nestjs/axios";
     }),
     HttpModule,
     ScheduleModule.forRoot(),
+    EventEmitterModule.forRoot(),
     CronModule,
     QBModule,
     UserModule,

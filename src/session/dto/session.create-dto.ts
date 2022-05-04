@@ -7,8 +7,8 @@ export class CreateSessionDto {
   readonly account: number;
   @IsNumber()
   readonly user: number;
-  @IsString()
-  readonly dateTime: string;
+  @IsNumber()
+  readonly dateTime: number;
   @IsNumber()
   readonly duration: number;
   @IsNumber()

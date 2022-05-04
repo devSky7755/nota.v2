@@ -1,5 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { InjectTwilio, TwilioClient } from 'nestjs-twilio';
+import { SessionEntity } from "src/session/entity/session.entity";
 import { MessageInstance } from "twilio/lib/rest/api/v2010/account/message";
 import { SmsSendDto } from "./dto/sms.send-dto";
 
@@ -36,8 +37,9 @@ export class SmsService {
     return feedback;
   }
 
-  async initiatePhoneNumberVerification(phoneNumber: string, digitPin: string): Promise<any> {
+  async initiatePhoneNumberVerification(phoneNumber: string, digitPin: string, session: SessionEntity): Promise<any> {
     if (!phoneNumber || !digitPin) return;
+    // TODO Create Session Link of UI and payload it on body
     const status = await this.client.messages.create({
       body: digitPin,
       from: process.env.TWILIO_SENDER_PHONE_NUMBER,

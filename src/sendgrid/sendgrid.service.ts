@@ -5,6 +5,7 @@ import * as SendGridClient from '@sendgrid/client';
 import { SGEmailSendDto } from "./dto/sendgrid.send-dto";
 import { HttpService } from "@nestjs/axios";
 import { catchError, lastValueFrom, map } from "rxjs";
+import { SessionEntity } from "src/session/entity/session.entity";
 // import { join } from "path";
 // const Email = require('email-templates');
 
@@ -98,8 +99,9 @@ export class SGEmailService {
     //   });
   }
 
-  async initiateEmailVerification(email: string, digitPin: string): Promise<any> {
+  async initiateEmailVerification(email: string, digitPin: string, session: SessionEntity): Promise<any> {
     if (!email || !digitPin) return;
+    // TODO Create Session Link of UI and payload it on body
     try {
       const dto = {
         to: email,
@@ -107,7 +109,9 @@ export class SGEmailService {
         templateId: process.env.SENDGRID_EMAIL_TEMPLATE_ID,
         dynamicTemplateData: {
           subject: 'Notar.io email verification',
-          digitPin
+          digitPin,
+          sessionId: session.id,
+          sessionHash: session.hash,
         },
       }
       const transport = await SendGrid.send(dto);

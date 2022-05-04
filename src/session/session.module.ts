@@ -13,7 +13,6 @@ import { SessionAssociateJoinEntity } from "./entity/session.assoc.join.entity";
 import { SessionClientJoinEntity } from "./entity/session.client.join.entity";
 import { SessionStatusEntity } from "./entity/session.status.entity";
 import { SessionTypeEntity } from "./entity/session.types.entity";
-import { SessionController } from "./session.controller";
 import { SessionService } from "./session.service";
 import { SessionSubscriber } from "./session.subscriber";
 import { SessionTokenEntity } from "./entity/session.token.entity";
@@ -22,6 +21,9 @@ import { SGEmailService } from "src/sendgrid/sendgrid.service";
 import { JwtModule, JwtService } from "@nestjs/jwt";
 import { ConfigModule, ConfigService } from "@nestjs/config";
 import { HttpModule } from "@nestjs/axios";
+import { SessionStatusService } from "./session.status.service";
+import { SessionController } from "./session.controller";
+import { SessionStatusController } from "./session.status.controller";
 
 @Module({
   imports: [
@@ -34,8 +36,8 @@ import { HttpModule } from "@nestjs/axios";
         signOptions: { expiresIn: "1d" },
       }),
     }), HttpModule],
-  controllers: [SessionController],
-  providers: [SessionService, SessionSubscriber, SmsService, SGEmailService],
+  controllers: [SessionController, SessionStatusController],
+  providers: [SessionService, SessionStatusService, SessionSubscriber, SmsService, SGEmailService],
   exports: [SessionService],
 })
 export class SessionModule { }

@@ -89,7 +89,7 @@ export class SessionService {
     }, {
       relations: ['timezone'],
     });
-    let calcDateTime = parseInt(dateTime);
+    let calcDateTime = dateTime;
     if (sAccount) {
       calcDateTime -= sAccount.timezone.offset * 60 * 60 * 1000;
     }
@@ -98,7 +98,7 @@ export class SessionService {
     const sessionEnt = await this.sessionRepository.save({
       hash: uuid(),
       account: sAccount,
-      dateTime: `${calcDateTime}`,
+      dateTime: calcDateTime,
       user: await this.userRepository.findOne({
         id: user,
       }),
@@ -250,7 +250,7 @@ export class SessionService {
   }
 
   checkSessionTimeout = async () => {
-    const hrs24Before = Date.now() - (24 * 60 * 60 * 1000);
+    const hrs24Before = Math.floor((Date.now() - (24 * 60 * 60 * 1000)) / 1000);
     const sessions: SessionEntity[] = await this.sessionRepository.find({
       relations: ['sessionStatus'],
       where: {
@@ -289,20 +289,17 @@ export class SessionService {
   sendVerifDigitPin = async () => {
     this.removePassedSessionTokens();
 
-    const hrs24Before = Date.now() - (24 * 60 * 60 * 1000);
+    const hrs24Before = Math.floor((Date.now() - (24 * 60 * 60 * 1000)) / 1000);
+    const mins15After = Math.floor((Date.now() + (15 * 60 * 1000)) / 1000);
+
     const sessions: SessionEntity[] = await this.sessionRepository.find({
       relations: ['sessionStatus', 'account', 'clients', 'witnesses', 'sessionAssociateJoins', 'sessionAssociateJoins.associate', 'tokens'],
-      where: [{
+      where: {
         sessionStatus: {
           status: true
         },
-        dateTime: MoreThan(hrs24Before)
-      }, {
-        sessionStatus: {
-          status: true
-        },
-        dateTime: LessThan(Date.now())
-      }]
+        dateTime: MoreThan(hrs24Before) && LessThan(mins15After)
+      }
     });
     sessions.forEach((session) => {
       session.clients.map(async (client: ClientEntity) => {
@@ -312,7 +309,6 @@ export class SessionService {
         })).map(async st => await this.updateDeliverStatus(st)));
         const isDelivered = sessionTokens.find(st => st.isDelivered)
         if (!isDelivered) {
-          console.log(isDelivered)
           const digitPin = this.digitPinGen();
           await this.handleSendPinViaSMS({
             clientId: client.id,
@@ -328,8 +324,11 @@ export class SessionService {
       })
       session.witnesses.map(async witness => {
         const sessionTokens = await Promise.all((await this.stRepository.find({
-          witnessId: witness.id,
-          session,
+          relations: ['session'],
+          where: {
+            witnessId: witness.id,
+            session,
+          }
         })).map(async st => await this.updateDeliverStatus(st)));
         const isDelivered = sessionTokens.find(st => st.isDelivered)
         if (!isDelivered) {
@@ -377,18 +376,19 @@ export class SessionService {
     } else {
       const feedback = await this.smsSerivce.getFeedbackMsg(sessionToken.deliveryMessageSid)
       if (feedback && feedback?.outcome === 'confirmed') {
-        return await this.stRepository.save(plainToClass(SessionTokenEntity, {
+        const newSt = await this.stRepository.save(plainToClass(SessionTokenEntity, {
           ...sessionToken,
           deliveryStatus: 'confirmed',
           isDelivered: true
         }))
+        return newSt;
       }
     }
     return sessionToken;
   }
 
   handleSendPinViaSMS = async (initalData: any, phoneNumber: string, digitPin: string) => {
-    const res = await this.smsSerivce.initiatePhoneNumberVerification(phoneNumber, digitPin)
+    const res = await this.smsSerivce.initiatePhoneNumberVerification(phoneNumber, digitPin, initalData.session)
 
     const oldSt = await this.stRepository.findOne({
       ...initalData
@@ -403,7 +403,7 @@ export class SessionService {
   }
 
   handleSendPinViaEmail = async (initalData: any, email: string, digitPin: string) => {
-    const res = await this.sgEmailService.initiateEmailVerification(email, digitPin)
+    const res = await this.sgEmailService.initiateEmailVerification(email, digitPin, initalData.session)
 
     const oldSt = await this.stRepository.findOne({
       ...initalData
@@ -419,7 +419,7 @@ export class SessionService {
 
   // REMOVE SESSION TOKENS ALREADY PASSED AWAY NOW
   removePassedSessionTokens = async () => {
-    const hrs24Before = Date.now() - (24 * 60 * 60 * 1000);
+    const hrs24Before = Math.floor((Date.now() - (24 * 60 * 60 * 1000)) / 1000);
     const passedSessions = await this.sessionRepository.find({
       relations: ['tokens'],
       where: {

@@ -21,7 +21,7 @@ export const seedSessions: Array<any> = [
     {
         "account": 1,
         "user": 1,
-        "dateTime": "1647113220",
+        "dateTime": 1651619560,
         "duration": 1,
         "docsNum": 2,
         "sessionType": 1,

@@ -41,7 +41,7 @@ export class SessionEntity {
   user: UserEntity;
 
   @Column({ name: "date_time" })
-  dateTime: string;
+  dateTime: number;
 
   @ManyToOne(() => DurationEntity, (dura) => dura.sessions)
   @JoinColumn({ name: 'duration_id' })

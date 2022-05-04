@@ -141,14 +141,14 @@ export class SessionSeederService {
                     }, {
                         relations: ['timezone'],
                     });
-                    let calcDateTime = parseInt(dateTime);
+                    let calcDateTime = dateTime;
                     if (sAccount) {
                         calcDateTime -= sAccount.timezone.offset * 60 * 60 * 1000;
                     }
                     return await this.sessionRepository.save({
                         hash: uuid(),
                         account: sAccount,
-                        dateTime: `${calcDateTime}`,
+                        dateTime: calcDateTime,
                         user: await this.userRepository.findOne({
                             id: user,
                         }),

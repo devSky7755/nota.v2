@@ -17,10 +17,12 @@ import { UpdateSessionDto } from "./dto/session.update-dto";
 import { DeleteResult } from "typeorm";
 import { LoginSessionDto } from "./dto/session.login-dto";
 import { SessionGuard } from "./session.guard";
+import { CreateSessionStatusDto } from "./dto/session.status.create-dto";
+import { SessionStatusService } from "./session.status.service";
 
 @Controller("sessions")
 export class SessionController {
-  constructor(private readonly sessionService: SessionService) { }
+  constructor(private readonly sessionService: SessionService, private readonly sessionStatusService: SessionStatusService) { }
 
   @Post("/login")
   async login(@Body() lsDto: LoginSessionDto): Promise<any> {
@@ -46,23 +48,29 @@ export class SessionController {
   }
 
   @Post()
-  // @UseGuards(AuthGuard("jwt"))
-  @UseGuards(SessionGuard)
+  @UseGuards(AuthGuard("jwt"))
+  // @UseGuards(SessionGuard)
   createSession(@Body() session: CreateSessionDto): Promise<SessionEntity> {
     return this.sessionService.createSession(session);
   }
 
   @Put("/:id")
-  // @UseGuards(AuthGuard("jwt"))
-  @UseGuards(SessionGuard)
+  @UseGuards(AuthGuard("jwt"))
+  // @UseGuards(SessionGuard)
   updateSession(@Param("id") id: number, @Body() session: UpdateSessionDto): Promise<SessionEntity> {
     return this.sessionService.updateSessionById(id, session);
   }
 
   @Delete("/:id")
-  // @UseGuards(AuthGuard("jwt"))
-  @UseGuards(SessionGuard)
+  @UseGuards(AuthGuard("jwt"))
+  // @UseGuards(SessionGuard)
   deleteSession(@Param("id") id: number): Promise<SessionEntity> {
     return this.sessionService.removeSessionById(id);
+  }
+
+  @Post("/status-change/:id")
+  @UseGuards(AuthGuard("jwt"))
+  async statusChange(@Param("id") id: number, @Body() sessionStatus: CreateSessionStatusDto): Promise<SessionEntity> {
+    return this.sessionStatusService.updateBySessionId(id, sessionStatus)
   }
 }
