@@ -6,9 +6,15 @@ import {
     UpdateDateColumn,
     OneToMany,
     OneToOne,
+    ManyToOne,
+    JoinColumn,
 } from "typeorm";
-
 import { SessionEntity } from "./session.entity";
+import { SessionStatusNotifiyEntity } from "./session.status.notify.entity";
+export enum MSGTYPE {
+    EMAIL = "EMAIL",
+    SMS = "SMS",
+}
 
 @Entity({ name: "session_statuses" })
 export class SessionStatusEntity {
@@ -21,21 +27,15 @@ export class SessionStatusEntity {
     @Column({ name: "status" })
     status: boolean;
 
-    @Column({ name: "notified", default: false })
-    notified: boolean;
-
-    @Column({ name: "sms_sid", nullable: true })
-    smsSid: string;
-
-    @Column({ name: "email_sid", nullable: true })
-    emailSid: string;
-
     @CreateDateColumn({ type: "timestamp", default: () => "CURRENT_TIMESTAMP(6)" })
     public created_at: Date;
 
     @UpdateDateColumn({ type: "timestamp", default: () => "CURRENT_TIMESTAMP(6)", onUpdate: "CURRENT_TIMESTAMP(6)" })
     public updated_at: Date;
 
-    @OneToOne(() => SessionEntity, (session) => session.sessionType)
+    @OneToOne(() => SessionEntity, (session) => session.sessionStatus)
     session: SessionEntity
+
+    @OneToMany(() => SessionStatusNotifiyEntity, (notify) => notify.sessionStatus)
+    notifiedMsgs: SessionStatusNotifiyEntity
 }

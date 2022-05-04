@@ -25,10 +25,11 @@ import { SessionStatusService } from "./session.status.service";
 import { SessionController } from "./session.controller";
 import { SessionStatusController } from "./session.status.controller";
 import { SessionStatusListener } from "./session.status.listener.service";
+import { SessionStatusNotifiyEntity } from "./entity/session.status.notify.entity";
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([SessionEntity, AccountEntity, UserEntity, DurationEntity, SessionTypeEntity, SessionStatusEntity, NotarySessionTypeEntity, ClientEntity, WitnessEntity, AssociateEntity, DocEntity, SessionClientJoinEntity, SessionAssociateJoinEntity, SessionTokenEntity]),
+    TypeOrmModule.forFeature([SessionEntity, AccountEntity, UserEntity, DurationEntity, SessionTypeEntity, SessionStatusEntity, SessionStatusNotifiyEntity, NotarySessionTypeEntity, ClientEntity, WitnessEntity, AssociateEntity, DocEntity, SessionClientJoinEntity, SessionAssociateJoinEntity, SessionTokenEntity]),
     JwtModule.registerAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
